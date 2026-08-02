@@ -1,0 +1,6 @@
+{
+  "name": "AVRX Digital & Financial Solution",
+  "description": "Your Trusted AI-Powered Digital & Financial Partner - Complete Web Design, App Dev, AI Automation, SEO, Loans, Insurance, GST, ITR & Credit Solutions on avrx.in",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
