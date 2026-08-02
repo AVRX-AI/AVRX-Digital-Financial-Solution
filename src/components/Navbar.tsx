@@ -128,26 +128,11 @@ export const Navbar: React.FC<NavbarProps> = ({
           <a 
             href="https://avrx.in" 
             onClick={(e) => { e.preventDefault(); scrollTo('hero'); }}
-            className="flex items-center space-x-3 group cursor-pointer"
+            className="flex items-center group cursor-pointer"
           >
-            <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-br from-[#0A66FF] via-cyan-500 to-purple-600 p-0.5 shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-[#081B33] rounded-[10px] flex items-center justify-center">
-                <span className="font-['Poppins'] font-black text-xl bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent">
-                  A
-                </span>
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center space-x-1.5">
-                <span className="font-['Poppins'] font-extrabold text-xl sm:text-2xl tracking-tight text-white group-hover:text-cyan-400 transition-colors">
-                  AVRX
-                </span>
-                <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-gradient-to-r from-blue-500/30 to-purple-500/30 border border-blue-400/40 text-cyan-300">
-                  360°
-                </span>
-              </div>
-              <span className="text-[10px] sm:text-xs text-white/60 -mt-0.5 tracking-wider">
-                Digital & Financial Solution
+            <div className="flex items-center py-1">
+              <span className="font-['Poppins'] font-black text-2xl sm:text-3xl tracking-[0.08em] text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-white drop-shadow-[0_0_15px_rgba(0,198,255,0.6)] group-hover:drop-shadow-[0_0_20px_rgba(0,198,255,0.9)] transition-all">
+                AVRX
               </span>
             </div>
           </a>

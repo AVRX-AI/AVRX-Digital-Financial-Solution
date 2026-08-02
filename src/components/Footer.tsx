@@ -138,16 +138,19 @@ export const Footer: React.FC<FooterProps> = ({
           
           {/* Column 1: Brand Info, Full Address & Social Media (3 columns wide) */}
           <div className="lg:col-span-3 space-y-5">
-            <div className="flex items-center space-x-2.5">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0A66FF] to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/30">
-                A
-              </div>
-              <div>
-                <span className="text-xl font-black tracking-wider text-white block">
-                  AVRX <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-[#0A66FF]">SOLUTIONS</span>
+            <div className="flex flex-col">
+              <div className="flex items-center">
+                <span className="font-['Poppins'] font-black text-2xl tracking-[0.08em] text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-white drop-shadow-[0_0_12px_rgba(0,198,255,0.5)]">
+                  AVRX
                 </span>
-                <span className="text-[10px] uppercase font-bold text-cyan-300 tracking-widest block -mt-1">
-                  INDIA PVT. LTD.
+                <span className="text-xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-[#0A66FF] ml-2">
+                  SOLUTIONS
+                </span>
+              </div>
+              <div className="flex items-center space-x-1.5 -mt-0.5">
+                <span className="h-[1px] w-3 bg-gradient-to-r from-transparent to-cyan-400 opacity-80" />
+                <span className="text-[10px] uppercase font-extrabold text-cyan-300 tracking-[0.18em]">
+                  DIGITAL &amp; FINANCIAL SOLUTION • INDIA PVT. LTD.
                 </span>
               </div>
             </div>

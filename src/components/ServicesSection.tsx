@@ -66,7 +66,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   });
 
   // Featured Packages Spotlight (Top 4 most popular services)
-  const featuredIds = ['website-design', 'app-development', 'seo-services', 'cloud-hosting'];
+  const featuredIds = ['website-design', 'app-development', 'seo-services', 'web-hosting'];
   const featuredServices = servicesData.filter((s) => featuredIds.includes(s.id));
 
   const handleExplore = (srv: ServiceItem) => {
