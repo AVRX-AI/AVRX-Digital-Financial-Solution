@@ -17,7 +17,7 @@ export default function PricingPage() {
   const digitalTiers = [
     {
       name: 'Startup MVP SLA',
-      price: '$499 / ₹39,999',
+      price: '₹9,999',
       timeline: '7-10 Working Days',
       desc: 'Ideal for early-stage founders needing a high-conversion landing page or MVP web app.',
       features: [
@@ -29,7 +29,7 @@ export default function PricingPage() {
     },
     {
       name: 'Growth Enterprise SLA',
-      price: '$1,499 / ₹1,25,000',
+      price: '₹14,999',
       timeline: '3-4 Weeks',
       badge: 'MOST POPULAR',
       desc: 'Our flagship full-stack architecture with custom CRM/CMS integration.',
@@ -42,7 +42,7 @@ export default function PricingPage() {
     },
     {
       name: 'Custom RFP & Scale',
-      price: '$3,499+ / ₹2,99,000+',
+      price: '₹24,999+',
       timeline: '6-8 Weeks',
       desc: 'For high-traffic FinTech, E-Commerce, or multi-tenant SaaS platforms.',
       features: [
@@ -57,7 +57,7 @@ export default function PricingPage() {
   const taxTiers = [
     {
       name: 'GST Monthly Compliance SLA',
-      price: '₹1,499 / $20 /mo',
+      price: '₹1,499 /mo',
       timeline: 'Same-Day Filing SLA',
       desc: 'Complete GST management by practicing Chartered Accountants.',
       features: [
@@ -69,7 +69,7 @@ export default function PricingPage() {
     },
     {
       name: 'Company Incorporation Bundle',
-      price: '₹6,999 / $90 all-inc',
+      price: '₹6,999 all-inc',
       timeline: '7 Working Days',
       badge: 'ALL-IN-ONE PACK',
       desc: 'Complete Pvt Ltd / LLP launch bundle with MCA Certificate.',
@@ -82,7 +82,7 @@ export default function PricingPage() {
     },
     {
       name: 'Virtual CFO Enterprise Retainer',
-      price: '₹14,999 / $180 /mo',
+      price: '₹14,999 /mo',
       timeline: '365-Day Retainer',
       desc: 'Outsource your entire finance and accounting department.',
       features: [

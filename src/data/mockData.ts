@@ -16,15 +16,29 @@ import {
 export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
   {
     id: 'business-website',
-    title: 'Business Website',
+    title: 'Enterprise & E-Commerce',
     category: 'digital',
-    shortDesc: 'High-converting corporate identity websites tailored for scalable growth and authority.',
-    fullDesc: 'We craft bespoke, performance-oriented business websites designed to elevate your corporate reputation and generate qualified enterprise leads 24/7.',
+    shortDesc: 'High-performance enterprise portals & e-commerce platforms with multi-currency payments, inventory sync, and CRM/ERP integrations.',
+    fullDesc: 'We engineer high-performance Enterprise & E-Commerce platforms designed to power multi-store storefronts, high-traffic digital brands, and global B2B/B2C commerce ecosystems with sub-second page loads and bank-grade PCI-DSS security.',
     icon: 'Globe',
     badge: 'Popular',
-    features: ['Custom UI/UX architecture', 'Mobile-first responsive layout', 'SEO-friendly schema markup', 'High-speed cloud deployment', 'CRM & Lead Form Integration'],
-    benefits: ['Establishes instant brand credibility', 'Reduces customer acquisition cost', '99.9% uptime with global CDN', 'Optimized for high Google rankings'],
-    pricing: { starter: '$899', pro: '$1,899', enterprise: 'Custom' }
+    features: [
+      'Multi-currency & UPI/Card Payment Gateways',
+      'Real-time High-Concurrency Inventory Sync',
+      'Custom ERP/CRM & Order Fulfillment API Integration',
+      'AI Product Recommendations & Abandoned Cart Recovery',
+      'Sub-second LCP Headless Storefront Architecture',
+      'PCI-DSS & SOC2 Bank-Grade Security Hardening',
+      'Multi-Vendor & B2B/B2C Portal Workflows',
+      'Automated GST Invoicing & Tax Calculation'
+    ],
+    benefits: [
+      'Establishes instant enterprise brand credibility',
+      'Reduces customer acquisition & checkout drop-off cost',
+      'Scalable to 100,000+ SKUs with 99.99% uptime SLA',
+      'Optimized for high Google SEO rankings & maximum conversion'
+    ],
+    pricing: { starter: '₹24,999', pro: '₹34,999', enterprise: '₹45,999' }
   },
   {
     id: 'corporate-website',
@@ -36,7 +50,7 @@ export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
     badge: 'Enterprise',
     features: ['Multi-language & localization', 'Investor & PR media suites', 'Role-based CMS workflows', 'Enterprise-grade firewall & DDOS protection'],
     benefits: ['Seamless corporate communications', 'SOC2 compliant data architecture', 'Unlimited departmental pages'],
-    pricing: { starter: '$2,499', pro: '$4,999', enterprise: 'Custom' }
+    pricing: { starter: '₹24,999', pro: '₹49,999', enterprise: 'Custom' }
   },
   {
     id: 'portfolio-website',
@@ -47,7 +61,7 @@ export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
     icon: 'Award',
     features: ['Interactive project lightboxes', 'Before/after slider showcases', 'Fast-loading image CDN', 'Direct appointment scheduler'],
     benefits: ['Converts high-ticket clients', 'Elevates personal & agency branding', '100+ Lighthouse speed score'],
-    pricing: { starter: '$599', pro: '$1,199', enterprise: '$2,299' }
+    pricing: { starter: '₹5,999', pro: '₹11,999', enterprise: '₹22,999' }
   },
   {
     id: 'landing-page',
@@ -59,7 +73,7 @@ export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
     badge: 'High Conversion',
     features: ['A/B testing ready structure', 'One-click checkout/form submission', 'Exit-intent popup integration', 'Pixel & conversion tracking'],
     benefits: ['Up to 3x higher ad conversion rate', 'Instant loading under 1.2s', 'Seamless Google & Meta ads sync'],
-    pricing: { starter: '$499', pro: '$899', enterprise: '$1,499' }
+    pricing: { starter: '₹4,999', pro: '₹8,999', enterprise: '₹14,999' }
   },
   {
     id: 'ecommerce-website',
@@ -71,7 +85,7 @@ export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
     badge: 'Best Seller',
     features: ['Multi-currency & payment gateway', 'Real-time inventory management', 'AI product recommendations', 'Automated abandoned cart emails'],
     benefits: ['Zero transaction fees', 'Scalable to 100,000+ SKUs', 'High average order value design'],
-    pricing: { starter: '$1,499', pro: '$3,299', enterprise: 'Custom' }
+    pricing: { starter: '₹14,999', pro: '₹32,999', enterprise: 'Custom' }
   },
   {
     id: 'wordpress-website',
@@ -82,7 +96,7 @@ export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
     icon: 'Layers',
     features: ['Custom block theme development', 'Zero-bloat performance tuning', 'Automated daily cloud backups', 'Advanced SEO Yoast/RankMath setup'],
     benefits: ['Easy for non-technical teams', 'Highly secure & hardened core', 'Full ownership of source code'],
-    pricing: { starter: '$699', pro: '$1,499', enterprise: '$2,899' }
+    pricing: { starter: '₹6,999', pro: '₹14,999', enterprise: '₹28,999' }
   },
   {
     id: 'school-website',
@@ -93,7 +107,7 @@ export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
     icon: 'GraduationCap',
     features: ['Online admissions & fee gateway', 'Student & parent login portal', 'Faculty directory & timetable', 'Event calendar & photo gallery'],
     benefits: ['Streamlined academic administration', '24/7 parent communication', 'ADA accessible design'],
-    pricing: { starter: '$1,199', pro: '$2,499', enterprise: 'Custom' }
+    pricing: { starter: '₹11,999', pro: '₹24,999', enterprise: 'Custom' }
   },
   {
     id: 'hospital-website',
@@ -104,7 +118,7 @@ export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
     icon: 'HeartPulse',
     features: ['Online doctor appointment booking', 'Department & specialist directory', 'Emergency contact & ambulance alert', 'Patient reports lookup portal'],
     benefits: ['Enhanced patient trust & ease', 'HIPAA & data privacy compliant', 'Reduces reception desk workload'],
-    pricing: { starter: '$1,399', pro: '$2,899', enterprise: 'Custom' }
+    pricing: { starter: '₹13,999', pro: '₹28,999', enterprise: 'Custom' }
   },
   {
     id: 'hotel-website',
@@ -115,7 +129,7 @@ export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
     icon: 'Hotel',
     features: ['Direct room reservation engine', '360° virtual room tours', 'Multi-currency rate converter', 'Restaurant table booking integration'],
     benefits: ['Saves 15-25% OTA commissions', 'Elevates luxury guest perception', 'Real-time availability sync'],
-    pricing: { starter: '$1,199', pro: '$2,599', enterprise: '$4,499' }
+    pricing: { starter: '₹11,999', pro: '₹25,999', enterprise: '₹44,999' }
   },
   {
     id: 'real-estate-website',
@@ -126,7 +140,7 @@ export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
     icon: 'Home',
     features: ['Interactive map & neighborhood view', 'MLS/IDX property feed integration', 'Built-in mortgage EMI calculator', 'Agent profile & lead routing'],
     benefits: ['Generates high-intent buyer leads', 'Automates property inquiry follow-ups', 'Mobile-responsive property cards'],
-    pricing: { starter: '$1,499', pro: '$3,499', enterprise: 'Custom' }
+    pricing: { starter: '₹14,999', pro: '₹34,999', enterprise: 'Custom' }
   },
   {
     id: 'custom-website',
@@ -138,7 +152,7 @@ export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
     badge: 'Tailored',
     features: ['Custom database & API architecture', 'Third-party ERP/CRM integration', 'Scalable microservice deployment', 'Enterprise SSO & security'],
     benefits: ['100% tailored to your business model', 'No vendor lock-in or licensing fees', 'Unlimited future scalability'],
-    pricing: { starter: '$3,500', pro: '$7,500', enterprise: 'Custom' }
+    pricing: { starter: '₹35,000', pro: '₹75,000', enterprise: 'Custom' }
   },
   {
     id: 'website-redesign',
@@ -149,7 +163,7 @@ export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
     icon: 'RefreshCw',
     features: ['Comprehensive UX audit', 'Zero SEO traffic loss migration', 'Modern dark/light theme options', 'Mobile UX optimization'],
     benefits: ['Immediate boost in conversion rate', 'Modernizes brand image', 'Fixes core web vital penalties'],
-    pricing: { starter: '$799', pro: '$1,699', enterprise: '$3,499' }
+    pricing: { starter: '₹7,999', pro: '₹16,999', enterprise: '₹34,999' }
   },
   {
     id: 'website-maintenance',
@@ -160,7 +174,7 @@ export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
     icon: 'ShieldCheck',
     features: ['24x7 automated uptime monitoring', 'Weekly cloud backups & recovery', 'Malware scanning & firewall protection', 'Monthly Core Web Vitals report'],
     benefits: ['Peace of mind & zero downtime', 'Protected against cyber threats', 'Fast turnaround on content edits'],
-    pricing: { starter: '$149/mo', pro: '$349/mo', enterprise: '$699/mo' }
+    pricing: { starter: '₹1,499/mo', pro: '₹3,499/mo', enterprise: '₹6,999/mo' }
   },
   {
     id: 'ui-ux-design',
@@ -172,7 +186,7 @@ export const WEBSITE_DESIGN_SERVICES: ServiceItem[] = [
     badge: 'Design Studio',
     features: ['Comprehensive Figma Design System', 'Interactive clickable prototypes', 'User research & usability testing', 'Developer-ready design tokens'],
     benefits: ['Reduces development rework by 40%', 'Delivers unforgettable user delight', 'Accessible & responsive UI components'],
-    pricing: { starter: '$999', pro: '$2,199', enterprise: '$4,500' }
+    pricing: { starter: '₹9,999', pro: '₹21,999', enterprise: '₹45,000' }
   },
   {
     id: 'framer-3d-website',
@@ -198,7 +212,7 @@ export const APPLICATION_DEVELOPMENT_SERVICES: ServiceItem[] = [
     icon: 'Smartphone',
     features: ['Native Kotlin / Jetpack Compose', 'Offline data sync & SQLite', 'Google Pay & UPI integration', 'Push notifications & FCM'],
     benefits: ['Access to 2.5B+ Android users', 'Flawless 60fps animations', 'Strict Google Play policy compliance'],
-    pricing: { starter: '$3,500', pro: '$6,500', enterprise: 'Custom' }
+    pricing: { starter: '₹35,000', pro: '₹65,000', enterprise: 'Custom' }
   },
   {
     id: 'ios-app',
@@ -210,7 +224,7 @@ export const APPLICATION_DEVELOPMENT_SERVICES: ServiceItem[] = [
     badge: 'Premium',
     features: ['Swift & SwiftUI architecture', 'Apple Pay & iCloud sync', 'FaceID & biometric security', 'App Store review guarantee'],
     benefits: ['High-revenue Apple user base', 'Ultra-smooth Apple haptics', 'Zero latency UI interaction'],
-    pricing: { starter: '$3,900', pro: '$7,200', enterprise: 'Custom' }
+    pricing: { starter: '₹39,000', pro: '₹72,000', enterprise: 'Custom' }
   },
   {
     id: 'flutter-app',
@@ -222,7 +236,7 @@ export const APPLICATION_DEVELOPMENT_SERVICES: ServiceItem[] = [
     badge: 'Best Value',
     features: ['Single codebase for iOS & Android', 'Custom animations & shaders', 'Hot-reload rapid iteration', 'Native device hardware access'],
     benefits: ['50% faster time to market', 'Consistent UX on all platforms', 'Lower long-term maintenance cost'],
-    pricing: { starter: '$4,500', pro: '$8,500', enterprise: 'Custom' }
+    pricing: { starter: '₹45,000', pro: '₹85,000', enterprise: 'Custom' }
   },
   {
     id: 'business-app',
@@ -233,7 +247,7 @@ export const APPLICATION_DEVELOPMENT_SERVICES: ServiceItem[] = [
     icon: 'Briefcase',
     features: ['Role-based employee authentication', 'Offline field data collection', 'ERP / Salesforce / SAP integration', 'MDM & enterprise security'],
     benefits: ['Increases field productivity by 35%', 'Paperless digital workflows', 'Real-time executive oversight'],
-    pricing: { starter: '$5,000', pro: '$9,500', enterprise: 'Custom' }
+    pricing: { starter: '₹50,000', pro: '₹95,000', enterprise: 'Custom' }
   },
   {
     id: 'school-app',
@@ -244,7 +258,7 @@ export const APPLICATION_DEVELOPMENT_SERVICES: ServiceItem[] = [
     icon: 'BookOpen',
     features: ['Live class & assignment module', 'Instant SMS & push notifications', 'Online fee payment gateway', 'Student progress report cards'],
     benefits: ['Boosts parent engagement', 'Automates fee collection', 'Secure student record vault'],
-    pricing: { starter: '$3,800', pro: '$6,800', enterprise: 'Custom' }
+    pricing: { starter: '₹38,000', pro: '₹68,000', enterprise: 'Custom' }
   },
   {
     id: 'hospital-app',
@@ -255,7 +269,7 @@ export const APPLICATION_DEVELOPMENT_SERVICES: ServiceItem[] = [
     icon: 'Heart',
     features: ['HD Video telemedicine calls', 'Digital prescription download', 'Lab test home sample booking', 'Medical history secure vault'],
     benefits: ['Extends healthcare reach', 'HIPAA encrypted video & chat', 'Instant doctor appointment booking'],
-    pricing: { starter: '$6,000', pro: '$11,000', enterprise: 'Custom' }
+    pricing: { starter: '₹60,000', pro: '₹1,10,000', enterprise: 'Custom' }
   },
   {
     id: 'booking-app',
@@ -266,7 +280,7 @@ export const APPLICATION_DEVELOPMENT_SERVICES: ServiceItem[] = [
     icon: 'Calendar',
     features: ['Real-time slot availability calendar', 'Automated SMS reminder alerts', 'Cancellation & refund logic', 'Customer loyalty rewards program'],
     benefits: ['Eliminates double bookings', 'Reduces no-shows by 80%', 'Instant payment collection'],
-    pricing: { starter: '$4,200', pro: '$7,800', enterprise: 'Custom' }
+    pricing: { starter: '₹42,000', pro: '₹78,000', enterprise: 'Custom' }
   },
   {
     id: 'finance-app',
@@ -278,7 +292,7 @@ export const APPLICATION_DEVELOPMENT_SERVICES: ServiceItem[] = [
     badge: 'Flagship',
     features: ['Bank-grade security & encryption', 'Instant Aadhaar/PAN video KYC', 'Credit score & credit card tracker', 'UPI / Gateway payment rails'],
     benefits: ['CRED-level visual elegance', '100% regulatory compliance', 'Lightning-fast transaction speed'],
-    pricing: { starter: '$8,000', pro: '$15,000', enterprise: 'Custom' }
+    pricing: { starter: '₹80,000', pro: '₹1,50,000', enterprise: 'Custom' }
   },
   {
     id: 'crm-app',
@@ -289,7 +303,7 @@ export const APPLICATION_DEVELOPMENT_SERVICES: ServiceItem[] = [
     icon: 'Users',
     features: ['Custom Kanban deal pipeline', 'Automated WhatsApp & email follow-up', 'Lead scoring & AI insights', 'Team performance leaderboard'],
     benefits: ['Zero per-user monthly licensing fees', 'Tailored to your sales methodology', '360-degree customer view'],
-    pricing: { starter: '$4,500', pro: '$8,900', enterprise: 'Custom' }
+    pricing: { starter: '₹45,000', pro: '₹89,000', enterprise: 'Custom' }
   },
   {
     id: 'erp-app',
@@ -300,7 +314,7 @@ export const APPLICATION_DEVELOPMENT_SERVICES: ServiceItem[] = [
     icon: 'Database',
     features: ['Multi-warehouse inventory tracking', 'Automated invoice & GST billing', 'Supply chain & vendor portal', 'HR & payroll processing'],
     benefits: ['Eliminates departmental silos', 'Real-time financial transparency', 'Scales to multi-plant operations'],
-    pricing: { starter: '$9,000', pro: '$18,000', enterprise: 'Custom' }
+    pricing: { starter: '₹90,000', pro: '₹1,80,000', enterprise: 'Custom' }
   },
   {
     id: 'custom-applications',
@@ -311,7 +325,7 @@ export const APPLICATION_DEVELOPMENT_SERVICES: ServiceItem[] = [
     icon: 'Cloud',
     features: ['Multi-tenant database isolation', 'Stripe / Razorpay subscription billing', 'User onboarding & walkthroughs', 'Admin super-user dashboard'],
     benefits: ['Ready for venture scale', 'Automated recurring billing', 'Global cloud resiliency'],
-    pricing: { starter: '$6,500', pro: '$14,000', enterprise: 'Custom' }
+    pricing: { starter: '₹65,000', pro: '₹1,40,000', enterprise: 'Custom' }
   },
   {
     id: 'cross-platform-apps',
@@ -322,7 +336,7 @@ export const APPLICATION_DEVELOPMENT_SERVICES: ServiceItem[] = [
     icon: 'Layers',
     features: ['Shared code with React web app', 'Over-the-air (OTA) instant updates', 'Native module bridging', 'High performance gesture handling'],
     benefits: ['Unified frontend engineering team', 'Instant bug fixes without app store wait', 'Cost-efficient scaling'],
-    pricing: { starter: '$4,500', pro: '$8,200', enterprise: 'Custom' }
+    pricing: { starter: '₹45,000', pro: '₹82,000', enterprise: 'Custom' }
   },
   {
     id: 'admin-dashboard',
@@ -334,7 +348,7 @@ export const APPLICATION_DEVELOPMENT_SERVICES: ServiceItem[] = [
     badge: 'Linear Style',
     features: ['Real-time WebSocket data updates', 'Interactive Chart.js & D3 graphs', 'Advanced filtering & CSV/PDF export', 'Dark mode glassmorphism UI'],
     benefits: ['Complete operational visibility', 'Lightning-fast data querying', 'Executive command center feel'],
-    pricing: { starter: '$2,800', pro: '$5,500', enterprise: 'Custom' }
+    pricing: { starter: '₹28,000', pro: '₹55,000', enterprise: 'Custom' }
   }
 ];
 
@@ -349,7 +363,7 @@ export const DIGITAL_MARKETING_SERVICES: ServiceItem[] = [
     badge: 'High ROI',
     features: ['Custom audience & lookalike creation', 'A/B tested creative ad variations', 'Conversion API (CAPI) server tracking', 'Weekly ROI & ROAS reporting'],
     benefits: ['Low cost per acquisition (CPA)', 'Scalable lead generation', 'Full funnel attribution'],
-    pricing: { starter: '$599/mo', pro: '$1,299/mo', enterprise: 'Custom' }
+    pricing: { starter: '₹5,999/mo', pro: '₹12,999/mo', enterprise: 'Custom' }
   },
   {
     id: 'instagram-marketing',
@@ -360,7 +374,7 @@ export const DIGITAL_MARKETING_SERVICES: ServiceItem[] = [
     icon: 'Camera',
     features: ['Viral Reel scripting & editing', 'Aesthetic dark/luxury brand grid', 'Influencer matching & campaign management', 'Daily story engagement triggers'],
     benefits: ['Rapid organic follower growth', 'Higher brand affinity & trust', 'Direct DMs conversion strategy'],
-    pricing: { starter: '$499/mo', pro: '$999/mo', enterprise: '$1,999/mo' }
+    pricing: { starter: '₹4,999/mo', pro: '₹9,999/mo', enterprise: '₹19,999/mo' }
   },
   {
     id: 'google-ads',
@@ -372,7 +386,7 @@ export const DIGITAL_MARKETING_SERVICES: ServiceItem[] = [
     badge: 'Instant Traffic',
     features: ['High-intent keyword bidding', 'Google Shopping feed optimization', 'Remarketing & display banners', 'Landing page CRO alignment'],
     benefits: ['Immediate page 1 visibility', 'Pay only for genuine clicks', 'Optimized Quality Score for lower CPC'],
-    pricing: { starter: '$699/mo', pro: '$1,499/mo', enterprise: 'Custom' }
+    pricing: { starter: '₹6,999/mo', pro: '₹14,999/mo', enterprise: 'Custom' }
   },
   {
     id: 'youtube-marketing',
@@ -383,7 +397,7 @@ export const DIGITAL_MARKETING_SERVICES: ServiceItem[] = [
     icon: 'Video',
     features: ['YouTube SEO keyword optimization', 'High-CTR custom thumbnail design', 'In-stream video ad campaign setup', 'Audience retention analysis'],
     benefits: ['Long-term evergreen organic leads', 'Massive brand awareness', 'High conversion video authority'],
-    pricing: { starter: '$599/mo', pro: '$1,199/mo', enterprise: 'Custom' }
+    pricing: { starter: '₹5,999/mo', pro: '₹11,999/mo', enterprise: 'Custom' }
   },
   {
     id: 'email-marketing',
@@ -394,7 +408,7 @@ export const DIGITAL_MARKETING_SERVICES: ServiceItem[] = [
     icon: 'Mail',
     features: ['Automated email drip sequences', 'Custom dark/light HTML templates', 'Advanced segmentation & personalization', 'A/B subject line testing'],
     benefits: ['Average 42x ROI on spend', 'High open (40%+) & click rates', 'Automated customer retention'],
-    pricing: { starter: '$399/mo', pro: '$799/mo', enterprise: '$1,499/mo' }
+    pricing: { starter: '₹3,999/mo', pro: '₹7,999/mo', enterprise: '₹14,999/mo' }
   },
   {
     id: 'whatsapp-marketing',
@@ -406,7 +420,7 @@ export const DIGITAL_MARKETING_SERVICES: ServiceItem[] = [
     badge: '98% Open Rate',
     features: ['Official WhatsApp Business API setup', 'Automated FAQ chatbot workflows', 'Transactional alert messages', 'Interactive button broadcast messages'],
     benefits: ['98% open rate within 5 minutes', 'Direct conversational commerce', 'Seamless CRM integration'],
-    pricing: { starter: '$499/mo', pro: '$999/mo', enterprise: 'Custom' }
+    pricing: { starter: '₹4,999/mo', pro: '₹9,999/mo', enterprise: 'Custom' }
   },
   {
     id: 'social-media-management',
@@ -417,7 +431,7 @@ export const DIGITAL_MARKETING_SERVICES: ServiceItem[] = [
     icon: 'ThumbsUp',
     features: ['Monthly content calendar & strategy', 'Custom branded graphics & carousels', 'Daily community comment moderation', 'Competitor benchmarking reports'],
     benefits: ['Consistent professional brand voice', 'Saves 20+ hours of executive time', 'Multi-channel brand authority'],
-    pricing: { starter: '$699/mo', pro: '$1,399/mo', enterprise: '$2,499/mo' }
+    pricing: { starter: '₹6,999/mo', pro: '₹13,999/mo', enterprise: '₹24,999/mo' }
   },
   {
     id: 'lead-generation',
@@ -429,7 +443,7 @@ export const DIGITAL_MARKETING_SERVICES: ServiceItem[] = [
     badge: 'B2B Dedicated',
     features: ['Verified decision-maker contact mining', 'Personalized multi-touch cold email', 'LinkedIn automated outreach', 'Meeting scheduling & calendar booking'],
     benefits: ['Predictable B2B pipeline growth', 'No time wasted on unqualified leads', 'High conversion executive meetings'],
-    pricing: { starter: '$999/mo', pro: '$1,999/mo', enterprise: 'Custom' }
+    pricing: { starter: '₹9,999/mo', pro: '₹19,999/mo', enterprise: 'Custom' }
   },
   {
     id: 'branding',
@@ -440,7 +454,7 @@ export const DIGITAL_MARKETING_SERVICES: ServiceItem[] = [
     icon: 'Award',
     features: ['Logo mark & wordmark design', 'Comprehensive brand guidelines book', 'Color palette & typography hierarchy', 'Social media & stationery kit'],
     benefits: ['Stand out in crowded markets', 'Premium brand equity perception', 'Consistent multi-platform identity'],
-    pricing: { starter: '$1,200', pro: '$2,800', enterprise: '$5,500' }
+    pricing: { starter: '₹12,000', pro: '₹28,000', enterprise: '₹55,000' }
   },
   {
     id: 'content-marketing',
@@ -451,7 +465,7 @@ export const DIGITAL_MARKETING_SERVICES: ServiceItem[] = [
     icon: 'FileText',
     features: ['SEO-optimized blog articles & pillars', 'Enterprise whitepapers & e-books', 'Executive LinkedIn thought leadership', 'Case study interviews & writeups'],
     benefits: ['Builds long-term organic domain authority', 'Educates & converts complex buyers', 'Supports sales team with collateral'],
-    pricing: { starter: '$599/mo', pro: '$1,199/mo', enterprise: '$2,299/mo' }
+    pricing: { starter: '₹5,999/mo', pro: '₹11,999/mo', enterprise: '₹22,999/mo' }
   }
 ];
 
@@ -466,7 +480,7 @@ export const SEO_SERVICES: ServiceItem[] = [
     badge: 'Essential',
     features: ['Comprehensive Screaming Frog crawl', 'Core Web Vitals LCP/CLS optimization', 'XML Sitemap & Robots.txt tuning', 'Schema.org JSON-LD structured data'],
     benefits: ['100% crawlability & indexing', 'Higher CTR in Google SERPs', 'Faster mobile load speed'],
-    pricing: { starter: '$499', pro: '$999', enterprise: '$1,999' }
+    pricing: { starter: '₹4,999', pro: '₹9,999', enterprise: '₹19,999' }
   },
   {
     id: 'on-page-seo',
@@ -477,7 +491,7 @@ export const SEO_SERVICES: ServiceItem[] = [
     icon: 'FileCheck',
     features: ['Title tag & meta description overhaul', 'H1-H6 semantic heading structure', 'Keyword density & TF-IDF scoring', 'Strategic internal linking hubs'],
     benefits: ['Immediate ranking boosts for target keywords', 'Higher organic click-through rate', 'Better user dwell time'],
-    pricing: { starter: '$399/mo', pro: '$799/mo', enterprise: '$1,499/mo' }
+    pricing: { starter: '₹3,999/mo', pro: '₹7,999/mo', enterprise: '₹14,999/mo' }
   },
   {
     id: 'off-page-seo',
@@ -489,7 +503,7 @@ export const SEO_SERVICES: ServiceItem[] = [
     badge: 'High DA',
     features: ['White-hat editorial outreach', 'High DA (50-80+) contextual links', 'Digital PR & journalist pitching', 'Toxic backlink disavow audits'],
     benefits: ['Rapid Domain Authority (DA) growth', 'Safe from Google spam updates', 'Outrank long-standing competitors'],
-    pricing: { starter: '$699/mo', pro: '$1,499/mo', enterprise: '$2,999/mo' }
+    pricing: { starter: '₹6,999/mo', pro: '₹14,999/mo', enterprise: '₹29,999/mo' }
   },
   {
     id: 'local-seo',
@@ -501,7 +515,7 @@ export const SEO_SERVICES: ServiceItem[] = [
     badge: 'Local Leader',
     features: ['Google Business Profile optimization', 'Local NAP citation building', 'Automated review generation funnel', 'Local neighborhood landing pages'],
     benefits: ['Dominates Google Maps 3-pack', 'Drives foot traffic & phone calls', 'High local trust & reviews'],
-    pricing: { starter: '$399/mo', pro: '$799/mo', enterprise: '$1,299/mo' }
+    pricing: { starter: '₹3,999/mo', pro: '₹7,999/mo', enterprise: '₹12,999/mo' }
   },
   {
     id: 'international-seo',
@@ -512,7 +526,7 @@ export const SEO_SERVICES: ServiceItem[] = [
     icon: 'Globe2',
     features: ['Hreflang tag implementation', 'International keyword localization', 'Geo-targeted search console setup', 'Multi-currency/region UX alignment'],
     benefits: ['Rank in multiple countries seamlessly', 'Zero duplicate content penalties', 'Global organic expansion'],
-    pricing: { starter: '$899/mo', pro: '$1,899/mo', enterprise: 'Custom' }
+    pricing: { starter: '₹8,999/mo', pro: '₹18,999/mo', enterprise: 'Custom' }
   },
   {
     id: 'keyword-research',
@@ -523,7 +537,7 @@ export const SEO_SERVICES: ServiceItem[] = [
     icon: 'Search',
     features: ['Competitor keyword gap analysis', 'Buyer intent categorization', 'Long-tail high-conversion discovery', 'Monthly search volume & CPC matrix'],
     benefits: ['Focus resources on money keywords', 'Uncover untapped niche traffic', 'Clear 12-month SEO roadmap'],
-    pricing: { starter: '$299', pro: '$599', enterprise: '$999' }
+    pricing: { starter: '₹2,999', pro: '₹5,999', enterprise: '₹9,999' }
   },
   {
     id: 'seo-audit',
@@ -534,7 +548,7 @@ export const SEO_SERVICES: ServiceItem[] = [
     icon: 'CheckSquare',
     features: ['100+ checkpoint manual & automated audit', 'Competitor benchmarking score', 'Prioritized action matrix', 'Video walkthrough of findings'],
     benefits: ['Clear diagnosis of ranking drops', 'Actionable roadmap for developers', 'No fluff or generic automated output'],
-    pricing: { starter: '$349', pro: '$699', enterprise: '$1,299' }
+    pricing: { starter: '₹3,499', pro: '₹6,999', enterprise: '₹12,999' }
   },
   {
     id: 'website-speed-optimization',
@@ -546,7 +560,7 @@ export const SEO_SERVICES: ServiceItem[] = [
     badge: '90+ Score',
     features: ['Next-gen WebP/AVIF image conversion', 'JavaScript & CSS minification', 'Server response time optimization', 'Cloudflare CDN edge caching'],
     benefits: ['Passes Google Core Web Vitals', 'Reduces bounce rate by up to 30%', 'Higher ad quality score'],
-    pricing: { starter: '$299', pro: '$599', enterprise: '$999' }
+    pricing: { starter: '₹2,999', pro: '₹5,999', enterprise: '₹9,999' }
   },
   {
     id: 'google-search-console',
@@ -557,7 +571,7 @@ export const SEO_SERVICES: ServiceItem[] = [
     icon: 'Activity',
     features: ['XML sitemap submission & verification', 'Manual indexing for key pages', 'Crawl error alert monitoring', 'Search query performance reports'],
     benefits: ['Direct communication with Googlebot', 'Early warning on technical drops', 'Accurate ranking query data'],
-    pricing: { starter: '$199', pro: '$399', enterprise: '$599' }
+    pricing: { starter: '₹1,999', pro: '₹3,999', enterprise: '₹5,999' }
   },
   {
     id: 'google-analytics',
@@ -568,7 +582,7 @@ export const SEO_SERVICES: ServiceItem[] = [
     icon: 'BarChart2',
     features: ['Google Tag Manager (GTM) installation', 'Custom event & conversion tracking', 'eCommerce revenue & funnel reports', 'Custom Data Studio executive dashboard'],
     benefits: ['Accurate ROI measurement', 'Full visibility into user journeys', 'GDPR/cookie consent compliant'],
-    pricing: { starter: '$299', pro: '$599', enterprise: '$999' }
+    pricing: { starter: '₹2,999', pro: '₹5,999', enterprise: '₹9,999' }
   },
   {
     id: 'monthly-seo-packages',
@@ -580,7 +594,7 @@ export const SEO_SERVICES: ServiceItem[] = [
     badge: 'Turnkey',
     features: ['Dedicated Senior SEO Manager', 'Monthly backlink building campaigns', 'New SEO blog content published monthly', 'Live interactive ranking dashboard'],
     benefits: ['Compound YoY organic traffic growth', 'Hands-off turnkey execution', 'Transparent monthly ROI reports'],
-    pricing: { starter: '$799/mo', pro: '$1,599/mo', enterprise: '$3,199/mo' }
+    pricing: { starter: '₹7,999/mo', pro: '₹15,999/mo', enterprise: '₹31,999/mo' }
   }
 ];
 
@@ -595,7 +609,7 @@ export const WEBSITE_REDESIGN_MAINTENANCE_SERVICES: ServiceItem[] = [
     badge: 'Popular',
     features: ['Modern glassmorphism UI/UX upgrade', 'Mobile-first responsive architecture', 'SEO 301 redirect map protection', 'Speed & Core Web Vitals optimization'],
     benefits: ['Modernizes brand perception', 'Increases lead conversion rate', 'Preserves 100% of SEO equity'],
-    pricing: { starter: '$899', pro: '$1,899', enterprise: 'Custom' }
+    pricing: { starter: '₹8,999', pro: '₹18,999', enterprise: 'Custom' }
   },
   {
     id: 'performance-opt',
@@ -606,7 +620,7 @@ export const WEBSITE_REDESIGN_MAINTENANCE_SERVICES: ServiceItem[] = [
     icon: 'Zap',
     features: ['Database query optimization', 'Asset bundling & tree-shaking', 'Edge CDN & cache rules setup', 'Font loading optimization'],
     benefits: ['Sub-second page loading speed', 'Higher SEO ranking factor', 'Better mobile experience'],
-    pricing: { starter: '$349', pro: '$699', enterprise: '$1,199' }
+    pricing: { starter: '₹3,499', pro: '₹6,999', enterprise: '₹11,999' }
   },
   {
     id: 'bug-fixes',
@@ -618,7 +632,7 @@ export const WEBSITE_REDESIGN_MAINTENANCE_SERVICES: ServiceItem[] = [
     badge: '24/7 SLA',
     features: ['24-hour rapid response SLA', 'PHP/Node/React/WordPress error fixes', 'Cross-browser compatibility testing', 'Post-fix security regression test'],
     benefits: ['Minimizes revenue-losing downtime', 'Professional code-level repair', 'Guaranteed fix or no charge'],
-    pricing: { starter: '$199', pro: '$499', enterprise: '$899' }
+    pricing: { starter: '₹1,999', pro: '₹4,999', enterprise: '₹8,999' }
   },
   {
     id: 'security-updates',
@@ -629,7 +643,7 @@ export const WEBSITE_REDESIGN_MAINTENANCE_SERVICES: ServiceItem[] = [
     icon: 'ShieldAlert',
     features: ['Web Application Firewall (WAF) setup', 'Malware scanning & malware removal', 'Two-factor admin authentication', 'SQL injection & XSS vulnerability patch'],
     benefits: ['Complete protection against hackers', 'Prevents Google blacklist penalties', 'GDPR data security compliance'],
-    pricing: { starter: '$299', pro: '$599', enterprise: '$999' }
+    pricing: { starter: '₹2,999', pro: '₹5,999', enterprise: '₹9,999' }
   },
   {
     id: 'content-updates',
@@ -640,7 +654,7 @@ export const WEBSITE_REDESIGN_MAINTENANCE_SERVICES: ServiceItem[] = [
     icon: 'Edit3',
     features: ['4-hour average turnaround time', 'Banner & promotional graphic updates', 'Pricing & product SKU additions', 'Staff & team profile edits'],
     benefits: ['No need to train internal staff', 'Always up-to-date information', 'Zero risk of breaking site layout'],
-    pricing: { starter: '$149/mo', pro: '$299/mo', enterprise: '$599/mo' }
+    pricing: { starter: '₹1,499/mo', pro: '₹2,999/mo', enterprise: '₹5,999/mo' }
   },
   {
     id: 'monthly-maintenance',
@@ -652,7 +666,7 @@ export const WEBSITE_REDESIGN_MAINTENANCE_SERVICES: ServiceItem[] = [
     badge: 'Turnkey SLA',
     features: ['24x7 automated uptime monitoring', 'Weekly automated cloud backups', 'Core, theme & plugin patching', 'Monthly health & speed report'],
     benefits: ['100% peace of mind', 'Dedicated technical account manager', 'Priority support queue access'],
-    pricing: { starter: '$149/mo', pro: '$349/mo', enterprise: '$699/mo' }
+    pricing: { starter: '₹1,499/mo', pro: '₹3,499/mo', enterprise: '₹6,999/mo' }
   },
   {
     id: 'website-backup',
@@ -663,7 +677,7 @@ export const WEBSITE_REDESIGN_MAINTENANCE_SERVICES: ServiceItem[] = [
     icon: 'Database',
     features: ['Daily automated off-site backups', 'AWS S3 encrypted storage', '1-click disaster recovery testing', '30-day backup history archive'],
     benefits: ['Zero risk of permanent data loss', 'Quick recovery from server crashes', 'Compliance with data retention laws'],
-    pricing: { starter: '$99/mo', pro: '$199/mo', enterprise: '$399/mo' }
+    pricing: { starter: '₹999/mo', pro: '₹1,999/mo', enterprise: '₹3,999/mo' }
   },
   {
     id: 'website-migration',
@@ -674,7 +688,7 @@ export const WEBSITE_REDESIGN_MAINTENANCE_SERVICES: ServiceItem[] = [
     icon: 'Server',
     features: ['Zero-downtime server migration', 'DNS & email server reconfiguration', 'Database integrity verification', 'Post-migration speed benchmark'],
     benefits: ['No interruption to customer traffic', 'Faster cloud server performance', 'Clean DNS configuration'],
-    pricing: { starter: '$249', pro: '$499', enterprise: '$899' }
+    pricing: { starter: '₹2,499', pro: '₹4,999', enterprise: '₹8,999' }
   },
   {
     id: 'ssl-installation',
@@ -685,7 +699,7 @@ export const WEBSITE_REDESIGN_MAINTENANCE_SERVICES: ServiceItem[] = [
     icon: 'Lock',
     features: ['256-bit encryption SSL installation', 'Automatic HTTPS 301 redirection', 'HTTP Strict Transport Security (HSTS)', 'Mixed content warning resolution'],
     benefits: ['Removes "Not Secure" browser warning', 'Boosts Google SEO trust score', 'Protects user login & form data'],
-    pricing: { starter: '$99', pro: '$199', enterprise: '$399' }
+    pricing: { starter: '₹999', pro: '₹1,999', enterprise: '₹3,999' }
   },
   {
     id: 'speed-opt-maintenance',
@@ -696,7 +710,7 @@ export const WEBSITE_REDESIGN_MAINTENANCE_SERVICES: ServiceItem[] = [
     icon: 'TrendingUp',
     features: ['Continuous Lighthouse monitoring', 'Third-party script loading control', 'Image CDN auto-compression', 'Monthly speed report & tuning'],
     benefits: ['Never lose Google page speed ranking', 'Always fast for mobile visitors', 'Optimized ad landing pages'],
-    pricing: { starter: '$199/mo', pro: '$399/mo', enterprise: '$699/mo' }
+    pricing: { starter: '₹1,999/mo', pro: '₹3,999/mo', enterprise: '₹6,999/mo' }
   }
 ];
 
@@ -713,11 +727,11 @@ export const FINANCIAL_LOAN_PRODUCTS: LoanProduct[] = [
     id: 'personal-loan',
     title: 'Instant Personal Loan',
     category: 'personal',
-    maxAmount: '₹50 Lakhs ($60,000)',
+    maxAmount: '₹50 Lakhs',
     interestRate: '10.25% - 14.50% p.a.',
     tenure: '12 - 60 Months',
     shortDesc: 'Unsecured personal loans with instant digital KYC and 24-hour disbursal.',
-    eligibility: ['Salaried or self-employed individuals', 'Minimum monthly income ₹25,000 / $800', 'CIBIL / Credit Score 700+', 'Age 21 to 60 years'],
+    eligibility: ['Salaried or self-employed individuals', 'Minimum monthly income ₹25,000 / month', 'CIBIL / Credit Score 700+', 'Age 21 to 60 years'],
     documents: ['PAN Card / National ID', 'Aadhaar / Address Proof', 'Last 3 months salary slips / ITR', '6 months bank statements'],
     benefits: ['Zero collateral required', 'Minimal digital paperwork', 'Flexible repayment tenure', 'No end-use restriction'],
     process: ['Submit simple online application', 'Instant digital credit check', 'Document upload & KYC verification', 'Funds transferred to bank in 24 hrs']
@@ -726,7 +740,7 @@ export const FINANCIAL_LOAN_PRODUCTS: LoanProduct[] = [
     id: 'business-loan',
     title: 'Unsecured Business Loan',
     category: 'business',
-    maxAmount: '₹2 Crores ($250,000)',
+    maxAmount: '₹2 Crores',
     interestRate: '11.50% - 16.00% p.a.',
     tenure: '12 - 48 Months',
     shortDesc: 'Growth capital for small and medium businesses without property collateral.',
@@ -739,7 +753,7 @@ export const FINANCIAL_LOAN_PRODUCTS: LoanProduct[] = [
     id: 'home-loan',
     title: 'Home Loan & Construction',
     category: 'home',
-    maxAmount: '₹10 Crores ($1.2M)',
+    maxAmount: '₹10 Crores',
     interestRate: '8.35% - 9.50% p.a.',
     tenure: 'Up to 30 Years',
     shortDesc: 'Low interest home purchase, construction, and plot loans with tax benefits.',
@@ -765,7 +779,7 @@ export const FINANCIAL_LOAN_PRODUCTS: LoanProduct[] = [
     id: 'mortgage-loan',
     title: 'Mortgage Loan (LAP)',
     category: 'mortgage',
-    maxAmount: '₹15 Crores ($2.0M)',
+    maxAmount: '₹15 Crores',
     interestRate: '9.50% - 11.75% p.a.',
     tenure: 'Up to 15 Years',
     shortDesc: 'High-value loans against residential, commercial, or industrial property.',
@@ -778,7 +792,7 @@ export const FINANCIAL_LOAN_PRODUCTS: LoanProduct[] = [
     id: 'loan-against-property',
     title: 'Commercial Property Loan',
     category: 'property',
-    maxAmount: '₹20 Crores ($2.5M)',
+    maxAmount: '₹20 Crores',
     interestRate: '9.75% - 12.00% p.a.',
     tenure: 'Up to 15 Years',
     shortDesc: 'Unlock liquidity from commercial real estate for expansion and equipment.',
@@ -804,7 +818,7 @@ export const FINANCIAL_LOAN_PRODUCTS: LoanProduct[] = [
     id: 'education-loan',
     title: 'Global Education Loan',
     category: 'education',
-    maxAmount: '₹1.5 Crores ($180,000)',
+    maxAmount: '₹1.5 Crores',
     interestRate: '9.00% - 11.50% p.a.',
     tenure: 'Up to 15 Years (with Moratorium)',
     shortDesc: 'Funding for higher studies in USA, UK, Canada, Europe, and top domestic institutes.',
@@ -817,7 +831,7 @@ export const FINANCIAL_LOAN_PRODUCTS: LoanProduct[] = [
     id: 'gold-loan',
     title: 'Instant Gold Loan',
     category: 'gold',
-    maxAmount: '₹50 Lakhs ($60,000)',
+    maxAmount: '₹50 Lakhs',
     interestRate: '8.80% - 11.90% p.a.',
     tenure: '3 - 36 Months',
     shortDesc: 'Instant liquidity against gold ornaments with secure vault storage.',
@@ -830,7 +844,7 @@ export const FINANCIAL_LOAN_PRODUCTS: LoanProduct[] = [
     id: 'msme-loan',
     title: 'MSME Business Growth Loan',
     category: 'msme',
-    maxAmount: '₹5 Crores ($600,000)',
+    maxAmount: '₹5 Crores',
     interestRate: '10.50% - 14.00% p.a.',
     tenure: '12 - 60 Months',
     shortDesc: 'Customized financing for Micro, Small and Medium Enterprises with Udyam registration.',
@@ -843,7 +857,7 @@ export const FINANCIAL_LOAN_PRODUCTS: LoanProduct[] = [
     id: 'working-capital-loan',
     title: 'Working Capital & Overdraft',
     category: 'working-capital',
-    maxAmount: '₹10 Crores ($1.2M)',
+    maxAmount: '₹10 Crores',
     interestRate: '10.00% - 13.50% p.a.',
     tenure: 'Annual Renewal',
     shortDesc: 'Cash Credit (CC) and Overdraft (OD) limits to manage daily operational cash flow.',
@@ -869,7 +883,7 @@ export const FINANCIAL_LOAN_PRODUCTS: LoanProduct[] = [
     id: 'mudra-loan',
     title: 'Pradhan Mantri MUDRA Yojana',
     category: 'gov-scheme',
-    maxAmount: '₹20 Lakhs ($24,000)',
+    maxAmount: '₹20 Lakhs',
     interestRate: '8.50% - 11.00% p.a.',
     tenure: '3 - 5 Years',
     shortDesc: 'Shishu, Kishore, and Tarun collateral-free loans for micro enterprises.',
@@ -914,7 +928,7 @@ export const TAX_SOLUTIONS: TaxService[] = [
     desc: 'Hassle-free online GSTIN registration for proprietorships, partnerships, and companies.',
     turnaroundTime: '3 - 5 Business Days',
     documentsRequired: ['PAN Card of Business / Proprietor', 'Aadhaar Card of authorized signatory', 'Electricity bill / Rent agreement of business place', 'Cancelled cheque or bank statement'],
-    feeStarting: '$49 / ₹1,499',
+    feeStarting: '₹1,499',
     highlights: ['100% online process', 'Dedicated tax associate', 'GSTIN certificate download', 'Free initial consultation']
   },
   {
@@ -924,7 +938,7 @@ export const TAX_SOLUTIONS: TaxService[] = [
     desc: 'Timely filing of GSTR-1, GSTR-3B, and GSTR-9 annual returns with input tax credit reconciliation.',
     turnaroundTime: 'Monthly / On-Time Guarantee',
     documentsRequired: ['Sales invoice register', 'Purchase invoice register', 'Bank account statement', 'E-way bill records'],
-    feeStarting: '$39/mo / ₹1,199/mo',
+    feeStarting: '₹1,199/mo',
     highlights: ['Zero late fee guarantee', 'Maximized Input Tax Credit (ITC)', 'Automated reconciliation reports', 'Expert CA verification']
   },
   {
@@ -934,7 +948,7 @@ export const TAX_SOLUTIONS: TaxService[] = [
     desc: 'Change business address, add additional places of business, or update partner details in GSTIN.',
     turnaroundTime: '4 - 7 Business Days',
     documentsRequired: ['Existing GST Certificate', 'Proof of change (New address / Resolution)', 'Authorized signatory KYC'],
-    feeStarting: '$59 / ₹1,999',
+    feeStarting: '₹1,999',
     highlights: ['Core & non-core amendment support', 'Quick government portal approval', 'No disruption to GST billing']
   },
   {
@@ -944,7 +958,7 @@ export const TAX_SOLUTIONS: TaxService[] = [
     desc: 'Clean and legally compliant surrender of GST registration with final GSTR-10 return filing.',
     turnaroundTime: '7 - 14 Days',
     documentsRequired: ['Reason for closure declaration', 'All past GST returns filed acknowledgment', 'Final stock valuation report'],
-    feeStarting: '$79 / ₹2,499',
+    feeStarting: '₹2,499',
     highlights: ['Prevents future notice & penalty', 'Final GSTR-10 filing included', 'Complete closure audit']
   },
   {
@@ -954,7 +968,7 @@ export const TAX_SOLUTIONS: TaxService[] = [
     desc: 'Expert tax return preparation and filing for salaried individuals, freelancers, and businesses.',
     turnaroundTime: '2 - 4 Business Days',
     documentsRequired: ['Form 16 / Form 26AS / AIS report', 'Bank statements for financial year', 'Investment proofs (80C, 80D, etc.)', 'Capital gains statement (if stock/crypto trading)'],
-    feeStarting: '$39 / ₹999',
+    feeStarting: '₹999',
     highlights: ['Maximum tax refund claim', 'CA-assisted filing', 'Capital gains & crypto tax calculation', 'Notice assistance support']
   },
   {
@@ -964,7 +978,7 @@ export const TAX_SOLUTIONS: TaxService[] = [
     desc: 'Complete company incorporation with MCA, Name Approval, MOA, AOA, PAN, TAN, and Certificate of Incorporation.',
     turnaroundTime: '7 - 10 Business Days',
     documentsRequired: ['PAN & Aadhaar of all Directors', 'Passport size photos', 'Registered office electricity bill', 'NOC from property owner'],
-    feeStarting: '$199 / ₹6,999',
+    feeStarting: '₹6,999',
     highlights: ['MCA Name Approval guarantee', 'Free DIN & DSC for 2 directors', 'PAN & TAN application included', 'Free banking partner account open']
   },
   {
@@ -974,7 +988,7 @@ export const TAX_SOLUTIONS: TaxService[] = [
     desc: 'Get official government MSME recognition to unlock collateral-free loans and subsidies.',
     turnaroundTime: '1 Business Day',
     documentsRequired: ['Aadhaar Card linked with mobile', 'PAN Card of applicant', 'Bank account details'],
-    feeStarting: '$29 / ₹799',
+    feeStarting: '₹799',
     highlights: ['Same-day certificate delivery', 'Lifetime validity', 'Eligible for PMEGP & Mudra loans']
   },
   {
@@ -984,7 +998,7 @@ export const TAX_SOLUTIONS: TaxService[] = [
     desc: 'New PAN and TAN application or correction for individuals, partnerships, and companies.',
     turnaroundTime: '5 - 7 Business Days',
     documentsRequired: ['Proof of identity & address', 'Incorporation certificate (for entities)', 'Passport photo'],
-    feeStarting: '$25 / ₹499',
+    feeStarting: '₹499',
     highlights: ['e-PAN delivered in 48 hours', 'Physical card dispatched', 'TAN for TDS compliance']
   },
   {
@@ -994,7 +1008,7 @@ export const TAX_SOLUTIONS: TaxService[] = [
     desc: 'Encrypted Class-3 Digital Signature Certificate with USB Token for MCA, GST, and e-Tendering.',
     turnaroundTime: '1 Business Day',
     documentsRequired: ['PAN Card & Aadhaar Card', 'Video verification selfie clip'],
-    feeStarting: '$45 / ₹1,499',
+    feeStarting: '₹1,499',
     highlights: ['2-Year validity with USB token', 'Valid for MCA, Income Tax & tenders', 'Instant online video KYC']
   },
   {
@@ -1004,7 +1018,7 @@ export const TAX_SOLUTIONS: TaxService[] = [
     desc: 'State professional tax registration and quarterly TDS (Form 24Q/26Q) return filing.',
     turnaroundTime: 'Monthly / Quarterly',
     documentsRequired: ['Employee salary register', 'TDS challan payment receipts', 'Vendor invoice deductions'],
-    feeStarting: '$49/mo / ₹1,499/mo',
+    feeStarting: '₹1,499/mo',
     highlights: ['Complete TDS return accuracy', 'Form 16/16A generation', 'Zero interest/penalty assurance']
   },
   {
@@ -1014,7 +1028,7 @@ export const TAX_SOLUTIONS: TaxService[] = [
     desc: 'Dedicated cloud accounting using Tally, QuickBooks, or Zoho Books with monthly P&L statements.',
     turnaroundTime: 'Monthly Ongoing',
     documentsRequired: ['Monthly bank statements', 'Sales and purchase bills', 'Expense vouchers'],
-    feeStarting: '$149/mo / ₹4,999/mo',
+    feeStarting: '₹4,999/mo',
     highlights: ['Dedicated accountant assigned', 'Monthly Balance Sheet & P&L', 'GST & TDS reconciliation', 'Audit-ready clean books']
   }
 ];
@@ -1024,7 +1038,7 @@ export const INSURANCE_PRODUCTS: InsuranceProduct[] = [
     id: 'health-insurance',
     title: 'Comprehensive Health Insurance',
     category: 'health',
-    coverageRange: '₹5 Lakhs to ₹1 Crore ($6,000 - $120,000)',
+    coverageRange: '₹5 Lakhs to ₹1 Crore',
     claimRatio: '98.4% Claim Settlement',
     keyBenefits: ['Cashless hospitalization across 10,000+ hospitals', 'Zero copayment & no room rent capping', 'Pre & post hospitalization expenses covered', 'Free annual full body health checkup'],
     idealFor: 'Individuals, families, and senior citizens'
@@ -1051,7 +1065,7 @@ export const INSURANCE_PRODUCTS: InsuranceProduct[] = [
     id: 'travel-insurance',
     title: 'International Travel Insurance',
     category: 'travel',
-    coverageRange: 'Up to $500,000 Emergency Medical',
+    coverageRange: 'Up to ₹40 Lakhs Emergency Medical',
     claimRatio: '97.9% Claim Settlement',
     keyBenefits: ['Overseas emergency hospitalization coverage', 'Flight delay & trip cancellation reimbursement', 'Lost baggage & passport assistance', 'Valid for Schengen visa & worldwide travel'],
     idealFor: 'International tourists, students, and business travelers'
@@ -1078,7 +1092,7 @@ export const INSURANCE_PRODUCTS: InsuranceProduct[] = [
     id: 'property-insurance',
     title: 'Commercial Property & Warehouse Cover',
     category: 'property',
-    coverageRange: 'Up to ₹50 Crores ($6 Million)',
+    coverageRange: 'Up to ₹50 Crores',
     claimRatio: '98.0% Claim Settlement',
     keyBenefits: ['Standard Fire and Special Perils (SFSP) cover', 'Machinery breakdown & electrical damage', 'Business interruption loss of profits', 'Custom risk underwriting for factories'],
     idealFor: 'Manufacturing plants, warehouses, and commercial offices'
@@ -1087,7 +1101,7 @@ export const INSURANCE_PRODUCTS: InsuranceProduct[] = [
     id: 'life-insurance',
     title: 'Term Life Insurance',
     category: 'life',
-    coverageRange: '₹1 Crore to ₹10 Crores ($120,000 - $1.2M)',
+    coverageRange: '₹1 Crore to ₹10 Crores',
     claimRatio: '99.3% Claim Settlement',
     keyBenefits: ['High life cover at ultra-low monthly premium', 'Critical illness rider covering 40+ illnesses', 'Accidental death benefit payout booster', 'Tax exemption under Sec 80C & 10(10D)'],
     idealFor: 'Primary family breadwinners and business owners'
@@ -1108,7 +1122,7 @@ export const DIGITAL_PRODUCTS_HOSTING: DigitalProduct[] = [
     id: 'wordpress-themes',
     title: 'CRED-Inspired Dark WordPress Theme',
     type: 'theme',
-    price: '$79',
+    price: '₹2,999',
     desc: 'High-performance dark luxury WordPress theme built for agencies and SaaS companies with Elementor widgets.',
     features: ['100+ Pre-built dark glassmorphism blocks', 'One-click demo importer', 'Lighthouse 95+ speed optimized', 'Lifetime updates & support'],
     rating: 4.9,
@@ -1118,7 +1132,7 @@ export const DIGITAL_PRODUCTS_HOSTING: DigitalProduct[] = [
     id: 'premium-plugins',
     title: 'AVRX SEO & Schema Pro Plugin',
     type: 'plugin',
-    price: '$49/yr',
+    price: '₹1,999/yr',
     desc: 'Automate rich snippet JSON-LD schema markup, canonical tags, and automated internal linking for WordPress.',
     features: ['Automated FAQ & article schema generator', '404 monitor & instant 301 redirection', 'AI keyword density analyzer', 'Multi-language compatibility'],
     rating: 4.8,
@@ -1128,7 +1142,7 @@ export const DIGITAL_PRODUCTS_HOSTING: DigitalProduct[] = [
     id: 'business-templates',
     title: 'React & Tailwind Enterprise Dashboard Kit',
     type: 'template',
-    price: '$99',
+    price: '₹3,999',
     desc: 'Complete Linear-style executive UI kit with 50+ Chart.js components, data tables, and dark mode tokens.',
     features: ['Figma design file included', '50+ React functional components', 'TypeScript & Tailwind CSS native', 'Responsive mobile layouts'],
     rating: 5.0,
@@ -1138,7 +1152,7 @@ export const DIGITAL_PRODUCTS_HOSTING: DigitalProduct[] = [
     id: 'website-source-code',
     title: 'Fintech Loan & Banking App Starter Code',
     type: 'source-code',
-    price: '$249',
+    price: '₹9,999',
     desc: 'Production-ready React Native codebase with biometric login, UPI payment screens, and KYC verification flows.',
     features: ['Clean modular TypeScript codebase', 'Redux / Zustand state management', 'Dark luxury UI theme pre-configured', 'Comprehensive developer doc'],
     rating: 4.9,
@@ -1148,7 +1162,7 @@ export const DIGITAL_PRODUCTS_HOSTING: DigitalProduct[] = [
     id: 'shared-hosting',
     title: 'NVMe Ultra-Fast Shared Hosting',
     type: 'hosting',
-    price: '$4.99/mo',
+    price: '₹199/mo',
     desc: 'Perfect for small business websites and blogs with LiteSpeed web server and free SSL.',
     features: ['50 GB NVMe SSD Storage', 'Unmetered bandwidth', 'Free SSL & domain name for 1st year', 'Daily automated cloud backup'],
     rating: 4.8,
@@ -1158,7 +1172,7 @@ export const DIGITAL_PRODUCTS_HOSTING: DigitalProduct[] = [
     id: 'cloud-hosting',
     title: 'Managed AWS & GCP Cloud Hosting',
     type: 'hosting',
-    price: '$29.99/mo',
+    price: '₹1,499/mo',
     desc: 'Dedicated cloud CPU & RAM on Amazon Web Services or Google Cloud with 99.99% uptime SLA.',
     features: ['4 Dedicated vCPU / 8 GB RAM', 'Dedicated static IP address', 'Automated horizontal auto-scaling', '24/7 DevOps monitoring SLA'],
     rating: 5.0,
@@ -1168,7 +1182,7 @@ export const DIGITAL_PRODUCTS_HOSTING: DigitalProduct[] = [
     id: 'reseller-hosting',
     title: 'White-Label Reseller Hosting Plan',
     type: 'hosting',
-    price: '$49.99/mo',
+    price: '₹2,499/mo',
     desc: 'Start your own hosting agency with custom cPanel accounts, WHMCS billing, and white-label servers.',
     features: ['250 GB NVMe SSD Disk Space', 'Host up to 50 cPanel client accounts', 'Free WHMCS automated billing license', 'White-label custom nameservers'],
     rating: 4.7,
@@ -1178,7 +1192,7 @@ export const DIGITAL_PRODUCTS_HOSTING: DigitalProduct[] = [
     id: 'domain-registration',
     title: 'Domain Name Registration & Privacy',
     type: 'domain',
-    price: '$12.99/yr',
+    price: '₹899/yr',
     desc: 'Register .com, .ai, .io, .in, and .org domain names with free WHOIS privacy protection and DNS management.',
     features: ['Free WHOIS identity privacy protection', 'Instant DNS zone editor', 'Auto-renewal protection', 'Free email forwarding'],
     rating: 4.9,
@@ -1188,9 +1202,9 @@ export const DIGITAL_PRODUCTS_HOSTING: DigitalProduct[] = [
     id: 'ssl-certificate',
     title: 'Wildcard Enterprise SSL Certificate',
     type: 'ssl',
-    price: '$39/yr',
-    desc: 'Secure your main domain and unlimited subdomains with 256-bit encryption and $10,000 warranty.',
-    features: ['Covers domain + unlimited subdomains', 'Instant domain validation issuance', 'Green padlock & browser trust badge', '$10,000 Relying Party Warranty'],
+    price: '₹1,999/yr',
+    desc: 'Secure your main domain and unlimited subdomains with 256-bit encryption and ₹5,00,000 warranty.',
+    features: ['Covers domain + unlimited subdomains', 'Instant domain validation issuance', 'Green padlock & browser trust badge', '₹5,00,000 Relying Party Warranty'],
     rating: 4.9,
     salesCount: 4100
   },
@@ -1198,7 +1212,7 @@ export const DIGITAL_PRODUCTS_HOSTING: DigitalProduct[] = [
     id: 'business-email',
     title: 'Google Workspace & Business Email',
     type: 'email',
-    price: '$6/mo per user',
+    price: '₹299/mo per user',
     desc: 'Professional @yourcompany.com email addresses powered by Gmail, Google Drive, Meet, and Docs.',
     features: ['30 GB to 5TB Cloud storage per user', '99.9% uptime SLA guarantee', 'Advanced anti-spam & phishing protection', '24/7 AVRX admin support'],
     rating: 5.0,
@@ -1514,7 +1528,7 @@ export const JOB_OPENINGS: JobOpening[] = [
     location: 'Bangalore / Remote (Global)',
     type: 'Full-time',
     experience: '5+ Years',
-    salary: '$95,000 - $140,000 / ₹25L - ₹42L p.a.',
+    salary: '₹25L - ₹42L p.a.',
     desc: 'We are looking for an elite full-stack engineer passionate about CRED-level visual perfection, ultra-fast Vite builds, and scalable Node.js microservices.',
     responsibilities: [
       'Architect and build production-ready web and mobile applications using React 18, Tailwind CSS, and TypeScript.',
@@ -1536,7 +1550,7 @@ export const JOB_OPENINGS: JobOpening[] = [
     location: 'Bangalore / Remote',
     type: 'Full-time',
     experience: '4+ Years',
-    salary: '$85,000 - $125,000 / ₹20L - ₹35L p.a.',
+    salary: '₹20L - ₹35L p.a.',
     desc: 'Lead the visual identity and interaction design for AVRX’s flagship digital platforms, fintech loans, and AI dashboards.',
     responsibilities: [
       'Create high-fidelity Figma design systems inspired by CRED, Linear, and Apple.',
@@ -1557,7 +1571,7 @@ export const JOB_OPENINGS: JobOpening[] = [
     location: 'Remote',
     type: 'Full-time',
     experience: '4+ Years',
-    salary: '$70,000 - $105,000 / ₹15L - ₹28L p.a.',
+    salary: '₹15L - ₹28L p.a.',
     desc: 'Drive organic search growth and technical SEO strategy for AVRX and our enterprise client portfolio.',
     responsibilities: [
       'Execute technical SEO audits, schema JSON-LD implementation, and site speed strategy.',
@@ -1589,7 +1603,7 @@ export const FAQS_LIST: FaqItem[] = [
   {
     id: 'faq-3',
     question: 'Can AVRX help me get a collateral-free business loan or government subsidy?',
-    answer: 'Yes! We specialize in unsecured business loans up to ₹2 Crores ($250,000) based on GST returns and cash flows, as well as government subsidy schemes like PMEGP (up to 35% subsidy), Mudra Shishu/Kishore/Tarun, and Stand-Up India for SC/ST and Women entrepreneurs.',
+    answer: 'Yes! We specialize in unsecured business loans up to ₹2 Crores based on GST returns and cash flows, as well as government subsidy schemes like PMEGP (up to 35% subsidy), Mudra Shishu/Kishore/Tarun, and Stand-Up India for SC/ST and Women entrepreneurs.',
     category: 'financial'
   },
   {
@@ -1629,8 +1643,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: 'web-starter',
     name: 'Corporate Flagship Website',
     category: 'website',
-    price: '$1,299',
-    period: 'one-time / ₹89,000',
+    price: '₹89,000',
+    period: 'one-time',
     badge: 'Popular for Business',
     desc: 'High-converting 8-10 page CRED-inspired corporate website with SEO schema and CMS.',
     features: [
@@ -1648,8 +1662,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: 'web-enterprise',
     name: 'Enterprise Custom Portal',
     category: 'website',
-    price: '$3,499',
-    period: 'one-time / ₹2,45,000',
+    price: '₹2,45,000',
+    period: 'one-time',
     badge: 'Comprehensive',
     desc: 'Multi-language enterprise web platform with custom backend integrations and animations.',
     features: [
@@ -1666,8 +1680,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: 'app-mobile',
     name: 'Cross-Platform Mobile App',
     category: 'app',
-    price: '$5,500',
-    period: 'one-time / ₹3,85,000',
+    price: '₹3,85,000',
+    period: 'one-time',
     badge: 'iOS & Android',
     desc: 'React Native / Flutter mobile application for both iOS and Android App Stores.',
     features: [
@@ -1685,8 +1699,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: 'seo-growth-monthly',
     name: 'SEO & Organic Domination',
     category: 'seo',
-    price: '$799',
-    period: 'per month / ₹55,000/mo',
+    price: '₹55,000',
+    period: 'per month',
     badge: 'Growth Engine',
     desc: 'Turnkey monthly SEO execution including content, technical fixes, and high DA links.',
     features: [
@@ -1703,8 +1717,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: 'maintenance-sla-pro',
     name: '24/7 Website Maintenance SLA',
     category: 'maintenance',
-    price: '$249',
-    period: 'per month / ₹18,000/mo',
+    price: '₹18,000',
+    period: 'per month',
     badge: 'Peace of Mind',
     desc: 'Comprehensive cloud maintenance, security patching, and unlimited content edits.',
     features: [
@@ -1721,8 +1735,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: 'ai-copilot-integration',
     name: 'Custom AI Assistant & Chatbot',
     category: 'ai',
-    price: '$1,899',
-    period: 'one-time setup + $99/mo',
+    price: '₹1,29,000',
+    period: 'one-time setup + ₹6,999/mo',
     badge: 'AI Powered',
     desc: 'Custom trained AI chatbot embedded on your site for 24/7 lead qualification & support.',
     features: [
@@ -1738,7 +1752,7 @@ export const PRICING_PLANS: PricingPlan[] = [
 
 export const COMPANY_STATS = [
   { label: 'Successful Projects Delivered', value: '450+', change: 'Across 18 Countries' },
-  { label: 'Financial Loans Sanctioned', value: '₹180 Cr+', change: '$22M+ Disbursed' },
+  { label: 'Financial Loans Sanctioned', value: '₹180 Cr+', change: 'Disbursed' },
   { label: 'Client Retention & SLA Rate', value: '98.6%', change: 'Long-term Trust' },
   { label: 'Average Speed Lighthouse Score', value: '99/100', change: 'Sub-second UI' }
 ];

@@ -150,14 +150,14 @@ export default function ServicesIndexPage() {
                   <div className="pt-5 border-t border-white/10 flex items-center justify-between">
                     <div>
                       <span className="text-[10px] text-slate-400 block uppercase">Starting From</span>
-                      <span className="text-sm font-poppins font-bold text-white">{service.pricing?.starter || '$499'}</span>
+                      <span className="text-sm font-poppins font-bold text-white">{service.pricing?.starter || '₹9,999'}</span>
                     </div>
 
                     <Link
                       to={`/services/${service.id}`}
                       className="px-4 py-2 rounded-xl bg-white/10 hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-500 text-white text-xs font-semibold flex items-center gap-1.5 transition-all group/btn"
                     >
-                      <span>Explore SLA</span>
+                      <span>Explore Service</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
                     </Link>
                   </div>

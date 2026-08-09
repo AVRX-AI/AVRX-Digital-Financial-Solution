@@ -44,14 +44,19 @@ export default function ServicesGridSection() {
     // --- WEBSITE DESIGN (3 Services) ---
     {
       id: 'website-design',
-      title: 'Enterprise & eCommerce Website Design',
+      title: 'Enterprise & E-Commerce',
       category: 'website',
       icon: Globe,
       badge: 'TOP RATED',
-      desc: 'CRED & Linear inspired ultra-fast websites built with React, Next.js, and Tailwind CSS. Optimized for 99+ Google PageSpeed and high conversion rates.',
-      highlights: ['Custom UI/UX Design System', '0.6s LCP Core Web Vitals', 'eCommerce & Payment Gateways', 'SEO & Schema Markup Ready'],
+      desc: 'CRED & Linear inspired ultra-fast enterprise portals and e-commerce online stores. Multi-currency payment rails, real-time inventory, and 99+ PageSpeed.',
+      highlights: [
+        'Multi-currency & UPI Payment Gateways',
+        'Real-time High-Concurrency Inventory Sync',
+        'ERP/CRM & Order Fulfillment API Integration',
+        'PCI-DSS & SOC2 Security Compliance'
+      ],
       startingPrice: '₹24,999',
-      path: '/services/website-design',
+      path: '/services/business-website',
       gradient: 'from-blue-600/20 via-blue-500/10 to-transparent',
       borderColor: 'border-blue-500/30'
     },
@@ -495,7 +500,7 @@ export default function ServicesGridSection() {
                         : 'bg-white/10 hover:bg-gradient-to-r hover:from-blue-600 hover:to-cyan-500 text-white'
                     }`}
                   >
-                    <span>{isJoinEarn ? 'Join & Submit Lead' : hasPrice ? 'Explore SLA' : 'Enquire Now'}</span>
+                    <span>{isJoinEarn ? 'Join & Submit Lead' : hasPrice ? 'Explore Service' : 'Enquire Now'}</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
                   </Link>
                 </div>

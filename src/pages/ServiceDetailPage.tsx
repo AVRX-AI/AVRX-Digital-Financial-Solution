@@ -19,40 +19,61 @@ import { servicesList } from '../data/mockData';
 
 export default function ServiceDetailPage() {
   const { serviceId } = useParams<{ serviceId: string }>();
-  const service = servicesList.find((s) => s.id === serviceId) || servicesList[0];
+  const service =
+    servicesList.find(
+      (s) =>
+        s.id === serviceId ||
+        (serviceId === 'website-design' && (s.id === 'business-website' || s.id === 'enterprise-ecommerce')) ||
+        (serviceId === 'enterprise-ecommerce' && s.id === 'business-website')
+    ) || servicesList[0];
 
   const [selectedTier, setSelectedTier] = useState<'startup' | 'growth' | 'enterprise'>('growth');
   const [pagesCount, setPagesCount] = useState<number>(10);
   const [needSeo, setNeedSeo] = useState<boolean>(true);
   const [needSpeedSla, setNeedSpeedSla] = useState<boolean>(true);
 
-  // Simple dynamic estimator
-  const basePrice = selectedTier === 'startup' ? 499 : selectedTier === 'growth' ? 1499 : 3499;
-  const estimatedTotal = basePrice + (pagesCount - 5) * 35 + (needSeo ? 200 : 0) + (needSpeedSla ? 150 : 0);
+  // Dynamic pricing extraction
+  const starterPrice = service.pricing?.starter || '₹24,999';
+  const proPrice = service.pricing?.pro || '₹34,999';
+  const enterprisePrice = service.pricing?.enterprise || '₹45,999';
+
+  const parseVal = (str: string, fallback: number) => {
+    const num = parseInt(str.replace(/[^0-9]/g, ''));
+    return isNaN(num) || num === 0 ? fallback : num;
+  };
+
+  const basePrice =
+    selectedTier === 'startup'
+      ? parseVal(starterPrice, 24999)
+      : selectedTier === 'growth'
+      ? parseVal(proPrice, 34999)
+      : parseVal(enterprisePrice, 45999);
+
+  const estimatedTotal = basePrice + (pagesCount - 5) * 500 + (needSeo ? 2000 : 0) + (needSpeedSla ? 1500 : 0);
 
   const tiers = [
     {
       id: 'startup',
-      name: 'Startup Launch SLA',
-      price: '₹39,999 / $499',
+      name: 'Startup MVP SLA',
+      price: starterPrice,
       timeline: '7-10 Working Days',
-      desc: 'Ideal for early-stage founders needing a high-conversion landing page or MVP web app.',
+      desc: 'Ideal for early-stage founders needing a high-conversion landing page or starter e-commerce storefront.',
       features: [
         'Up to 5 custom React/Tailwind pages',
         'Mobile responsive & Retina ready',
-        'Basic Technical SEO schema setup',
+        'Multi-currency Payment Gateway setup',
         '1 Month Post-Launch Maintenance'
       ]
     },
     {
       id: 'growth',
-      name: 'Growth Enterprise SLA',
-      price: '₹1,25,000 / $1,499',
+      name: 'Growth Pro SLA',
+      price: proPrice,
       timeline: '3-4 Weeks',
-      desc: 'Our most popular tier. Complete full-stack architecture with custom CRM/CMS integration.',
+      desc: 'Our most popular tier. Full-stack Enterprise & E-Commerce architecture with custom ERP/CRM integration.',
       badge: 'MOST POPULAR',
       features: [
-        'Up to 15 custom pages + Dashboard',
+        'Up to 15 custom pages + Storefront/Dashboard',
         'Next.js SSR & Edge NVMe Caching',
         '0.6s LCP Core Web Vitals Guarantee',
         'Programmatic SEO & 3 Months Maintenance'
@@ -60,13 +81,13 @@ export default function ServiceDetailPage() {
     },
     {
       id: 'enterprise',
-      name: 'Custom RFP & Scale',
-      price: '₹2,99,000+ / $3,499+',
+      name: 'Enterprise RFP & Scale',
+      price: enterprisePrice.includes('+') ? enterprisePrice : `${enterprisePrice}+`,
       timeline: '6-8 Weeks',
-      desc: 'For high-traffic FinTech, E-Commerce, or multi-tenant SaaS platforms requiring custom SLA.',
+      desc: 'For high-traffic Enterprise & E-Commerce, FinTech, or multi-tenant platforms requiring custom SLA.',
       features: [
-        'Unlimited custom modules & API gateways',
-        'SOC2 Type II security audit compliance',
+        'Unlimited custom modules & payment gateways',
+        'SOC2 & PCI-DSS security compliance',
         'Dedicated Senior Lead Architect assigned',
         '1 Year 24/7 Server Maintenance & SLA'
       ]
@@ -142,13 +163,13 @@ export default function ServiceDetailPage() {
                   {/* Select Base Tier */}
                   <div>
                     <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block mb-3">
-                      1. Select Architecture Tier:
+                      1. Estimated Price:
                     </label>
                     <div className="grid grid-cols-3 gap-3">
                       {[
-                        { id: 'startup', label: 'Startup MVP', price: '$499' },
-                        { id: 'growth', label: 'Growth Pro', price: '$1,499' },
-                        { id: 'enterprise', label: 'Enterprise RFP', price: '$3,499' },
+                        { id: 'startup', label: 'Startup MVP', price: starterPrice },
+                        { id: 'growth', label: 'Growth Pro', price: proPrice },
+                        { id: 'enterprise', label: 'Enterprise RFP', price: enterprisePrice },
                       ].map((t) => (
                         <button
                           key={t.id}
@@ -192,7 +213,7 @@ export default function ServiceDetailPage() {
                         onChange={(e) => setNeedSeo(e.target.checked)}
                         className="rounded bg-slate-800 border-white/20 text-blue-600 focus:ring-0"
                       />
-                      <span className="text-xs font-semibold text-white">Include Programmatic SEO (+$200)</span>
+                      <span className="text-xs font-semibold text-white">Include Programmatic SEO (+₹2,000)</span>
                     </label>
 
                     <label className="flex items-center gap-3 p-3.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer">
@@ -202,7 +223,7 @@ export default function ServiceDetailPage() {
                         onChange={(e) => setNeedSpeedSla(e.target.checked)}
                         className="rounded bg-slate-800 border-white/20 text-blue-600 focus:ring-0"
                       />
-                      <span className="text-xs font-semibold text-white">0.6s LCP Speed SLA (+$150)</span>
+                      <span className="text-xs font-semibold text-white">0.6s LCP Speed SLA (+₹1,500)</span>
                     </label>
                   </div>
 
@@ -211,7 +232,7 @@ export default function ServiceDetailPage() {
                     <div>
                       <span className="text-xs text-slate-400 block uppercase">Estimated Investment</span>
                       <div className="text-3xl font-poppins font-black text-white">
-                        ${estimatedTotal.toLocaleString()}{' '}
+                        ₹{estimatedTotal.toLocaleString()}{' '}
                         <span className="text-xs text-slate-400 font-normal">/ Fixed SLA</span>
                       </div>
                       <div className="text-xs text-cyan-400 mt-1">
