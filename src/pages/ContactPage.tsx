@@ -27,9 +27,39 @@ export default function ContactPage() {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+
+    try {
+      const payload = new FormData();
+      payload.append('access_key', '0d01b678-fb31-4816-bedd-ca4b877d2bcb');
+      payload.append('subject', `New AVRX Website Enquiry - ${formData.service}`);
+      payload.append('from_name', 'AVRX Digital & Financial Solution');
+      payload.append('name', formData.name);
+      payload.append('email', formData.email);
+      payload.append('phone', formData.phone);
+      payload.append('company', formData.company);
+      payload.append('service', formData.service);
+      payload.append('budget', formData.budget);
+      payload.append('message', formData.message);
+      payload.append('botcheck', '');
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: payload,
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setFormSubmitted(true);
+      } else {
+        throw new Error(result.message || 'Form submission failed');
+      }
+    } catch (error) {
+      console.error('AVRX contact form error:', error);
+      alert('We could not submit your request right now. Please try again or contact us on WhatsApp.');
+    }
   };
 
   const handleWhatsAppClick = () => {
@@ -94,6 +124,7 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
+                    <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="text-xs font-bold text-slate-300 block mb-1.5">
