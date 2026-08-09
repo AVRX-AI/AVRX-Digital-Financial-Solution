@@ -7,6 +7,7 @@ import Footer from './components/layout/Footer';
 import ScrollToTop from './components/layout/ScrollToTop';
 import FloatingWhatsApp from './components/layout/FloatingWhatsApp';
 import FloatingChatbot from './components/layout/FloatingChatbot';
+import ClickToTopButton from './components/layout/ClickToTopButton';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -55,6 +56,7 @@ export default function App() {
         <Footer />
         <FloatingWhatsApp />
         <FloatingChatbot />
+        <ClickToTopButton />
       </div>
     </Router>
   );

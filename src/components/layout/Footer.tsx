@@ -318,10 +318,24 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-white/10 py-6 bg-black/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-400">
             <div>
               © {new Date().getFullYear()} AVRX Digital & Financial Solution. All rights reserved. Built with CRED-Level Craftsmanship.
             </div>
+
+            {/* A-Letter Shaped Footer Click To Top Button */}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 border border-cyan-500/40 hover:border-cyan-400 text-white hover:text-cyan-300 transition-all shadow-lg hover:shadow-cyan-500/20 group"
+              title="Click to Top"
+            >
+              <svg width="22" height="22" viewBox="0 0 110 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:-translate-y-0.5 transition-transform">
+                <path d="M 55 5 L 104 92 H 81 L 70 67 H 40 L 29 92 H 6 Z" fill="#06b6d4" stroke="#22d3ee" strokeWidth="4" />
+                <path d="M 55 22 L 64 47 H 46 Z" fill="#080d1a" />
+              </svg>
+              <span className="font-bold tracking-wider text-[11px] text-cyan-300 group-hover:text-white uppercase">CLICK TO TOP</span>
+            </button>
+
             <div className="flex flex-wrap items-center gap-6">
               {footerLinks.legal.map((link) => (
                 <Link
