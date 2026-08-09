@@ -233,7 +233,7 @@ export default function ContactPage() {
                     GLOBAL HEADQUARTERS
                   </span>
                   <h4 className="text-xl font-poppins font-bold text-white mt-1">
-                    Mumbai (BKC) & Silicon Valley
+                    Waterpark Ambikapur, Chhattisgarh
                   </h4>
                 </div>
 
@@ -243,9 +243,9 @@ export default function ContactPage() {
                       <MapPin className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-white">AVRX Headquarters</div>
+                      <div className="text-sm font-bold text-white">AVRX Global Headquarters</div>
                       <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-                        NH343, Near waterpark Surguja C.G. INDIA
+                        Waterpark Ambikapur, NH343, Surguja, Chhattisgarh, India
                       </p>
                     </div>
                   </div>
@@ -278,8 +278,8 @@ export default function ContactPage() {
                 {/* Google Maps Embed Card */}
                 <div className="rounded-2xl overflow-hidden border border-white/10 h-48 relative bg-slate-900">
                   <iframe
-                    title="AVRX Mumbai Office Map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15084.707011986619!2d72.8580666!3d19.0664426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8df0b73b88b%3A0x6b4fb6c98982a20e!2sBandra%20Kurla%20Complex%2C%20Bandra%20East%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+                    title="AVRX Waterpark Ambikapur Headquarters Map"
+                    src="https://maps.google.com/maps?q=Waterpark+Ambikapur+Chhattisgarh+India&t=&z=15&ie=UTF8&iwloc=&output=embed"
                     width="100%"
                     height="100%"
                     style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}

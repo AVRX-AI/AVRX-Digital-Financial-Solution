@@ -57,7 +57,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
               <span className="text-xs font-bold text-cyan-400 uppercase tracking-widest block">
-                THE CRED-INSPIRED PHILOSOPHY
+                THE NO 1 DIGITAL & FINANCIAL PHILOSOPHY
               </span>
               <h2 className="text-3xl sm:text-4xl font-poppins font-extrabold text-white leading-tight">
                 Why Should You Deal With 4 Vendors When You Can Have 1 Trusted Partner?

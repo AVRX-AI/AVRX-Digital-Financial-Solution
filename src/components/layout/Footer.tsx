@@ -164,14 +164,14 @@ export default function Footer() {
                 </div>
               </Link>
               <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-                AVRX Digital & Financial Solution is a world-class technology and financial advisory platform engineering CRED-inspired digital experiences, statutory GST & tax compliance, instant business loans, and AI-driven growth for global enterprises.
+                AVRX Digital & Financial Solution is a world-class technology and financial advisory platform engineering No 1 Digital and Financial Solution experiences, statutory GST & tax compliance, instant business loans, and AI-driven growth for global enterprises.
               </p>
 
               {/* Contact Information */}
               <div className="space-y-2.5 pt-2 text-sm">
                 <div className="flex items-start gap-3 text-slate-300">
                   <MapPin className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span>NH343, Near waterpark Surguja C.G. INDIA</span>
+                  <span>Waterpark Ambikapur, NH343, Surguja, Chhattisgarh, India</span>
                 </div>
                 <div className="flex items-center gap-3 text-slate-300">
                   <Phone className="w-4 h-4 text-cyan-400 flex-shrink-0" />

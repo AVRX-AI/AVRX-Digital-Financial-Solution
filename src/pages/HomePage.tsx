@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title="CRED-Inspired Digital, Financial & AI Ecosystem"
+        title="No 1 Digital and Financial Solution"
         description="AVRX Digital & Financial Solution delivers ultra-premium website design, native mobile apps, automated GST & tax compliance, instant business loans up to ₹20 Cr, and futuristic AI tools."
       />
 

@@ -173,7 +173,7 @@ export default function HomeHero() {
             {/* Dynamic Subtitle according to active tab */}
             <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl">
               {activeTab === 'digital' &&
-                'Unified CRED-inspired ecosystem delivering sub-second Next.js web platforms, native iOS/Android apps, automated GST & tax compliance, and instant business loans under one SLA.'}
+                'No 1 Digital and Financial Solution delivering sub-second Next.js web platforms, native iOS/Android apps, automated GST & tax compliance, and instant business loans under one SLA.'}
               {activeTab === 'loans' &&
                 'Secure collateral-free working capital from ₹10 Lakhs to ₹20 Crores with Tier-1 bank underwriting, lowest 8.35% interest rates, and in-principle sanction in 48 hours.'}
               {activeTab === 'tax' &&
