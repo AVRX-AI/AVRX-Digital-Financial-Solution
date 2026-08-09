@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import PageBanner from '../components/layout/PageBanner';
 import {
   ExternalLink,
@@ -14,41 +15,45 @@ import {
 export default function PortfolioPage() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'web' | 'fin' | 'tax'>('all');
 
+  const breadcrumbs = [
+    { name: 'Portfolio & Projects', url: '/portfolio' }
+  ];
+
   const caseStudies = [
     {
-      id: 'fintech-cred-redesign',
-      title: 'Apex Capital FinTech Platform Redesign & GST SLA',
+      id: 'retail-website-ambikapur',
+      title: 'E-Commerce & Digital Presence for Retail Store in Ambikapur',
       category: 'web',
-      tag: 'WEBSITE + TAX SLA',
-      metrics: '48% Conversion Uplift • 0.5s LCP',
-      desc: 'Rebuilt their multi-product lending portal using Next.js and Tailwind CSS with a CRED-inspired dark aesthetic, while our CA team took over monthly GSTR-3B compliance.',
+      tag: 'WEBSITE + SEO',
+      metrics: '250% Online Leads • Fast Load Time',
+      desc: 'Built a responsive retail e-commerce website with localized Google My Business SEO integration for a leading retailer in Ambikapur.',
       image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80'
     },
     {
-      id: 'diwali-working-capital',
-      title: '₹5 Crore Emergency Working Capital for E-Commerce Brand',
+      id: 'working-capital-surguja',
+      title: '₹25 Lakh Business Working Capital Loan in Surguja',
       category: 'fin',
-      tag: '₹5 CR UNSECURED LOAN',
-      metrics: '48 Hour Sanction • 8.9% Interest',
-      desc: 'Facilitated a collateral-free overdraft limit through Tier-1 bank partners just ahead of the Diwali shopping season, allowing 300% inventory scale-up.',
+      tag: 'BUSINESS LOAN',
+      metrics: '48 Hour Sanction • Competitive Rate',
+      desc: 'Facilitated a collateral-free business loan through partner banks for a local manufacturing business in Surguja District.',
       image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=600&q=80'
     },
     {
-      id: 'programmatic-seo-saas',
-      title: '300% Organic Traffic Growth for SaaS AI Startup',
+      id: 'local-seo-chhattisgarh',
+      title: 'On-Page & Local SEO Optimization for Healthcare Clinic',
       category: 'web',
-      tag: 'PROGRAMMATIC SEO',
-      metrics: '+14,000 Monthly Visitors',
-      desc: 'Implemented custom schema markups and programmatic keyword clusters that ranked top 3 on Google for 420 competitive enterprise AI terms.',
+      tag: 'LOCAL SEO',
+      metrics: '#1 Rank in Ambikapur for Local Search',
+      desc: 'Implemented custom schema markups, Google Map optimization, and local content strategy to capture top rankings in Surguja.',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80'
     },
     {
-      id: 'nbfc-cfo-audit',
-      title: 'Virtual CFO & RBI Annual Audit for Lending Brokerage',
+      id: 'gst-compliance-chhattisgarh',
+      title: 'GST Filing & Annual Audit for Commercial Enterprise',
       category: 'tax',
-      tag: 'VIRTUAL CFO & ROC',
-      metrics: 'Zero Audit Defect SLA',
-      desc: 'Managed complete bookkeeping, ROC AOC-4 annual returns, and statutory tax reconciliation for a rapidly scaling Mumbai financial brokerage.',
+      tag: 'GST & TAX COMPLIANCE',
+      metrics: 'Zero Penalty SLA Compliance',
+      desc: 'Managed monthly GSTR-1, GSTR-3B filings and annual tax reconciliation for a growing business in Ambikapur.',
       image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80'
     }
   ];
@@ -58,17 +63,24 @@ export default function PortfolioPage() {
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title="50+ Enterprise Case Studies & ROI SLAs | AVRX Portfolio"
-        description="Explore how AVRX Digital & Financial Solution accelerates enterprise growth through sub-second web apps, ₹20 Cr loans, and zero-error GST returns."
+        title="Portfolio & Work Gallery | AVRX Digital Ambikapur"
+        description="View our portfolio of website designs, web development, SEO success stories, business loans, and GST tax compliance projects in Ambikapur, Chhattisgarh."
+        keywords="AVRX portfolio, website work Ambikapur, web development projects Surguja, business loan client success Chhattisgarh"
+        canonicalUrl="https://avrx.in/portfolio"
+        breadcrumbsData={breadcrumbs}
       />
 
       <PageBanner
-        title="Verified Client Case Studies & ROI SLAs"
-        subtitle="Real metrics from CFOs, CTOs, and Founders who entrusted their digital architecture, corporate taxes, and growth capital to AVRX Ecosystem."
+        title="Verified Client Case Studies & Success Stories (Ambikapur)"
+        subtitle="Real results from business owners, traders, and founders who trusted AVRX Digital & Financial Solution."
         badge="AVRX CLIENT SUCCESS"
-        breadcrumbs={[{ label: 'Case Studies' }]}
+        breadcrumbs={[{ label: 'Portfolio' }]}
         ctaText="View All Case Studies"
       />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
       <section className="py-20 bg-[#06070B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

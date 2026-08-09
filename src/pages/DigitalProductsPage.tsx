@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import PageBanner from '../components/layout/PageBanner';
 import {
   Code2,
@@ -15,17 +16,21 @@ import {
 } from 'lucide-react';
 
 export default function DigitalProductsPage() {
+  const breadcrumbs = [
+    { name: 'Digital Products', url: '/digital-products' }
+  ];
+
   const products = [
     {
-      id: 'nextjs-saas-starter',
-      title: 'Enterprise Next.js 14 & Supabase SaaS Starter',
+      id: 'website-starter-kit',
+      title: 'AVRX High-Performance Web Starter Kit',
       badge: 'SOURCE CODE LICENSED',
-      price: '$199 / One-Time',
-      desc: 'Turnkey full-stack SaaS boilerplate with Supabase auth, Stripe recurring subscriptions, Tailwind dark UI, and automated CI/CD pipeline.',
+      price: '₹14,999 One-Time',
+      desc: 'Turnkey React & Tailwind web architecture boilerplate with mobile responsiveness, WhatsApp lead integration, local SEO schema, and fast load optimization.',
       features: [
-        'Complete TypeScript & Next.js 14 App Router',
-        'Stripe Webhook & Checkout Billing Integration',
-        'Supabase Row-Level Security (RLS) Database',
+        'Complete TypeScript & React App Boilerplate',
+        'Built-in WhatsApp & Inquiry Form Handlers',
+        'Local Business Schema & Meta Tag Generator',
         '100% Code Ownership & Commercial License'
       ]
     },
@@ -33,10 +38,10 @@ export default function DigitalProductsPage() {
       id: 'fintech-loan-crm',
       title: 'AVRX FinTech Loan & GST CRM Dashboard Template',
       badge: 'FINANCIAL DASHBOARD',
-      price: '$249 / One-Time',
-      desc: 'Pre-built React & Recharts administrative portal for NBFCs, chartered accountants, and lending brokers with built-in EMI amortization calculators.',
+      price: '₹19,999 One-Time',
+      desc: 'Pre-built React & Recharts administrative portal for financial advisors, GST consultants, and loan brokers with built-in EMI calculators.',
       features: [
-        'React 18 + Tailwind + Lucide UI Components',
+        'React 18 + Tailwind UI Components',
         'Dynamic EMI & Amortization interactive charts',
         'Lead pipeline & KYC document upload drawers',
         'Responsive Retina design for tablet/mobile'
@@ -44,15 +49,15 @@ export default function DigitalProductsPage() {
     },
     {
       id: 'nvme-edge-hosting',
-      title: 'Managed Edge NVMe Cloud Hosting SLA',
+      title: 'Managed NVMe Cloud Hosting & SSL SLA',
       badge: '99.99% UPTIME SLA',
-      price: '$49 / Month',
-      desc: 'High-frequency NVMe server nodes across Mumbai, Singapore, and Virginia with automated daily backups, Cloudflare CDN, and DDoS mitigation.',
+      price: '₹3,999 / Month',
+      desc: 'High-frequency NVMe server nodes with automated daily backups, CDN integration, SSL certificate, and DDoS mitigation.',
       features: [
-        'Dedicated NVMe SSD storage with 10Gbps uplink',
+        'Dedicated NVMe SSD storage with fast uplink',
         'Automated daily off-site snapshot backups',
         'Free SSL Wildcard certificates & DDoS firewall',
-        '24/7 DevOps SLA monitoring and Slack support'
+        '24/7 Monitoring & technical support SLA'
       ]
     }
   ];
@@ -60,17 +65,24 @@ export default function DigitalProductsPage() {
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title="Turnkey Digital Products & SaaS Boilers | AVRX Store"
-        description="Enterprise Next.js SaaS boilerplates, FinTech React dashboards, and Managed Edge NVMe Cloud Hosting with 99.99% SLA."
+        title="Digital Products & Web Templates | AVRX Ambikapur"
+        description="Explore AVRX web application templates, financial dashboard starter kits, and cloud hosting SLAs in Ambikapur, Chhattisgarh."
+        keywords="digital products Ambikapur, web templates Chhattisgarh, financial dashboard CRM, web hosting Ambikapur"
+        canonicalUrl="https://avrx.in/digital-products"
+        breadcrumbsData={breadcrumbs}
       />
 
       <PageBanner
-        title="Turnkey Digital Assets & Cloud Infrastructure"
-        subtitle="Accelerate your product launch by months. License our battle-tested Next.js SaaS boilerplates, FinTech CRM dashboards, and NVMe cloud servers."
-        badge="AVRX SOFTWARE STORE"
+        title="Ready-to-Deploy Digital Products & Assets"
+        subtitle="Pre-built web application starters, financial dashboards, and managed cloud hosting SLAs."
+        badge="DIGITAL PRODUCTS"
         breadcrumbs={[{ label: 'Digital Products' }]}
-        ctaText="Request Demo Access"
+        ctaText="Inquire About Licenses"
       />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
       <section className="py-20 bg-[#06070B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

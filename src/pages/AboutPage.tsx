@@ -1,5 +1,6 @@
 import React from 'react';
 import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import PageBanner from '../components/layout/PageBanner';
 import {
   ShieldCheck,
@@ -15,11 +16,15 @@ import {
 import { Link } from 'react-router-dom';
 
 export default function AboutPage() {
+  const breadcrumbs = [
+    { name: 'About Us', url: '/about' }
+  ];
+
   const leadership = [
     {
       name: 'Avinash Rai',
       role: 'Founder & Chief Solutions Architect',
-      desc: '12+ years building enterprise digital products, FinTech platforms, and high-frequency cloud architectures across Silicon Valley and Mumbai.',
+      desc: '12+ years building enterprise digital products, FinTech platforms, and high-frequency web architectures across India.',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'
     },
     {
@@ -39,17 +44,24 @@ export default function AboutPage() {
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title="About AVRX Digital & Financial Solution | Our Leadership"
-        description="Learn about AVRX Ecosystem: Where Silicon Valley product engineering meets practicing Chartered Accountants and Tier-1 RBI lending partners."
+        title="About AVRX Digital & Financial Solution | Ambikapur, Chhattisgarh"
+        description="Learn about AVRX Digital & Financial Solution in Ambikapur, Surguja: Where high-performance website engineering meets expert tax advisors and RBI lending partners."
+        keywords="about AVRX Digital, digital company Ambikapur, financial advisors Surguja, web developer Chhattisgarh"
+        canonicalUrl="https://avrx.in/about"
+        breadcrumbsData={breadcrumbs}
       />
 
       <PageBanner
-        title="Where Digital Mastery Meets Financial Power"
+        title="Where Digital Mastery Meets Financial Power (Ambikapur)"
         subtitle="We founded AVRX to eliminate the friction between building a world-class digital product, maintaining statutory tax compliance, and securing rapid capital."
         badge="OUR MISSION & LEADERSHIP"
         breadcrumbs={[{ label: 'About Us' }]}
         ctaText="Meet The Leadership"
       />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
       {/* Philosophy Section */}
       <section className="py-20 bg-[#06070B] border-b border-white/10">
@@ -57,7 +69,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
               <span className="text-xs font-bold text-cyan-400 uppercase tracking-widest block">
-                THE NO 1 DIGITAL & FINANCIAL PHILOSOPHY
+                THE AVRX INTEGRATED PHILOSOPHY
               </span>
               <h2 className="text-3xl sm:text-4xl font-poppins font-extrabold text-white leading-tight">
                 Why Should You Deal With 4 Vendors When You Can Have 1 Trusted Partner?

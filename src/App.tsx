@@ -26,6 +26,14 @@ import FaqPage from './pages/FaqPage';
 import BlogPage from './pages/BlogPage';
 import CareerPage from './pages/CareerPage';
 
+// Legal, Trust & Utility Pages
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsConditionsPage from './pages/TermsConditionsPage';
+import DisclaimerPage from './pages/DisclaimerPage';
+import RefundPolicyPage from './pages/RefundPolicyPage';
+import SitemapPage from './pages/SitemapPage';
+import NotFoundPage from './pages/NotFoundPage';
+
 export default function App() {
   return (
     <Router>
@@ -35,12 +43,49 @@ export default function App() {
 
         <main className="flex-1 pt-20">
           <Routes>
+            {/* Core Pages */}
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<ServicesIndexPage />} />
             <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
+            
+            {/* Direct Digital Service SEO Routes */}
+            <Route path="/website-design" element={<ServiceDetailPage />} />
+            <Route path="/web-development" element={<ServiceDetailPage />} />
+            <Route path="/application-development" element={<ServiceDetailPage />} />
+            <Route path="/ecommerce-website" element={<ServiceDetailPage />} />
+            <Route path="/digital-marketing" element={<ServiceDetailPage />} />
+            <Route path="/seo-services" element={<ServiceDetailPage />} />
+            <Route path="/website-redesign" element={<ServiceDetailPage />} />
+            <Route path="/website-maintenance" element={<ServiceDetailPage />} />
+            
+            {/* Direct Financial Solution SEO Routes */}
             <Route path="/financial-solutions" element={<FinancialSolutionsPage />} />
+            <Route path="/personal-loan" element={<FinancialSolutionsPage />} />
+            <Route path="/business-loan" element={<FinancialSolutionsPage />} />
+            <Route path="/home-loan" element={<FinancialSolutionsPage />} />
+            <Route path="/car-loan" element={<FinancialSolutionsPage />} />
+            <Route path="/mortgage-loan" element={<FinancialSolutionsPage />} />
+            <Route path="/refinance" element={<FinancialSolutionsPage />} />
+            <Route path="/pmegp-loan" element={<FinancialSolutionsPage />} />
+            <Route path="/mudra-loan" element={<FinancialSolutionsPage />} />
+
+            {/* Direct Tax & Compliance SEO Routes */}
             <Route path="/tax-solutions" element={<TaxSolutionsPage />} />
+            <Route path="/gst-registration" element={<TaxSolutionsPage />} />
+            <Route path="/gst-filing" element={<TaxSolutionsPage />} />
+            <Route path="/itr-filing" element={<TaxSolutionsPage />} />
+            <Route path="/udyam-registration" element={<TaxSolutionsPage />} />
+
+            {/* Direct Insurance SEO Routes */}
             <Route path="/insurance-solutions" element={<InsuranceSolutionsPage />} />
+            <Route path="/motor-insurance" element={<InsuranceSolutionsPage />} />
+            <Route path="/health-insurance" element={<InsuranceSolutionsPage />} />
+            <Route path="/travel-insurance" element={<InsuranceSolutionsPage />} />
+            <Route path="/home-insurance" element={<InsuranceSolutionsPage />} />
+            <Route path="/shop-insurance" element={<InsuranceSolutionsPage />} />
+            <Route path="/property-insurance" element={<InsuranceSolutionsPage />} />
+
+            {/* Company, AI & Product Pages */}
             <Route path="/ai-solutions" element={<AiSolutionsPage />} />
             <Route path="/digital-products" element={<DigitalProductsPage />} />
             <Route path="/about" element={<AboutPage />} />
@@ -50,6 +95,17 @@ export default function App() {
             <Route path="/faq" element={<FaqPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/career" element={<CareerPage />} />
+
+            {/* Legal, Compliance & Sitemap Pages */}
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms-and-conditions" element={<TermsConditionsPage />} />
+            <Route path="/terms-conditions" element={<TermsConditionsPage />} />
+            <Route path="/disclaimer" element={<DisclaimerPage />} />
+            <Route path="/refund-policy" element={<RefundPolicyPage />} />
+            <Route path="/sitemap" element={<SitemapPage />} />
+
+            {/* Branded 404 Page */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
 

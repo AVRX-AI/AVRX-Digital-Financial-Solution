@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import PageBanner from '../components/layout/PageBanner';
 import {
   HelpCircle,
@@ -13,47 +14,64 @@ import { Link } from 'react-router-dom';
 export default function FaqPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
+  const breadcrumbs = [
+    { name: 'FAQ & Help', url: '/faq' }
+  ];
+
   const faqs = [
     {
-      q: 'Why should I choose AVRX Ecosystem over standard web agencies or loan brokers?',
-      a: 'AVRX Ecosystem unifies three critical business pillars under one NDA and Service Level Agreement: 1) High-performance React/Next.js Digital Product Engineering, 2) CA-certified statutory GST and Income Tax compliance, and 3) Collateral-free business loans up to ₹20 Crores from RBI Tier-1 bank partners. You deal with one accountable executive team instead of four disconnected vendors.'
+      q: 'Why choose AVRX Digital & Financial Solution in Ambikapur?',
+      a: 'AVRX Digital & Financial Solution unifies digital web development, SEO, CA tax & GST filing, personal & business loans, and insurance services under one roof in Ambikapur, Surguja, Chhattisgarh. You deal with one reliable team for all your digital and financial growth needs.'
     },
     {
-      q: 'What is your 0.6s LCP Core Web Vitals speed guarantee?',
-      a: 'Unlike template builders that bloat JavaScript, we handcraft our web applications using React 18, Next.js, Tailwind CSS, and Edge NVMe caching. We guarantee your application will load within 0.6 seconds LCP and achieve 95+ Google PageSpeed Insights scores.'
+      q: 'How fast can I get a website built for my business in Ambikapur?',
+      a: 'Our website design and development projects are delivered within 7 to 10 working days for Startup MVPs, and 3 to 4 weeks for custom enterprise web applications.'
     },
     {
-      q: 'How fast can my company secure a collateral-free business loan?',
-      a: 'For unsecured business loans up to ₹5 Crores, we provide in-principle sanction within 48 hours based on your GST returns and banking transaction flows. No residential or commercial collateral is pledged.'
+      q: 'How quickly can I secure a business or personal loan in Surguja?',
+      a: 'For business and personal loans, in-principle sanction is provided within 24 to 48 hours based on eligibility and partner bank documentation guidelines.'
     },
     {
-      q: 'Who manages my GST and Income Tax filing?',
-      a: 'Your statutory taxes are managed by our in-house panel of Fellow Chartered Accountants (FCA) and Corporate Attorneys. We assign a dedicated CA with a direct phone line to ensure zero-error GSTR-3B filing and audit compliance.'
+      q: 'Who handles GST registration and monthly ITR filing?',
+      a: 'Your GST returns and Income Tax filings are prepared and verified by tax specialists, ensuring timely GSTR-1, GSTR-3B, and ITR compliance.'
     },
     {
-      q: 'Do I own 100% of the source code for my web or mobile application?',
-      a: 'Yes. Upon final milestone payment, 100% intellectual property, GitHub source code repositories, and design assets are legally assigned to your enterprise under strict NDA.'
+      q: 'Do I own 100% of the source code for my website or application?',
+      a: 'Yes. Upon project completion, 100% intellectual property, source code, and design assets belong entirely to you.'
     },
     {
-      q: 'How does your AI Website Health Checker work?',
-      a: 'Our live diagnostic scanner inspects your live domain for JavaScript render bottlenecks, missing schema tags, SSL certificate encryption grade, and mobile accessibility, providing actionable architectural recommendations.'
+      q: 'Where is AVRX Digital & Financial Solution located in Ambikapur?',
+      a: 'Our office is located at Waterpark Ambikapur, NH343, Surguja District, Chhattisgarh - 497001. You can visit or contact us at +91-9630661536.'
     }
   ];
+
+  const faqSchemaData = faqs.map((item) => ({
+    question: item.q,
+    answer: item.a
+  }));
 
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title="Frequently Asked Questions | AVRX Ecosystem SLA"
-        description="Answers to common questions regarding our digital product engineering SLAs, CA tax compliance, and instant business loan sanctions."
+        title="Frequently Asked Questions (FAQ) | AVRX Digital Ambikapur"
+        description="Get answers to FAQs about website design, SEO, business loans, personal loans, GST filing, and insurance services at AVRX in Ambikapur, Surguja, Chhattisgarh."
+        keywords="AVRX FAQ, website design FAQ Ambikapur, business loan questions Surguja, GST filing FAQ Chhattisgarh"
+        canonicalUrl="https://avrx.in/faq"
+        breadcrumbsData={breadcrumbs}
+        faqData={faqSchemaData}
       />
 
       <PageBanner
-        title="Frequently Asked Questions & SLA Knowledge Base"
-        subtitle="Everything you need to know about our engineering standards, statutory tax SLA guarantees, and capital disbursal timelines."
-        badge="AVRX SLA KNOWLEDGE BASE"
-        breadcrumbs={[{ label: 'FAQ & Knowledge Base' }]}
+        title="Frequently Asked Questions (FAQ) - Ambikapur"
+        subtitle="Answers to common questions regarding our digital services, tax compliance, and financial loan solutions."
+        badge="AVRX KNOWLEDGE BASE"
+        breadcrumbs={[{ label: 'FAQ' }]}
         ctaText="Ask Executive Desk"
       />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
       <section className="py-20 bg-[#06070B]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import PageBanner from '../components/layout/PageBanner';
 import {
   IndianRupee,
@@ -14,10 +15,14 @@ import {
   Briefcase,
   Building2,
   FileText,
-  Award
+  Award,
+  ShieldAlert
 } from 'lucide-react';
 
 export default function FinancialSolutionsPage() {
+  const location = useLocation();
+  const currentPath = location.pathname.toLowerCase().replace(/\/$/, '');
+
   // CRED-style EMI Calculator State
   const [loanAmount, setLoanAmount] = useState<number>(2500000); // 25 Lakhs
   const [interestRate, setInterestRate] = useState<number>(9.5); // 9.5% p.a.
@@ -34,6 +39,46 @@ export default function FinancialSolutionsPage() {
   const totalInterest = totalPayable - loanAmount;
 
   const [selectedTab, setSelectedTab] = useState<'all' | 'business' | 'msme' | 'property'>('all');
+
+  const breadcrumbs = [
+    { name: 'Financial Solutions', url: '/financial-solutions' },
+    ...(currentPath !== '/financial-solutions'
+      ? [{ name: currentPath.replace('/', '').replace('-', ' ').toUpperCase(), url: currentPath }]
+      : [])
+  ];
+
+  const loanFaqs = [
+    {
+      question: 'What types of loans can I apply for through AVRX in Ambikapur?',
+      answer: 'AVRX facilitates Personal Loans, Unsecured Business Loans, Home Loans, Car Loans, Loan Against Property (LAP), PMEGP Subsidy Loans, MUDRA Yojana, and Balance Transfers in Ambikapur, Surguja, and across Chhattisgarh.'
+    },
+    {
+      question: 'Does AVRX charge any advance fees for loan processing?',
+      answer: 'No. AVRX does not charge upfront loan sanction fees. All processing fees are paid directly to bank partners upon loan approval and documentation.'
+    },
+    {
+      question: 'How long does loan disbursal take after document submission?',
+      answer: 'Unsecured personal and business loans can be disbursed in as fast as 48 hours upon complete eligibility verification by our partner banks and NBFCs.'
+    }
+  ];
+
+  const financialSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FinancialProduct',
+    name: 'Business & Personal Loan Facilitation Services',
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'AVRX Digital & Financial Solution',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Ambikapur',
+        addressRegion: 'Chhattisgarh',
+        addressCountry: 'IN'
+      }
+    },
+    areaServed: 'Ambikapur, Surguja, Chhattisgarh, India',
+    description: 'Collateral-free business loans, personal loans, home loans, and MSME subsidy loans in Ambikapur, Surguja.'
+  };
 
   const loansList = [
     {
@@ -105,17 +150,26 @@ export default function FinancialSolutionsPage() {
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title="Financial Solutions & Instant Loans up to ₹20 Crore"
-        description="Access ₹10 Lakhs to ₹20 Crores in collateral-free business loans, MSME schemes, and LAP with 48-hour disbursal SLA and CRED-level transparency."
+        title="Business Loans & Personal Loans in Ambikapur | AVRX Financial"
+        description="Apply for collateral-free business loans, personal loans, home loans, PMEGP subsidy schemes, and MSME capital in Ambikapur, Surguja, Chhattisgarh."
+        keywords="business loan Ambikapur, personal loan Surguja, home loan Chhattisgarh, MSME loan Ambikapur, PMEGP subsidy loan, AVRX financial solutions"
+        canonicalUrl={`https://avrx.in${currentPath || '/financial-solutions'}`}
+        breadcrumbsData={breadcrumbs}
+        faqData={loanFaqs}
+        schemaData={financialSchema}
       />
 
       <PageBanner
-        title="Instant Financial & Capital Access (₹10L to ₹20 Cr)"
+        title="Instant Financial & Capital Access (Ambikapur & Chhattisgarh)"
         subtitle="Collateral-free business loans, CGTMSE MSME schemes, working capital limits, and lowest-ROI property mortgages backed by Tier-1 RBI Banks."
         badge="RBI PARTNER BANKS SLA"
         breadcrumbs={[{ label: 'Financial Solutions' }]}
         ctaText="Check Instant Sanction Limit"
       />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
       {/* Interactive CRED-Inspired EMI Calculator Section */}
       <section className="py-20 bg-[#06070B] border-b border-white/10 relative overflow-hidden">
@@ -346,6 +400,17 @@ export default function FinancialSolutionsPage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Statutory Loan Disclaimer Box */}
+          <div className="mt-16 p-6 rounded-2xl bg-white/5 border border-white/10 flex items-start gap-4 text-xs text-slate-400">
+            <ShieldAlert className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <div className="font-bold text-white text-sm">Regulatory Disclosure & Partner Terms:</div>
+              <p>
+                AVRX Digital & Financial Solution is an authorized loan advisor and channel partner with RBI-registered Banks & NBFCs in India. We do not issue loans directly or charge upfront approval fees. Final sanction, interest rate, tenure, and loan disbursal are strictly subject to individual credit assessment, income verification, and lender eligibility policies. Read our complete <Link to="/disclaimer" className="text-cyan-400 underline hover:text-cyan-300">Financial Disclaimer</Link>.
+              </p>
+            </div>
           </div>
         </div>
       </section>

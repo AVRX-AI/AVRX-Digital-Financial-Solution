@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import PageBanner from '../components/layout/PageBanner';
 import {
   Sparkles,
@@ -12,44 +13,55 @@ import {
 } from 'lucide-react';
 
 export default function CareerPage() {
+  const breadcrumbs = [
+    { name: 'Careers', url: '/careers' }
+  ];
+
   const openings = [
     {
-      title: 'Senior Next.js & React Solution Architect',
-      type: 'Full-Time / Remote',
-      location: 'Mumbai (BKC) / Silicon Valley',
-      dept: 'Digital Product Engineering',
-      desc: 'Lead enterprise client builds in Next.js 14, Tailwind CSS, and Edge NVMe architectures with strict 0.6s LCP Core Web Vitals SLA.'
-    },
-    {
-      title: 'Practicing Chartered Accountant (GST & ITR Panel)',
-      type: 'Full-Time Retainer',
-      location: 'Mumbai (BKC)',
-      dept: 'Statutory Compliance & Audit',
-      desc: 'Manage GSTR-3B monthly filing, ROC AOC-4 annual returns, and corporate scrutiny notice advisory for enterprise clients.'
-    },
-    {
-      title: 'AI Product Specialist & LLM Engineer',
+      title: 'Full Stack Web Developer (React / Node.js)',
       type: 'Full-Time / Hybrid',
-      location: 'Silicon Valley / Mumbai',
-      dept: 'AVRX AI Labs',
-      desc: 'Build programmatic SEO scanners, custom schema engines, and conversational GPT-4 concierges for high-traffic platforms.'
+      location: 'Ambikapur, CG / Remote',
+      dept: 'Digital Product Engineering',
+      desc: 'Build high-performance web applications, responsive client websites, and API integrations with SEO and mobile speed optimization.'
+    },
+    {
+      title: 'Tax & GST Executive',
+      type: 'Full-Time',
+      location: 'Ambikapur Office',
+      dept: 'Statutory Compliance & Audit',
+      desc: 'Assist in GSTR-1, GSTR-3B monthly filings, ITR tax e-filing, and client accounting support for businesses in Chhattisgarh.'
+    },
+    {
+      title: 'Financial & Loan Advisory Consultant',
+      type: 'Full-Time',
+      location: 'Ambikapur Office',
+      dept: 'Financial Capital Division',
+      desc: 'Help business clients with loan application documentation, bank coordination, and credit profile preparation.'
     }
   ];
 
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title="Career Opportunities | Join AVRX Digital & Financial Solution"
-        description="Join our team of elite Solution Architects, practicing Chartered Accountants, and LLM Engineers."
+        title="Careers & Openings in Ambikapur | AVRX Jobs"
+        description="Explore job openings and career opportunities in Web Development, Tax Compliance, and Loan Consultancy at AVRX Digital & Financial Solution in Ambikapur."
+        keywords="jobs in Ambikapur, web developer jobs Surguja, tax assistant jobs Chhattisgarh, AVRX careers"
+        canonicalUrl="https://avrx.in/careers"
+        breadcrumbsData={breadcrumbs}
       />
 
       <PageBanner
-        title="Build CRED-Inspired Digital & Financial Assets"
-        subtitle="We hire the top 1% of digital engineers, practicing chartered accountants, and corporate attorneys who take pride in flawless craftsmanship."
-        badge="JOIN THE AVRX ECOSYSTEM"
+        title="Careers at AVRX Digital & Financial Solution"
+        subtitle="Join our team of developers, tax consultants, and financial advisors in Ambikapur, Chhattisgarh."
+        badge="JOIN OUR TEAM"
         breadcrumbs={[{ label: 'Career Opportunities' }]}
         ctaText="View Open Roles"
       />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
       <section className="py-20 bg-[#06070B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

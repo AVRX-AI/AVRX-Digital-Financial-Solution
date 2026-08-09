@@ -165,19 +165,19 @@ export default function HomeHero() {
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-poppins font-extrabold text-white tracking-tight leading-[1.08]">
               Architecting <br />
               <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent">
-                Digital Dominance
+                Digital & Financial
               </span> <br />
-              & Financial Growth.
+              Solutions in Ambikapur.
             </h1>
 
             {/* Dynamic Subtitle according to active tab */}
             <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl">
               {activeTab === 'digital' &&
-                'No 1 Digital and Financial Solution delivering sub-second Next.js web platforms, native iOS/Android apps, automated GST & tax compliance, and instant business loans under one SLA.'}
+                'AVRX Digital & Financial Solution delivers sub-second web platforms, native mobile apps, automated GST & tax compliance, and instant business loans in Ambikapur, Surguja, and Chhattisgarh under one SLA.'}
               {activeTab === 'loans' &&
-                'Secure collateral-free working capital from ₹10 Lakhs to ₹20 Crores with Tier-1 bank underwriting, lowest 8.35% interest rates, and in-principle sanction in 48 hours.'}
+                'Secure collateral-free working capital from ₹10 Lakhs to ₹20 Crores with Tier-1 bank underwriting, competitive interest rates, and in-principle sanction in 48 hours.'}
               {activeTab === 'tax' &&
-                'Zero-error GSTR-3B filings, ITR audits, and ROC annual returns managed by our panel of practicing Chartered Accountants with a 15-minute SLA response desk.'}
+                'Zero-error GSTR-3B filings, ITR audits, and ROC annual returns managed by our panel of tax advisors with rapid SLA response.'}
               {activeTab === 'ai' &&
                 'Instant diagnostic engine analyzing domain core web vitals, LCP speed bottlenecks, SSL security grades, and schema compliance in real-time.'}
             </p>

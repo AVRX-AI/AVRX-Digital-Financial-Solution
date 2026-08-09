@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import PageBanner from '../components/layout/PageBanner';
 import JarvisAiEngine from '../components/tools/JarvisAiEngine';
 import TextToImageAi from '../components/tools/TextToImageAi';
@@ -20,6 +21,10 @@ import {
 
 export default function AiSolutionsPage() {
   const [activeToolTab, setActiveToolTab] = useState<'jarvis' | 'text2image' | 'prompt2web' | 'health' | 'emi' | 'insurance'>('jarvis');
+
+  const breadcrumbs = [
+    { name: 'AI Solutions & Tools', url: '/ai-solutions' }
+  ];
 
   const toolsList = [
     {
@@ -69,17 +74,24 @@ export default function AiSolutionsPage() {
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title="JARVIS 3D AI Tools Suite | AVRX Intelligence"
-        description="Experience the complete JARVIS 3D AI Tools Suite: Gemini 3.6 Flash Assistant, Text to 3D Image Generator, Prompt to Website Wireframes, Website Health Checker, EMI & Insurance Calculators."
+        title="AI Tools & Website Health Checker | AVRX Digital Ambikapur"
+        description="Explore AI tools powered by Gemini, Website SEO & Speed Auditor, Financial EMI Calculator, and Insurance Estimators in Ambikapur, Chhattisgarh."
+        keywords="AI tools Ambikapur, website health checker, EMI calculator Surguja, AI website wireframe generator, AVRX AI solutions"
+        canonicalUrl="https://avrx.in/ai-solutions"
+        breadcrumbsData={breadcrumbs}
       />
 
       <PageBanner
-        title="JARVIS 3D AI Tools Suite"
+        title="JARVIS 3D AI Tools Suite (Ambikapur)"
         subtitle="Powered by Gemini 3.6 Flash server API, interactive 3D visual mockups, live wireframe preview generators, domain health audits, and financial calculators."
         badge="AVRX 3D INTELLIGENCE"
         breadcrumbs={[{ label: 'AI Tools Suite' }]}
         ctaText="Request Custom Enterprise Model"
       />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
       {/* Main Suite Explorer */}
       <section className="py-16 bg-[#06070B] border-b border-white/10">

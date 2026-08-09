@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import PageBanner from '../components/layout/PageBanner';
 import {
   FileText,
@@ -16,16 +17,58 @@ import {
 } from 'lucide-react';
 
 export default function TaxSolutionsPage() {
+  const location = useLocation();
+  const currentPath = location.pathname.toLowerCase().replace(/\/$/, '');
   const [activeTab, setActiveTab] = useState<'gst' | 'itr' | 'inc' | 'cfo'>('gst');
+
+  const breadcrumbs = [
+    { name: 'Tax Solutions', url: '/tax-solutions' },
+    ...(currentPath !== '/tax-solutions'
+      ? [{ name: currentPath.replace('/', '').replace('-', ' ').toUpperCase(), url: currentPath }]
+      : [])
+  ];
+
+  const taxFaqs = [
+    {
+      question: 'How quickly can AVRX process GST Registration in Ambikapur?',
+      answer: 'Our tax experts process GST Registration applications within 24 to 48 hours upon complete document submission, guiding you through ARN generation and certificate issuance.'
+    },
+    {
+      question: 'Do you file monthly GSTR-1, GSTR-3B, and annual GSTR-9 returns?',
+      answer: 'Yes, we provide end-to-end monthly GST filing, Input Tax Credit (ITC) reconciliation, and annual tax audits for traders, contractors, and businesses in Ambikapur, Surguja, and across Chhattisgarh.'
+    },
+    {
+      question: 'Can you prepare ITR filings for salaried individuals and small business owners?',
+      answer: 'Yes, we handle ITR-1 through ITR-6 filings with CA verification, maximizing eligible Section 80C to 80U deductions and advance tax computations.'
+    }
+  ];
+
+  const taxSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AccountingService',
+    name: 'GST Filing & Income Tax Return Services',
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'AVRX Digital & Financial Solution',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Ambikapur',
+        addressRegion: 'Chhattisgarh',
+        addressCountry: 'IN'
+      }
+    },
+    areaServed: 'Ambikapur, Surguja, Chhattisgarh, India',
+    description: 'CA-verified GST registration, monthly GSTR-1 & 3B filing, ITR tax return e-filing, and MSME Udyam registration in Ambikapur.'
+  };
 
   const services = [
     {
       id: 'gst',
       title: 'GST Registration & Monthly Filing SLA',
       badge: 'SAME-DAY PROCESSING',
-      fee: '₹1,499 / $20 /month',
+      fee: '₹1,499 / month',
       turnaround: '24-48 Hours',
-      desc: 'Complete GST management by practicing Chartered Accountants. We handle GSTIN issuance, GSTR-1 & GSTR-3B monthly filing, annual GSTR-9 reconciliation, and GST notice advisory.',
+      desc: 'Complete GST management by practicing tax advisors. We handle GSTIN issuance, GSTR-1 & GSTR-3B monthly filing, annual GSTR-9 reconciliation, and GST notice advisory.',
       deliverables: [
         'New GSTIN Certificate within 48 hours',
         'GSTR-1 & GSTR-3B monthly filing SLA',
@@ -38,7 +81,7 @@ export default function TaxSolutionsPage() {
       id: 'itr',
       title: 'Income Tax Return (ITR) & Corporate Tax Strategy',
       badge: 'MAXIMUM REFUND SLA',
-      fee: '₹1,999 / $25 /year',
+      fee: '₹1,999 / year',
       turnaround: 'Same Day Filing',
       desc: 'Expert tax computation and ITR-1 to ITR-6 filing for salaried leaders, freelancers, stock/crypto investors, and Pvt Ltd entities with Section 80C to 80U deduction optimization.',
       deliverables: [
@@ -53,7 +96,7 @@ export default function TaxSolutionsPage() {
       id: 'inc',
       title: 'Pvt Ltd / LLP Incorporation + MSME Udyam Pack',
       badge: 'STARTUP BUNDLE',
-      fee: '₹6,999 / $90 all-inclusive',
+      fee: '₹6,999 all-inclusive',
       turnaround: '7 Working Days',
       desc: 'Everything required to launch your company legally: MCA name approval, MOA/AOA drafting, Certificate of Incorporation, PAN, TAN, Bank Account support, and MSME Udyam certificate.',
       deliverables: [
@@ -68,15 +111,15 @@ export default function TaxSolutionsPage() {
       id: 'cfo',
       title: 'Virtual CFO, Bookkeeping & Statutory Audit',
       badge: 'ENTERPRISE RETAINER',
-      fee: '₹14,999 / $180 /month',
-      turnaround: 'Continuous 365 Days',
-      desc: 'Outsource your entire finance and accounting department. We manage Tally/Zoho books, GST, TDS, EPF, ESIC, balance sheet preparation, and ROC annual statutory compliance.',
+      fee: '₹14,999 / month',
+      turnaround: 'Continuous On-Call',
+      desc: 'Dedicated Senior Financial Advisory team acting as your Virtual CFO. Monthly P&L analysis, cash flow budgeting, tax risk auditing, and investor pitch deck financial modeling.',
       deliverables: [
-        'Monthly P&L, balance sheet & cash flow MIS',
-        'TDS & TCS filing with Form 16 / 16A generation',
-        'ROC annual filings (Form AOC-4, MGT-7)',
-        'Payroll processing with EPF & ESIC challans',
-        'Investor due diligence & statutory audit support'
+        'Weekly cash-flow velocity dashboards',
+        'Monthly Board-ready financial statements',
+        'Internal controls & inventory audit SLAs',
+        'Direct Tax & Indirect Tax planning reviews',
+        'Banking credit limit review preparation'
       ]
     }
   ];
@@ -86,17 +129,26 @@ export default function TaxSolutionsPage() {
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title="Statutory Tax, GST & Company Incorporation SLA"
-        description="Zero-error GST returns, CA-certified Income Tax filing, Pvt Ltd incorporation in 7 days, and Virtual CFO retainers."
+        title="GST Filing & ITR Return Services in Ambikapur | AVRX Tax"
+        description="CA-verified GST registration, monthly GSTR-1 & GSTR-3B filing, Income Tax Return e-filing, and Pvt Ltd company incorporation in Ambikapur, Surguja, Chhattisgarh."
+        keywords="GST registration Ambikapur, GST filing Surguja, ITR filing Chhattisgarh, company incorporation Ambikapur, Udyam registration, AVRX tax solutions"
+        canonicalUrl={`https://avrx.in${currentPath || '/tax-solutions'}`}
+        breadcrumbsData={breadcrumbs}
+        faqData={taxFaqs}
+        schemaData={taxSchema}
       />
 
       <PageBanner
-        title="Statutory Tax, GST & Corporate Legal SLAs"
-        subtitle="Eliminate compliance headaches and statutory penalties. Our panel of Chartered Accountants and Corporate Lawyers ensure flawless returns and rapid incorporation."
+        title="Statutory Tax, GST & Corporate Legal SLAs (Ambikapur)"
+        subtitle="Eliminate compliance headaches and statutory penalties. Our team ensures flawless GST returns, ITR filings, and rapid company incorporation."
         badge="CA & LEGAL PANEL VERIFIED"
         breadcrumbs={[{ label: 'Tax & Compliance SLA' }]}
         ctaText="Book CA Consultation"
       />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
       <section className="py-20 bg-[#06070B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

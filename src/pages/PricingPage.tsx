@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import PageBanner from '../components/layout/PageBanner';
 import {
   CheckCircle2,
@@ -13,6 +14,21 @@ import {
 
 export default function PricingPage() {
   const [activeTab, setActiveTab] = useState<'digital' | 'tax' | 'loans'>('digital');
+
+  const breadcrumbs = [
+    { name: 'Pricing & Packages', url: '/pricing' }
+  ];
+
+  const pricingFaqs = [
+    {
+      question: 'What is the pricing for website design in Ambikapur?',
+      answer: 'Our website design packages in Ambikapur start at ₹9,999 for Startup MVP, ₹14,999 for Growth Business, and ₹24,999+ for Enterprise custom platforms.'
+    },
+    {
+      question: 'Are there any hidden costs in GST filing or loan consultancy?',
+      answer: 'No. All pricing is fully transparent with no hidden charges. GST filing starts at ₹1,499/month and company incorporation at ₹6,999.'
+    }
+  ];
 
   const digitalTiers = [
     {
@@ -97,17 +113,25 @@ export default function PricingPage() {
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title="Transparent SLA Pricing & Packages | AVRX Ecosystem"
-        description="Transparent SLA pricing across Digital Product Engineering, CA Tax & GST Filing, and collateral-free Business Loans."
+        title="Transparent Pricing & Service Packages in Ambikapur | AVRX"
+        description="Affordable and transparent pricing for website design, mobile apps, GST filing, ITR tax returns, and loan consultancy in Ambikapur, Surguja, Chhattisgarh."
+        keywords="website design cost Ambikapur, GST filing fees Surguja, loan consultancy charges Chhattisgarh, AVRX pricing"
+        canonicalUrl="https://avrx.in/pricing"
+        breadcrumbsData={breadcrumbs}
+        faqData={pricingFaqs}
       />
 
       <PageBanner
-        title="Transparent SLA Pricing & Contracts"
-        subtitle="No surprise invoices. Every project is governed by a clear, legally binding Service Level Agreement with 100% money-back code quality guarantees."
-        badge="CRED-INSPIRED TRANSPARENCY"
+        title="Transparent SLA Pricing & Packages (Ambikapur)"
+        subtitle="No surprise charges. Every project is governed by a clear Service Level Agreement with complete pricing transparency."
+        badge="TRANSPARENT PRICING"
         breadcrumbs={[{ label: 'Pricing & SLA' }]}
         ctaText="Request Custom Quote"
       />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
       <section className="py-20 bg-[#06070B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

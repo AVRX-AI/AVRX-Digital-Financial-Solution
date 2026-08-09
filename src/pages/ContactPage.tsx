@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import PageBanner from '../components/layout/PageBanner';
 import {
   PhoneCall,
@@ -17,13 +18,46 @@ import {
 export default function ContactPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
+  const breadcrumbs = [
+    { name: 'Contact Us', url: '/contact' }
+  ];
+
+  const contactSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'AVRX Digital & Financial Solution',
+    image: 'https://avrx.in/favicon.ico',
+    telephone: '+91-9630661536',
+    email: 'avrxin@gmail.com',
+    url: 'https://avrx.in/contact',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Waterpark Ambikapur, NH343',
+      addressLocality: 'Ambikapur',
+      addressRegion: 'Chhattisgarh',
+      postalCode: '497001',
+      addressCountry: 'IN'
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 23.1186,
+      longitude: 83.1987
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '09:30',
+      closes: '19:00'
+    }
+  };
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     service: 'Website Design & Development SLA',
     company: '',
-    budget: '$5,000 – $15,000 / ₹3L – ₹10L',
+    budget: '₹25,000 – ₹1,00,000',
     message: ''
   });
 
@@ -33,9 +67,9 @@ export default function ContactPage() {
   };
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = '919876543210';
+    const phoneNumber = '919630661536';
     const msg = encodeURIComponent(
-      `Hello AVRX Team,\nI would like to schedule a consultation regarding: ${formData.service}.\nName: ${formData.name || 'Enterprise Client'}\nCompany: ${formData.company || 'N/A'}`
+      `Hello AVRX Team,\nI would like to schedule a consultation regarding: ${formData.service}.\nName: ${formData.name || 'Client'}\nCompany: ${formData.company || 'N/A'}`
     );
     window.open(`https://wa.me/${phoneNumber}?text=${msg}`, '_blank');
   };
@@ -43,17 +77,25 @@ export default function ContactPage() {
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title="Contact AVRX Digital & Financial Solution | Executive Desk"
-        description="Connect with our Chief Solutions Architect, Chartered Accountant panel, or Loan Advisory team. 15-minute response SLA during business hours."
+        title="Contact AVRX Digital & Financial Solution | Ambikapur Office"
+        description="Contact AVRX Digital & Financial Solution at Waterpark Ambikapur, NH343, Surguja, Chhattisgarh. Call +91-9630661536 or WhatsApp for digital, loan, tax, and insurance queries."
+        keywords="contact AVRX Ambikapur, AVRX phone number, website design office Ambikapur, business loan office Surguja, GST consultant Ambikapur"
+        canonicalUrl="https://avrx.in/contact"
+        breadcrumbsData={breadcrumbs}
+        schemaData={contactSchema}
       />
 
       <PageBanner
-        title="Connect With Our Executive Solution Desk"
-        subtitle="Schedule a 30-minute confidential scoping call with a Senior Solution Architect or practicing Chartered Accountant. We respond within 15 minutes."
-        badge="15-MINUTE RESPONSE SLA"
+        title="Connect With Our Executive Desk in Ambikapur"
+        subtitle="Schedule a consultation with a Solution Architect, Financial Advisor, or Tax Specialist. We respond promptly during business hours."
+        badge="LOCAL & PAN-INDIA SUPPORT"
         breadcrumbs={[{ label: 'Contact Us' }]}
         ctaText="Instant WhatsApp Chat"
       />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
       <section className="py-20 bg-[#06070B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

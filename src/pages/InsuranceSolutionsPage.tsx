@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import PageBanner from '../components/layout/PageBanner';
 import {
   Shield,
@@ -11,10 +12,50 @@ import {
   CheckCircle2,
   ArrowRight,
   ShieldCheck,
-  Award
+  Award,
+  ShieldAlert
 } from 'lucide-react';
 
 export default function InsuranceSolutionsPage() {
+  const location = useLocation();
+  const currentPath = location.pathname.toLowerCase().replace(/\/$/, '');
+
+  const breadcrumbs = [
+    { name: 'Insurance Solutions', url: '/insurance-solutions' },
+    ...(currentPath !== '/insurance-solutions'
+      ? [{ name: currentPath.replace('/', '').replace('-', ' ').toUpperCase(), url: currentPath }]
+      : [])
+  ];
+
+  const insuranceFaqs = [
+    {
+      question: 'What insurance policies can I buy through AVRX in Ambikapur?',
+      answer: 'AVRX facilitates Health Insurance, Motor & Vehicle Insurance, International Travel Cover, Home & Property Insurance, Shop & Showroom Cover, and Commercial Policy quotes in Ambikapur, Surguja.'
+    },
+    {
+      question: 'Do you offer cashless hospitalisation in Ambikapur and Chhattisgarh?',
+      answer: 'Yes, our partner IRDAI-regulated insurance providers feature over 14,000+ cashless network hospitals across Chhattisgarh and India.'
+    }
+  ];
+
+  const insuranceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'InsuranceAgency',
+    name: 'Insurance Advisory & Policy Services',
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'AVRX Digital & Financial Solution',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Ambikapur',
+        addressRegion: 'Chhattisgarh',
+        addressCountry: 'IN'
+      }
+    },
+    areaServed: 'Ambikapur, Surguja, Chhattisgarh, India',
+    description: 'Health, motor, shop, home, and commercial insurance consultation in Ambikapur, Chhattisgarh.'
+  };
+
   const insurancePlans = [
     {
       id: 'health-gmc',
@@ -77,17 +118,26 @@ export default function InsuranceSolutionsPage() {
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title="Insurance Solutions | Health, Term, Shop & GMC Cover"
-        description="Comprehensive Health, Term Life, Commercial Office, and Motor insurance backed by India's top insurers with 99.4% claim settlement SLA."
+        title="Insurance Solutions & Policy Quotes in Ambikapur | AVRX Insurance"
+        description="Health insurance, motor insurance, shop cover, and property protection in Ambikapur, Surguja, Chhattisgarh. Cashless hospitalisation & IRDAI-registered partners."
+        keywords="health insurance Ambikapur, motor insurance Surguja, shop insurance Chhattisgarh, car insurance Ambikapur, AVRX insurance solutions"
+        canonicalUrl={`https://avrx.in${currentPath || '/insurance-solutions'}`}
+        breadcrumbsData={breadcrumbs}
+        faqData={insuranceFaqs}
+        schemaData={insuranceSchema}
       />
 
       <PageBanner
-        title="Corporate & Personal Insurance Solutions"
-        subtitle="Protect your family, leadership, office infrastructure, and corporate fleet with zero-deduction cashless policies from India's top-rated insurers."
+        title="Corporate & Personal Insurance Solutions (Ambikapur)"
+        subtitle="Protect your family, leadership, office infrastructure, and corporate fleet with zero-deduction cashless policies from India's top-rated IRDAI insurers."
         badge="IRDAI COMPLIANT PARTNERS"
         breadcrumbs={[{ label: 'Insurance Solutions' }]}
         ctaText="Compare Instant Quotes"
       />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
       <section className="py-20 bg-[#06070B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -148,6 +198,17 @@ export default function InsuranceSolutionsPage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Statutory Insurance Disclaimer Box */}
+          <div className="mt-16 p-6 rounded-2xl bg-white/5 border border-white/10 flex items-start gap-4 text-xs text-slate-400">
+            <ShieldAlert className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <div className="font-bold text-white text-sm">Regulatory Disclosure & Policy Disclaimer:</div>
+              <p>
+                AVRX Digital & Financial Solution facilitates insurance queries for IRDAI-regulated insurance companies in India. Policy benefits, exclusions, riders, and claim settlements are strictly subject to individual insurer underwriting and policy terms. AVRX does not guarantee claim approval. Read our complete <Link to="/disclaimer" className="text-cyan-400 underline hover:text-cyan-300">Insurance Disclaimer</Link>.
+              </p>
+            </div>
           </div>
         </div>
       </section>

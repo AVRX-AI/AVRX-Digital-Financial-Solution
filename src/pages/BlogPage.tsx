@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import PageBanner from '../components/layout/PageBanner';
 import {
   Calendar,
@@ -12,35 +13,39 @@ import {
 } from 'lucide-react';
 
 export default function BlogPage() {
+  const breadcrumbs = [
+    { name: 'Blog & Articles', url: '/blog' }
+  ];
+
   const posts = [
     {
-      id: 'why-nextjs-outperforms-wordpress-2026',
-      title: 'Why Next.js & Tailwind Outperform Traditional WordPress for Enterprise Conversion in 2026',
-      category: 'DIGITAL ENGINEERING',
+      id: 'website-design-guide-ambikapur',
+      title: 'Essential Guide to Website Design & Local SEO for Businesses in Ambikapur',
+      category: 'WEBSITE & SEO',
       date: 'August 1, 2026',
       author: 'Avinash Rai',
       readTime: '6 min read',
-      desc: 'How sub-second Core Web Vitals LCP and Edge NVMe caching directly correlate with a 40%+ increase in e-commerce and FinTech lead conversion.',
+      desc: 'How custom mobile-responsive website design and localized SEO help local businesses in Surguja attract more local customers online.',
       image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80'
     },
     {
       id: 'gst-notice-defense-guide',
-      title: 'How to Prevent & Defend Against GST Input Tax Credit (ITC) Scrutiny Notices',
+      title: 'GST Registration & Monthly Filing Checklist for Traders in Chhattisgarh',
       category: 'STATUTORY TAX',
       date: 'July 24, 2026',
       author: 'CA Siddharth Kothari',
       readTime: '8 min read',
-      desc: 'A comprehensive guide by practicing Chartered Accountants on automated GSTR-2B matching and statutory record keeping to eliminate tax penalties.',
+      desc: 'A comprehensive guide on GSTR-1, GSTR-3B monthly filings, ITC reconciliation, and avoiding compliance penalties in Chhattisgarh.',
       image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80'
     },
     {
-      id: 'unsecured-loan-rbi-interest-shifts',
-      title: 'Navigating Collateral-Free Business Loans: How to Secure 8.9% ROI Without Property Pledge',
+      id: 'business-loans-surguja-guide',
+      title: 'How to Secure Unsecured Business Loans in Ambikapur & Surguja',
       category: 'FINANCIAL CAPITAL',
       date: 'July 15, 2026',
       author: 'AVRX Capital Advisory',
       readTime: '5 min read',
-      desc: 'Inside the underwriting formulas of Tier-1 banks: Why your GST filing velocity and banking cash flows matter more than balance sheet collateral.',
+      desc: 'Understand bank underwriting criteria, GST turnover requirements, and document checklists for quick business loan approvals.',
       image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=600&q=80'
     }
   ];
@@ -48,17 +53,24 @@ export default function BlogPage() {
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title="Enterprise Insights & SLA Articles | AVRX Journal"
-        description="Thought leadership on Next.js digital engineering, CA tax compliance, and instant working capital strategies."
+        title="Blog & Business Insights | AVRX Digital Ambikapur"
+        description="Read articles on website design, local SEO, GST filing, ITR returns, and business loan guidance in Ambikapur, Surguja, Chhattisgarh."
+        keywords="AVRX blog, website design Ambikapur blog, GST guide Chhattisgarh, business loan tips Surguja"
+        canonicalUrl="https://avrx.in/blog"
+        breadcrumbsData={breadcrumbs}
       />
 
       <PageBanner
-        title="Enterprise Engineering & Financial Journal"
-        subtitle="Insights from practicing Chartered Accountants, Silicon Valley Solution Architects, and Corporate Loan Underwriters."
+        title="Digital & Financial Business Journal (Ambikapur)"
+        subtitle="Practical guides and insights on website development, SEO, tax compliance, and business loans."
         badge="AVRX JOURNAL"
         breadcrumbs={[{ label: 'Insights & Blog' }]}
         ctaText="Subscribe to Digest"
       />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
       <section className="py-20 bg-[#06070B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,0 +1,22 @@
+# AVRX Digital & Financial Solution Robots.txt
+# Domain: https://avrx.in/
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /*?*
+Disallow: /*.json$
+
+# Googlebot specific rules
+User-agent: Googlebot
+Allow: /
+Allow: /assets/
+Allow: /src/
+
+# Bingbot rules
+User-agent: Bingbot
+Allow: /
+
+# Sitemap Index
+Sitemap: https://avrx.in/sitemap.xml

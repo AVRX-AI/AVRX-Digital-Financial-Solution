@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
 import PageBanner from '../components/layout/PageBanner';
 import {
   CheckCircle2,
@@ -19,13 +20,31 @@ import { servicesList } from '../data/mockData';
 
 export default function ServiceDetailPage() {
   const { serviceId } = useParams<{ serviceId: string }>();
-  const service =
-    servicesList.find(
-      (s) =>
-        s.id === serviceId ||
-        (serviceId === 'website-design' && (s.id === 'business-website' || s.id === 'enterprise-ecommerce')) ||
-        (serviceId === 'enterprise-ecommerce' && s.id === 'business-website')
-    ) || servicesList[0];
+  const location = useLocation();
+  const currentPath = location.pathname.toLowerCase().replace(/\/$/, '');
+
+  // Map route path directly to corresponding service item if available
+  let matchedService = servicesList.find((s) => s.id === serviceId);
+
+  if (!matchedService) {
+    if (currentPath === '/website-design' || currentPath === '/web-development') {
+      matchedService = servicesList.find((s) => s.id === 'business-website') || servicesList[0];
+    } else if (currentPath === '/application-development') {
+      matchedService = servicesList.find((s) => s.id === 'custom-applications') || servicesList[1];
+    } else if (currentPath === '/ecommerce-website') {
+      matchedService = servicesList.find((s) => s.id === 'ecommerce-website') || servicesList[0];
+    } else if (currentPath === '/digital-marketing') {
+      matchedService = servicesList.find((s) => s.id === 'facebook-ads') || servicesList[2];
+    } else if (currentPath === '/seo-services') {
+      matchedService = servicesList.find((s) => s.id === 'technical-seo') || servicesList[2];
+    } else if (currentPath === '/website-redesign' || currentPath === '/website-maintenance') {
+      matchedService = servicesList.find((s) => s.id === 'website-redesign') || servicesList[0];
+    } else {
+      matchedService = servicesList[0];
+    }
+  }
+
+  const service = matchedService;
 
   const [selectedTier, setSelectedTier] = useState<'startup' | 'growth' | 'enterprise'>('growth');
   const [pagesCount, setPagesCount] = useState<number>(10);
@@ -50,6 +69,52 @@ export default function ServiceDetailPage() {
       : parseVal(enterprisePrice, 45999);
 
   const estimatedTotal = basePrice + (pagesCount - 5) * 500 + (needSeo ? 2000 : 0) + (needSpeedSla ? 1500 : 0);
+
+  const breadcrumbs = [
+    { name: 'Services', url: '/services' },
+    { name: service.title, url: currentPath || `/services/${service.id}` }
+  ];
+
+  const serviceFaqs = [
+    {
+      question: `What is the delivery timeline for ${service.title} in Ambikapur?`,
+      answer: `Our standard launch timeline for ${service.title} ranges from 7-10 working days for Startup MVP builds to 3-4 weeks for full-stack enterprise portals, backed by our SLA guarantee.`
+    },
+    {
+      question: `Do you provide website maintenance and speed optimization?`,
+      answer: `Yes, all our website design and application builds include 0.6s LCP Core Web Vitals performance tuning, SSL security, monthly cloud backups, and post-launch technical SLA support.`
+    },
+    {
+      question: `Can I integrate custom payment gateways, CRM, or ERP systems?`,
+      answer: `Absolutly. We engineer custom API integrations for UPI/Card payment gateways (Razorpay, PhonePe, Stripe), CRMs, and ERP inventory sync.`
+    }
+  ];
+
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: service.title,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'AVRX Digital & Financial Solution',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Ambikapur',
+        addressRegion: 'Chhattisgarh',
+        addressCountry: 'IN'
+      }
+    },
+    areaServed: {
+      '@type': 'AdministrativeArea',
+      name: 'Ambikapur, Surguja, Chhattisgarh'
+    },
+    description: service.fullDesc || service.shortDesc,
+    offers: {
+      '@type': 'Offer',
+      price: starterPrice,
+      priceCurrency: 'INR'
+    }
+  };
 
   const tiers = [
     {
@@ -97,25 +162,32 @@ export default function ServiceDetailPage() {
   return (
     <div className="bg-[#08090C] min-h-screen">
       <SeoMeta
-        title={`${service.title} | AVRX Technology SLA`}
-        description={service.shortDesc}
+        title={`${service.title} Services in Ambikapur | AVRX Digital`}
+        description={`${service.shortDesc} Expert ${service.title} services in Ambikapur, Surguja, Chhattisgarh by AVRX Digital & Financial Solution.`}
+        keywords={`${service.title} Ambikapur, web development Surguja, website design company Chhattisgarh, AVRX digital services`}
+        canonicalUrl={`https://avrx.in${currentPath}`}
+        breadcrumbsData={breadcrumbs}
+        faqData={serviceFaqs}
+        schemaData={serviceSchema}
       />
 
       <PageBanner
         title={service.title}
-        subtitle={service.shortDesc}
+        subtitle={`${service.shortDesc} — Delivered with sub-second performance in Ambikapur, Chhattisgarh.`}
         badge={service.category}
         breadcrumbs={[
           { label: 'Services', path: '/services' },
           { label: service.title }
         ]}
-        ctaText="Book Technical scoping call"
+        ctaText="Book Technical Scoping Call"
       />
 
       {/* Main Content Area */}
       <section className="py-20 bg-[#06070B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <Breadcrumbs items={breadcrumbs} />
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-4">
             {/* Left 8 cols: Deep Specifications & Deliverables */}
             <div className="lg:col-span-8 space-y-12">
               {/* Overview & Architecture */}
