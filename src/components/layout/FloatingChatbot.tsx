@@ -44,6 +44,8 @@ export default function FloatingChatbot() {
 
   const handleLeadSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!leadForm.name || !leadForm.phone) return;
+
     setLeadSubmitted(true);
     setMessages((prev) => [
       ...prev,
@@ -56,6 +58,7 @@ export default function FloatingChatbot() {
     setTimeout(() => {
       setStep('chat');
       setLeadSubmitted(false);
+      setLeadForm({ name: '', phone: '', service: 'Digital Services' });
     }, 2500);
   };
 

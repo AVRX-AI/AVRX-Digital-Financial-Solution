@@ -16,12 +16,13 @@ import {
 
 export default function ContactPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    company: '',
     service: 'Website Design & Development SLA',
+    company: '',
     budget: '$5,000 – $15,000 / ₹3L – ₹10L',
     message: ''
   });
@@ -32,7 +33,7 @@ export default function ContactPage() {
   };
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = '919630661536';
+    const phoneNumber = '919876543210';
     const msg = encodeURIComponent(
       `Hello AVRX Team,\nI would like to schedule a consultation regarding: ${formData.service}.\nName: ${formData.name || 'Enterprise Client'}\nCompany: ${formData.company || 'N/A'}`
     );

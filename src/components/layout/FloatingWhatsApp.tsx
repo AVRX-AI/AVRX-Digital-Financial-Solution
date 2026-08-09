@@ -13,7 +13,7 @@ export default function FloatingWhatsApp() {
   ];
 
   const handleWhatsAppRedirect = (messageText: string) => {
-    const phoneNumber = '919876543210';
+    const phoneNumber = '919630661536';
     const encodedMessage = encodeURIComponent(messageText);
     const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(url, '_blank');
