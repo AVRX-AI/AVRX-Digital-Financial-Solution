@@ -1,158 +1,87 @@
 import React from 'react';
-import SeoMeta from '../components/common/SeoMeta';
-import Breadcrumbs from '../components/common/Breadcrumbs';
-import PageBanner from '../components/layout/PageBanner';
-import {
-  ShieldCheck,
-  Award,
-  Users,
-  Briefcase,
-  TrendingUp,
-  Cpu,
-  CheckCircle2,
-  Lock,
-  ArrowRight
-} from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { SEO } from '../components/common/SEO';
+import { Layers, ShieldCheck, Zap, Globe2, ArrowRight } from 'lucide-react';
 
-export default function AboutPage() {
-  const breadcrumbs = [
-    { name: 'About Us', url: '/about' }
-  ];
+interface AboutPageProps {
+  onNavigate: (page: string) => void;
+}
 
-  const leadership = [
-    {
-      name: 'Avinash Rai',
-      role: 'Founder & Chief Solutions Architect',
-      desc: '12+ years building enterprise digital products, FinTech platforms, and high-frequency web architectures across India.',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'
-    },
-    {
-      name: 'CA Siddharth Kothari',
-      role: 'Head of Statutory Tax & Audit Panel',
-      desc: 'Practicing Fellow Chartered Accountant (FCA) with specialization in GST scrutiny defense, ITR restructuring, and corporate ROC audit.',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80'
-    },
-    {
-      name: 'Adv. Neha Mukerji',
-      role: 'Legal Counsel & Corporate Structuring',
-      desc: 'Expert in startup incorporation, private equity due diligence, shareholder agreements, and RBI regulatory compliance.',
-      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80'
-    }
-  ];
-
+export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
   return (
-    <div className="bg-[#08090C] min-h-screen">
-      <SeoMeta
-        title="About AVRX Digital & Financial Solution | Ambikapur, Chhattisgarh"
-        description="Learn about AVRX Digital & Financial Solution in Ambikapur, Surguja: Where high-performance website engineering meets expert tax advisors and RBI lending partners."
-        keywords="about AVRX Digital, digital company Ambikapur, financial advisors Surguja, web developer Chhattisgarh"
-        canonicalUrl="https://avrx.in/about"
-        breadcrumbsData={breadcrumbs}
+    <div className="min-h-screen bg-[#050811] text-white pt-28 pb-20">
+      <SEO
+        title="About AVRX Digital & Financial Solution | Next-Gen Global Platform"
+        description="Learn about AVRX positioning as a modern technology and financial solutions company helping individuals, startups, and enterprises."
       />
 
-      <PageBanner
-        title="Where Digital Mastery Meets Financial Power (Ambikapur)"
-        subtitle="We founded AVRX to eliminate the friction between building a world-class digital product, maintaining statutory tax compliance, and securing rapid capital."
-        badge="OUR MISSION & LEADERSHIP"
-        breadcrumbs={[{ label: 'About Us' }]}
-        ctaText="Meet The Leadership"
-      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <span className="text-xs font-bold uppercase tracking-widest text-cyan-400 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+            About AVRX
+          </span>
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white">
+            Combining Fintech + AI + Digital Agency
+          </h1>
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            AVRX is a modern technology and financial solutions company designed to streamline how individuals and businesses build, finance, tax-comply, protect, and automate their future.
+          </p>
+        </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <Breadcrumbs items={breadcrumbs} />
+        {/* Brand Mission Pillars */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-16">
+          
+          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 text-center space-y-2">
+            <div className="text-xl font-black text-cyan-400 font-mono">01. BUILD</div>
+            <p className="text-xs text-slate-300">Websites, Apps & E-Commerce Infrastructure</p>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 text-center space-y-2">
+            <div className="text-xl font-black text-emerald-400 font-mono">02. GROW</div>
+            <p className="text-xs text-slate-300">Organic SEO Growth & Digital Marketing</p>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 text-center space-y-2">
+            <div className="text-xl font-black text-amber-400 font-mono">03. FINANCE</div>
+            <p className="text-xs text-slate-300">Personal & Business Capital Concierge</p>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 text-center space-y-2">
+            <div className="text-xl font-black text-purple-400 font-mono">04. PROTECT</div>
+            <p className="text-xs text-slate-300">Tax Compliance & Risk Insurance</p>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 text-center space-y-2">
+            <div className="text-xl font-black text-rose-400 font-mono">05. AUTOMATE</div>
+            <p className="text-xs text-slate-300">AI Business Intelligence Tools</p>
+          </div>
+
+        </div>
+
+        {/* Detailed Story Box */}
+        <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl space-y-6 max-w-4xl mx-auto mb-16">
+          <h2 className="text-2xl font-bold text-white">The AVRX Philosophy</h2>
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Historically, business owners had to deal with fragmented vendors—a web developer for site creation, a separate loan agent for business working capital, a distant accountant for GST tax filings, and an insurance broker for coverage.
+          </p>
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+            AVRX eliminates this friction by unifying software engineering, capital disbursement, tax filings, and AI tools into a single, high-speed ecosystem backed by 100% digital execution.
+          </p>
+
+          <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <button
+              onClick={() => onNavigate('contact')}
+              className="px-8 py-3.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs sm:text-sm rounded-xl transition flex items-center gap-2"
+            >
+              <span>Connect with AVRX Leadership</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <span className="text-xs font-mono text-slate-400">Official Domain: avrx.in</span>
+          </div>
+        </div>
+
       </div>
-
-      {/* Philosophy Section */}
-      <section className="py-20 bg-[#06070B] border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-6 space-y-6">
-              <span className="text-xs font-bold text-cyan-400 uppercase tracking-widest block">
-                THE AVRX INTEGRATED PHILOSOPHY
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-poppins font-extrabold text-white leading-tight">
-                Why Should You Deal With 4 Vendors When You Can Have 1 Trusted Partner?
-              </h2>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Most businesses waste hundreds of hours coordinating between web agencies that don't understand business finance, chartered accountants who don't understand tech, and loan brokers who don't understand cash flow.
-              </p>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                AVRX Ecosystem unifies these three pillars under a single, bank-grade SOC2 Service Level Agreement. One dedicated team for your website, your taxes, and your capital growth.
-              </p>
-
-              <div className="grid grid-cols-2 gap-4 pt-4">
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                  <div className="text-2xl font-poppins font-black text-cyan-400">450+</div>
-                  <div className="text-xs text-slate-400 mt-1">Enterprise Clients Served</div>
-                </div>
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                  <div className="text-2xl font-poppins font-black text-blue-400">₹140 Cr+</div>
-                  <div className="text-xs text-slate-400 mt-1">Working Capital Disbursed</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-6">
-              <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-blue-900/30 via-[#0D101C] to-purple-900/30 border border-blue-500/30 space-y-6">
-                <h3 className="text-xl font-poppins font-bold text-white">
-                  Our Non-Negotiable Engineering Standards
-                </h3>
-                <div className="space-y-4">
-                  {[
-                    { title: '0.6s LCP Performance SLA', desc: 'Every website must pass Google Core Web Vitals with 95+ PageSpeed.' },
-                    { title: 'Zero Statutory Penalty Guarantee', desc: 'Any GST or ITR penalty caused by our panel error is reimbursed 100%.' },
-                    { title: '256-Bit Bank Grade Encryption', desc: 'Your financial statements and codebases remain strictly under NDA.' },
-                    { title: 'Direct Senior Architect Access', desc: 'No ticket queues. Direct WhatsApp & phone access to your project lead.' },
-                  ].map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <div className="text-sm font-bold text-white">{item.title}</div>
-                        <div className="text-xs text-slate-400">{item.desc}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Leadership Panel */}
-      <section className="py-20 bg-[#08090C]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-            <h3 className="text-3xl font-poppins font-bold text-white">
-              Meet Our Executive Leadership
-            </h3>
-            <p className="text-sm text-slate-400">
-              Domain veterans across Silicon Valley digital engineering, Mumbai chartered accountancy, and corporate law.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {leadership.map((person, idx) => (
-              <div
-                key={idx}
-                className="glass-card p-8 rounded-3xl border border-white/10 hover:border-blue-500/40 bg-[#0C0F1C]/80 space-y-4 text-center"
-              >
-                <img
-                  src={person.avatar}
-                  alt={person.name}
-                  className="w-24 h-24 rounded-full object-cover mx-auto border-2 border-blue-500/50"
-                />
-                <div>
-                  <h4 className="text-lg font-poppins font-bold text-white">{person.name}</h4>
-                  <div className="text-xs font-semibold text-cyan-400">{person.role}</div>
-                </div>
-                <p className="text-xs text-slate-300 leading-relaxed">{person.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
-}
+};

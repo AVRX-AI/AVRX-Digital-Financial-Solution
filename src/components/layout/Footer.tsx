@@ -1,355 +1,218 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  Globe,
-  Mail,
-  Phone,
-  MapPin,
-  ArrowRight,
-  Sparkles,
-  CheckCircle2,
-  Linkedin,
-  Twitter,
-  Instagram,
-  Facebook,
-  Youtube,
-  Github
-} from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowRight, ShieldCheck, CheckCircle2, X } from 'lucide-react';
+import { SITE_CONFIG } from '../../config';
 
-export default function Footer() {
+interface FooterProps {
+  onNavigate: (page: string) => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) {
+    if (email) {
       setSubscribed(true);
       setEmail('');
-      setTimeout(() => setSubscribed(false), 5000);
     }
   };
 
-  const footerLinks = {
-    services: [
-      { label: 'Website Design', path: '/services/website-design' },
-      { label: 'Application Development', path: '/services/application-development' },
-      { label: 'Digital Marketing', path: '/services/digital-marketing' },
-      { label: 'SEO Optimization', path: '/services/seo-optimization' },
-      { label: 'Website Redesign', path: '/services/website-redesign-maintenance' },
-      { label: 'Website Maintenance SLA', path: '/services/website-redesign-maintenance' },
-      { label: 'All Digital Services', path: '/services' },
-    ],
-    financial: [
-      { label: 'Personal Loan', path: '/financial-solutions' },
-      { label: 'Business & MSME Loan', path: '/financial-solutions' },
-      { label: 'Home & Construction Loan', path: '/financial-solutions' },
-      { label: 'Car & Auto Loan', path: '/financial-solutions' },
-      { label: 'Mortgage & LAP Loan', path: '/financial-solutions' },
-      { label: 'Govt Schemes (PMEGP/Mudra)', path: '/financial-solutions' },
-    ],
-    tax: [
-      { label: 'GST Registration & Filing', path: '/tax-solutions' },
-      { label: 'Income Tax Return (ITR)', path: '/tax-solutions' },
-      { label: 'Pvt Ltd & LLP Incorporation', path: '/tax-solutions' },
-      { label: 'Udyam / MSME Registration', path: '/tax-solutions' },
-      { label: 'Class-3 Digital Signature', path: '/tax-solutions' },
-      { label: 'Monthly Bookkeeping', path: '/tax-solutions' },
-    ],
-    insurance: [
-      { label: 'Health Insurance', path: '/insurance-solutions' },
-      { label: 'Car & Bike Motor Policy', path: '/insurance-solutions' },
-      { label: 'Home & Property Protection', path: '/insurance-solutions' },
-      { label: 'Term Life Insurance', path: '/insurance-solutions' },
-      { label: 'Shop & Warehouse Cover', path: '/insurance-solutions' },
-      { label: 'Corporate GMC Cover', path: '/insurance-solutions' },
-    ],
-    productsAi: [
-      { label: 'AI Website Health Checker', path: '/ai-solutions' },
-      { label: 'AI Traffic & UX Analyzer', path: '/ai-solutions' },
-      { label: 'AI SEO Score Checker', path: '/ai-solutions' },
-      { label: 'AI Conversational Assistant', path: '/ai-solutions' },
-      { label: 'WordPress Themes & Plugins', path: '/digital-products' },
-      { label: 'NVMe Cloud Hosting', path: '/digital-products' },
-    ],
-    company: [
-      { label: 'About AVRX', path: '/about' },
-      { label: 'Portfolio & Work', path: '/portfolio' },
-      { label: 'Pricing Plans', path: '/pricing' },
-      { label: 'Insights Blog', path: '/blog' },
-      { label: 'Career Opportunities', path: '/career' },
-      { label: 'FAQ & Help Center', path: '/faq' },
-      { label: 'Contact Us', path: '/contact' },
-    ],
-    legal: [
-      { label: 'Privacy Policy', path: '/privacy-policy' },
-      { label: 'Terms & Conditions', path: '/terms-conditions' },
-      { label: 'Refund Policy', path: '/refund-policy' },
-      { label: 'Sitemap', path: '/sitemap' },
-    ]
+  const handleLink = (page: string) => {
+    onNavigate(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className="relative bg-[#050608] border-t border-white/10 text-slate-300 overflow-hidden">
-      {/* Subtle Background Glows */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none" />
+    <footer className="bg-[#03060f] text-slate-300 border-t border-slate-800/80 relative overflow-hidden pt-16 pb-12">
+      {/* Background glow accents */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Top CTA / Newsletter Section */}
-      <div className="border-b border-white/10 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="glass-card p-8 sm:p-12 rounded-3xl border border-white/10 bg-gradient-to-r from-blue-900/20 via-slate-900/40 to-cyan-900/20 shadow-2xl relative overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-7 space-y-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>Stay Ahead of the Curve</span>
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-poppins font-bold text-white tracking-tight">
-                  Subscribe to AVRX Digital & Financial Intelligence
-                </h3>
-                <p className="text-slate-400 text-sm max-w-xl">
-                  Get weekly briefings on GST policy changes, loan interest rate updates, Google algorithm shifts, and AI tool breakthroughs.
-                </p>
-              </div>
-
-              <div className="lg:col-span-5">
-                {subscribed ? (
-                  <div className="flex items-center gap-3 p-4 rounded-2xl bg-green-500/10 border border-green-500/30 text-green-300">
-                    <CheckCircle2 className="w-6 h-6 flex-shrink-0 text-green-400" />
-                    <div>
-                      <div className="text-sm font-semibold">Subscribed Successfully!</div>
-                      <div className="text-xs text-green-400/80">You are on our priority executive mailing list.</div>
-                    </div>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your work email..."
-                      required
-                      className="flex-1 px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-sm"
-                    />
-                    <button
-                      type="submit"
-                      className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold text-sm shadow-lg shadow-blue-500/25 transition-all flex items-center justify-center gap-2 whitespace-nowrap"
-                    >
-                      <span>Join Free</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </form>
-                )}
-              </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Top Newsletter & Callout Banner */}
+        <div className="bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-900 border border-slate-800/80 rounded-3xl p-6 sm:p-10 mb-16 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="max-w-xl text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold mb-3">
+              <ShieldCheck className="w-4 h-4" />
+              <span>AVRX Business Intelligence Newsletter</span>
             </div>
+            <h3 className="text-2xl sm:text-3xl font-bold text-white">
+              Stay Ahead with Digital, Tax & Financial Insights
+            </h3>
+            <p className="text-slate-400 text-sm mt-2">
+              Receive market growth updates, government loan subsidy alerts, and AI strategy guides directly in your inbox.
+            </p>
           </div>
-        </div>
-      </div>
 
-      {/* Main Footer Links */}
-      <div className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
-            {/* Brand Information */}
-            <div className="lg:col-span-2 space-y-5">
-              <Link to="/" className="flex items-center gap-3 group">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                  <span className="text-white font-poppins font-black text-xl">A</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-poppins font-bold text-lg text-white">AVRX DIGITAL</span>
-                  <span className="text-[10px] uppercase tracking-widest text-slate-400">
-                    Digital • Financial • AI
-                  </span>
-                </div>
-              </Link>
-              <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-                AVRX Digital & Financial Solution is a world-class technology and financial advisory platform engineering No 1 Digital and Financial Solution experiences, statutory GST & tax compliance, instant business loans, and AI-driven growth for global enterprises.
-              </p>
-
-              {/* Contact Information */}
-              <div className="space-y-2.5 pt-2 text-sm">
-                <div className="flex items-start gap-3 text-slate-300">
-                  <MapPin className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span>Waterpark Ambikapur, NH343, Surguja, Chhattisgarh, India</span>
-                </div>
-                <div className="flex items-center gap-3 text-slate-300">
-                  <Phone className="w-4 h-4 text-cyan-400 flex-shrink-0" />
-                  <span>+91-9630661536 • +91-7000859994</span>
-                </div>
-                <div className="flex items-center gap-3 text-slate-300">
-                  <Mail className="w-4 h-4 text-blue-400 flex-shrink-0" />
-                  <span>support@avrx.in • contact@avrx.in</span>
-                </div>
+          <form onSubmit={handleSubscribe} className="w-full lg:w-auto flex flex-col sm:flex-row gap-3">
+            {subscribed ? (
+              <div className="flex items-center gap-2 px-6 py-3.5 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-2xl text-sm font-semibold">
+                <CheckCircle2 className="w-5 h-5 shrink-0" />
+                <span>Thank you! You are subscribed to AVRX Insights.</span>
               </div>
-
-              {/* Social Media Icons */}
-              <div className="flex items-center gap-2 pt-2">
-                {[
-                  { icon: Linkedin, label: 'LinkedIn', url: 'https://linkedin.com' },
-                  { icon: Twitter, label: 'Twitter X', url: 'https://twitter.com' },
-                  { icon: Instagram, label: 'Instagram', url: 'https://instagram.com' },
-                  { icon: Facebook, label: 'Facebook', url: 'https://facebook.com' },
-                  { icon: Youtube, label: 'YouTube', url: 'https://youtube.com' },
-                  { icon: Github, label: 'GitHub', url: 'https://github.com' },
-                ].map((social, idx) => {
-                  const Icon = social.icon;
-                  return (
-                    <a
-                      key={idx}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600/20 hover:border-blue-500/40 transition-all"
-                      aria-label={social.label}
-                    >
-                      <Icon className="w-4 h-4" />
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Digital Services */}
-            <div className="space-y-4">
-              <h4 className="text-sm font-poppins font-semibold text-white uppercase tracking-wider">
-                Digital Services
-              </h4>
-              <ul className="space-y-2.5 text-sm">
-                {footerLinks.services.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      to={link.path}
-                      className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1.5"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500/50" />
-                      <span>{link.label}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Financial & Tax */}
-            <div className="space-y-4">
-              <h4 className="text-sm font-poppins font-semibold text-white uppercase tracking-wider">
-                Financial & Tax
-              </h4>
-              <ul className="space-y-2.5 text-sm">
-                {footerLinks.financial.slice(0, 4).map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      to={link.path}
-                      className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1.5"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-500/50" />
-                      <span>{link.label}</span>
-                    </Link>
-                  </li>
-                ))}
-                {footerLinks.tax.slice(0, 3).map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      to={link.path}
-                      className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1.5"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500/50" />
-                      <span>{link.label}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Insurance & AI */}
-            <div className="space-y-4">
-              <h4 className="text-sm font-poppins font-semibold text-white uppercase tracking-wider">
-                Insurance & AI
-              </h4>
-              <ul className="space-y-2.5 text-sm">
-                {footerLinks.insurance.slice(0, 3).map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      to={link.path}
-                      className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1.5"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-purple-500/50" />
-                      <span>{link.label}</span>
-                    </Link>
-                  </li>
-                ))}
-                {footerLinks.productsAi.slice(0, 4).map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      to={link.path}
-                      className="text-slate-400 hover:text-cyan-400 transition-colors flex items-center gap-1.5"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-500/50" />
-                      <span>{link.label}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Company & Legal */}
-            <div className="space-y-4">
-              <h4 className="text-sm font-poppins font-semibold text-white uppercase tracking-wider">
-                Company & Legal
-              </h4>
-              <ul className="space-y-2.5 text-sm">
-                {footerLinks.company.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      to={link.path}
-                      className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1.5"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-600" />
-                      <span>{link.label}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+            ) : (
+              <>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder="Enter your business email..."
+                  required
+                  className="px-4 py-3.5 bg-slate-950 border border-slate-800 rounded-2xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 w-full sm:w-80"
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-3.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-sm rounded-2xl transition shadow-[0_0_20px_rgba(0,240,255,0.3)] shrink-0 flex items-center justify-center gap-2"
+                >
+                  <span>Subscribe</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </>
+            )}
+          </form>
         </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-white/10 py-6 bg-black/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-400">
-            <div>
-              © {new Date().getFullYear()} AVRX Digital & Financial Solution. All rights reserved. Built with CRED-Level Craftsmanship.
-            </div>
-
-            {/* A-Letter Shaped Footer Click To Top Button */}
+        {/* Main Footer Links Columns */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16 text-xs sm:text-sm">
+          
+          {/* Brand Info Column */}
+          <div className="col-span-2 md:col-span-3 lg:col-span-2 space-y-4">
             <button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 border border-cyan-500/40 hover:border-cyan-400 text-white hover:text-cyan-300 transition-all shadow-lg hover:shadow-cyan-500/20 group"
-              title="Click to Top"
+              onClick={() => handleLink('home')}
+              className="flex items-center gap-2 text-left focus:outline-none"
             >
-              <svg width="22" height="22" viewBox="0 0 110 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:-translate-y-0.5 transition-transform">
-                <path d="M 55 5 L 104 92 H 81 L 70 67 H 40 L 29 92 H 6 Z" fill="#06b6d4" stroke="#22d3ee" strokeWidth="4" />
-                <path d="M 55 22 L 64 47 H 46 Z" fill="#080d1a" />
-              </svg>
-              <span className="font-bold tracking-wider text-[11px] text-cyan-300 group-hover:text-white uppercase">CLICK TO TOP</span>
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-400 to-blue-600 p-[1px]">
+                <div className="w-full h-full bg-[#050811] rounded-[11px] flex items-center justify-center font-black text-cyan-400 text-base">
+                  A
+                </div>
+              </div>
+              <span className="font-black text-xl text-white tracking-wider">
+                AVRX<span className="text-cyan-400">.</span>
+              </span>
             </button>
 
-            <div className="flex flex-wrap items-center gap-6">
-              {footerLinks.legal.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.path}
-                  className="hover:text-white transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
+            <p className="text-slate-400 leading-relaxed max-w-sm">
+              AVRX is a modern technology and financial solutions platform helping individuals, startups, and enterprises build, grow, finance, protect, and automate their future.
+            </p>
+
+            <div className="space-y-2 text-xs text-slate-400 pt-2">
+              <div className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
+                <a href={`mailto:${SITE_CONFIG.contact.email}`} className="hover:text-white transition">
+                  {SITE_CONFIG.contact.email}
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
+                <a href={`tel:${SITE_CONFIG.contact.phone}`} className="hover:text-white transition">
+                  {SITE_CONFIG.contact.phone}
+                </a>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                <span>{SITE_CONFIG.contact.address}</span>
+              </div>
             </div>
           </div>
+
+          {/* Digital Column */}
+          <div>
+            <h4 className="font-bold text-white text-sm tracking-wide uppercase mb-4 text-cyan-400">
+              Digital
+            </h4>
+            <ul className="space-y-2.5 text-slate-400">
+              <li><button onClick={() => handleLink('digital-solutions')} className="hover:text-cyan-300 transition">Website Design</button></li>
+              <li><button onClick={() => handleLink('digital-solutions')} className="hover:text-cyan-300 transition">Corporate Sites</button></li>
+              <li><button onClick={() => handleLink('digital-solutions')} className="hover:text-cyan-300 transition">E-Commerce</button></li>
+              <li><button onClick={() => handleLink('digital-solutions')} className="hover:text-cyan-300 transition">App Development</button></li>
+              <li><button onClick={() => handleLink('digital-solutions')} className="hover:text-cyan-300 transition">Digital Marketing</button></li>
+              <li><button onClick={() => handleLink('digital-solutions')} className="hover:text-cyan-300 transition">SEO Services</button></li>
+            </ul>
+          </div>
+
+          {/* Finance Column */}
+          <div>
+            <h4 className="font-bold text-white text-sm tracking-wide uppercase mb-4 text-emerald-400">
+              Finance
+            </h4>
+            <ul className="space-y-2.5 text-slate-400">
+              <li><button onClick={() => handleLink('financial-solutions')} className="hover:text-emerald-300 transition">Personal Loan</button></li>
+              <li><button onClick={() => handleLink('financial-solutions')} className="hover:text-emerald-300 transition">Business Loan</button></li>
+              <li><button onClick={() => handleLink('financial-solutions')} className="hover:text-emerald-300 transition">Home Loan</button></li>
+              <li><button onClick={() => handleLink('financial-solutions')} className="hover:text-emerald-300 transition">Car Loan</button></li>
+              <li><button onClick={() => handleLink('financial-solutions')} className="hover:text-emerald-300 transition">Loan Refinance</button></li>
+              <li><button onClick={() => handleLink('financial-solutions')} className="hover:text-emerald-300 transition">Govt Schemes (PMEGP/MUDRA)</button></li>
+            </ul>
+          </div>
+
+          {/* Tax & Insurance Column */}
+          <div>
+            <h4 className="font-bold text-white text-sm tracking-wide uppercase mb-4 text-amber-400">
+              Tax & Insurance
+            </h4>
+            <ul className="space-y-2.5 text-slate-400">
+              <li><button onClick={() => handleLink('tax-solutions')} className="hover:text-amber-300 transition">GST Registration</button></li>
+              <li><button onClick={() => handleLink('tax-solutions')} className="hover:text-amber-300 transition">GST Filing</button></li>
+              <li><button onClick={() => handleLink('tax-solutions')} className="hover:text-amber-300 transition">ITR Filing</button></li>
+              <li><button onClick={() => handleLink('insurance-solutions')} className="hover:text-purple-300 transition">Motor Insurance</button></li>
+              <li><button onClick={() => handleLink('insurance-solutions')} className="hover:text-purple-300 transition">Health Insurance</button></li>
+              <li><button onClick={() => handleLink('insurance-solutions')} className="hover:text-purple-300 transition">Property Insurance</button></li>
+            </ul>
+          </div>
+
+          {/* Resources & Ecosystem Column */}
+          <div>
+            <h4 className="font-bold text-white text-sm tracking-wide uppercase mb-4 text-purple-400">
+              Resources
+            </h4>
+            <ul className="space-y-2.5 text-slate-400">
+              <li><button onClick={() => handleLink('ai-tools')} className="hover:text-purple-300 transition">AI Tools Marketplace</button></li>
+              <li><button onClick={() => handleLink('hosting-products')} className="hover:text-purple-300 transition">Hosting & Products</button></li>
+              <li><button onClick={() => handleLink('blog')} className="hover:text-purple-300 transition">Blog & Strategy</button></li>
+              <li><button onClick={() => handleLink('faq')} className="hover:text-purple-300 transition">FAQ</button></li>
+              <li><button onClick={() => handleLink('partner')} className="hover:text-purple-300 transition">Partner With Us</button></li>
+              <li><button onClick={() => handleLink('contact')} className="hover:text-purple-300 transition">Contact AVRX</button></li>
+            </ul>
+          </div>
+
         </div>
+
+        {/* Legal Disclaimer Box */}
+        <div className="p-4 rounded-2xl bg-slate-900/40 border border-slate-800/80 text-slate-400 text-xs leading-relaxed mb-10">
+          <p>
+            <strong className="text-slate-200">Disclaimer:</strong> AVRX Digital & Financial Solution (avrx.in) operates as an integrated technological platform and service facilitator. All loan approvals, financial terms, interest rates, tax compliance statuses, and insurance policy claims are subject to applicable documentation, statutory regulations, and final underwriting policies of respective banks, NBFCs, IRDAI insurance providers, and government authorities. AVRX makes no fixed return or unconditional approval guarantees.
+          </p>
+        </div>
+
+        {/* Bottom Bar: Copyright, Click-to-Top (Middle), & Legal Policy Links */}
+        <div className="pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <div className="text-center md:text-left">
+            © 2026 AVRX Digital & Financial Solution. All Rights Reserved.
+          </div>
+
+          {/* Click to Top X Button - Centered in Middle */}
+          <div className="flex items-center justify-center">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              title="Click here to top"
+              aria-label="Click here to top"
+              className="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-cyan-400 text-slate-300 hover:text-cyan-400 transition flex items-center gap-1.5 text-xs font-medium shadow-md hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <X className="w-3.5 h-3.5 text-rose-400" />
+              <span>click here to top</span>
+            </button>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-6">
+            <button onClick={() => handleLink('privacy')} className="hover:text-cyan-400 transition">Privacy Policy</button>
+            <button onClick={() => handleLink('terms')} className="hover:text-cyan-400 transition">Terms & Conditions</button>
+            <button onClick={() => handleLink('disclaimer')} className="hover:text-cyan-400 transition">Disclaimer</button>
+          </div>
+        </div>
+
       </div>
     </footer>
   );
-}
+};

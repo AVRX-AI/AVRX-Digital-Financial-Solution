@@ -1,32 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import {
-  Globe,
-  Smartphone,
-  Share2,
-  Search,
-  RefreshCw,
-  DollarSign,
-  FileText,
-  ShieldCheck,
-  Cpu,
-  ShoppingBag,
-  Briefcase,
-  HelpCircle,
-  Menu,
-  X,
-  ChevronDown,
-  Sparkles,
-  ArrowRight,
-  Shield,
-  Layers
-} from 'lucide-react';
+import { Search, Sun, Moon, Menu, X, ChevronDown, Code, DollarSign, FileText, Shield, Server, Sparkles, PhoneCall } from 'lucide-react';
+import { useTheme } from '../../context/ThemeContext';
+import { SITE_CONFIG } from '../../config';
 
-export default function Navbar() {
+interface NavbarProps {
+  activePage: string;
+  onNavigate: (page: string) => void;
+  onOpenSearch: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSearch }) => {
+  const { theme, toggleTheme, language, setLanguage, t } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const location = useLocation();
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,258 +23,357 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
+  const handleNav = (page: string) => {
+    onNavigate(page);
     setMobileMenuOpen(false);
-    setActiveDropdown(null);
-  }, [location.pathname]);
+    setSolutionsOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-  const navigationMenus = [
+  const solutionCategories = [
     {
-      label: 'Digital Services',
-      id: 'services',
-      items: [
-        { label: 'Website Design', path: '/services/website-design', icon: Globe, desc: 'Corporate, eCommerce & custom websites' },
-        { label: 'Application Development', path: '/services/application-development', icon: Smartphone, desc: 'iOS, Android & Flutter cross-platform' },
-        { label: 'Digital Marketing', path: '/services/digital-marketing', icon: Share2, desc: 'Meta ads, Google PPC & social growth' },
-        { label: 'SEO Optimization', path: '/services/seo-optimization', icon: Search, desc: 'Rank #1 on Google with technical SEO' },
-        { label: 'Website Redesign & SLA', path: '/services/website-redesign-maintenance', icon: RefreshCw, desc: '24/7 maintenance, speed & security' },
-      ]
+      id: 'digital-solutions',
+      title: 'Digital Solutions',
+      desc: 'Websites, Apps, E-Commerce, SEO & Marketing',
+      icon: <Code className="w-5 h-5 text-cyan-400" />
     },
     {
-      label: 'Financial & Tax',
-      id: 'financial',
-      items: [
-        { label: 'Financial Solutions & Loans', path: '/financial-solutions', icon: DollarSign, desc: 'Personal, business, MSME & home loans' },
-        { label: 'Tax Solutions & GST', path: '/tax-solutions', icon: FileText, desc: 'GST filing, ITR, company registration' },
-        { label: 'Insurance Solutions', path: '/insurance-solutions', icon: ShieldCheck, desc: 'Health, car, shop & term life insurance' },
-      ]
+      id: 'financial-solutions',
+      title: 'Financial Solutions',
+      desc: 'Personal, Business, Home, Car Loans & Govt Schemes',
+      icon: <DollarSign className="w-5 h-5 text-emerald-400" />
     },
     {
-      label: 'AI & Products',
-      id: 'ai-products',
-      items: [
-        { label: 'AI Solutions & Tools', path: '/ai-solutions', icon: Cpu, desc: 'AI website health, SEO & chat assistants', badge: 'NEW' },
-        { label: 'Digital Products & Hosting', path: '/digital-products', icon: ShoppingBag, desc: 'WordPress themes, plugins & NVMe hosting' },
-      ]
+      id: 'tax-solutions',
+      title: 'Tax Solutions',
+      desc: 'GST Registration/Filing, ITR, Udyam & ROC Compliance',
+      icon: <FileText className="w-5 h-5 text-amber-400" />
     },
     {
-      label: 'Company',
-      id: 'company',
-      items: [
-        { label: 'About Us', path: '/about', icon: Briefcase, desc: 'Our mission, leadership & credentials' },
-        { label: 'Portfolio & Case Studies', path: '/portfolio', icon: Layers, desc: 'Award-winning client deliverables' },
-        { label: 'Pricing Plans', path: '/pricing', icon: Shield, desc: 'Transparent packages & SLA' },
-        { label: 'Insights Blog', path: '/blog', icon: FileText, desc: 'Latest financial & tech articles' },
-        { label: 'Career Opportunities', path: '/career', icon: Sparkles, desc: 'Join our team of elite creators' },
-        { label: 'FAQ & Knowledge Base', path: '/faq', icon: HelpCircle, desc: 'Quick answers to common questions' },
-      ]
+      id: 'insurance-solutions',
+      title: 'Insurance Solutions',
+      desc: 'Motor, Health, Travel, Home & Shop Insurance',
+      icon: <Shield className="w-5 h-5 text-purple-400" />
+    },
+    {
+      id: 'hosting-products',
+      title: 'Digital Products & Hosting',
+      desc: 'Cloud NVMe Hosting, Themes, Domains & Multi-site',
+      icon: <Server className="w-5 h-5 text-blue-400" />
     }
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'glass-nav py-3.5 shadow-2xl shadow-blue-950/20'
+          ? 'bg-[#050811]/90 backdrop-blur-xl border-b border-slate-800/80 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)]'
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Brand Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:shadow-blue-400/50 transition-all duration-300">
-              <span className="text-white font-poppins font-black text-xl tracking-tighter">A</span>
-              <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-cyan-400 rounded-full border-2 border-[#08090C]" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        
+        {/* Brand Logo */}
+        <button
+          onClick={() => handleNav('home')}
+          className="flex items-center gap-2 group text-left focus:outline-none"
+        >
+          <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 p-[1px] shadow-[0_0_20px_rgba(0,240,255,0.3)] transition-transform duration-300 group-hover:scale-105">
+            <div className="w-full h-full bg-[#050811] rounded-[11px] flex items-center justify-center font-black text-lg text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+              A
             </div>
-            <div className="flex flex-col">
-              <span className="font-poppins font-extrabold text-lg tracking-tight text-white flex items-center gap-1">
-                AVRX <span className="text-blue-400 font-medium text-xs px-1.5 py-0.5 rounded bg-blue-500/10 border border-blue-500/20">DIGITAL</span>
-              </span>
-              <span className="text-[10px] uppercase tracking-widest text-slate-400 font-medium">
-                Digital • Financial • AI
-              </span>
-            </div>
-          </Link>
+          </div>
+          <div className="flex flex-col">
+            <span className="font-black tracking-wider text-xl text-white group-hover:text-cyan-400 transition-colors">
+              AVRX<span className="text-cyan-400">.</span>
+            </span>
+            <span className="text-[9px] font-semibold tracking-widest text-slate-400 uppercase -mt-1 hidden sm:block">
+              Digital & Financial
+            </span>
+          </div>
+        </button>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
-            <Link
-              to="/"
-              className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${
-                location.pathname === '/' ? 'text-blue-400 bg-white/5' : 'text-slate-300 hover:text-white hover:bg-white/5'
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+          <button
+            onClick={() => handleNav('home')}
+            className={`hover:text-cyan-400 transition ${activePage === 'home' ? 'text-cyan-400 font-semibold' : ''}`}
+          >
+            {t('nav.home')}
+          </button>
+
+          {/* Solutions Dropdown Mega Menu */}
+          <div
+            className="relative"
+            onMouseEnter={() => setSolutionsOpen(true)}
+            onMouseLeave={() => setSolutionsOpen(false)}
+          >
+            <button
+              onClick={() => setSolutionsOpen(!solutionsOpen)}
+              className={`flex items-center gap-1 hover:text-cyan-400 transition py-2 ${
+                ['digital-solutions', 'financial-solutions', 'tax-solutions', 'insurance-solutions', 'hosting-products'].includes(activePage)
+                  ? 'text-cyan-400 font-semibold'
+                  : ''
               }`}
             >
-              Home
-            </Link>
+              <span>{t('nav.solutions')}</span>
+              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${solutionsOpen ? 'rotate-180 text-cyan-400' : ''}`} />
+            </button>
 
-            {navigationMenus.map((menu) => (
-              <div
-                key={menu.id}
-                className="relative"
-                onMouseEnter={() => setActiveDropdown(menu.id)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <button
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    activeDropdown === menu.id ? 'text-white bg-white/5' : 'text-slate-300 hover:text-white hover:bg-white/5'
-                  }`}
-                >
-                  <span>{menu.label}</span>
-                  <ChevronDown
-                    className={`w-4 h-4 transition-transform duration-200 ${
-                      activeDropdown === menu.id ? 'rotate-180 text-blue-400' : 'text-slate-400'
-                    }`}
-                  />
-                </button>
-
-                {/* Dropdown Card */}
-                {activeDropdown === menu.id && (
-                  <div className="absolute top-full left-0 w-80 pt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                    <div className="glass-card bg-[#0F1117]/95 p-2 rounded-2xl border border-white/10 shadow-2xl shadow-black/80 backdrop-blur-2xl">
-                      <div className="space-y-1">
-                        {menu.items.map((item) => {
-                          const Icon = item.icon;
-                          return (
-                            <Link
-                              key={item.path}
-                              to={item.path}
-                              className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition-all group"
-                            >
-                              <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-colors">
-                                <Icon className="w-5 h-5" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-2">
-                                  <span className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors">
-                                    {item.label}
-                                  </span>
-                                  {item.badge && (
-                                    <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-                                      {item.badge}
-                                    </span>
-                                  )}
-                                </div>
-                                <p className="text-xs text-slate-400 truncate mt-0.5">
-                                  {item.desc}
-                                </p>
-                              </div>
-                            </Link>
-                          );
-                        })}
+            {/* Mega Menu Overlay Box */}
+            {solutionsOpen && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-[520px] bg-[#0b0f19]/95 backdrop-blur-2xl border border-slate-800 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.8)] grid grid-cols-1 gap-2 animate-in fade-in zoom-in-95 duration-150">
+                <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 px-3 py-1">
+                  AVRX Ecosystem Solutions
+                </div>
+                {solutionCategories.map(cat => (
+                  <button
+                    key={cat.id}
+                    onClick={() => handleNav(cat.id)}
+                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-cyan-500/10 hover:border-cyan-500/30 border border-transparent transition group text-left"
+                  >
+                    <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                      {cat.icon}
+                    </div>
+                    <div>
+                      <div className="font-semibold text-white group-hover:text-cyan-300 transition text-sm">
+                        {cat.title}
+                      </div>
+                      <div className="text-xs text-slate-400 mt-0.5 leading-snug">
+                        {cat.desc}
                       </div>
                     </div>
-                  </div>
-                )}
+                  </button>
+                ))}
               </div>
-            ))}
-
-            <Link
-              to="/services"
-              className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${
-                location.pathname === '/services' ? 'text-blue-400 bg-white/5' : 'text-slate-300 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              All Services
-            </Link>
-          </nav>
-
-          {/* Action buttons */}
-          <div className="hidden sm:flex items-center gap-3">
-            <Link
-              to="/ai-solutions"
-              className="px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-cyan-500/10 to-blue-500/10 hover:from-cyan-500/20 hover:to-blue-500/20 text-cyan-300 border border-cyan-500/30 flex items-center gap-1.5 transition-all shadow-sm"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
-              <span>AI Tools</span>
-            </Link>
-
-            <Link
-              to="/contact"
-              className="px-5 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 flex items-center gap-2 group"
-            >
-              <span>Get Started</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
+            )}
           </div>
 
-          {/* Mobile hamburger toggle */}
+          <button
+            onClick={() => handleNav('ai-tools')}
+            className={`flex items-center gap-1.5 hover:text-cyan-400 transition ${activePage === 'ai-tools' ? 'text-cyan-400 font-semibold' : ''}`}
+          >
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+            <span>{t('nav.ai_tools')}</span>
+          </button>
+
+          <button
+            onClick={() => handleNav('pricing')}
+            className={`hover:text-cyan-400 transition ${activePage === 'pricing' ? 'text-cyan-400 font-semibold' : ''}`}
+          >
+            {t('nav.pricing')}
+          </button>
+
+          <button
+            onClick={() => handleNav('about')}
+            className={`hover:text-cyan-400 transition ${activePage === 'about' ? 'text-cyan-400 font-semibold' : ''}`}
+          >
+            {t('nav.about')}
+          </button>
+
+          <button
+            onClick={() => handleNav('partner')}
+            className={`hover:text-cyan-400 transition ${activePage === 'partner' ? 'text-cyan-400 font-semibold' : ''}`}
+          >
+            {t('nav.partner')}
+          </button>
+
+          <button
+            onClick={() => handleNav('contact')}
+            className={`hover:text-cyan-400 transition ${activePage === 'contact' ? 'text-cyan-400 font-semibold' : ''}`}
+          >
+            {t('nav.contact')}
+          </button>
+        </nav>
+
+        {/* Right Tools & Action Buttons */}
+        <div className="hidden lg:flex items-center gap-3">
+          {/* Search Trigger */}
+          <button
+            onClick={onOpenSearch}
+            className="p-2 text-slate-400 hover:text-cyan-400 hover:bg-slate-800/60 rounded-xl transition border border-slate-800/60"
+            title="Search Solutions"
+          >
+            <Search className="w-4 h-4" />
+          </button>
+
+          {/* Language Switcher */}
+          <div className="flex items-center bg-slate-900 border border-slate-800 rounded-xl p-0.5 text-xs font-semibold">
+            <button
+              onClick={() => setLanguage('EN')}
+              className={`px-2 py-1 rounded-lg transition ${language === 'EN' ? 'bg-cyan-500 text-slate-950 shadow' : 'text-slate-400 hover:text-white'}`}
+            >
+              EN
+            </button>
+            <button
+              onClick={() => setLanguage('HI')}
+              className={`px-2 py-1 rounded-lg transition ${language === 'HI' ? 'bg-cyan-500 text-slate-950 shadow' : 'text-slate-400 hover:text-white'}`}
+            >
+              हिन्दी
+            </button>
+          </div>
+
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 text-slate-400 hover:text-amber-300 hover:bg-slate-800/60 rounded-xl transition border border-slate-800/60"
+            title="Toggle Theme"
+          >
+            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
+
+          {/* Secondary CTA: Talk to Expert */}
+          <button
+            onClick={() => handleNav('contact')}
+            className="px-3.5 py-2 text-xs font-medium text-slate-300 hover:text-cyan-300 hover:bg-slate-800/80 rounded-xl border border-slate-800 transition flex items-center gap-1.5"
+          >
+            <PhoneCall className="w-3.5 h-3.5 text-cyan-400" />
+            <span>{t('nav.talk_expert')}</span>
+          </button>
+
+          {/* Primary CTA: Get Started */}
+          <button
+            onClick={() => handleNav('contact')}
+            className="px-4 py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 hover:brightness-110 rounded-xl shadow-[0_0_20px_rgba(0,240,255,0.4)] transition transform hover:scale-105 active:scale-95"
+          >
+            {t('nav.get_started')}
+          </button>
+        </div>
+
+        {/* Mobile Top Controls (Search + Hamburger) */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <button
+            onClick={onOpenSearch}
+            className="p-2 text-slate-300 hover:text-cyan-400 bg-slate-900 border border-slate-800 rounded-xl"
+          >
+            <Search className="w-5 h-5" />
+          </button>
+
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white"
-            aria-label="Toggle Menu"
+            className="p-2 text-slate-200 bg-slate-900 border border-slate-800 rounded-xl hover:text-cyan-400"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
+
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[72px] bottom-0 bg-[#08090C]/98 backdrop-blur-2xl border-t border-white/10 overflow-y-auto z-50 p-6 space-y-6 animate-in fade-in slide-in-from-top-4">
+        <div className="lg:hidden fixed inset-x-0 top-[70px] bottom-0 z-50 bg-[#050811]/98 backdrop-blur-2xl border-t border-slate-800 p-6 overflow-y-auto flex flex-col justify-between animate-in slide-in-from-top-4 duration-200">
           <div className="space-y-4">
-            <Link
-              to="/"
-              className="block px-4 py-3 rounded-xl text-base font-semibold text-white bg-white/5 border border-white/10"
-            >
-              Home
-            </Link>
-
-            {navigationMenus.map((menu) => (
-              <div key={menu.id} className="space-y-2">
-                <div className="px-4 text-xs font-bold uppercase tracking-wider text-blue-400">
-                  {menu.label}
-                </div>
-                <div className="grid grid-cols-1 gap-1 pl-2">
-                  {menu.items.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <Link
-                        key={item.path}
-                        to={item.path}
-                        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
-                      >
-                        <Icon className="w-4 h-4 text-blue-400" />
-                        <span>{item.label}</span>
-                        {item.badge && (
-                          <span className="ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-                            {item.badge}
-                          </span>
-                        )}
-                      </Link>
-                    );
-                  })}
-                </div>
+            
+            {/* Lang & Theme mobile row */}
+            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+              <div className="flex items-center bg-slate-900 border border-slate-800 rounded-xl p-1 text-xs font-semibold">
+                <button
+                  onClick={() => setLanguage('EN')}
+                  className={`px-3 py-1 rounded-lg transition ${language === 'EN' ? 'bg-cyan-500 text-slate-950 font-bold' : 'text-slate-400'}`}
+                >
+                  English
+                </button>
+                <button
+                  onClick={() => setLanguage('HI')}
+                  className={`px-3 py-1 rounded-lg transition ${language === 'HI' ? 'bg-cyan-500 text-slate-950 font-bold' : 'text-slate-400'}`}
+                >
+                  हिन्दी
+                </button>
               </div>
-            ))}
 
-            <Link
-              to="/services"
-              className="block px-4 py-3 rounded-xl text-base font-semibold text-white hover:bg-white/5 border border-white/5"
-            >
-              All 40+ Services
-            </Link>
+              <button
+                onClick={toggleTheme}
+                className="p-2 bg-slate-900 border border-slate-800 rounded-xl text-amber-300"
+              >
+                {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+            </div>
+
+            {/* Mobile Nav Links */}
+            <div className="flex flex-col gap-2 pt-2">
+              <button
+                onClick={() => handleNav('home')}
+                className={`text-left p-3 rounded-xl font-medium text-base ${activePage === 'home' ? 'bg-cyan-500/10 text-cyan-400 font-semibold' : 'text-slate-200'}`}
+              >
+                {t('nav.home')}
+              </button>
+
+              <div className="border border-slate-800/80 rounded-2xl p-2 bg-slate-950/60 space-y-1">
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400 px-3 py-1">
+                  Solutions Categories
+                </div>
+                {solutionCategories.map(cat => (
+                  <button
+                    key={cat.id}
+                    onClick={() => handleNav(cat.id)}
+                    className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800/60 text-slate-200 flex items-center gap-3 text-sm"
+                  >
+                    {cat.icon}
+                    <span>{cat.title}</span>
+                  </button>
+                ))}
+              </div>
+
+              <button
+                onClick={() => handleNav('ai-tools')}
+                className={`text-left p-3 rounded-xl font-medium text-base flex items-center gap-2 ${activePage === 'ai-tools' ? 'bg-cyan-500/10 text-cyan-400 font-semibold' : 'text-slate-200'}`}
+              >
+                <Sparkles className="w-4 h-4 text-cyan-400" />
+                <span>{t('nav.ai_tools')}</span>
+              </button>
+
+              <button
+                onClick={() => handleNav('pricing')}
+                className={`text-left p-3 rounded-xl font-medium text-base ${activePage === 'pricing' ? 'bg-cyan-500/10 text-cyan-400 font-semibold' : 'text-slate-200'}`}
+              >
+                {t('nav.pricing')}
+              </button>
+
+              <button
+                onClick={() => handleNav('about')}
+                className={`text-left p-3 rounded-xl font-medium text-base ${activePage === 'about' ? 'bg-cyan-500/10 text-cyan-400 font-semibold' : 'text-slate-200'}`}
+              >
+                {t('nav.about')}
+              </button>
+
+              <button
+                onClick={() => handleNav('partner')}
+                className={`text-left p-3 rounded-xl font-medium text-base ${activePage === 'partner' ? 'bg-cyan-500/10 text-cyan-400 font-semibold' : 'text-slate-200'}`}
+              >
+                {t('nav.partner')}
+              </button>
+
+              <button
+                onClick={() => handleNav('contact')}
+                className={`text-left p-3 rounded-xl font-medium text-base ${activePage === 'contact' ? 'bg-cyan-500/10 text-cyan-400 font-semibold' : 'text-slate-200'}`}
+              >
+                {t('nav.contact')}
+              </button>
+            </div>
           </div>
 
-          <div className="pt-4 border-t border-white/10 space-y-3">
-            <Link
-              to="/contact"
-              className="w-full py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 text-white flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20"
+          {/* Mobile Bottom Action Buttons */}
+          <div className="pt-6 border-t border-slate-800 space-y-3">
+            <button
+              onClick={() => handleNav('contact')}
+              className="w-full py-3.5 text-center font-bold text-slate-950 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-xl shadow-lg"
             >
-              <span>Request Consultation</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-
-            <Link
-              to="/ai-solutions"
-              className="w-full py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-cyan-300 flex items-center justify-center gap-2"
+              {t('nav.get_started')}
+            </button>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                const url = `https://wa.me/${SITE_CONFIG.contact.whatsapp}`;
+                window.open(url, '_blank');
+              }}
+              className="w-full py-3 text-center text-sm font-semibold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 rounded-xl"
             >
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-              <span>Explore AI Tools</span>
-            </Link>
+              {t('nav.talk_expert')}
+            </button>
           </div>
+
         </div>
       )}
     </header>
   );
-}
+};

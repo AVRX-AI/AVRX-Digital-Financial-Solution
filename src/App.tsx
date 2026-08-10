@@ -1,119 +1,151 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-// Layout components
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
-import ScrollToTop from './components/layout/ScrollToTop';
-import FloatingWhatsApp from './components/layout/FloatingWhatsApp';
-import FloatingChatbot from './components/layout/FloatingChatbot';
-import ClickToTopButton from './components/layout/ClickToTopButton';
+import React, { useState, useEffect } from 'react';
+import { ThemeProvider } from './context/ThemeContext';
+import { Navbar } from './components/layout/Navbar';
+import { Footer } from './components/layout/Footer';
+import { SearchModal } from './components/layout/SearchModal';
+import { WhatsAppButton } from './components/layout/WhatsAppButton';
+import { LoadingScreen } from './components/common/LoadingScreen';
 
 // Pages
-import HomePage from './pages/HomePage';
-import ServicesIndexPage from './pages/ServicesIndexPage';
-import ServiceDetailPage from './pages/ServiceDetailPage';
-import FinancialSolutionsPage from './pages/FinancialSolutionsPage';
-import TaxSolutionsPage from './pages/TaxSolutionsPage';
-import InsuranceSolutionsPage from './pages/InsuranceSolutionsPage';
-import AiSolutionsPage from './pages/AiSolutionsPage';
-import DigitalProductsPage from './pages/DigitalProductsPage';
-import AboutPage from './pages/AboutPage';
-import PortfolioPage from './pages/PortfolioPage';
-import PricingPage from './pages/PricingPage';
-import ContactPage from './pages/ContactPage';
-import FaqPage from './pages/FaqPage';
-import BlogPage from './pages/BlogPage';
-import CareerPage from './pages/CareerPage';
+import { HomePage } from './pages/HomePage';
+import { DigitalSolutionsPage } from './pages/DigitalSolutionsPage';
+import { FinancialSolutionsPage } from './pages/FinancialSolutionsPage';
+import { TaxSolutionsPage } from './pages/TaxSolutionsPage';
+import { InsuranceSolutionsPage } from './pages/InsuranceSolutionsPage';
+import { HostingProductsPage } from './pages/HostingProductsPage';
+import { AIToolsPage } from './pages/AIToolsPage';
+import { AllServicesPage } from './pages/AllServicesPage';
+import { PricingPage } from './pages/PricingPage';
+import { ContactPage } from './pages/ContactPage';
+import { PartnerPage } from './pages/PartnerPage';
+import { FAQPage } from './pages/FAQPage';
+import { BlogPage } from './pages/BlogPage';
+import { BlogPostPage } from './pages/BlogPostPage';
+import { AboutPage } from './pages/AboutPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsPage } from './pages/TermsPage';
+import { DisclaimerPage } from './pages/DisclaimerPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
-// Legal, Trust & Utility Pages
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import TermsConditionsPage from './pages/TermsConditionsPage';
-import DisclaimerPage from './pages/DisclaimerPage';
-import RefundPolicyPage from './pages/RefundPolicyPage';
-import SitemapPage from './pages/SitemapPage';
-import NotFoundPage from './pages/NotFoundPage';
+export function App() {
+  const [currentPage, setCurrentPage] = useState<string>('home');
+  const [selectedBlogPostId, setSelectedBlogPostId] = useState<string | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [initialLoading, setInitialLoading] = useState<boolean>(true);
 
-export default function App() {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInitialLoading(false);
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleNavigate = (page: string) => {
+    setCurrentPage(page);
+    setSelectedBlogPostId(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSelectBlogPost = (postId: string) => {
+    setSelectedBlogPostId(postId);
+    setCurrentPage('blog-post');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'home':
+        return <HomePage onNavigate={handleNavigate} />;
+      case 'digital-solutions':
+        return <DigitalSolutionsPage onNavigate={handleNavigate} />;
+      case 'financial-solutions':
+        return <FinancialSolutionsPage onNavigate={handleNavigate} />;
+      case 'tax-solutions':
+        return <TaxSolutionsPage onNavigate={handleNavigate} />;
+      case 'insurance-solutions':
+        return <InsuranceSolutionsPage onNavigate={handleNavigate} />;
+      case 'hosting-products':
+        return <HostingProductsPage onNavigate={handleNavigate} />;
+      case 'ai-tools':
+        return <AIToolsPage />;
+      case 'services':
+        return <AllServicesPage onNavigate={handleNavigate} />;
+      case 'pricing':
+        return <PricingPage onNavigate={handleNavigate} />;
+      case 'contact':
+        return <ContactPage />;
+      case 'partner':
+        return <PartnerPage />;
+      case 'faq':
+        return <FAQPage />;
+      case 'blog':
+        return <BlogPage onSelectPost={handleSelectBlogPost} />;
+      case 'blog-post':
+        return selectedBlogPostId ? (
+          <BlogPostPage
+            postId={selectedBlogPostId}
+            onBack={() => setCurrentPage('blog')}
+            onNavigate={handleNavigate}
+          />
+        ) : (
+          <BlogPage onSelectPost={handleSelectBlogPost} />
+        );
+      case 'about':
+        return <AboutPage onNavigate={handleNavigate} />;
+      case 'privacy':
+        return <PrivacyPolicyPage />;
+      case 'terms':
+        return <TermsPage />;
+      case 'disclaimer':
+        return <DisclaimerPage />;
+      default:
+        return <NotFoundPage onNavigate={handleNavigate} />;
+    }
+  };
+
+  if (initialLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
-    <Router>
-      <div className="bg-[#08090C] text-slate-100 min-h-screen flex flex-col selection:bg-blue-500 selection:text-white font-sans antialiased">
-        <ScrollToTop />
-        <Navbar />
+    <ThemeProvider>
+      <div className="min-h-screen bg-[#050811] font-sans text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-slate-950">
+        
+        {/* Sticky Glassmorphic Navbar */}
+        <Navbar
+          activePage={currentPage}
+          onNavigate={handleNavigate}
+          onOpenSearch={() => setIsSearchOpen(true)}
+        />
 
-        <main className="flex-1 pt-20">
-          <Routes>
-            {/* Core Pages */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/services" element={<ServicesIndexPage />} />
-            <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
-            
-            {/* Direct Digital Service SEO Routes */}
-            <Route path="/website-design" element={<ServiceDetailPage />} />
-            <Route path="/web-development" element={<ServiceDetailPage />} />
-            <Route path="/application-development" element={<ServiceDetailPage />} />
-            <Route path="/ecommerce-website" element={<ServiceDetailPage />} />
-            <Route path="/digital-marketing" element={<ServiceDetailPage />} />
-            <Route path="/seo-services" element={<ServiceDetailPage />} />
-            <Route path="/website-redesign" element={<ServiceDetailPage />} />
-            <Route path="/website-maintenance" element={<ServiceDetailPage />} />
-            
-            {/* Direct Financial Solution SEO Routes */}
-            <Route path="/financial-solutions" element={<FinancialSolutionsPage />} />
-            <Route path="/personal-loan" element={<FinancialSolutionsPage />} />
-            <Route path="/business-loan" element={<FinancialSolutionsPage />} />
-            <Route path="/home-loan" element={<FinancialSolutionsPage />} />
-            <Route path="/car-loan" element={<FinancialSolutionsPage />} />
-            <Route path="/mortgage-loan" element={<FinancialSolutionsPage />} />
-            <Route path="/refinance" element={<FinancialSolutionsPage />} />
-            <Route path="/pmegp-loan" element={<FinancialSolutionsPage />} />
-            <Route path="/mudra-loan" element={<FinancialSolutionsPage />} />
+        {/* Global Live Search Modal */}
+        <SearchModal
+          isOpen={isSearchOpen}
+          onClose={() => setIsSearchOpen(false)}
+          onSelectService={(item) => {
+            if (item.category === 'digital') handleNavigate('digital-solutions');
+            else if (item.category === 'financial') handleNavigate('financial-solutions');
+            else if (item.category === 'tax') handleNavigate('tax-solutions');
+            else if (item.category === 'insurance') handleNavigate('insurance-solutions');
+            else if (item.category === 'hosting') handleNavigate('hosting-products');
+            else handleNavigate('ai-tools');
+          }}
+        />
 
-            {/* Direct Tax & Compliance SEO Routes */}
-            <Route path="/tax-solutions" element={<TaxSolutionsPage />} />
-            <Route path="/gst-registration" element={<TaxSolutionsPage />} />
-            <Route path="/gst-filing" element={<TaxSolutionsPage />} />
-            <Route path="/itr-filing" element={<TaxSolutionsPage />} />
-            <Route path="/udyam-registration" element={<TaxSolutionsPage />} />
-
-            {/* Direct Insurance SEO Routes */}
-            <Route path="/insurance-solutions" element={<InsuranceSolutionsPage />} />
-            <Route path="/motor-insurance" element={<InsuranceSolutionsPage />} />
-            <Route path="/health-insurance" element={<InsuranceSolutionsPage />} />
-            <Route path="/travel-insurance" element={<InsuranceSolutionsPage />} />
-            <Route path="/home-insurance" element={<InsuranceSolutionsPage />} />
-            <Route path="/shop-insurance" element={<InsuranceSolutionsPage />} />
-            <Route path="/property-insurance" element={<InsuranceSolutionsPage />} />
-
-            {/* Company, AI & Product Pages */}
-            <Route path="/ai-solutions" element={<AiSolutionsPage />} />
-            <Route path="/digital-products" element={<DigitalProductsPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/portfolio" element={<PortfolioPage />} />
-            <Route path="/pricing" element={<PricingPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/faq" element={<FaqPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/career" element={<CareerPage />} />
-
-            {/* Legal, Compliance & Sitemap Pages */}
-            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="/terms-and-conditions" element={<TermsConditionsPage />} />
-            <Route path="/terms-conditions" element={<TermsConditionsPage />} />
-            <Route path="/disclaimer" element={<DisclaimerPage />} />
-            <Route path="/refund-policy" element={<RefundPolicyPage />} />
-            <Route path="/sitemap" element={<SitemapPage />} />
-
-            {/* Branded 404 Page */}
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+        {/* Active Route Screen */}
+        <main className="flex-grow">
+          {renderPage()}
         </main>
 
-        <Footer />
-        <FloatingWhatsApp />
-        <FloatingChatbot />
-        <ClickToTopButton />
+        {/* Floating WhatsApp CTA */}
+        <WhatsAppButton />
+
+        {/* Global Footer */}
+        <Footer onNavigate={handleNavigate} />
+
       </div>
-    </Router>
+    </ThemeProvider>
   );
 }
+
+export default App;
