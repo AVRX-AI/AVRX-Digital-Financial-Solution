@@ -120,7 +120,7 @@ export const HealthCheckerSection: React.FC<HealthCheckerProps> = ({ onNavigate 
         </div>
 
         {/* Input URL Bar */}
-        <div className="max-w-2xl mx-auto mb-12">
+        <div className="max-w-2xl mx-auto mb-12 space-y-3">
           <form onSubmit={handleAnalyze} className="relative flex items-center">
             <div className="absolute left-4 text-slate-400">
               <Search className="w-5 h-5 text-cyan-400" />
@@ -136,7 +136,7 @@ export const HealthCheckerSection: React.FC<HealthCheckerProps> = ({ onNavigate 
             <button
               type="submit"
               disabled={loading || !url.trim()}
-              className="absolute right-2 px-6 py-2.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs sm:text-sm rounded-xl transition flex items-center gap-2 disabled:opacity-50 shadow-[0_0_15px_rgba(0,240,255,0.3)]"
+              className="absolute right-2 px-6 py-2.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs sm:text-sm rounded-xl transition flex items-center gap-2 disabled:opacity-50 shadow-[0_0_15px_rgba(0,240,255,0.3)] cursor-pointer"
             >
               {loading ? (
                 <>
@@ -151,7 +151,23 @@ export const HealthCheckerSection: React.FC<HealthCheckerProps> = ({ onNavigate 
               )}
             </button>
           </form>
-          <p className="text-center text-xs text-slate-500 mt-2">
+
+          {/* Preset Sample URLs */}
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-xs text-slate-400">
+            <span className="font-mono text-[11px] font-semibold text-slate-500 uppercase">Try Sample URLs:</span>
+            {['https://avrx.in', 'https://mycompany.com', 'https://shopnow-india.in'].map((sample, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setUrl(sample)}
+                className="px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-cyan-400 text-[11px] font-mono transition"
+              >
+                {sample}
+              </button>
+            ))}
+          </div>
+
+          <p className="text-center text-xs text-slate-500 mt-1">
             Free instant scanning • No credit card required • Instant digital health audit report
           </p>
         </div>

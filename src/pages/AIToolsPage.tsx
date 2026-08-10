@@ -27,11 +27,28 @@ export const AIToolsPage: React.FC = () => {
         })
       });
       const data = await response.json();
-      setToolOutput(data.result);
+      setToolOutput(data.output || data.result || 'Analysis completed successfully.');
     } catch (err) {
       setToolOutput(`Analysis complete for query: "${toolInput}". AVRX AI recommends contacting our business team for full execution roadmap.`);
     } finally {
       setExecuting(false);
+    }
+  };
+
+  const getPresetSamples = (toolId: string) => {
+    switch (toolId) {
+      case 'website-health-checker':
+        return ['https://avrx.in', 'https://mycompany.com', 'https://shopnow-india.in'];
+      case 'seo-analyzer':
+        return ['https://avrx.in', 'Best Personal Loan Services', 'GST Registration and Filing India'];
+      case 'financial-assistant':
+        return ['Monthly Income ₹75,000, need ₹10 Lakh Business Loan', 'Salaried ₹50,000/mo seeking Personal Loan'];
+      case 'tax-assistant':
+        return ['Annual Salary ₹12 Lakhs, 80C ₹1.5 Lakhs, Health Insurance ₹25,000'];
+      case 'business-idea-generator':
+        return ['₹1 Lakh Capital, Tech & E-Commerce in Tier-2 City'];
+      default:
+        return ['E-commerce retail business in India'];
     }
   };
 
@@ -112,15 +129,34 @@ export const AIToolsPage: React.FC = () => {
                 rows={3}
                 value={toolInput}
                 onChange={e => setToolInput(e.target.value)}
-                placeholder={activeTool.inputPlaceholder}
+                placeholder={activeTool.inputPlaceholder || 'Enter URL or details...'}
                 required
                 className="w-full bg-slate-950 border border-slate-800 rounded-2xl p-4 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-rose-400 transition"
               />
 
+              {/* Preset Sample Query Chips */}
+              <div className="space-y-1.5">
+                <span className="text-[11px] font-mono text-slate-400 font-semibold uppercase tracking-wider">
+                  Quick Test Examples:
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {getPresetSamples(activeTool.id).map((sample, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setToolInput(sample)}
+                      className="px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[11px] text-slate-300 transition text-left"
+                    >
+                      + {sample}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <button
                 type="submit"
                 disabled={executing || !toolInput.trim()}
-                className="w-full py-4 bg-gradient-to-r from-rose-500 via-purple-500 to-cyan-400 hover:brightness-110 text-slate-950 font-bold text-sm rounded-2xl transition shadow-[0_0_20px_rgba(244,63,94,0.3)] flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-4 bg-gradient-to-r from-rose-500 via-purple-500 to-cyan-400 hover:brightness-110 text-slate-950 font-bold text-sm rounded-2xl transition shadow-[0_0_20px_rgba(244,63,94,0.3)] flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
               >
                 {executing ? (
                   <>
@@ -138,16 +174,35 @@ export const AIToolsPage: React.FC = () => {
 
             {/* Output Display */}
             {toolOutput && (
-              <div className="p-6 rounded-2xl bg-slate-950 border border-rose-500/30 space-y-3 animate-in fade-in duration-200">
+              <div className="p-6 rounded-2xl bg-slate-950 border border-rose-500/30 space-y-4 animate-in fade-in duration-200">
                 <div className="flex items-center justify-between text-xs text-rose-400 font-mono font-bold">
                   <span className="flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                    AVRX AI Output Generated
+                    AVRX AI Analysis Report Generated
                   </span>
-                  <span>SSL SECURE</span>
+                  <span className="px-2 py-0.5 rounded bg-rose-500/10 border border-rose-500/20 text-[10px] text-rose-300">
+                    REAL-TIME ENGINE
+                  </span>
                 </div>
-                <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 text-xs sm:text-sm font-mono leading-relaxed whitespace-pre-wrap">
+
+                <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 text-slate-200 text-xs sm:text-sm leading-relaxed whitespace-pre-wrap font-sans space-y-2">
                   {toolOutput}
+                </div>
+
+                {/* Bottom CTA Action Bar */}
+                <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <span className="text-[11px] text-slate-400 font-mono">
+                    Need expert execution for this report?
+                  </span>
+                  <a
+                    href={`https://wa.me/919999999999?text=${encodeURIComponent(`Hi AVRX Team, I ran the ${activeTool.name} for "${toolInput}" and want expert assistance.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-xl transition flex items-center gap-1.5 shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+                  >
+                    <span>Execute With AVRX Expert</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
                 </div>
               </div>
             )}

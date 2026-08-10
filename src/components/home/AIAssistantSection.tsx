@@ -78,10 +78,10 @@ export const AIAssistantSection: React.FC = () => {
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-4xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold mb-4">
             <Bot className="w-4 h-4 text-cyan-400" />
             <span>AI Command Center</span>
@@ -94,8 +94,8 @@ export const AIAssistantSection: React.FC = () => {
           </p>
         </div>
 
-        {/* AI Command Center Box */}
-        <div className="max-w-4xl mx-auto bg-slate-900/90 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl">
+        {/* AI Command Center Box - Expanded Width */}
+        <div className="w-full mx-auto bg-slate-900/90 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl">
           
           {/* Top Terminal Bar */}
           <div className="px-6 py-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
@@ -152,7 +152,7 @@ export const AIAssistantSection: React.FC = () => {
                   {msg.sender === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                 </div>
 
-                <div className={`max-w-xl space-y-1 ${msg.sender === 'user' ? 'text-right' : ''}`}>
+                <div className={`max-w-3xl space-y-1 ${msg.sender === 'user' ? 'text-right' : ''}`}>
                   <div
                     className={`p-4 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
                       msg.sender === 'user'
