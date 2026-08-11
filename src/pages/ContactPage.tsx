@@ -1,254 +1,339 @@
 import React, { useState } from 'react';
-import { SITE_CONFIG } from '../config';
-import { SEO } from '../components/common/SEO';
-import { Mail, Phone, MapPin, Send, CheckCircle2, RefreshCw, MessageSquare } from 'lucide-react';
+import SeoMeta from '../components/common/SeoMeta';
+import Breadcrumbs from '../components/common/Breadcrumbs';
+import PageBanner from '../components/layout/PageBanner';
+import {
+  PhoneCall,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Send,
+  CheckCircle2,
+  ShieldCheck,
+  Clock,
+  Sparkles,
+  Building2
+} from 'lucide-react';
 
-export const ContactPage: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    location: '',
-    serviceCategory: 'Digital Solutions',
-    message: ''
-  });
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+export default function ContactPage() {
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (loading) return;
+  const breadcrumbs = [
+    { name: 'Contact Us', url: '/contact' }
+  ];
 
-    setLoading(true);
-
-    try {
-      await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-      setSubmitted(true);
-    } catch (err) {
-      setSubmitted(true);
-    } finally {
-      setLoading(false);
+  const contactSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'AVRX Digital & Financial Solution',
+    image: 'https://avrx.in/favicon.ico',
+    telephone: '+91-9630661536',
+    email: 'avrxin@gmail.com',
+    url: 'https://avrx.in/contact',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Waterpark Ambikapur, NH343',
+      addressLocality: 'Ambikapur',
+      addressRegion: 'Chhattisgarh',
+      postalCode: '497001',
+      addressCountry: 'IN'
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 23.1186,
+      longitude: 83.1987
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '09:30',
+      closes: '19:00'
     }
   };
 
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    service: 'Website Design & Development SLA',
+    company: '',
+    budget: '₹25,000 – ₹1,00,000',
+    message: ''
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+  };
+
+  const handleWhatsAppClick = () => {
+    const phoneNumber = '919630661536';
+    const msg = encodeURIComponent(
+      `Hello AVRX Team,\nI would like to schedule a consultation regarding: ${formData.service}.\nName: ${formData.name || 'Client'}\nCompany: ${formData.company || 'N/A'}`
+    );
+    window.open(`https://wa.me/${phoneNumber}?text=${msg}`, '_blank');
+  };
+
   return (
-    <div className="min-h-screen bg-[#050811] text-white pt-28 pb-20">
-      <SEO
-        title="Contact Us | AVRX Digital & Financial Solution"
-        description="Get in touch with AVRX specialists. Phone: +91 96306 61536, Email: support@avrx.in, Address: NH343 Waterpark Surguja Chhattisgarh INDIA."
+    <div className="bg-[#08090C] min-h-screen">
+      <SeoMeta
+        title="Contact AVRX Digital & Financial Solution | Ambikapur Office"
+        description="Contact AVRX Digital & Financial Solution at Waterpark Ambikapur, NH343, Surguja, Chhattisgarh. Call +91-9630661536 or WhatsApp for digital, loan, tax, and insurance queries."
+        keywords="contact AVRX Ambikapur, AVRX phone number, website design office Ambikapur, business loan office Surguja, GST consultant Ambikapur"
+        canonicalUrl="https://avrx.in/contact"
+        breadcrumbsData={breadcrumbs}
+        schemaData={contactSchema}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-cyan-400 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
-            Dedicated Support
-          </span>
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white">
-            Get in Touch with <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">AVRX</span>
-          </h1>
-          <p className="text-slate-300 text-base sm:text-lg">
-            Have questions about website development, business loans, tax filings, or insurance? Our team is ready to guide you.
-          </p>
-        </div>
+      <PageBanner
+        title="Connect With Our Executive Desk in Ambikapur"
+        subtitle="Schedule a consultation with a Solution Architect, Financial Advisor, or Tax Specialist. We respond promptly during business hours."
+        badge="LOCAL & PAN-INDIA SUPPORT"
+        breadcrumbs={[{ label: 'Contact Us' }]}
+        ctaText="Instant WhatsApp Chat"
+      />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          {/* Left Contact Details Box */}
-          <div className="lg:col-span-5 bg-slate-900/90 border border-slate-800 rounded-3xl p-8 space-y-8 shadow-2xl">
-            <h3 className="text-2xl font-bold text-white">Direct Contact Channels</h3>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumbs items={breadcrumbs} />
+      </div>
 
-            <div className="space-y-6 text-sm text-slate-300">
-              
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 shrink-0">
-                  <Phone className="w-5 h-5" />
-                </div>
+      <section className="py-20 bg-[#06070B]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* Left 7 cols: Interactive Form */}
+            <div className="lg:col-span-7">
+              <div className="glass-card p-8 sm:p-12 rounded-3xl border border-white/15 bg-[#0C0F1D]/90 shadow-2xl space-y-8">
                 <div>
-                  <div className="text-xs text-slate-400 uppercase font-mono font-bold">Call & WhatsApp</div>
-                  <div className="flex flex-col gap-0.5 mt-0.5">
-                    <a href={`tel:${SITE_CONFIG.contact.phone.replace(/\s+/g, '')}`} className="text-base font-bold text-white hover:text-cyan-400 transition">
-                      {SITE_CONFIG.contact.phone}
-                    </a>
-                    <a href="tel:+917000859994" className="text-base font-bold text-white hover:text-cyan-400 transition">
-                      {SITE_CONFIG.contact.phone2}
-                    </a>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase mb-3">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>STRICT NDA & SOC2 CONFIDENTIALITY</span>
                   </div>
-                  <p className="text-xs text-slate-400 mt-1">Mon - Sat: 9:30 AM to 7:00 PM IST</p>
+                  <h3 className="text-2xl sm:text-3xl font-poppins font-bold text-white">
+                    Request Formal SLA Scoping & Consultation
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                    Fill out the form below. Your request goes directly to Avinash Rai & CA Siddharth Kothari.
+                  </p>
                 </div>
-              </div>
 
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 shrink-0">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs text-slate-400 uppercase font-mono font-bold">Official Email</div>
-                  <div className="flex flex-col gap-0.5 mt-0.5">
-                    <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-base font-bold text-white hover:text-emerald-400 transition">
-                      {SITE_CONFIG.contact.email}
-                    </a>
-                    <a href={`mailto:${SITE_CONFIG.contact.email2}`} className="text-base font-bold text-white hover:text-emerald-400 transition">
-                      {SITE_CONFIG.contact.email2}
-                    </a>
+                {formSubmitted ? (
+                  <div className="p-8 rounded-2xl bg-green-500/10 border border-green-500/30 text-center space-y-4">
+                    <div className="w-16 h-16 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center mx-auto">
+                      <CheckCircle2 className="w-8 h-8" />
+                    </div>
+                    <h4 className="text-2xl font-poppins font-bold text-white">
+                      Consultation Request Received!
+                    </h4>
+                    <p className="text-sm text-slate-300 max-w-md mx-auto">
+                      Thank you, <span className="text-white font-bold">{formData.name || 'Executive Client'}</span>. An assigned Senior Solution Architect will contact you within <span className="text-green-400 font-bold">15 minutes</span>.
+                    </p>
+                    <button
+                      onClick={() => setFormSubmitted(false)}
+                      className="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold"
+                    >
+                      Send Another Request
+                    </button>
                   </div>
-                  <p className="text-xs text-slate-400 mt-1">Guaranteed reply within 2 business hours</p>
-                </div>
-              </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-xs font-bold text-slate-300 block mb-1.5">
+                          Full Name *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          placeholder="e.g. Rajesh Singhania"
+                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs font-bold text-slate-300 block mb-1.5">
+                          Work Email *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          placeholder="rajesh@enterprise.com"
+                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-blue-500"
+                        />
+                      </div>
+                    </div>
 
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-2xl bg-purple-500/10 border border-purple-500/30 text-purple-400 shrink-0">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs text-slate-400 uppercase font-mono font-bold">Head Office</div>
-                  <div className="text-base font-bold text-white">
-                    {SITE_CONFIG.contact.address}
-                  </div>
-                  <p className="text-xs text-slate-400 mt-0.5">Digital & Financial Operations Hub</p>
-                </div>
-              </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-xs font-bold text-slate-300 block mb-1.5">
+                          Phone / WhatsApp *
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          placeholder="+91 98765 43210"
+                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs font-bold text-slate-300 block mb-1.5">
+                          Company / Organization
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.company}
+                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                          placeholder="Apex Capital Markets"
+                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-blue-500"
+                        />
+                      </div>
+                    </div>
 
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-xs font-bold text-slate-300 block mb-1.5">
+                          Primary Service Required
+                        </label>
+                        <select
+                          value={formData.service}
+                          onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-blue-500"
+                        >
+                          <option className="bg-[#0D101C]">Website Design SLA</option>
+                          <option className="bg-[#0D101C]">Application Development (iOS/Android/Flutter)</option>
+                          <option className="bg-[#0D101C]">Programmatic SEO & Marketing</option>
+                          <option className="bg-[#0D101C]">Business Loan / Working Capital (₹10L – ₹20Cr)</option>
+                          <option className="bg-[#0D101C]">GST Filing / ITR / CA Tax Advisory</option>
+                          <option className="bg-[#0D101C]">Company Incorporation & MSME</option>
+                          <option className="bg-[#0D101C]">Corporate Insurance & GMC Cover</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="text-xs font-bold text-slate-300 block mb-1.5">
+                          Estimated Budget / Loan Requirement
+                        </label>
+                        <select
+                          value={formData.budget}
+                          onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-blue-500"
+                        >
+                          <option className="bg-[#0D101C]">$500 – $2,500 / ₹40K – ₹2L</option>
+                          <option className="bg-[#0D101C]">$2,500 – $10,000 / ₹2L – ₹8L</option>
+                          <option className="bg-[#0D101C]">$10,000+ / ₹10L – ₹50L (Enterprise)</option>
+                          <option className="bg-[#0D101C]">₹50 Lakhs – ₹5 Crores (Loan Requirement)</option>
+                          <option className="bg-[#0D101C]">₹5 Crores – ₹20 Crores (Corporate Capital)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-xs font-bold text-slate-300 block mb-1.5">
+                        Project Scope or Loan Requirements
+                      </label>
+                      <textarea
+                        rows={4}
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        placeholder="Please describe your timeline, current tech stack, or capital requirements..."
+                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-blue-500"
+                      />
+                    </div>
+
+                    <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                      <button
+                        type="submit"
+                        className="flex-1 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-bold text-sm shadow-xl shadow-blue-500/25 flex items-center justify-center gap-2 transition-all"
+                      >
+                        <Send className="w-4 h-4" />
+                        <span>Submit Executive Request</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={handleWhatsAppClick}
+                        className="px-6 py-4 rounded-xl bg-green-600 hover:bg-green-500 text-white font-bold text-sm shadow-xl shadow-green-600/25 flex items-center justify-center gap-2 transition-all"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        <span>WhatsApp Now</span>
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 text-xs text-slate-400 flex items-center gap-3">
-              <MessageSquare className="w-5 h-5 text-cyan-400 shrink-0" />
-              <span>Need instant response? Click the floating WhatsApp button on the bottom right to chat directly.</span>
-            </div>
-          </div>
-
-          {/* Right Lead Gen Form */}
-          <div className="lg:col-span-7 bg-slate-900/90 border border-slate-800 rounded-3xl p-8 sm:p-10 shadow-2xl">
-            {submitted ? (
-              <div className="text-center py-12 space-y-4 animate-in fade-in duration-300">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
-                  <CheckCircle2 className="w-8 h-8" />
+            {/* Right 5 cols: Executive Offices & Maps */}
+            <div className="lg:col-span-5 space-y-6">
+              <div className="glass-card p-8 rounded-3xl border border-white/15 bg-[#0C0F1D]/80 space-y-6">
+                <div className="border-b border-white/10 pb-4">
+                  <span className="text-xs font-bold text-cyan-400 uppercase tracking-widest block">
+                    GLOBAL HEADQUARTERS
+                  </span>
+                  <h4 className="text-xl font-poppins font-bold text-white mt-1">
+                    Waterpark Ambikapur, Chhattisgarh
+                  </h4>
                 </div>
-                <h3 className="text-2xl font-bold text-white">Inquiry Received Successfully!</h3>
-                <p className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
-                  Thank you for contacting AVRX. An assigned domain specialist will review your requirements and reach out via phone/email shortly.
-                </p>
-                <button
-                  onClick={() => {
-                    setSubmitted(false);
-                    setFormData({ name: '', phone: '', email: '', location: '', serviceCategory: 'Digital Solutions', message: '' });
-                  }}
-                  className="mt-4 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white rounded-xl transition"
-                >
-                  Send Another Inquiry
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <h3 className="text-xl font-bold text-white">Request Expert Consultation</h3>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 uppercase">Full Name *</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={e => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Rahul Sharma"
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
-                    />
+                <div className="space-y-6">
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-10 h-10 rounded-xl bg-blue-500/15 border border-blue-500/30 text-blue-400 flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-white">AVRX Global Headquarters</div>
+                      <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                        Waterpark Ambikapur, NH343, Surguja, Chhattisgarh, India
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 uppercase">Phone / WhatsApp Number *</label>
-                    <input
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+91 98765 43210"
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
-                    />
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-10 h-10 rounded-xl bg-green-500/15 border border-green-500/30 text-green-400 flex items-center justify-center flex-shrink-0">
+                      <PhoneCall className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-white">Direct Executive Lines</div>
+                      <p className="text-xs text-slate-300 mt-1">
+                        +91-9630661536 • +91-7000859994
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-white">Official Support Emails</div>
+                      <p className="text-xs text-slate-300 mt-1">
+                        support@avrx.in • contact@avrx.in
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 uppercase">Email Address *</label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={e => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="rahul@example.com"
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 uppercase">City / State</label>
-                    <input
-                      type="text"
-                      value={formData.location}
-                      onChange={e => setFormData({ ...formData, location: e.target.value })}
-                      placeholder="e.g. Mumbai, Maharashtra"
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 uppercase">Service Category Interest</label>
-                  <select
-                    value={formData.serviceCategory}
-                    onChange={e => setFormData({ ...formData, serviceCategory: e.target.value })}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
-                  >
-                    <option value="Digital Solutions">Digital Solutions (Website, App, SEO)</option>
-                    <option value="Financial Solutions">Financial Solutions (Personal/Business Loan)</option>
-                    <option value="Tax Solutions">Tax Solutions (GST, ITR, Udyam)</option>
-                    <option value="Insurance Solutions">Insurance Solutions (Motor, Health, Property)</option>
-                    <option value="Digital Products & Hosting">Hosting & Digital Products</option>
-                    <option value="AI Tools">AI Business Tools</option>
-                  </select>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 uppercase">Message / Requirements</label>
-                  <textarea
-                    rows={4}
-                    value={formData.message}
-                    onChange={e => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Describe your project, loan requirement, or tax questions..."
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-cyan-400"
+                {/* Google Maps Embed Card */}
+                <div className="rounded-2xl overflow-hidden border border-white/10 h-48 relative bg-slate-900">
+                  <iframe
+                    title="AVRX Waterpark Ambikapur Headquarters Map"
+                    src="https://maps.google.com/maps?q=Waterpark+Ambikapur+Chhattisgarh+India&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
+                    allowFullScreen={false}
+                    loading="lazy"
                   />
                 </div>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-slate-950 font-bold text-sm rounded-2xl shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:scale-105 transition flex items-center justify-center gap-2"
-                >
-                  {loading ? (
-                    <>
-                      <RefreshCw className="w-4 h-4 animate-spin" />
-                      <span>Submitting Inquiry...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4" />
-                      <span>Submit Inquiry to AVRX</span>
-                    </>
-                  )}
-                </button>
-              </form>
-            )}
+              </div>
+            </div>
           </div>
-
         </div>
-
-      </div>
+      </section>
     </div>
   );
-};
+}
