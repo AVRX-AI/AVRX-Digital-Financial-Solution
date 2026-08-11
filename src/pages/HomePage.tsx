@@ -3,6 +3,7 @@ import { Hero } from '../components/home/Hero';
 import { AIAssistantSection } from '../components/home/AIAssistantSection';
 import { SolutionsGrid } from '../components/home/SolutionsGrid';
 import { HealthCheckerSection } from '../components/home/HealthCheckerSection';
+import { AIToolsSuiteSection } from '../components/home/AIToolsSuiteSection';
 import { SmartServiceFinder } from '../components/home/SmartServiceFinder';
 import { WhyAVRX } from '../components/home/WhyAVRX';
 import { HowItWorks } from '../components/home/HowItWorks';
@@ -35,6 +36,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* 10. Website Health Checker */}
       <HealthCheckerSection onNavigate={onNavigate} />
+
+      {/* 10b. Interactive AI Multi-Tool Suite */}
+      <AIToolsSuiteSection onNavigate={onNavigate} />
 
       {/* 11. Smart Service Finder */}
       <SmartServiceFinder onNavigate={onNavigate} />

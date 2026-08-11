@@ -75,7 +75,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         {/* Main Footer Links Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16 text-xs sm:text-sm">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 mb-16 text-xs sm:text-sm">
           
           {/* Brand Info Column */}
           <div className="col-span-2 md:col-span-3 lg:col-span-2 space-y-4">
@@ -97,20 +97,36 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               AVRX is a modern technology and financial solutions platform helping individuals, startups, and enterprises build, grow, finance, protect, and automate their future.
             </p>
 
-            <div className="space-y-2 text-xs text-slate-400 pt-2">
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
-                <a href={`mailto:${SITE_CONFIG.contact.email}`} className="hover:text-white transition">
-                  {SITE_CONFIG.contact.email}
-                </a>
+            <div className="space-y-2.5 text-xs text-slate-400 pt-2">
+              <div className="flex flex-col space-y-1">
+                <div className="flex items-center gap-2.5">
+                  <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
+                  <a href={`mailto:${SITE_CONFIG.contact.email}`} className="hover:text-cyan-300 transition">
+                    {SITE_CONFIG.contact.email}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2.5 pl-6">
+                  <a href={`mailto:${SITE_CONFIG.contact.email2}`} className="hover:text-cyan-300 transition">
+                    {SITE_CONFIG.contact.email2}
+                  </a>
+                </div>
               </div>
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
-                <a href={`tel:${SITE_CONFIG.contact.phone}`} className="hover:text-white transition">
-                  {SITE_CONFIG.contact.phone}
-                </a>
+
+              <div className="flex flex-col space-y-1">
+                <div className="flex items-center gap-2.5">
+                  <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <a href={`tel:${SITE_CONFIG.contact.phone.replace(/\s+/g, '')}`} className="hover:text-emerald-300 transition">
+                    {SITE_CONFIG.contact.phone}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2.5 pl-6">
+                  <a href="tel:+917000859994" className="hover:text-emerald-300 transition">
+                    {SITE_CONFIG.contact.phone2}
+                  </a>
+                </div>
               </div>
-              <div className="flex items-start gap-2.5">
+
+              <div className="flex items-start gap-2.5 pt-1">
                 <MapPin className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
                 <span>{SITE_CONFIG.contact.address}</span>
               </div>
@@ -123,12 +139,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               Digital
             </h4>
             <ul className="space-y-2.5 text-slate-400">
-              <li><button onClick={() => handleLink('digital-solutions')} className="hover:text-cyan-300 transition">Website Design</button></li>
-              <li><button onClick={() => handleLink('digital-solutions')} className="hover:text-cyan-300 transition">Corporate Sites</button></li>
-              <li><button onClick={() => handleLink('digital-solutions')} className="hover:text-cyan-300 transition">E-Commerce</button></li>
-              <li><button onClick={() => handleLink('digital-solutions')} className="hover:text-cyan-300 transition">App Development</button></li>
-              <li><button onClick={() => handleLink('digital-solutions')} className="hover:text-cyan-300 transition">Digital Marketing</button></li>
-              <li><button onClick={() => handleLink('digital-solutions')} className="hover:text-cyan-300 transition">SEO Services</button></li>
+              <li><button onClick={() => handleLink('digital-solutions')} className="text-left block w-full hover:text-cyan-300 transition">Website Design</button></li>
+              <li><button onClick={() => handleLink('digital-solutions')} className="text-left block w-full hover:text-cyan-300 transition">Corporate Sites</button></li>
+              <li><button onClick={() => handleLink('digital-solutions')} className="text-left block w-full hover:text-cyan-300 transition">E-Commerce</button></li>
+              <li><button onClick={() => handleLink('digital-solutions')} className="text-left block w-full hover:text-cyan-300 transition">App Development</button></li>
+              <li><button onClick={() => handleLink('digital-solutions')} className="text-left block w-full hover:text-cyan-300 transition">Digital Marketing</button></li>
+              <li><button onClick={() => handleLink('digital-solutions')} className="text-left block w-full hover:text-cyan-300 transition">SEO Services</button></li>
             </ul>
           </div>
 
@@ -138,12 +154,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               Finance
             </h4>
             <ul className="space-y-2.5 text-slate-400">
-              <li><button onClick={() => handleLink('financial-solutions')} className="hover:text-emerald-300 transition">Personal Loan</button></li>
-              <li><button onClick={() => handleLink('financial-solutions')} className="hover:text-emerald-300 transition">Business Loan</button></li>
-              <li><button onClick={() => handleLink('financial-solutions')} className="hover:text-emerald-300 transition">Home Loan</button></li>
-              <li><button onClick={() => handleLink('financial-solutions')} className="hover:text-emerald-300 transition">Car Loan</button></li>
-              <li><button onClick={() => handleLink('financial-solutions')} className="hover:text-emerald-300 transition">Loan Refinance</button></li>
-              <li><button onClick={() => handleLink('financial-solutions')} className="hover:text-emerald-300 transition">Govt Schemes (PMEGP/MUDRA)</button></li>
+              <li><button onClick={() => handleLink('financial-solutions')} className="text-left block w-full hover:text-emerald-300 transition">Personal Loan</button></li>
+              <li><button onClick={() => handleLink('financial-solutions')} className="text-left block w-full hover:text-emerald-300 transition">Business Loan</button></li>
+              <li><button onClick={() => handleLink('financial-solutions')} className="text-left block w-full hover:text-emerald-300 transition">Home Loan</button></li>
+              <li><button onClick={() => handleLink('financial-solutions')} className="text-left block w-full hover:text-emerald-300 transition">Car Loan</button></li>
+              <li><button onClick={() => handleLink('financial-solutions')} className="text-left block w-full hover:text-emerald-300 transition">Loan Refinance</button></li>
+              <li><button onClick={() => handleLink('financial-solutions')} className="text-left block w-full hover:text-emerald-300 transition leading-snug">Govt Schemes (MUDRA / PMEGP)</button></li>
             </ul>
           </div>
 
@@ -153,12 +169,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               Tax & Insurance
             </h4>
             <ul className="space-y-2.5 text-slate-400">
-              <li><button onClick={() => handleLink('tax-solutions')} className="hover:text-amber-300 transition">GST Registration</button></li>
-              <li><button onClick={() => handleLink('tax-solutions')} className="hover:text-amber-300 transition">GST Filing</button></li>
-              <li><button onClick={() => handleLink('tax-solutions')} className="hover:text-amber-300 transition">ITR Filing</button></li>
-              <li><button onClick={() => handleLink('insurance-solutions')} className="hover:text-purple-300 transition">Motor Insurance</button></li>
-              <li><button onClick={() => handleLink('insurance-solutions')} className="hover:text-purple-300 transition">Health Insurance</button></li>
-              <li><button onClick={() => handleLink('insurance-solutions')} className="hover:text-purple-300 transition">Property Insurance</button></li>
+              <li><button onClick={() => handleLink('tax-solutions')} className="text-left block w-full hover:text-amber-300 transition">GST Registration</button></li>
+              <li><button onClick={() => handleLink('tax-solutions')} className="text-left block w-full hover:text-amber-300 transition">GST Filing</button></li>
+              <li><button onClick={() => handleLink('tax-solutions')} className="text-left block w-full hover:text-amber-300 transition">ITR Filing</button></li>
+              <li><button onClick={() => handleLink('insurance-solutions')} className="text-left block w-full hover:text-purple-300 transition">Motor Insurance</button></li>
+              <li><button onClick={() => handleLink('insurance-solutions')} className="text-left block w-full hover:text-purple-300 transition">Health Insurance</button></li>
+              <li><button onClick={() => handleLink('insurance-solutions')} className="text-left block w-full hover:text-purple-300 transition">Property Insurance</button></li>
             </ul>
           </div>
 
@@ -168,12 +184,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               Resources
             </h4>
             <ul className="space-y-2.5 text-slate-400">
-              <li><button onClick={() => handleLink('ai-tools')} className="hover:text-purple-300 transition">AI Tools Marketplace</button></li>
-              <li><button onClick={() => handleLink('hosting-products')} className="hover:text-purple-300 transition">Hosting & Products</button></li>
-              <li><button onClick={() => handleLink('blog')} className="hover:text-purple-300 transition">Blog & Strategy</button></li>
-              <li><button onClick={() => handleLink('faq')} className="hover:text-purple-300 transition">FAQ</button></li>
-              <li><button onClick={() => handleLink('partner')} className="hover:text-purple-300 transition">Partner With Us</button></li>
-              <li><button onClick={() => handleLink('contact')} className="hover:text-purple-300 transition">Contact AVRX</button></li>
+              <li><button onClick={() => handleLink('ai-tools')} className="text-left block w-full hover:text-purple-300 transition">AI Marketplace</button></li>
+              <li><button onClick={() => handleLink('hosting-products')} className="text-left block w-full hover:text-purple-300 transition">Hosting & Products</button></li>
+              <li><button onClick={() => handleLink('blog')} className="text-left block w-full hover:text-purple-300 transition">Blog & Strategy</button></li>
+              <li><button onClick={() => handleLink('faq')} className="text-left block w-full hover:text-purple-300 transition">FAQ</button></li>
+              <li><button onClick={() => handleLink('partner')} className="text-left block w-full hover:text-purple-300 transition">Partner With Us</button></li>
+              <li><button onClick={() => handleLink('contact')} className="text-left block w-full hover:text-purple-300 transition">Contact AVRX</button></li>
             </ul>
           </div>
 
