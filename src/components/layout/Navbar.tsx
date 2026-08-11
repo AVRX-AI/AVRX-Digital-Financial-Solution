@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Search, Sun, Moon, Menu, X, ChevronDown, Code, DollarSign, FileText, Shield, Server, Sparkles, PhoneCall } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { SITE_CONFIG } from '../../config';
+import brandLogo from '../../assets/images/avrx_white_logo_1786467039540.jpg';
 
 interface NavbarProps {
   activePage: string;
@@ -76,20 +77,15 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
         {/* Brand Logo */}
         <button
           onClick={() => handleNav('home')}
-          className="flex items-center gap-2 group text-left focus:outline-none"
+          className="flex items-center group focus:outline-none py-1"
         >
-          <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 p-[1px] shadow-[0_0_20px_rgba(0,240,255,0.3)] transition-transform duration-300 group-hover:scale-105">
-            <div className="w-full h-full bg-[#050811] rounded-[11px] flex items-center justify-center font-black text-lg text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
-              A
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-black tracking-wider text-xl text-white group-hover:text-cyan-400 transition-colors">
-              AVRX<span className="text-cyan-400">.</span>
-            </span>
-            <span className="text-[9px] font-semibold tracking-widest text-slate-400 uppercase -mt-1 hidden sm:block">
-              Digital & Financial
-            </span>
+          <div className="relative rounded-xl p-1 bg-[#050811]/90 border border-slate-700/80 shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-all duration-300 group-hover:scale-105 group-hover:border-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+            <img
+              src={brandLogo}
+              alt="AVRX Digital & Financial Solution Logo"
+              className="h-9 sm:h-11 md:h-12 w-auto object-contain rounded-lg brightness-110"
+              referrerPolicy="no-referrer"
+            />
           </div>
         </button>
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, ArrowRight, ShieldCheck, CheckCircle2, X } from 'lucide-react';
 import { SITE_CONFIG } from '../../config';
+import brandLogo from '../../assets/images/avrx_white_logo_1786467039540.jpg';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -81,16 +82,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="col-span-2 md:col-span-3 lg:col-span-2 space-y-4">
             <button
               onClick={() => handleLink('home')}
-              className="flex items-center gap-2 text-left focus:outline-none"
+              className="flex items-center text-left focus:outline-none"
             >
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-400 to-blue-600 p-[1px]">
-                <div className="w-full h-full bg-[#050811] rounded-[11px] flex items-center justify-center font-black text-cyan-400 text-base">
-                  A
-                </div>
+              <div className="relative rounded-xl p-1 bg-[#050811]/90 border border-slate-700/80 shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-105 hover:border-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                <img
+                  src={brandLogo}
+                  alt="AVRX Digital & Financial Solution Logo"
+                  className="h-10 sm:h-12 w-auto object-contain rounded-lg brightness-110"
+                  referrerPolicy="no-referrer"
+                />
               </div>
-              <span className="font-black text-xl text-white tracking-wider">
-                AVRX<span className="text-cyan-400">.</span>
-              </span>
             </button>
 
             <p className="text-slate-400 leading-relaxed max-w-sm">

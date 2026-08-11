@@ -9,7 +9,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     fullDesc: 'We build bespoke, ultra-fast, mobile-optimized business websites using modern frameworks. Designed with custom UI/UX, responsive layouts, fast cold starts, and built-in SEO architecture.',
     iconName: 'Layout',
     badge: 'Popular',
-    priceStarting: '₹14,999',
+    priceStarting: '₹9,999',
     features: [
       'Custom Responsive UI/UX Design',
       'Ultra-Fast Loading & Core Web Vitals Optimization',
@@ -50,7 +50,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     fullDesc: 'Custom corporate web platforms engineered for enterprises, financial institutions, and fast-scaling organizations. Features multi-department architecture, investor portals, and enterprise security compliance.',
     iconName: 'Building2',
     badge: 'Enterprise',
-    priceStarting: '₹34,999',
+    priceStarting: '₹19,999',
     features: [
       'Multi-Page Enterprise Navigation',
       'Investor & Newsroom Publishing Systems',
@@ -95,7 +95,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     shortDesc: 'Custom web applications, SaaS products, dashboards, and internal business tools.',
     fullDesc: 'Tailor-made web applications designed for custom workflows, SaaS MVPs, customer portals, and internal management tools with TypeScript, Node.js, and cloud backend architecture.',
     iconName: 'Code2',
-    priceStarting: '₹49,999',
+    priceStarting: '₹29,999',
     features: [
       'Full-Stack Architecture (React + Express / Next.js)',
       'Database Modeling & Authentication Systems',
@@ -115,7 +115,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     shortDesc: 'Modern native & cross-platform Android applications for Play Store deployment.',
     fullDesc: 'High-performance Android apps with offline support, push notifications, biometric auth, and smooth fluid animations published directly to Google Play Store.',
     iconName: 'Smartphone',
-    priceStarting: '₹39,999',
+    priceStarting: '₹24,999',
     features: [
       'Native Flutter / React Native App Build',
       'Play Store Publishing & Guidelines Compliance',
@@ -134,7 +134,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     shortDesc: 'Premium iOS applications engineered for iPhone and iPad ecosystems.',
     fullDesc: 'Elegant iOS mobile apps engineered following Apple Human Interface Guidelines for App Store distribution, delivering high performance and security.',
     iconName: 'Apple',
-    priceStarting: '₹44,999',
+    priceStarting: '₹29,999',
     features: [
       'iOS Human Interface Guidelines Compliance',
       'Apple Pay Integration & StoreKit Support',
@@ -152,7 +152,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     shortDesc: 'Performance marketing, social media campaigns, brand growth and targeted ads.',
     fullDesc: 'Data-driven marketing campaigns on Meta (Facebook/Instagram) and Google Ads engineered to generate high-intent sales leads, inquiries, and brand awareness.',
     iconName: 'Megaphone',
-    priceStarting: '₹12,000/mo',
+    priceStarting: '₹9,999/mo',
     features: [
       'Google Search & Display Performance Ads',
       'Meta (Facebook & Instagram) Targeted Lead Ads',
@@ -171,7 +171,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     shortDesc: 'Technical SEO, on-page optimization, backlink building and top search rankings.',
     fullDesc: 'Comprehensively optimize your website to rank higher on Google search results for valuable business keywords and drive sustainable organic traffic.',
     iconName: 'TrendingUp',
-    priceStarting: '₹9,999/mo',
+    priceStarting: '₹14,999/mo',
     features: [
       'In-depth Keyword & Competitor Analysis',
       'Technical SEO Audit & Core Web Vitals Fixes',
@@ -190,7 +190,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     shortDesc: 'Modernize slow, outdated websites into sleek, high-converting digital platforms.',
     fullDesc: 'Transform legacy WordPress or older websites with contemporary 2026 aesthetics, mobile responsiveness, rapid load speed, and improved lead conversion UI.',
     iconName: 'RefreshCw',
-    priceStarting: '₹12,999',
+    priceStarting: '₹9,999',
     features: [
       'Modern UI/UX Visual Revamp',
       'Speed Boost & Code Refactoring',
@@ -208,7 +208,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     shortDesc: 'Continuous updates, security monitoring, daily backups, and ongoing technical support.',
     fullDesc: 'Comprehensive website upkeep service keeping your platform secure, bug-free, updated, backed up, and fast round-the-clock.',
     iconName: 'ShieldCheck',
-    priceStarting: '₹2,999/mo',
+    priceStarting: '₹4,999/mo',
     features: [
       '24/7 Security Scanning & Firewall Protection',
       'Daily Automated Offsite Backups',
@@ -363,7 +363,7 @@ export const TAX_SERVICES: ServiceItem[] = [
     fullDesc: 'Get your official 15-digit GSTIN number issued swiftly by government tax authorities with expert verification of business address and documents.',
     iconName: 'FileCheck',
     badge: 'Essential',
-    priceStarting: '₹1,499',
+    priceStarting: '₹2,499',
     features: [
       '100% Digital Document Verification',
       'ARN Application Generation within 24 Hours',
@@ -381,7 +381,7 @@ export const TAX_SERVICES: ServiceItem[] = [
     shortDesc: 'Monthly and quarterly GST return filing, reconciliation, and ITC optimization.',
     fullDesc: 'Ensure monthly/quarterly GST return compliance without late fees or tax notices. Includes automated GSTR-2B reconciliation for maximum ITC claims.',
     iconName: 'Calculator',
-    priceStarting: '₹999/mo',
+    priceStarting: '₹1,499/mo',
     features: [
       'GSTR-1 Sales & GSTR-3B Monthly Return Filing',
       'Automated GSTR-2A/2B Input Tax Credit Reconciliation',
@@ -418,7 +418,7 @@ export const TAX_SERVICES: ServiceItem[] = [
     shortDesc: 'Official MSME Udyam registration for government benefits, priority lending, and subsidies.',
     fullDesc: 'Get your official Udyam Certificate to unlock MSME benefits including priority bank loans, lower loan interest rates, protection against delayed payments, and electricity concessions.',
     iconName: 'Award',
-    priceStarting: '₹799',
+    priceStarting: '₹499',
     features: [
       'Instant Udyam Registration Certificate',
       'NIC Code Classification for Business Activities',
@@ -448,7 +448,7 @@ export const TAX_SERVICES: ServiceItem[] = [
   },
   {
     id: 'tax-consultation',
-    title: 'Tax Advisory & Advisory Services',
+    title: 'Tax Advisory Services',
     category: 'tax',
     shortDesc: 'One-on-one consultation with senior tax experts for strategic tax planning and notice support.',
     fullDesc: 'Strategic tax structure advice for HNWIs, startups, crypto traders, and corporate entities to legally optimize tax liability and resolve tax department notices.',
@@ -733,7 +733,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: 'starter-website',
     name: 'Starter Website',
     category: 'website',
-    price: '₹14,999',
+    price: '₹9,999',
     billingPeriod: 'one-time',
     description: 'Ideal for small businesses, startups, and professionals establishing their online presence.',
     features: [
@@ -750,7 +750,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: 'business-website',
     name: 'Business Website',
     category: 'website',
-    price: '₹24,999',
+    price: '₹19,999',
     billingPeriod: 'one-time',
     isPopular: true,
     description: 'Our most popular package for growing companies seeking leads, traffic, and high brand authority.',
@@ -769,7 +769,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: 'ecommerce-website',
     name: 'E-Commerce Website',
     category: 'website',
-    price: '₹34,999',
+    price: '₹24,999',
     billingPeriod: 'one-time',
     description: 'Full-featured online store with payment gateway, product catalogue, and order management.',
     features: [
