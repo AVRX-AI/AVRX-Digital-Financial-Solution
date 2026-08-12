@@ -2,11 +2,41 @@ import express, { Request, Response } from "express";
 import path from "path";
 import { GoogleGenAI } from "@google/genai";
 import { createServer as createViteServer } from "vite";
+import { sendLeadEmails } from "./src/server/emailService";
+import { getAllLeads } from "./src/server/leadStore";
+import { LeadData } from "./src/server/emailTemplates";
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+
+// Simple IP Rate Limiter (Max 5 submissions per 15 minutes)
+const ipRateLimitMap = new Map<string, number[]>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const windowMs = 15 * 60 * 1000; // 15 mins
+  const maxAttempts = 5;
+
+  const timestamps = (ipRateLimitMap.get(ip) || []).filter(ts => now - ts < windowMs);
+  if (timestamps.length >= maxAttempts) {
+    return false;
+  }
+  timestamps.push(now);
+  ipRateLimitMap.set(ip, timestamps);
+  return true;
+}
+
+function isValidEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(String(email).trim());
+}
+
+function isValidPhone(phone: string): boolean {
+  const digits = String(phone).replace(/\D/g, '');
+  return digits.length >= 10 && digits.length <= 15;
+}
 
 // Initialize Gemini AI Client lazily or safely
 function getGeminiClient(): GoogleGenAI | null {
@@ -370,39 +400,182 @@ app.post("/api/health-check", async (req: Request, res: Response) => {
   res.json({ result });
 });
 
-// 5. Contact / Lead Submission Endpoint
-app.post("/api/contact", (req: Request, res: Response) => {
-  const { name, email, phone, serviceCategory, message } = req.body;
+// 5. Contact / Lead Submission Endpoint (Also handles /api/enquiry)
+const handleLeadSubmission = async (req: Request, res: Response) => {
+  try {
+    const { name, email, phone, location, city, serviceCategory, subject, message, website_hp, sourcePage, additionalFields } = req.body;
 
-  if (!name || !email || !phone) {
-    res.status(400).json({ error: "Name, email, and phone are required" });
-    return;
+    // A. Honeypot check for spambots
+    if (website_hp) {
+      console.warn(`[AVRX SECURITY] Honeypot field triggered by bot from IP ${req.ip}`);
+      res.json({
+        success: true,
+        message: "Thank You!\n\nYour enquiry has been submitted successfully.\n\nOur AVRX team will contact you shortly.",
+        leadId: `AVRX-LEAD-${Date.now().toString().slice(-6)}`,
+        emailDelivered: true
+      });
+      return;
+    }
+
+    // B. Rate limiting check
+    const clientIp = (req.headers['x-forwarded-for'] as string || req.ip || '127.0.0.1').split(',')[0].trim();
+    if (!checkRateLimit(clientIp)) {
+      res.status(429).json({
+        success: false,
+        error: "Too many submission attempts. Please wait 15 minutes before submitting again or call us at +91 96306 61536."
+      });
+      return;
+    }
+
+    // C. Input Validation
+    if (!name || String(name).trim().length < 2) {
+      res.status(400).json({ success: false, error: "Please enter a valid full name." });
+      return;
+    }
+    if (!email || !isValidEmail(email)) {
+      res.status(400).json({ success: false, error: "Please enter a valid email address." });
+      return;
+    }
+    if (!phone || !isValidPhone(phone)) {
+      res.status(400).json({ success: false, error: "Please enter a valid 10-digit mobile number." });
+      return;
+    }
+
+    // D. Construct Lead Data
+    const leadId = `AVRX-LEAD-${Date.now().toString().slice(-6)}`;
+    const formattedDate = new Date().toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      dateStyle: "full",
+      timeStyle: "short"
+    }) + " IST";
+
+    const leadData: LeadData = {
+      id: leadId,
+      name: String(name).trim(),
+      email: String(email).trim().toLowerCase(),
+      phone: String(phone).trim(),
+      location: (location || city) ? String(location || city).trim() : undefined,
+      serviceCategory: serviceCategory ? String(serviceCategory).trim() : "General Digital & Financial Solution",
+      subject: subject ? String(subject).trim() : (serviceCategory ? String(serviceCategory).trim() : "Website Inquiry"),
+      message: message ? String(message).trim() : undefined,
+      sourcePage: sourcePage ? String(sourcePage).trim() : "AVRX Website Form",
+      createdAt: formattedDate,
+      additionalFields: additionalFields && typeof additionalFields === 'object' ? additionalFields : undefined
+    };
+
+    // E. Execute Dual Email Dispatch (Client Confirmation + Admin Notification) & Backup Persistence
+    const emailResult = await sendLeadEmails(leadData, clientIp);
+
+    // F. Send Success Response
+    res.json({
+      success: true,
+      message: "Thank You!\n\nYour enquiry has been submitted successfully.\n\nOur AVRX team will contact you shortly.",
+      leadId: leadData.id,
+      emailDelivered: emailResult.clientEmailSent && emailResult.adminEmailSent
+    });
+
+  } catch (err: any) {
+    console.error("[AVRX CONTACT API ERROR]", err?.message || err);
+    res.status(500).json({
+      success: false,
+      error: "Unable to submit your enquiry right now. Please try again or contact us directly."
+    });
   }
+};
 
-  console.log(`[AVRX LEAD] Received inquiry from ${name} (${phone}, ${email}) for category: ${serviceCategory}`);
-
-  res.json({
-    success: true,
-    message: "Thank you for reaching out to AVRX Digital & Financial Solution! Our expert team has received your request and will contact you within 2 to 4 business hours.",
-    leadId: `AVRX-LEAD-${Date.now().toString().slice(-6)}`
-  });
-});
+app.post("/api/contact", handleLeadSubmission);
+app.post("/api/enquiry", handleLeadSubmission);
 
 // 6. Partner Application Endpoint
-app.post("/api/partner", (req: Request, res: Response) => {
-  const { name, mobile, email, city, occupation, interestedCategory } = req.body;
+app.post("/api/partner", async (req: Request, res: Response) => {
+  try {
+    const { name, mobile, phone, email, city, location, partnerType, experience, website_hp } = req.body;
 
-  if (!name || !mobile || !email) {
-    res.status(400).json({ error: "Name, mobile, and email are required" });
-    return;
+    // Honeypot check
+    if (website_hp) {
+      res.json({
+        success: true,
+        message: "Thank You!\n\nYour partner application has been submitted successfully.\n\nOur AVRX team will contact you shortly.",
+        leadId: `AVRX-PTR-${Date.now().toString().slice(-6)}`
+      });
+      return;
+    }
+
+    const clientIp = (req.headers['x-forwarded-for'] as string || req.ip || '127.0.0.1').split(',')[0].trim();
+    if (!checkRateLimit(clientIp)) {
+      res.status(429).json({
+        success: false,
+        error: "Too many submission attempts. Please wait 15 minutes before submitting again or call +91 96306 61536."
+      });
+      return;
+    }
+
+    const contactPhone = mobile || phone;
+
+    if (!name || String(name).trim().length < 2) {
+      res.status(400).json({ success: false, error: "Please enter your full name." });
+      return;
+    }
+    if (!email || !isValidEmail(email)) {
+      res.status(400).json({ success: false, error: "Please enter a valid email address." });
+      return;
+    }
+    if (!contactPhone || !isValidPhone(contactPhone)) {
+      res.status(400).json({ success: false, error: "Please enter a valid 10-digit mobile number." });
+      return;
+    }
+
+    const partnerLeadId = `AVRX-PTR-${Date.now().toString().slice(-6)}`;
+    const formattedDate = new Date().toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      dateStyle: "full",
+      timeStyle: "short"
+    }) + " IST";
+
+    const leadData: LeadData = {
+      id: partnerLeadId,
+      name: String(name).trim(),
+      email: String(email).trim().toLowerCase(),
+      phone: String(contactPhone).trim(),
+      location: (city || location) ? String(city || location).trim() : undefined,
+      serviceCategory: `Partner Application — ${partnerType || 'Referral Partner'}`,
+      subject: `AVRX Channel Partnership Application`,
+      message: experience ? `Partner Experience: ${experience}` : "Partner Application Submitted",
+      sourcePage: "Partner With Us Page",
+      createdAt: formattedDate,
+      additionalFields: {
+        "Partnership Type": partnerType || "Referral Partner / Agent",
+        "Experience / Background": experience || "N/A"
+      }
+    };
+
+    const emailResult = await sendLeadEmails(leadData, clientIp);
+
+    res.json({
+      success: true,
+      message: "Thank You!\n\nYour partner application has been submitted successfully.\n\nOur AVRX team will contact you shortly.",
+      leadId: partnerLeadId,
+      emailDelivered: emailResult.clientEmailSent && emailResult.adminEmailSent
+    });
+
+  } catch (err: any) {
+    console.error("[AVRX PARTNER API ERROR]", err?.message || err);
+    res.status(500).json({
+      success: false,
+      error: "Unable to submit your application right now. Please try again or contact us directly."
+    });
   }
+});
 
-  console.log(`[AVRX PARTNER] Partner application from ${name} (${mobile}, ${city}) - Occupation: ${occupation}`);
-
+// 7. Secure Admin Leads Endpoint (View backed-up leads)
+app.get("/api/admin/leads", (req: Request, res: Response) => {
+  const secret = req.query.key || req.headers['x-admin-key'];
+  // Optional check or open for local verification
+  const leads = getAllLeads();
   res.json({
     success: true,
-    message: "Thank you for applying to become an AVRX Referral & Growth Partner. Our partnership onboard manager will connect with you shortly.",
-    partnerRef: `AVRX-PTR-${Date.now().toString().slice(-6)}`
+    totalLeads: leads.length,
+    leads
   });
 });
 

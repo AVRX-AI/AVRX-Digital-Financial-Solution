@@ -10,12 +10,33 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email || loading) return;
+
+    setLoading(true);
+    try {
+      await fetch('/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Newsletter Subscriber',
+          email: email.trim(),
+          phone: '+91 00000 00000',
+          serviceCategory: 'AVRX Business Intelligence Newsletter',
+          subject: 'Newsletter Subscription',
+          message: 'User requested subscription to AVRX Business Intelligence Newsletter.',
+          sourcePage: 'Footer Newsletter Form'
+        })
+      });
       setSubscribed(true);
       setEmail('');
+    } catch (err) {
+      setSubscribed(true);
+    } finally {
+      setLoading(false);
     }
   };
 

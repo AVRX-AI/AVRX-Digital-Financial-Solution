@@ -9,26 +9,52 @@ export const PartnerPage: React.FC = () => {
     email: '',
     city: '',
     partnerType: 'Referral Partner / Agent',
-    experience: ''
+    experience: '',
+    website_hp: ''
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (loading) return;
 
+    setErrorMessage('');
+
+    if (!formData.name.trim()) {
+      setErrorMessage('Please enter your full name.');
+      return;
+    }
+    const cleanDigits = formData.phone.replace(/\D/g, '');
+    if (cleanDigits.length < 10) {
+      setErrorMessage('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email.trim())) {
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+
     setLoading(true);
 
     try {
-      await fetch('/api/partner', {
+      const response = await fetch('/api/partner', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-      setSubmitted(true);
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMessage(data.error || 'Unable to submit your application right now. Please try again or contact us directly.');
+      }
     } catch (err) {
-      setSubmitted(true);
+      setErrorMessage('Unable to submit your application right now. Please try again or contact us directly.');
     } finally {
       setLoading(false);
     }
@@ -115,6 +141,23 @@ export const PartnerPage: React.FC = () => {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               <h3 className="text-2xl font-bold text-white text-center">Apply for AVRX Partnership</h3>
+
+              {/* Hidden Honeypot Field */}
+              <input
+                type="text"
+                name="website_hp"
+                value={formData.website_hp}
+                onChange={e => setFormData({ ...formData, website_hp: e.target.value })}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+
+              {errorMessage && (
+                <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs font-semibold">
+                  {errorMessage}
+                </div>
+              )}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">

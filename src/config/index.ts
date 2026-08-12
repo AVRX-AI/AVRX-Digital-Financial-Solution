@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  name: "AVRX Digital & Financial Solution",
+  name: "AVRX - No 1 Digital & Financial Solution in Chhattisgarh",
   shortName: "AVRX",
   domain: "avrx.in",
   url: "https://avrx.in",
