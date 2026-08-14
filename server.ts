@@ -2,9 +2,9 @@ import express, { Request, Response } from "express";
 import path from "path";
 import { GoogleGenAI } from "@google/genai";
 import { createServer as createViteServer } from "vite";
-import { sendLeadEmails } from "./api/lib/emailService";
-import { getAllLeads } from "./api/lib/leadStore";
-import { LeadData } from "./api/lib/emailTemplates";
+import { sendLeadEmails } from "./src/server/emailService";
+import { getAllLeads } from "./src/server/leadStore";
+import { LeadData } from "./src/server/emailTemplates";
 
 const app = express();
 const PORT = 3000;
