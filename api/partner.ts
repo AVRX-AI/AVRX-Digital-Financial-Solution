@@ -3,8 +3,8 @@
  * Handles Partnership and Channel Agent Applications
  */
 
-import { sendLeadEmails } from '../src/server/emailService';
-import { LeadData } from '../src/server/emailTemplates';
+import { sendLeadEmails } from './lib/emailService';
+import { LeadData } from './lib/emailTemplates';
 
 function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
