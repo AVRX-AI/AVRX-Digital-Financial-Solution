@@ -137,6 +137,15 @@ export const PartnerPage: React.FC = () => {
               <p className="text-slate-300 text-sm">
                 Our partner relations team will evaluate your profile and contact you within 24 hours.
               </p>
+              <button
+                onClick={() => {
+                  setSubmitted(false);
+                  setFormData({ name: '', phone: '', email: '', city: '', partnerType: 'Referral Partner / Agent', experience: '', website_hp: '' });
+                }}
+                className="mt-4 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white rounded-xl transition"
+              >
+                Submit Another Application
+              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">

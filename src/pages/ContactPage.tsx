@@ -166,7 +166,7 @@ export const ContactPage: React.FC = () => {
                 <button
                   onClick={() => {
                     setSubmitted(false);
-                    setFormData({ name: '', phone: '', email: '', location: '', serviceCategory: 'Digital Solutions', message: '' });
+                    setFormData({ name: '', phone: '', email: '', location: '', serviceCategory: 'Digital Solutions', message: '', website_hp: '' });
                   }}
                   className="mt-4 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white rounded-xl transition"
                 >

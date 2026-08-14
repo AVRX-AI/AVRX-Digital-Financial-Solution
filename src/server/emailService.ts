@@ -1,9 +1,10 @@
 /**
  * AVRX Email Automation & Delivery Service
- * Compatible with Resend API and Nodemailer/SMTP
+ * Uses Nodemailer with Hostingspell / cPanel SMTP Configuration
+ * Host: mail.avrx.in | Port: 465 | SSL/TLS: true
  */
 
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import {
   LeadData,
   generateClientConfirmationHtml,
@@ -23,7 +24,7 @@ export interface EmailSendResult {
 }
 
 /**
- * Sanitize header strings against header injection attacks
+ * Sanitize header strings against email header injection attacks
  */
 function sanitizeHeader(str: string): string {
   if (!str) return '';
@@ -31,17 +32,50 @@ function sanitizeHeader(str: string): string {
 }
 
 /**
- * Send dual emails: Client Confirmation & Admin Lead Notification
+ * Create Nodemailer SMTP Transporter using Environment Variables
+ */
+function createSmtpTransporter(): nodemailer.Transporter | null {
+  const host = process.env.SMTP_HOST || 'mail.avrx.in';
+  const port = Number(process.env.SMTP_PORT) || 465;
+  const user = process.env.SMTP_USER || process.env.EMAIL_FROM || 'contact@avrx.in';
+  const pass = process.env.SMTP_PASS;
+  const secure = process.env.SMTP_SECURE === 'true' || port === 465;
+
+  if (!pass) {
+    console.warn('[AVRX SMTP NOTICE] process.env.SMTP_PASS is not configured. Email will run in safe simulation mode.');
+    return null;
+  }
+
+  return nodemailer.createTransport({
+    host,
+    port,
+    secure, // true for port 465 (SSL/TLS)
+    auth: {
+      user,
+      pass
+    },
+    tls: {
+      // Do not fail on valid self-signed cPanel certificates if present
+      rejectUnauthorized: false
+    }
+  });
+}
+
+/**
+ * Send dual emails via Hostingspell SMTP:
+ * 1. Admin notification to contact@avrx.in
+ * 2. Customer auto-reply confirmation to client
  */
 export async function sendLeadEmails(lead: LeadData, ipAddress?: string): Promise<EmailSendResult> {
-  const emailFrom = process.env.EMAIL_FROM || 'support@avrx.in';
-  const adminEmail = process.env.ADMIN_EMAIL || 'support@avrx.in';
-  const resendApiKey = process.env.RESEND_API_KEY;
+  const emailFrom = process.env.EMAIL_FROM || 'contact@avrx.in';
+  const adminEmail = process.env.ADMIN_EMAIL || 'contact@avrx.in';
 
-  // Format sender name and email
-  const formattedSender = emailFrom.includes('<') 
-    ? emailFrom 
+  // Professional sender formatting
+  const formattedSender = emailFrom.includes('<')
+    ? emailFrom
     : `AVRX Digital & Financial Solution <${emailFrom}>`;
+
+  const replyTo = process.env.SMTP_USER || emailFrom;
 
   const clientHtml = generateClientConfirmationHtml(lead);
   const clientText = generateClientConfirmationText(lead);
@@ -50,74 +84,64 @@ export async function sendLeadEmails(lead: LeadData, ipAddress?: string): Promis
 
   const cleanName = sanitizeHeader(lead.name);
   const cleanService = sanitizeHeader(lead.serviceCategory);
-  const adminSubject = `New Website Enquiry — ${cleanName} — ${cleanService}`;
-  const clientSubject = `Enquiry Received — AVRX Digital & Financial Solution (${lead.id})`;
+  const adminSubject = `New Website Enquiry – AVRX Digital & Financial Solution (${cleanName} – ${cleanService})`;
+  const clientSubject = `Thank You for Contacting AVRX Digital & Financial Solution (${lead.id})`;
 
   let clientEmailSent = false;
   let adminEmailSent = false;
   let isSimulated = false;
   let lastError: string | undefined = undefined;
 
-  console.log(`[AVRX EMAIL SERVICE] Processing lead ${lead.id} for ${lead.email} (${lead.serviceCategory})`);
+  console.log(`[AVRX LEAD PROCESSOR] Processing lead ${lead.id} from ${lead.email} (${lead.serviceCategory})`);
 
-  if (resendApiKey) {
+  const transporter = createSmtpTransporter();
+
+  if (transporter) {
     try {
-      const resend = new Resend(resendApiKey);
-
-      // 1. Send Client Confirmation Email
+      // 1. Send Admin Notification Email
       try {
-        const clientRes = await resend.emails.send({
+        const adminInfo = await transporter.sendMail({
           from: formattedSender,
-          to: [lead.email],
-          subject: clientSubject,
-          html: clientHtml,
-          text: clientText
+          to: adminEmail,
+          replyTo: lead.email,
+          subject: adminSubject,
+          text: adminText,
+          html: adminHtml
         });
-        if (clientRes.data) {
-          clientEmailSent = true;
-          console.log(`[AVRX EMAIL] Client confirmation email sent to ${lead.email}. Message ID: ${clientRes.data.id}`);
-        } else if (clientRes.error) {
-          console.error(`[AVRX EMAIL ERROR] Client email error:`, clientRes.error);
-          lastError = clientRes.error.message;
-        }
+        adminEmailSent = true;
+        console.log(`[AVRX SMTP] Admin notification sent to ${adminEmail}. Message ID: ${adminInfo.messageId}`);
       } catch (err: any) {
-        console.error(`[AVRX EMAIL ERROR] Failed sending to client ${lead.email}:`, err?.message || err);
-        lastError = err?.message || String(err);
+        console.error(`[AVRX SMTP ERROR] Failed sending to admin ${adminEmail}:`, err?.message || err);
+        lastError = err?.message || 'Admin email dispatch failed';
       }
 
-      // 2. Send Admin Notification Email
+      // 2. Send Customer Confirmation Auto-Reply
       try {
-        const adminRes = await resend.emails.send({
+        const clientInfo = await transporter.sendMail({
           from: formattedSender,
-          to: [adminEmail],
-          subject: adminSubject,
-          html: adminHtml,
-          text: adminText,
-          replyTo: lead.email
+          to: lead.email,
+          replyTo,
+          subject: clientSubject,
+          text: clientText,
+          html: clientHtml
         });
-        if (adminRes.data) {
-          adminEmailSent = true;
-          console.log(`[AVRX EMAIL] Admin notification email sent to ${adminEmail}. Message ID: ${adminRes.data.id}`);
-        } else if (adminRes.error) {
-          console.error(`[AVRX EMAIL ERROR] Admin email error:`, adminRes.error);
-          if (!lastError) lastError = adminRes.error.message;
-        }
+        clientEmailSent = true;
+        console.log(`[AVRX SMTP] Customer auto-reply sent to ${lead.email}. Message ID: ${clientInfo.messageId}`);
       } catch (err: any) {
-        console.error(`[AVRX EMAIL ERROR] Failed sending to admin ${adminEmail}:`, err?.message || err);
-        if (!lastError) lastError = err?.message || String(err);
+        console.error(`[AVRX SMTP ERROR] Failed sending auto-reply to client ${lead.email}:`, err?.message || err);
+        if (!lastError) lastError = err?.message || 'Customer email dispatch failed';
       }
 
     } catch (err: any) {
-      console.error(`[AVRX EMAIL SERVICE ERROR] Resend initialization/sending failed:`, err?.message || err);
-      lastError = err?.message || String(err);
+      console.error(`[AVRX SMTP CRITICAL ERROR] SMTP transporter error:`, err?.message || err);
+      lastError = err?.message || 'SMTP service error';
     }
   } else {
-    // Simulated delivery mode (When RESEND_API_KEY is not yet added in environment variables)
+    // Simulated delivery mode (When SMTP_PASS is pending in environment variables)
     isSimulated = true;
     clientEmailSent = true;
     adminEmailSent = true;
-    console.warn(`[AVRX EMAIL SERVICE NOTICE] RESEND_API_KEY is not set in environment variables.`);
-    console.warn(`[AVRX EMAIL SERVICE NOTICE] Lead ${lead.id} saved securely in backup database. Add RESEND_API_KEY in Vercel settings for live dispatches.`);
+    console.warn(`[AVRX SMTP SIMULATION] SMTP credentials not set yet. Lead ${lead.id} backed up securely to lead store.`);
   }
 
   // Save to persistent database store

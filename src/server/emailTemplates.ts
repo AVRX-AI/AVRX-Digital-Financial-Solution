@@ -216,7 +216,7 @@ export function generateClientConfirmationHtml(lead: LeadData): string {
       <!-- Footer -->
       <div class="footer">
         <p style="margin: 0 0 8px 0; font-weight: 600; color: #94a3b8;">AVRX Digital & Financial Solution</p>
-        <p style="margin: 0 0 8px 0;">Official Support Email: <a href="mailto:support@avrx.in">support@avrx.in</a> | Phone: +91 96306 61536</p>
+        <p style="margin: 0 0 8px 0;">Official Support Email: <a href="mailto:contact@avrx.in">contact@avrx.in</a> | Phone: +91 96306 61536</p>
         <p style="margin: 0; font-size: 11px;">Headquarters: NH343 Waterpark Surguja Chhattisgarh INDIA | <a href="https://avrx.in">https://avrx.in</a></p>
       </div>
 
@@ -251,7 +251,7 @@ Expected response time: Within 2 to 4 business hours (Mon - Sat: 9:30 AM to 7:00
 
 Regards,
 AVRX Digital & Financial Solution
-Official Email: support@avrx.in
+Official Email: contact@avrx.in
 Phone: +91 96306 61536
 Website: https://avrx.in`;
 }
@@ -446,7 +446,7 @@ export function generateAdminNotificationHtml(lead: LeadData): string {
       </div>
 
       <div class="footer">
-        AVRX Lead Engine | System Notification for support@avrx.in | https://avrx.in
+        AVRX Lead Engine | System Notification for contact@avrx.in | https://avrx.in
       </div>
     </div>
   </div>
