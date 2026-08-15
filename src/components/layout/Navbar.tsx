@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Sun, Moon, Menu, X, ChevronDown, Code, DollarSign, FileText, Shield, Server, Sparkles, PhoneCall } from 'lucide-react';
+import { Search, Menu, X, ChevronDown, Code, DollarSign, FileText, Shield, Server, Sparkles, Handshake } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { SITE_CONFIG } from '../../config';
 import brandLogo from '../../assets/images/avrx_white_logo_1786467039540.jpg';
@@ -11,8 +11,8 @@ interface NavbarProps {
   onReplayLaunch?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSearch, onReplayLaunch }) => {
-  const { theme, toggleTheme, language, setLanguage, t } = useTheme();
+export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSearch }) => {
+  const { language, setLanguage, t } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
@@ -78,7 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between relative">
         
-        {/* Brand Logo & Independence Micro-Badge */}
+        {/* Brand Logo */}
         <div className="flex items-center gap-3">
           <button
             onClick={() => handleNav('home')}
@@ -91,13 +91,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
                 className="h-9 sm:h-11 md:h-12 w-auto object-contain rounded-lg brightness-110"
                 referrerPolicy="no-referrer"
               />
-              
-              {/* Subtle Tricolour Dot near logo */}
-              <div className="absolute -top-1 -right-1 flex items-center gap-0.5 p-0.5 rounded-full bg-slate-950 border border-slate-700 shadow-sm" title="Celebrating India's Independence">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]" />
-                <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#138808]" />
-              </div>
             </div>
           </button>
         </div>
@@ -187,11 +180,21 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
             {t('nav.about')}
           </button>
 
+          {/* Highlighted "Partner With Us" Special Link */}
           <button
             onClick={() => handleNav('partner')}
-            className={`hover:text-cyan-400 transition ${activePage === 'partner' ? 'text-cyan-400 font-semibold' : ''}`}
+            className={`group relative px-3 py-1.5 rounded-xl transition-all duration-300 flex items-center gap-1.5 text-xs font-bold ${
+              activePage === 'partner'
+                ? 'bg-slate-900 text-white border border-cyan-400 shadow-[0_0_15px_rgba(0,240,255,0.4)]'
+                : 'bg-slate-900/90 text-slate-200 hover:text-white border border-[#FF9933]/50 hover:border-cyan-400 shadow-[0_0_12px_rgba(255,153,51,0.25)] hover:shadow-[0_0_18px_rgba(0,240,255,0.4)]'
+            }`}
+            title="Join AVRX Partner Network"
           >
-            {t('nav.partner')}
+            <Handshake className="w-3.5 h-3.5 text-[#FF9933] group-hover:text-cyan-400 group-hover:scale-110 transition-transform" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF9933] via-white to-[#138808] font-bold">
+              {t('nav.partner')}
+            </span>
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           </button>
 
           <button
@@ -204,18 +207,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
 
         {/* Right Tools & Action Buttons */}
         <div className="hidden lg:flex items-center gap-3">
-          {/* Replay Launch Experience button */}
-          {onReplayLaunch && (
-            <button
-              onClick={onReplayLaunch}
-              className="px-2.5 py-1.5 rounded-xl bg-slate-900/90 border border-[#FF9933]/30 hover:border-cyan-400 text-xs font-semibold text-slate-300 hover:text-white transition flex items-center gap-1.5 shadow-[0_0_10px_rgba(255,153,51,0.15)] group"
-              title="Replay 15 August Launch Experience"
-            >
-              <span className="text-sm group-hover:-translate-y-0.5 transition-transform">🚀</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF9933] via-white to-[#138808]">Launch Show</span>
-            </button>
-          )}
-
           {/* Search Trigger */}
           <button
             onClick={onOpenSearch}
@@ -240,24 +231,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
               हिन्दी
             </button>
           </div>
-
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="p-2 text-slate-400 hover:text-amber-300 hover:bg-slate-800/60 rounded-xl transition border border-slate-800/60"
-            title="Toggle Theme"
-          >
-            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
-
-          {/* Secondary CTA: Talk to Expert */}
-          <button
-            onClick={() => handleNav('contact')}
-            className="px-3.5 py-2 text-xs font-medium text-slate-300 hover:text-cyan-300 hover:bg-slate-800/80 rounded-xl border border-slate-800 transition flex items-center gap-1.5"
-          >
-            <PhoneCall className="w-3.5 h-3.5 text-cyan-400" />
-            <span>{t('nav.talk_expert')}</span>
-          </button>
 
           {/* Primary CTA: Get Started with subtle Tricolour sweep on hover */}
           <button
@@ -292,29 +265,22 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
         <div className="lg:hidden fixed inset-x-0 top-[70px] bottom-0 z-50 bg-[#050811]/98 backdrop-blur-2xl border-t border-slate-800 p-6 overflow-y-auto flex flex-col justify-between animate-in slide-in-from-top-4 duration-200">
           <div className="space-y-4">
             
-            {/* Lang & Theme mobile row */}
+            {/* Lang mobile row */}
             <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-              <div className="flex items-center bg-slate-900 border border-slate-800 rounded-xl p-1 text-xs font-semibold">
+              <div className="flex items-center w-full bg-slate-900 border border-slate-800 rounded-xl p-1 text-xs font-semibold">
                 <button
                   onClick={() => setLanguage('EN')}
-                  className={`px-3 py-1 rounded-lg transition ${language === 'EN' ? 'bg-cyan-500 text-slate-950 font-bold' : 'text-slate-400'}`}
+                  className={`flex-1 py-1.5 text-center rounded-lg transition ${language === 'EN' ? 'bg-cyan-500 text-slate-950 font-bold shadow' : 'text-slate-400'}`}
                 >
                   English
                 </button>
                 <button
                   onClick={() => setLanguage('HI')}
-                  className={`px-3 py-1 rounded-lg transition ${language === 'HI' ? 'bg-cyan-500 text-slate-950 font-bold' : 'text-slate-400'}`}
+                  className={`flex-1 py-1.5 text-center rounded-lg transition ${language === 'HI' ? 'bg-cyan-500 text-slate-950 font-bold shadow' : 'text-slate-400'}`}
                 >
                   हिन्दी
                 </button>
               </div>
-
-              <button
-                onClick={toggleTheme}
-                className="p-2 bg-slate-900 border border-slate-800 rounded-xl text-amber-300"
-              >
-                {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              </button>
             </div>
 
             {/* Mobile Nav Links */}
@@ -371,11 +337,24 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
                 {t('nav.about')}
               </button>
 
+              {/* Highlighted Partner With Us link */}
               <button
                 onClick={() => handleNav('partner')}
-                className={`text-left p-3 rounded-xl font-medium text-base ${activePage === 'partner' ? 'bg-cyan-500/10 text-cyan-400 font-semibold' : 'text-slate-200'}`}
+                className={`text-left p-3 rounded-xl font-medium text-base flex items-center justify-between border transition ${
+                  activePage === 'partner'
+                    ? 'bg-slate-900 text-white border-cyan-400 font-bold shadow-[0_0_15px_rgba(0,240,255,0.3)]'
+                    : 'bg-slate-900/90 text-white border-[#FF9933]/50 shadow-[0_0_12px_rgba(255,153,51,0.2)]'
+                }`}
               >
-                {t('nav.partner')}
+                <div className="flex items-center gap-2.5">
+                  <Handshake className="w-4 h-4 text-[#FF9933]" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF9933] via-white to-[#138808] font-bold">
+                    {t('nav.partner')}
+                  </span>
+                </div>
+                <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  Earn ₹50k+
+                </span>
               </button>
 
               <button
@@ -388,22 +367,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
           </div>
 
           {/* Mobile Bottom Action Buttons */}
-          <div className="pt-6 border-t border-slate-800 space-y-3">
+          <div className="pt-6 border-t border-slate-800">
             <button
               onClick={() => handleNav('contact')}
               className="w-full py-3.5 text-center font-bold text-slate-950 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-xl shadow-lg"
             >
               {t('nav.get_started')}
-            </button>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                const url = `https://wa.me/${SITE_CONFIG.contact.whatsapp}`;
-                window.open(url, '_blank');
-              }}
-              className="w-full py-3 text-center text-sm font-semibold text-slate-300 hover:text-white bg-slate-900 border border-slate-800 rounded-xl"
-            >
-              {t('nav.talk_expert')}
             </button>
           </div>
 
