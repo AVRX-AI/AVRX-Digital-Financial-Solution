@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Linear Gradients for AVRX Monogram Facets -->
+    <linearGradient id="t_apexGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="35%" stop-color="#DCE8FF" />
+      <stop offset="70%" stop-color="#7B93B8" />
+      <stop offset="100%" stop-color="#3B4B66" />
+    </linearGradient>
+
+    <linearGradient id="t_cyberBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60EFFF" />
+      <stop offset="50%" stop-color="#00D2FF" />
+      <stop offset="100%" stop-color="#0077FF" />
+    </linearGradient>
+
+    <linearGradient id="t_goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3C4" />
+      <stop offset="30%" stop-color="#FFD043" />
+      <stop offset="70%" stop-color="#E59B12" />
+      <stop offset="100%" stop-color="#996000" />
+    </linearGradient>
+
+    <linearGradient id="t_darkMetalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#475569" />
+      <stop offset="50%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <filter id="t_dropShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#00F0FF" flood-opacity="0.25" />
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <!-- AVRX TRANSPARENT MONOGRAM EMBLEM -->
+  <g filter="url(#t_dropShadow)">
+    
+    <!-- 1. LEFT WING of 'A' / Left arm of 'V' -->
+    <path 
+      d="M 148 372 L 236 128 L 256 128 L 198 372 Z" 
+      fill="url(#t_apexGradient)" 
+    />
+
+    <!-- Left Wing Shadow Facet -->
+    <path 
+      d="M 148 372 L 180 372 L 236 128 L 210 128 Z" 
+      fill="url(#t_darkMetalGrad)" 
+      opacity="0.45"
+    />
+
+    <!-- 2. RIGHT DOWNWARD CHEVRON forming 'A' and 'V' Structure -->
+    <path 
+      d="M 256 128 L 276 128 L 364 372 L 314 372 L 256 210 L 222 305 L 198 238 Z" 
+      fill="url(#t_darkMetalGrad)"
+    />
+
+    <!-- 3. CENTRAL ELECTRIC CYBER CHEVRON (Representing 'V' & AI Core) -->
+    <path 
+      d="M 256 182 L 298 300 L 256 362 L 214 300 Z" 
+      fill="url(#t_cyberBlueGrad)" 
+    />
+    <path 
+      d="M 256 200 L 286 288 L 256 338 L 226 288 Z" 
+      fill="#FFFFFF" 
+      opacity="0.35"
+    />
+
+    <!-- 4. GOLDEN UPWARD GROWTH ARROW & 'R'/'X' DYNAMIC CROSS-SWOOSH -->
+    <path 
+      d="M 132 322 C 175 285 235 235 348 165 L 340 148 L 398 140 L 378 198 L 360 182 C 265 240 200 290 148 335 Z" 
+      fill="url(#t_goldGradient)"
+    />
+
+    <!-- 5. 'X' LOWER-RIGHT STABILIZER ARM -->
+    <path 
+      d="M 292 278 L 372 372 L 324 372 L 264 302 Z" 
+      fill="url(#t_apexGradient)"
+    />
+
+    <!-- Top Apex Highlight Spike -->
+    <polygon 
+      points="256,118 266,134 256,128 246,134" 
+      fill="#60EFFF"
+    />
+
+  </g>
+</svg>
