@@ -30,8 +30,29 @@ import { DisclaimerPage } from './pages/DisclaimerPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 export function App() {
-  const [currentPage, setCurrentPage] = useState<string>('home');
-  const [selectedBlogPostId, setSelectedBlogPostId] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname;
+      if (path.startsWith('/blog/')) {
+        return 'blog-post';
+      }
+      if (path === '/blog') {
+        return 'blog';
+      }
+    }
+    return 'home';
+  });
+
+  const [selectedBlogPostId, setSelectedBlogPostId] = useState<string | null>(() => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname;
+      if (path.startsWith('/blog/')) {
+        return path.replace('/blog/', '');
+      }
+    }
+    return null;
+  });
+
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [showLaunchScreen, setShowLaunchScreen] = useState<boolean>(() => {
     try {
@@ -41,16 +62,50 @@ export function App() {
     }
   });
 
-  const handleNavigate = (page: string) => {
-    setCurrentPage(page);
-    setSelectedBlogPostId(null);
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      if (path.startsWith('/blog/')) {
+        setSelectedBlogPostId(path.replace('/blog/', ''));
+        setCurrentPage('blog-post');
+      } else if (path === '/blog') {
+        setSelectedBlogPostId(null);
+        setCurrentPage('blog');
+      } else if (path === '/' || path === '') {
+        setSelectedBlogPostId(null);
+        setCurrentPage('home');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleNavigate = (page: string, postSlug?: string) => {
+    if (page === 'blog-post' && postSlug) {
+      setSelectedBlogPostId(postSlug);
+      setCurrentPage('blog-post');
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, '', `/blog/${postSlug}`);
+      }
+    } else if (page === 'blog') {
+      setSelectedBlogPostId(null);
+      setCurrentPage('blog');
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, '', '/blog');
+      }
+    } else {
+      setSelectedBlogPostId(null);
+      setCurrentPage(page);
+      if (typeof window !== 'undefined' && page === 'home') {
+        window.history.pushState({}, '', '/');
+      }
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectBlogPost = (postId: string) => {
-    setSelectedBlogPostId(postId);
-    setCurrentPage('blog-post');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    handleNavigate('blog-post', postId);
   };
 
   const renderPage = () => {

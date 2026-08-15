@@ -9,6 +9,7 @@ import { SmartServiceFinder } from '../components/home/SmartServiceFinder';
 import { WhyAVRX } from '../components/home/WhyAVRX';
 import { HowItWorks } from '../components/home/HowItWorks';
 import { BusinessOSPreview } from '../components/home/BusinessOSPreview';
+import { BlogSection } from '../components/blog/BlogSection';
 import { FinalCTA } from '../components/home/FinalCTA';
 import { SEO } from '../components/common/SEO';
 import { TricolourSeparator } from '../components/common/TricolourSeparator';
@@ -16,7 +17,7 @@ import { GENERAL_FAQS } from '../data/servicesData';
 import { ArrowRight, HelpCircle, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 interface HomePageProps {
-  onNavigate: (page: string) => void;
+  onNavigate: (page: string, postSlug?: string) => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
@@ -65,6 +66,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* 14. Business Command Center Preview */}
       <BusinessOSPreview />
+
+      {/* 15. Latest Insights / Blog Section */}
+      <BlogSection onNavigate={onNavigate} />
 
       {/* Tricolour Separator 4 */}
       <TricolourSeparator />
