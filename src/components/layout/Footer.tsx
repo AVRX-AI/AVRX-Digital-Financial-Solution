@@ -47,9 +47,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
   return (
     <footer className="bg-[#03060f] text-slate-300 border-t border-slate-800/80 relative overflow-hidden pt-16 pb-12">
-      {/* Background glow accents */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Background glow accents with Saffron & Green touch */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#FF9933]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#138808]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -86,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 />
                 <button
                   type="submit"
-                  className="px-6 py-3.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-sm rounded-2xl transition shadow-[0_0_20px_rgba(0,240,255,0.3)] shrink-0 flex items-center justify-center gap-2"
+                  className="btn-tricolour-hover px-6 py-3.5 bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-sm rounded-2xl transition shadow-[0_0_20px_rgba(0,240,255,0.3)] shrink-0 flex items-center justify-center gap-2"
                 >
                   <span>Subscribe</span>
                   <ArrowRight className="w-4 h-4" />
@@ -97,7 +97,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         {/* Main Footer Links Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 mb-16 text-xs sm:text-sm">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 mb-14 text-xs sm:text-sm">
           
           {/* Brand Info Column */}
           <div className="col-span-2 md:col-span-3 lg:col-span-2 space-y-4">
@@ -206,6 +206,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               Resources
             </h4>
             <ul className="space-y-2.5 text-slate-400">
+              <li><button onClick={() => handleLink('projects')} className="text-left block w-full text-cyan-300 hover:text-cyan-200 font-semibold transition">Project Showcase</button></li>
               <li><button onClick={() => handleLink('ai-tools')} className="text-left block w-full hover:text-purple-300 transition">AI Marketplace</button></li>
               <li><button onClick={() => handleLink('hosting-products')} className="text-left block w-full hover:text-purple-300 transition">Hosting & Products</button></li>
               <li><button onClick={() => handleLink('blog')} className="text-left block w-full hover:text-purple-300 transition">Blog & Strategy</button></li>
@@ -215,6 +216,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </ul>
           </div>
 
+        </div>
+
+        {/* Independence Day Dedicated Tribute Strip */}
+        <div className="my-8 py-4 px-6 rounded-2xl bg-gradient-to-r from-[#FF9933]/10 via-slate-900/90 to-[#138808]/10 border border-slate-800/80 flex flex-col sm:flex-row items-center justify-center gap-3 text-center shadow-lg">
+          <span className="text-base">🇮🇳</span>
+          <p className="text-xs sm:text-sm font-semibold tracking-wide text-slate-200">
+            Celebrating the spirit of a <span className="text-[#FF9933]">free</span>, <span className="text-white">innovative</span> & <span className="text-[#22c55e]">digital India</span>
+          </p>
+          <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-cyan-400" />
+          <span className="text-[11px] text-slate-400 font-mono">15 August 2026</span>
         </div>
 
         {/* Legal Disclaimer Box */}

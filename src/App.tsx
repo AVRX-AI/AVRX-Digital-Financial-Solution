@@ -5,6 +5,7 @@ import { Footer } from './components/layout/Footer';
 import { SearchModal } from './components/layout/SearchModal';
 import { WhatsAppButton } from './components/layout/WhatsAppButton';
 import { LoadingScreen } from './components/common/LoadingScreen';
+import { IndependenceDayAtmosphere } from './components/common/IndependenceDayAtmosphere';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -16,6 +17,7 @@ import { HostingProductsPage } from './pages/HostingProductsPage';
 import { AIToolsPage } from './pages/AIToolsPage';
 import { AllServicesPage } from './pages/AllServicesPage';
 import { PricingPage } from './pages/PricingPage';
+import { ProjectsPage } from './pages/ProjectsPage';
 import { ContactPage } from './pages/ContactPage';
 import { PartnerPage } from './pages/PartnerPage';
 import { FAQPage } from './pages/FAQPage';
@@ -72,6 +74,10 @@ export function App() {
         return <AllServicesPage onNavigate={handleNavigate} />;
       case 'pricing':
         return <PricingPage onNavigate={handleNavigate} />;
+      case 'projects':
+      case 'portfolio':
+      case 'showcase':
+        return <ProjectsPage onNavigate={handleNavigate} />;
       case 'contact':
         return <ContactPage />;
       case 'partner':
@@ -109,9 +115,12 @@ export function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-[#050811] font-sans text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-slate-950">
+      <div className="min-h-screen bg-[#050811] font-sans text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-slate-950 relative">
         
-        {/* Sticky Glassmorphic Navbar */}
+        {/* Independence Day Global Ambient Particles & Initial Entry Wave */}
+        <IndependenceDayAtmosphere />
+
+        {/* Sticky Glassmorphic Navbar with Tricolour Accent */}
         <Navbar
           activePage={currentPage}
           onNavigate={handleNavigate}
@@ -133,14 +142,14 @@ export function App() {
         />
 
         {/* Active Route Screen */}
-        <main className="flex-grow">
+        <main className="flex-grow relative z-10">
           {renderPage()}
         </main>
 
         {/* Floating WhatsApp CTA */}
         <WhatsAppButton />
 
-        {/* Global Footer */}
+        {/* Global Footer with Tribute Line */}
         <Footer onNavigate={handleNavigate} />
 
       </div>

@@ -68,26 +68,38 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#050811]/90 backdrop-blur-xl border-b border-slate-800/80 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)]'
+          ? 'bg-[#050811]/92 backdrop-blur-xl border-b border-slate-800/80 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.5)]'
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      {/* Tiny Subtle Tricolour Line Accent under the Navbar */}
+      <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#FF9933]/50 via-white/60 via-[#138808]/50 to-transparent opacity-75" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between relative">
         
-        {/* Brand Logo */}
-        <button
-          onClick={() => handleNav('home')}
-          className="flex items-center group focus:outline-none py-1"
-        >
-          <div className="relative rounded-xl p-1 bg-[#050811]/90 border border-slate-700/80 shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-all duration-300 group-hover:scale-105 group-hover:border-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-            <img
-              src={brandLogo}
-              alt="AVRX Digital & Financial Solution Logo"
-              className="h-9 sm:h-11 md:h-12 w-auto object-contain rounded-lg brightness-110"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-        </button>
+        {/* Brand Logo & Independence Micro-Badge */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => handleNav('home')}
+            className="flex items-center group focus:outline-none py-1"
+          >
+            <div className="relative rounded-xl p-1 bg-[#050811]/90 border border-slate-700/80 shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-all duration-300 group-hover:scale-105 group-hover:border-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+              <img
+                src={brandLogo}
+                alt="AVRX Digital & Financial Solution Logo"
+                className="h-9 sm:h-11 md:h-12 w-auto object-contain rounded-lg brightness-110"
+                referrerPolicy="no-referrer"
+              />
+              
+              {/* Subtle Tricolour Dot near logo */}
+              <div className="absolute -top-1 -right-1 flex items-center gap-0.5 p-0.5 rounded-full bg-slate-950 border border-slate-700 shadow-sm" title="Celebrating India's Independence">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF9933]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#138808]" />
+              </div>
+            </div>
+          </button>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
@@ -151,6 +163,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
           >
             <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
             <span>{t('nav.ai_tools')}</span>
+          </button>
+
+          <button
+            onClick={() => handleNav('projects')}
+            className={`hover:text-cyan-400 transition ${activePage === 'projects' ? 'text-cyan-400 font-semibold' : ''}`}
+          >
+            Projects
           </button>
 
           <button
@@ -227,10 +246,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
             <span>{t('nav.talk_expert')}</span>
           </button>
 
-          {/* Primary CTA: Get Started */}
+          {/* Primary CTA: Get Started with subtle Tricolour sweep on hover */}
           <button
             onClick={() => handleNav('contact')}
-            className="px-4 py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 hover:brightness-110 rounded-xl shadow-[0_0_20px_rgba(0,240,255,0.4)] transition transform hover:scale-105 active:scale-95"
+            className="btn-tricolour-hover px-4 py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 hover:brightness-110 rounded-xl shadow-[0_0_20px_rgba(0,240,255,0.4)] transition transform hover:scale-105 active:scale-95"
           >
             {t('nav.get_started')}
           </button>
@@ -316,6 +335,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
               >
                 <Sparkles className="w-4 h-4 text-cyan-400" />
                 <span>{t('nav.ai_tools')}</span>
+              </button>
+
+              <button
+                onClick={() => handleNav('projects')}
+                className={`text-left p-3 rounded-xl font-medium text-base ${activePage === 'projects' ? 'bg-cyan-500/10 text-cyan-400 font-semibold' : 'text-slate-200'}`}
+              >
+                Projects Showcase
               </button>
 
               <button

@@ -85,21 +85,30 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ onNavigate }) => {
           </p>
         </div>
 
-        {/* 5 Solution Cards Grid */}
+        {/* 5 Solution Cards Grid with Independence Day subtle hover accents */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {solutions.map(sol => (
             <div
               key={sol.num}
               onClick={() => onNavigate(sol.page)}
-              className={`group relative bg-slate-900/80 border border-slate-800 ${sol.borderColor} rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1.5 shadow-xl hover:shadow-2xl cursor-pointer flex flex-col justify-between overflow-hidden`}
+              className={`tricolour-card group relative bg-slate-900/80 border border-slate-800 hover:border-slate-700 rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1.5 shadow-xl hover:shadow-2xl cursor-pointer flex flex-col justify-between overflow-hidden`}
             >
-              {/* Background gradient glow on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-b ${sol.colorGlow} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`} />
+              {/* Independence Day Hover Layer 1: Top Saffron Subtle Glow */}
+              <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#FF9933]/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-              <div>
+              {/* Independence Day Hover Layer 2: White central diagonal shimmer beam */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              {/* Independence Day Hover Layer 3: Bottom Green Subtle Glow */}
+              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#138808]/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+              {/* Existing Category Glow overlay */}
+              <div className={`absolute inset-0 bg-gradient-to-b ${sol.colorGlow} opacity-0 group-hover:opacity-40 transition-opacity duration-300 pointer-events-none`} />
+
+              <div className="relative z-10">
                 {/* Top Badge & Number */}
                 <div className="flex items-center justify-between mb-6">
-                  <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 shadow-inner group-hover:scale-110 transition-transform">
+                  <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 shadow-inner group-hover:scale-110 group-hover:border-slate-700 transition-transform">
                     {sol.icon}
                   </div>
                   <span className={`text-2xl font-black font-mono ${sol.textColor} opacity-60`}>
@@ -128,13 +137,13 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ onNavigate }) => {
                 </div>
               </div>
 
-              {/* Bottom Explore CTA Button */}
+              {/* Bottom Explore CTA Button with subtle tricolour sweep on hover */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   onNavigate(sol.page);
                 }}
-                className={`w-full py-3.5 px-4 rounded-2xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-xs font-bold text-white flex items-center justify-between group-hover:border-cyan-500/40 transition`}
+                className={`btn-tricolour-hover relative z-10 w-full py-3.5 px-4 rounded-2xl bg-slate-950 hover:bg-slate-850 border border-slate-800 text-xs font-bold text-white flex items-center justify-between group-hover:border-cyan-500/40 transition`}
               >
                 <span>Explore {sol.title}</span>
                 <ArrowRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1 transition" />
@@ -146,9 +155,13 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ onNavigate }) => {
           {/* 6th Card: All Services Hub Callout */}
           <div
             onClick={() => onNavigate('services')}
-            className="group relative bg-gradient-to-br from-blue-900/30 via-slate-900 to-slate-950 border border-cyan-500/30 hover:border-cyan-400 rounded-3xl p-8 flex flex-col justify-between cursor-pointer shadow-2xl transition hover:-translate-y-1.5"
+            className="tricolour-card group relative bg-gradient-to-br from-blue-900/30 via-slate-900 to-slate-950 border border-cyan-500/30 hover:border-cyan-400 rounded-3xl p-8 flex flex-col justify-between cursor-pointer shadow-2xl transition hover:-translate-y-1.5 overflow-hidden"
           >
-            <div>
+            {/* Saffron & Green subtle hover hints */}
+            <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-[#FF9933]/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#138808]/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+            <div className="relative z-10">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold mb-6">
                 <span>FULL DIRECTORY</span>
               </div>
@@ -165,7 +178,7 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ onNavigate }) => {
                 e.stopPropagation();
                 onNavigate('services');
               }}
-              className="mt-8 w-full py-4 px-6 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-slate-950 font-bold text-sm rounded-2xl shadow-[0_0_25px_rgba(0,240,255,0.4)] flex items-center justify-between group-hover:scale-105 transition"
+              className="btn-tricolour-hover relative z-10 mt-8 w-full py-4 px-6 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-slate-950 font-bold text-sm rounded-2xl shadow-[0_0_25px_rgba(0,240,255,0.4)] flex items-center justify-between group-hover:scale-105 transition"
             >
               <span>View All 50+ Services</span>
               <ArrowRight className="w-4 h-4" />

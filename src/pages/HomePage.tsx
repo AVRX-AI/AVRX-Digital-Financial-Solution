@@ -2,6 +2,7 @@ import React from 'react';
 import { Hero } from '../components/home/Hero';
 import { AIAssistantSection } from '../components/home/AIAssistantSection';
 import { SolutionsGrid } from '../components/home/SolutionsGrid';
+import { ProjectShowcaseSection } from '../components/showcase/ProjectShowcaseSection';
 import { HealthCheckerSection } from '../components/home/HealthCheckerSection';
 import { AIToolsSuiteSection } from '../components/home/AIToolsSuiteSection';
 import { SmartServiceFinder } from '../components/home/SmartServiceFinder';
@@ -10,6 +11,7 @@ import { HowItWorks } from '../components/home/HowItWorks';
 import { BusinessOSPreview } from '../components/home/BusinessOSPreview';
 import { FinalCTA } from '../components/home/FinalCTA';
 import { SEO } from '../components/common/SEO';
+import { TricolourSeparator } from '../components/common/TricolourSeparator';
 import { GENERAL_FAQS } from '../data/servicesData';
 import { ArrowRight, HelpCircle, CheckCircle2, ShieldCheck } from 'lucide-react';
 
@@ -25,8 +27,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         description="AVRX helps individuals and businesses build, grow, protect and manage their digital and financial future with modern technology-driven solutions."
       />
 
-      {/* 2. Hero + 3D AI Core */}
+      {/* 2. Hero + 3D AI Core + Independence Day Aura */}
       <Hero onNavigate={onNavigate} />
+
+      {/* Tricolour Separator 1 */}
+      <TricolourSeparator />
 
       {/* 3. AVRX AI Assistant */}
       <AIAssistantSection />
@@ -34,8 +39,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 4. Solution Categories */}
       <SolutionsGrid onNavigate={onNavigate} />
 
+      {/* Tricolour Separator 2 */}
+      <TricolourSeparator />
+
+      {/* 5. Interactive Projects Showcase */}
+      <ProjectShowcaseSection onNavigate={onNavigate} />
+
       {/* 10. Website Health Checker */}
       <HealthCheckerSection onNavigate={onNavigate} />
+
+      {/* Tricolour Separator 3 */}
+      <TricolourSeparator />
 
       {/* 10b. Interactive AI Multi-Tool Suite */}
       <AIToolsSuiteSection onNavigate={onNavigate} />
@@ -51,6 +65,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* 14. Business Command Center Preview */}
       <BusinessOSPreview />
+
+      {/* Tricolour Separator 4 */}
+      <TricolourSeparator />
 
       {/* FAQ Highlights Section */}
       <section className="py-20 bg-[#070b16] border-t border-slate-800/80">
