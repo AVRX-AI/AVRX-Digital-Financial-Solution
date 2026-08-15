@@ -8,9 +8,10 @@ interface NavbarProps {
   activePage: string;
   onNavigate: (page: string) => void;
   onOpenSearch: () => void;
+  onReplayLaunch?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSearch }) => {
+export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSearch, onReplayLaunch }) => {
   const { theme, toggleTheme, language, setLanguage, t } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -203,6 +204,18 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
 
         {/* Right Tools & Action Buttons */}
         <div className="hidden lg:flex items-center gap-3">
+          {/* Replay Launch Experience button */}
+          {onReplayLaunch && (
+            <button
+              onClick={onReplayLaunch}
+              className="px-2.5 py-1.5 rounded-xl bg-slate-900/90 border border-[#FF9933]/30 hover:border-cyan-400 text-xs font-semibold text-slate-300 hover:text-white transition flex items-center gap-1.5 shadow-[0_0_10px_rgba(255,153,51,0.15)] group"
+              title="Replay 15 August Launch Experience"
+            >
+              <span className="text-sm group-hover:-translate-y-0.5 transition-transform">🚀</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF9933] via-white to-[#138808]">Launch Show</span>
+            </button>
+          )}
+
           {/* Search Trigger */}
           <button
             onClick={onOpenSearch}

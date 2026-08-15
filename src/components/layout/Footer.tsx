@@ -5,9 +5,10 @@ import brandLogo from '../../assets/images/avrx_white_logo_1786467039540.jpg';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
+  onReplayLaunch?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onReplayLaunch }) => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -219,13 +220,25 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         {/* Independence Day Dedicated Tribute Strip */}
-        <div className="my-8 py-4 px-6 rounded-2xl bg-gradient-to-r from-[#FF9933]/10 via-slate-900/90 to-[#138808]/10 border border-slate-800/80 flex flex-col sm:flex-row items-center justify-center gap-3 text-center shadow-lg">
-          <span className="text-base">🇮🇳</span>
-          <p className="text-xs sm:text-sm font-semibold tracking-wide text-slate-200">
-            Celebrating the spirit of a <span className="text-[#FF9933]">free</span>, <span className="text-white">innovative</span> & <span className="text-[#22c55e]">digital India</span>
-          </p>
-          <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-cyan-400" />
-          <span className="text-[11px] text-slate-400 font-mono">15 August 2026</span>
+        <div className="my-8 py-4 px-6 rounded-2xl bg-gradient-to-r from-[#FF9933]/10 via-slate-900/90 to-[#138808]/10 border border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-center shadow-lg">
+          <div className="flex flex-col sm:flex-row items-center gap-2">
+            <span className="text-base">🇮🇳</span>
+            <p className="text-xs sm:text-sm font-semibold tracking-wide text-slate-200">
+              Celebrating the spirit of a <span className="text-[#FF9933]">free</span>, <span className="text-white">innovative</span> & <span className="text-[#22c55e]">digital India</span>
+            </p>
+            <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            <span className="text-[11px] text-slate-400 font-mono">15 August 2026</span>
+          </div>
+
+          {onReplayLaunch && (
+            <button
+              onClick={onReplayLaunch}
+              className="px-3 py-1.5 rounded-xl bg-slate-950/80 border border-[#FF9933]/30 hover:border-cyan-400 text-xs font-semibold text-slate-200 hover:text-white transition flex items-center gap-1.5 shadow-[0_0_12px_rgba(255,153,51,0.15)] group"
+            >
+              <span className="text-sm group-hover:-translate-y-0.5 transition-transform">🚀</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF9933] via-white to-[#138808]">Replay Launch Show</span>
+            </button>
+          )}
         </div>
 
         {/* Legal Disclaimer Box */}

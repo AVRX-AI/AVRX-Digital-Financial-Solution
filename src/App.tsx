@@ -4,8 +4,8 @@ import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { SearchModal } from './components/layout/SearchModal';
 import { WhatsAppButton } from './components/layout/WhatsAppButton';
-import { LoadingScreen } from './components/common/LoadingScreen';
 import { IndependenceDayAtmosphere } from './components/common/IndependenceDayAtmosphere';
+import { AVRXLaunchScreen } from './components/common/AVRXLaunchScreen';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -33,14 +33,13 @@ export function App() {
   const [currentPage, setCurrentPage] = useState<string>('home');
   const [selectedBlogPostId, setSelectedBlogPostId] = useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
-  const [initialLoading, setInitialLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setInitialLoading(false);
-    }, 1200);
-    return () => clearTimeout(timer);
-  }, []);
+  const [showLaunchScreen, setShowLaunchScreen] = useState<boolean>(() => {
+    try {
+      return sessionStorage.getItem('avrx_launch_completed') !== 'true';
+    } catch {
+      return true;
+    }
+  });
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page);
@@ -109,22 +108,24 @@ export function App() {
     }
   };
 
-  if (initialLoading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-[#050811] font-sans text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-slate-950 relative">
         
+        {/* 1. Cinematic Interactive Launch Experience Screen */}
+        {showLaunchScreen && (
+          <AVRXLaunchScreen onComplete={() => setShowLaunchScreen(false)} />
+        )}
+
         {/* Independence Day Global Ambient Particles & Initial Entry Wave */}
         <IndependenceDayAtmosphere />
 
-        {/* Sticky Glassmorphic Navbar with Tricolour Accent */}
+        {/* Sticky Glassmorphic Navbar with Tricolour Accent & Replay Launch button */}
         <Navbar
           activePage={currentPage}
           onNavigate={handleNavigate}
           onOpenSearch={() => setIsSearchOpen(true)}
+          onReplayLaunch={() => setShowLaunchScreen(true)}
         />
 
         {/* Global Live Search Modal */}
@@ -150,7 +151,7 @@ export function App() {
         <WhatsAppButton />
 
         {/* Global Footer with Tribute Line */}
-        <Footer onNavigate={handleNavigate} />
+        <Footer onNavigate={handleNavigate} onReplayLaunch={() => setShowLaunchScreen(true)} />
 
       </div>
     </ThemeProvider>
