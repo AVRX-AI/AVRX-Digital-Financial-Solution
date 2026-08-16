@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { SITE_CONFIG } from '../config';
 import { SEO } from '../components/common/SEO';
-import { Mail, Phone, MapPin, Send, CheckCircle2, RefreshCw, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, RefreshCw, MessageSquare, ShieldCheck, Clock } from 'lucide-react';
+import { submitLeadForm } from '../utils/formSubmit';
+import { SubmissionFeedbackModal } from '../components/common/SubmissionFeedbackModal';
 
 export const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -14,54 +16,62 @@ export const ContactPage: React.FC = () => {
     website_hp: '' // Honeypot field for spambots
   });
   const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [feedback, setFeedback] = useState<{
+    isOpen: boolean;
+    type: 'success' | 'error';
+    leadId?: string;
+    message?: string;
+  }>({
+    isOpen: false,
+    type: 'success'
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (loading) return;
 
     setErrorMessage('');
-
-    // Client-side validation
-    if (!formData.name.trim()) {
-      setErrorMessage('Please enter your full name.');
-      return;
-    }
-    const cleanDigits = formData.phone.replace(/\D/g, '');
-    if (cleanDigits.length < 10) {
-      setErrorMessage('Please enter a valid 10-digit phone number.');
-      return;
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email.trim())) {
-      setErrorMessage('Please enter a valid email address.');
-      return;
-    }
-
     setLoading(true);
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          sourcePage: 'Contact Us Page'
-        })
+    const result = await submitLeadForm({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      location: formData.location,
+      serviceCategory: formData.serviceCategory,
+      subject: `Website Inquiry — ${formData.serviceCategory}`,
+      message: formData.message,
+      sourcePage: 'Contact Us Page',
+      formType: 'Main Contact Form',
+      website_hp: formData.website_hp
+    });
+
+    setLoading(false);
+
+    if (result.success) {
+      setFeedback({
+        isOpen: true,
+        type: 'success',
+        leadId: result.leadId,
+        message: result.message
       });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        setSubmitted(true);
-      } else {
-        setErrorMessage(data.error || 'Unable to submit your enquiry right now. Please try again or contact us directly.');
-      }
-    } catch (err) {
-      setErrorMessage('Unable to submit your enquiry right now. Please try again or contact us directly.');
-    } finally {
-      setLoading(false);
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        location: '',
+        serviceCategory: 'Digital Solutions',
+        message: '',
+        website_hp: ''
+      });
+    } else {
+      setErrorMessage(result.message || 'Unable to submit your enquiry right now.');
+      setFeedback({
+        isOpen: true,
+        type: 'error',
+        message: result.message
+      });
     }
   };
 
@@ -146,156 +156,153 @@ export const ContactPage: React.FC = () => {
 
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 text-xs text-slate-400 flex items-center gap-3">
-              <MessageSquare className="w-5 h-5 text-cyan-400 shrink-0" />
-              <span>Need instant response? Click the floating WhatsApp button on the bottom right to chat directly.</span>
+            <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 text-xs text-slate-400 space-y-2">
+              <div className="flex items-center gap-2 text-cyan-400 font-bold">
+                <ShieldCheck className="w-4 h-4" />
+                <span>Instant Confirmation &amp; Privacy Guaranteed</span>
+              </div>
+              <p>Every submission is delivered straight to our domain specialists. You will receive an instant email receipt with your lead reference ID.</p>
             </div>
           </div>
 
           {/* Right Lead Gen Form */}
           <div className="lg:col-span-7 bg-slate-900/90 border border-slate-800 rounded-3xl p-8 sm:p-10 shadow-2xl">
-            {submitted ? (
-              <div className="text-center py-12 space-y-4 animate-in fade-in duration-300">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
-                <h3 className="text-2xl font-bold text-white">Inquiry Received Successfully!</h3>
-                <p className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
-                  Thank you for contacting AVRX. An assigned domain specialist will review your requirements and reach out via phone/email shortly.
-                </p>
-                <button
-                  onClick={() => {
-                    setSubmitted(false);
-                    setFormData({ name: '', phone: '', email: '', location: '', serviceCategory: 'Digital Solutions', message: '', website_hp: '' });
-                  }}
-                  className="mt-4 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white rounded-xl transition"
-                >
-                  Send Another Inquiry
-                </button>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl sm:text-2xl font-bold text-white">Request Expert Consultation</h3>
+                <span className="text-xs text-cyan-400 flex items-center gap-1 font-mono">
+                  <Clock className="w-3.5 h-3.5" /> 2-Hour Response
+                </span>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <h3 className="text-xl font-bold text-white">Request Expert Consultation</h3>
 
-                {/* Hidden Honeypot Field */}
-                <input
-                  type="text"
-                  name="website_hp"
-                  value={formData.website_hp}
-                  onChange={e => setFormData({ ...formData, website_hp: e.target.value })}
-                  style={{ display: 'none' }}
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
+              {/* Hidden Honeypot Field */}
+              <input
+                type="text"
+                name="website_hp"
+                value={formData.website_hp}
+                onChange={e => setFormData({ ...formData, website_hp: e.target.value })}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
 
-                {errorMessage && (
-                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs font-semibold">
-                    {errorMessage}
-                  </div>
-                )}
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 uppercase">Full Name *</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={e => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Rahul Sharma"
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 uppercase">Phone / WhatsApp Number *</label>
-                    <input
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+91 98765 43210"
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
+              {errorMessage && (
+                <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs font-semibold">
+                  {errorMessage}
                 </div>
+              )}
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 uppercase">Email Address *</label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={e => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="rahul@example.com"
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-semibold text-slate-300 uppercase">City / State</label>
-                    <input
-                      type="text"
-                      value={formData.location}
-                      onChange={e => setFormData({ ...formData, location: e.target.value })}
-                      placeholder="e.g. Mumbai, Maharashtra"
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
-                    />
-                  </div>
-                </div>
-
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 uppercase">Service Category Interest</label>
-                  <select
-                    value={formData.serviceCategory}
-                    onChange={e => setFormData({ ...formData, serviceCategory: e.target.value })}
+                  <label className="text-xs font-semibold text-slate-300 uppercase">Full Name *</label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={e => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="e.g. Rahul Sharma"
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
-                  >
-                    <option value="Digital Solutions">Digital Solutions (Website, App, SEO)</option>
-                    <option value="Financial Solutions">Financial Solutions (Personal/Business Loan)</option>
-                    <option value="Tax Solutions">Tax Solutions (GST, ITR, Udyam)</option>
-                    <option value="Insurance Solutions">Insurance Solutions (Motor, Health, Property)</option>
-                    <option value="Digital Products & Hosting">Hosting & Digital Products</option>
-                    <option value="AI Tools">AI Business Tools</option>
-                  </select>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 uppercase">Message / Requirements</label>
-                  <textarea
-                    rows={4}
-                    value={formData.message}
-                    onChange={e => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Describe your project, loan requirement, or tax questions..."
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-cyan-400"
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-slate-950 font-bold text-sm rounded-2xl shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:scale-105 transition flex items-center justify-center gap-2"
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-300 uppercase">Phone / WhatsApp Number *</label>
+                  <input
+                    type="tel"
+                    required
+                    value={formData.phone}
+                    onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="+91 98765 43210"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-300 uppercase">Email Address *</label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={e => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="rahul@example.com"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-300 uppercase">City / State</label>
+                  <input
+                    type="text"
+                    value={formData.location}
+                    onChange={e => setFormData({ ...formData, location: e.target.value })}
+                    placeholder="e.g. Mumbai, Maharashtra"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-slate-300 uppercase">Service Category Interest</label>
+                <select
+                  value={formData.serviceCategory}
+                  onChange={e => setFormData({ ...formData, serviceCategory: e.target.value })}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
                 >
-                  {loading ? (
-                    <>
-                      <RefreshCw className="w-4 h-4 animate-spin" />
-                      <span>Submitting Inquiry...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4" />
-                      <span>Submit Inquiry to AVRX</span>
-                    </>
-                  )}
-                </button>
-              </form>
-            )}
+                  <option value="Digital Solutions">Digital Solutions (Website, App, SEO)</option>
+                  <option value="Personal & Business Loans">Personal &amp; Business Loans (Financial Solutions)</option>
+                  <option value="GST & Income Tax Filing">GST, ITR, Udyam &amp; Company Registration</option>
+                  <option value="Motor & Health Insurance">Motor &amp; Health Insurance</option>
+                  <option value="Cloud Web Hosting">Cloud Web Hosting &amp; Domain Management</option>
+                  <option value="Next-Gen AI Interactive Suite">Next-Gen AI Tools &amp; Automation</option>
+                </select>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-slate-300 uppercase">Message / Requirements</label>
+                <textarea
+                  rows={4}
+                  value={formData.message}
+                  onChange={e => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Describe your project, loan requirement, or tax questions..."
+                  className="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-cyan-400"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-slate-950 font-bold text-sm rounded-2xl shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:scale-[1.02] transition flex items-center justify-center gap-2 cursor-pointer"
+              >
+                {loading ? (
+                  <>
+                    <RefreshCw className="w-4 h-4 animate-spin" />
+                    <span>Submitting &amp; Sending Emails...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    <span>Submit Inquiry to AVRX</span>
+                  </>
+                )}
+              </button>
+            </form>
           </div>
 
         </div>
 
       </div>
+
+      <SubmissionFeedbackModal
+        isOpen={feedback.isOpen}
+        type={feedback.type}
+        leadId={feedback.leadId}
+        message={feedback.message}
+        onClose={() => setFeedback(prev => ({ ...prev, isOpen: false }))}
+        onRetry={() => setFeedback(prev => ({ ...prev, isOpen: false }))}
+      />
     </div>
   );
 };
+

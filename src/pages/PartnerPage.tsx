@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { SEO } from '../components/common/SEO';
-import { Users, Handshake, CheckCircle2, ArrowRight, RefreshCw, Send, DollarSign, Building } from 'lucide-react';
+import { Users, Handshake, CheckCircle2, ArrowRight, RefreshCw, Send, DollarSign, Building, ShieldCheck } from 'lucide-react';
+import { submitLeadForm } from '../utils/formSubmit';
+import { SubmissionFeedbackModal } from '../components/common/SubmissionFeedbackModal';
 
 export const PartnerPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -13,50 +15,67 @@ export const PartnerPage: React.FC = () => {
     website_hp: ''
   });
   const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [feedback, setFeedback] = useState<{
+    isOpen: boolean;
+    type: 'success' | 'error';
+    leadId?: string;
+    message?: string;
+  }>({
+    isOpen: false,
+    type: 'success'
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (loading) return;
 
     setErrorMessage('');
-
-    if (!formData.name.trim()) {
-      setErrorMessage('Please enter your full name.');
-      return;
-    }
-    const cleanDigits = formData.phone.replace(/\D/g, '');
-    if (cleanDigits.length < 10) {
-      setErrorMessage('Please enter a valid 10-digit mobile number.');
-      return;
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email.trim())) {
-      setErrorMessage('Please enter a valid email address.');
-      return;
-    }
-
     setLoading(true);
 
-    try {
-      const response = await fetch('/api/partner', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        setSubmitted(true);
-      } else {
-        setErrorMessage(data.error || 'Unable to submit your application right now. Please try again or contact us directly.');
+    const result = await submitLeadForm({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      city: formData.city,
+      location: formData.city,
+      serviceCategory: `Partner Application — ${formData.partnerType}`,
+      subject: `AVRX Channel Partner Application — ${formData.name}`,
+      message: formData.experience ? `Experience/Background: ${formData.experience}` : 'Partner Application Submitted',
+      sourcePage: 'Partner With Us Page',
+      formType: 'Partner Application Form',
+      website_hp: formData.website_hp,
+      additionalFields: {
+        'Partnership Model': formData.partnerType,
+        'Experience & Background': formData.experience || 'Not specified'
       }
-    } catch (err) {
-      setErrorMessage('Unable to submit your application right now. Please try again or contact us directly.');
-    } finally {
-      setLoading(false);
+    });
+
+    setLoading(false);
+
+    if (result.success) {
+      setFeedback({
+        isOpen: true,
+        type: 'success',
+        leadId: result.leadId,
+        message: result.message
+      });
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        city: '',
+        partnerType: 'Referral Partner / Agent',
+        experience: '',
+        website_hp: ''
+      });
+    } else {
+      setErrorMessage(result.message || 'Unable to submit your application right now.');
+      setFeedback({
+        isOpen: true,
+        type: 'error',
+        message: result.message
+      });
     }
   };
 
@@ -130,135 +149,138 @@ export const PartnerPage: React.FC = () => {
 
         {/* Partner Application Form */}
         <div className="max-w-3xl mx-auto bg-slate-900/90 border border-slate-800 rounded-3xl p-8 sm:p-10 shadow-2xl">
-          {submitted ? (
-            <div className="text-center py-10 space-y-4">
-              <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
-              <h3 className="text-2xl font-bold text-white">Partner Application Submitted!</h3>
-              <p className="text-slate-300 text-sm">
-                Our partner relations team will evaluate your profile and contact you within 24 hours.
-              </p>
-              <button
-                onClick={() => {
-                  setSubmitted(false);
-                  setFormData({ name: '', phone: '', email: '', city: '', partnerType: 'Referral Partner / Agent', experience: '', website_hp: '' });
-                }}
-                className="mt-4 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white rounded-xl transition"
-              >
-                Submit Another Application
-              </button>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="text-center space-y-1">
+              <h3 className="text-2xl font-bold text-white">Apply for AVRX Partnership</h3>
+              <p className="text-xs text-slate-400">Receive instant confirmation on email and phone.</p>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <h3 className="text-2xl font-bold text-white text-center">Apply for AVRX Partnership</h3>
 
-              {/* Hidden Honeypot Field */}
-              <input
-                type="text"
-                name="website_hp"
-                value={formData.website_hp}
-                onChange={e => setFormData({ ...formData, website_hp: e.target.value })}
-                style={{ display: 'none' }}
-                tabIndex={-1}
-                autoComplete="off"
-              />
+            {/* Hidden Honeypot Field */}
+            <input
+              type="text"
+              name="website_hp"
+              value={formData.website_hp}
+              onChange={e => setFormData({ ...formData, website_hp: e.target.value })}
+              style={{ display: 'none' }}
+              tabIndex={-1}
+              autoComplete="off"
+            />
 
-              {errorMessage && (
-                <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs font-semibold">
-                  {errorMessage}
-                </div>
-              )}
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 uppercase">Your Name *</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={e => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Full name"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-400"
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 uppercase">Phone Number *</label>
-                  <input
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="+91 98765 43210"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-400"
-                  />
-                </div>
+            {errorMessage && (
+              <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs font-semibold">
+                {errorMessage}
               </div>
+            )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 uppercase">Email Address *</label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={e => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="partner@example.com"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-400"
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 uppercase">City & State *</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.city}
-                    onChange={e => setFormData({ ...formData, city: e.target.value })}
-                    placeholder="e.g. Pune, Maharashtra"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-400"
-                  />
-                </div>
-              </div>
-
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-300 uppercase">Partnership Type</label>
-                <select
-                  value={formData.partnerType}
-                  onChange={e => setFormData({ ...formData, partnerType: e.target.value })}
+                <label className="text-xs font-semibold text-slate-300 uppercase">Your Name *</label>
+                <input
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={e => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="Full name"
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-400"
-                >
-                  <option value="Referral Partner / Agent">Referral Partner / Agent</option>
-                  <option value="Loan DSA / Financial Consultant">Loan DSA / Financial Consultant</option>
-                  <option value="City Franchise Center">City Franchise Center</option>
-                  <option value="CA / Tax Advocate Partner">CA / Tax Advocate Partner</option>
-                  <option value="Technology / Software Affiliate">Technology / Software Affiliate</option>
-                </select>
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-300 uppercase">Brief Background / Experience</label>
-                <textarea
-                  rows={3}
-                  value={formData.experience}
-                  onChange={e => setFormData({ ...formData, experience: e.target.value })}
-                  placeholder="Tell us briefly about your network or current business..."
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-emerald-400"
                 />
               </div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full py-4 bg-gradient-to-r from-emerald-400 to-cyan-500 text-slate-950 font-bold text-sm rounded-2xl shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:scale-105 transition flex items-center justify-center gap-2"
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-slate-300 uppercase">Phone Number *</label>
+                <input
+                  type="tel"
+                  required
+                  value={formData.phone}
+                  onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="+91 98765 43210"
+                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-400"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-slate-300 uppercase">Email Address *</label>
+                <input
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={e => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="partner@example.com"
+                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-400"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-slate-300 uppercase">City &amp; State *</label>
+                <input
+                  type="text"
+                  required
+                  value={formData.city}
+                  onChange={e => setFormData({ ...formData, city: e.target.value })}
+                  placeholder="e.g. Pune, Maharashtra"
+                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-400"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-semibold text-slate-300 uppercase">Partnership Type</label>
+              <select
+                value={formData.partnerType}
+                onChange={e => setFormData({ ...formData, partnerType: e.target.value })}
+                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-400"
               >
-                {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
-                <span>Submit Partner Application</span>
-              </button>
-            </form>
-          )}
+                <option value="Referral Partner / Agent">Referral Partner / Agent</option>
+                <option value="Loan DSA / Financial Consultant">Loan DSA / Financial Consultant</option>
+                <option value="City Franchise Center">City Franchise Center</option>
+                <option value="CA / Tax Advocate Partner">CA / Tax Advocate Partner</option>
+                <option value="Technology / Software Affiliate">Technology / Software Affiliate</option>
+              </select>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-semibold text-slate-300 uppercase">Brief Background / Experience</label>
+              <textarea
+                rows={3}
+                value={formData.experience}
+                onChange={e => setFormData({ ...formData, experience: e.target.value })}
+                placeholder="Tell us briefly about your network or current business..."
+                className="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-emerald-400"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-4 bg-gradient-to-r from-emerald-400 to-cyan-500 text-slate-950 font-bold text-sm rounded-2xl shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:scale-[1.02] transition flex items-center justify-center gap-2 cursor-pointer"
+            >
+              {loading ? (
+                <>
+                  <RefreshCw className="w-4 h-4 animate-spin" />
+                  <span>Submitting Application...</span>
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4" />
+                  <span>Submit Partner Application</span>
+                </>
+              )}
+            </button>
+          </form>
         </div>
 
       </div>
+
+      <SubmissionFeedbackModal
+        isOpen={feedback.isOpen}
+        type={feedback.type}
+        leadId={feedback.leadId}
+        message={feedback.message}
+        onClose={() => setFeedback(prev => ({ ...prev, isOpen: false }))}
+        onRetry={() => setFeedback(prev => ({ ...prev, isOpen: false }))}
+      />
     </div>
   );
 };
+
