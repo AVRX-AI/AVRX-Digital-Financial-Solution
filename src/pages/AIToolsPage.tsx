@@ -14,6 +14,9 @@ import { TextToImageTool } from '../components/tools/TextToImageTool';
 import { ChatWithPdfTool } from '../components/tools/ChatWithPdfTool';
 import { UniversalAiToolRunner } from '../components/tools/UniversalAiToolRunner';
 import { WordToPdfTool } from '../components/tools/WordToPdfTool';
+import { PdfToWordTool } from '../components/tools/PdfToWordTool';
+import { PdfToJpgTool } from '../components/tools/PdfToJpgTool';
+import { JpgToPdfTool } from '../components/tools/JpgToPdfTool';
 import { PdfEditorTool } from '../components/tools/PdfEditorTool';
 import { WebsiteAuditTool } from '../components/tools/WebsiteAuditTool';
 import { LoanEmiCalculatorTool } from '../components/tools/LoanEmiCalculatorTool';
@@ -156,6 +159,14 @@ export const AIToolsPage: React.FC = () => {
         return <ChatWithPdfTool />;
       case 'word-to-pdf':
         return <WordToPdfTool />;
+      case 'pdf-to-word':
+        return <PdfToWordTool />;
+      case 'pdf-to-jpg':
+        return <PdfToJpgTool />;
+      case 'jpg-to-pdf':
+        return <JpgToPdfTool />;
+      case 'image-compressor':
+        return <ImageCompressorTool />;
       case 'pdf-editor':
         return <PdfEditorTool />;
       case 'website-health-checker':
@@ -177,6 +188,12 @@ export const AIToolsPage: React.FC = () => {
         return <JsonFormatterTool />;
       case 'text-counter':
         return <TextCounterTool />;
+      case 'password-generator':
+        return <PasswordGeneratorTool />;
+      case 'age-calculator':
+        return <AgeCalculatorTool />;
+      case 'qr-code-generator':
+        return <QrCodeGeneratorTool />;
       default:
         return <UniversalAiToolRunner tool={tool} onSelectRelatedTool={id => setActiveToolId(id)} />;
     }
