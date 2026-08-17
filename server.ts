@@ -741,11 +741,24 @@ app.post("/api/tools/ai-image", async (req: Request, res: Response) => {
   }
 });
 
-// 5. Universal Client Form Email Endpoint (/api/send-form-email, /api/contact, /api/enquiry)
+// 5. Centralized Universal Form Email Endpoint (/api/submit-form, /api/send-form-email, /api/contact, /api/enquiry, /api/partner)
+function getDeviceType(userAgent: string = ''): string {
+  const ua = userAgent.toLowerCase();
+  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+    return 'Tablet';
+  }
+  if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/i.test(ua)) {
+    return 'Mobile Device';
+  }
+  return 'Desktop Browser';
+}
+
 const handleLeadSubmission = async (req: Request, res: Response) => {
   try {
     const body = req.body || {};
     const {
+      formName,
+      formType,
       name,
       fullName,
       clientName,
@@ -754,20 +767,23 @@ const handleLeadSubmission = async (req: Request, res: Response) => {
       phone,
       mobile,
       phoneNumber,
-      location,
-      city,
-      state,
       service,
       serviceCategory,
       subject,
       message,
       comments,
       requirements,
+      location,
+      city,
+      state,
+      pageName,
+      sourcePage,
+      currentUrl,
+      deviceType,
       website_hp,
       hp_field,
       _hp,
-      sourcePage,
-      formType,
+      formData,
       additionalFields
     } = body;
 
@@ -776,7 +792,7 @@ const handleLeadSubmission = async (req: Request, res: Response) => {
       console.warn(`[AVRX SECURITY] Honeypot triggered by bot from IP ${req.ip}`);
       res.json({
         success: true,
-        message: "Thank You!\n\nYour enquiry has been submitted successfully.\n\nOur AVRX team will contact you shortly.",
+        message: "Thank You!\n\nYour request has been submitted successfully.\n\nOur AVRX team will contact you shortly.",
         leadId: `AVRX-LEAD-${Date.now().toString().slice(-6)}`,
         adminEmailSent: true,
         clientEmailSent: true
@@ -789,7 +805,7 @@ const handleLeadSubmission = async (req: Request, res: Response) => {
     if (!checkRateLimit(clientIp)) {
       res.status(429).json({
         success: false,
-        error: "Too many submission attempts. Please wait 15 minutes before submitting again or call +91 96306 61536 directly."
+        error: "Too many submission attempts. Please wait 15 minutes before submitting again or call +91 96306 61536 / +91 70008 59994 directly."
       });
       return;
     }
@@ -801,7 +817,11 @@ const handleLeadSubmission = async (req: Request, res: Response) => {
     const resolvedService = String(service || serviceCategory || subject || 'Digital & Financial Solution').trim();
     const resolvedLocation = String(location || (city && state ? `${city}, ${state}` : city || state) || '').trim();
     const resolvedMessage = String(message || comments || requirements || '').trim();
-    const resolvedSource = String(sourcePage || formType || 'AVRX.in Website Form').trim();
+    const resolvedFormName = String(formName || formType || 'Website Enquiry Form').trim();
+    const resolvedPage = String(pageName || sourcePage || 'AVRX.in Website').trim();
+    const resolvedUrl = String(currentUrl || req.headers['referer'] || 'https://avrx.in').trim();
+    const userAgent = (req.headers['user-agent'] as string) || '';
+    const resolvedDevice = deviceType || getDeviceType(userAgent);
 
     if (!resolvedName || resolvedName.length < 2) {
       res.status(400).json({ success: false, error: "Please enter your full name." });
@@ -816,8 +836,28 @@ const handleLeadSubmission = async (req: Request, res: Response) => {
       return;
     }
 
-    // D. Construct Structured Lead Payload
-    const leadId = `AVRX-LEAD-${Date.now().toString().slice(-6)}`;
+    // D. Extract dynamic fields
+    const dynamicFields: Record<string, any> = {
+      ...(typeof formData === 'object' && formData ? formData : {}),
+      ...(typeof additionalFields === 'object' && additionalFields ? additionalFields : {})
+    };
+
+    const standardKeys = new Set([
+      'formName', 'formType', 'name', 'fullName', 'clientName', 'email', 'emailAddress',
+      'phone', 'mobile', 'phoneNumber', 'service', 'serviceCategory', 'subject',
+      'message', 'comments', 'requirements', 'location', 'city', 'state',
+      'pageName', 'sourcePage', 'currentUrl', 'deviceType', 'website_hp', 'hp_field', '_hp',
+      'formData', 'additionalFields'
+    ]);
+
+    for (const [key, value] of Object.entries(body)) {
+      if (!standardKeys.has(key) && value !== undefined && value !== null && value !== '') {
+        dynamicFields[key] = value;
+      }
+    }
+
+    // E. Construct Structured Lead Payload
+    const leadId = `AVRX-${Date.now().toString().slice(-6)}`;
     const formattedDate = new Date().toLocaleString("en-IN", {
       timeZone: "Asia/Kolkata",
       dateStyle: "full",
@@ -826,28 +866,33 @@ const handleLeadSubmission = async (req: Request, res: Response) => {
 
     const leadData: LeadData = {
       id: leadId,
+      formName: resolvedFormName,
       name: resolvedName,
       email: resolvedEmail,
       phone: resolvedPhone,
-      location: resolvedLocation || undefined,
-      city: city ? String(city).trim() : undefined,
+      service: resolvedService,
       serviceCategory: resolvedService,
       subject: subject ? String(subject).trim() : `Website Inquiry – ${resolvedService}`,
-      message: resolvedMessage || undefined,
-      sourcePage: resolvedSource,
-      formType: formType ? String(formType).trim() : undefined,
+      message: resolvedMessage || 'No message provided',
+      location: resolvedLocation || undefined,
+      city: city ? String(city).trim() : undefined,
+      state: state ? String(state).trim() : undefined,
+      pageName: resolvedPage,
+      sourcePage: resolvedPage,
+      currentUrl: resolvedUrl,
+      deviceType: resolvedDevice,
       createdAt: formattedDate,
       ipAddress: clientIp,
-      additionalFields: additionalFields && typeof additionalFields === 'object' ? additionalFields : undefined
+      dynamicFields: Object.keys(dynamicFields).length > 0 ? dynamicFields : undefined
     };
 
-    // E. Execute Dual Email Dispatch (Admin Notification + Client Auto-Reply)
+    // F. Execute Dual Email Dispatch (Admin Notification to avrx.india@gmail.com + User Confirmation)
     const emailResult = await sendLeadEmails(leadData, clientIp);
 
-    // F. Return Clean Structured Response
+    // G. Return Clean Structured Response
     res.json({
       success: true,
-      message: "Thank You!\n\nYour enquiry has been submitted successfully.\n\nOur AVRX team will contact you shortly.",
+      message: "Thank You!\n\nYour request has been submitted successfully.\n\nOur AVRX team will contact you shortly.",
       leadId: leadData.id,
       adminEmailSent: emailResult.adminEmailSent,
       clientEmailSent: emailResult.clientEmailSent,
@@ -858,95 +903,16 @@ const handleLeadSubmission = async (req: Request, res: Response) => {
     console.error("[AVRX FORM API ERROR]", err?.message || err);
     res.status(500).json({
       success: false,
-      error: "Unable to submit your enquiry right now. Please try again or contact us directly at +91 96306 61536."
+      error: "Unable to submit your request right now. Please try again or contact us directly at +91 96306 61536 / +91 70008 59994."
     });
   }
 };
 
+app.post("/api/submit-form", handleLeadSubmission);
 app.post("/api/send-form-email", handleLeadSubmission);
 app.post("/api/contact", handleLeadSubmission);
 app.post("/api/enquiry", handleLeadSubmission);
-
-// 6. Partner Application Endpoint
-app.post("/api/partner", async (req: Request, res: Response) => {
-  try {
-    const { name, mobile, phone, email, city, location, partnerType, experience, website_hp } = req.body;
-
-    // Honeypot check
-    if (website_hp) {
-      res.json({
-        success: true,
-        message: "Thank You!\n\nYour partner application has been submitted successfully.\n\nOur AVRX team will contact you shortly.",
-        leadId: `AVRX-PTR-${Date.now().toString().slice(-6)}`
-      });
-      return;
-    }
-
-    const clientIp = (req.headers['x-forwarded-for'] as string || req.ip || '127.0.0.1').split(',')[0].trim();
-    if (!checkRateLimit(clientIp)) {
-      res.status(429).json({
-        success: false,
-        error: "Too many submission attempts. Please wait 15 minutes before submitting again or call +91 96306 61536."
-      });
-      return;
-    }
-
-    const contactPhone = mobile || phone;
-
-    if (!name || String(name).trim().length < 2) {
-      res.status(400).json({ success: false, error: "Please enter your full name." });
-      return;
-    }
-    if (!email || !isValidEmail(email)) {
-      res.status(400).json({ success: false, error: "Please enter a valid email address." });
-      return;
-    }
-    if (!contactPhone || !isValidPhone(contactPhone)) {
-      res.status(400).json({ success: false, error: "Please enter a valid 10-digit mobile number." });
-      return;
-    }
-
-    const partnerLeadId = `AVRX-PTR-${Date.now().toString().slice(-6)}`;
-    const formattedDate = new Date().toLocaleString("en-IN", {
-      timeZone: "Asia/Kolkata",
-      dateStyle: "full",
-      timeStyle: "short"
-    }) + " IST";
-
-    const leadData: LeadData = {
-      id: partnerLeadId,
-      name: String(name).trim(),
-      email: String(email).trim().toLowerCase(),
-      phone: String(contactPhone).trim(),
-      location: (city || location) ? String(city || location).trim() : undefined,
-      serviceCategory: `Partner Application — ${partnerType || 'Referral Partner'}`,
-      subject: `AVRX Channel Partnership Application`,
-      message: experience ? `Partner Experience: ${experience}` : "Partner Application Submitted",
-      sourcePage: "Partner With Us Page",
-      createdAt: formattedDate,
-      additionalFields: {
-        "Partnership Type": partnerType || "Referral Partner / Agent",
-        "Experience / Background": experience || "N/A"
-      }
-    };
-
-    const emailResult = await sendLeadEmails(leadData, clientIp);
-
-    res.json({
-      success: true,
-      message: "Thank You!\n\nYour partner application has been submitted successfully.\n\nOur AVRX team will contact you shortly.",
-      leadId: partnerLeadId,
-      emailDelivered: emailResult.clientEmailSent && emailResult.adminEmailSent
-    });
-
-  } catch (err: any) {
-    console.error("[AVRX PARTNER API ERROR]", err?.message || err);
-    res.status(500).json({
-      success: false,
-      error: "Unable to submit your application right now. Please try again or contact us directly."
-    });
-  }
-});
+app.post("/api/partner", handleLeadSubmission);
 
 // 7. Secure Admin Leads Endpoint (View backed-up leads)
 app.get("/api/admin/leads", (req: Request, res: Response) => {

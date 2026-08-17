@@ -1,7 +1,8 @@
 /**
- * AVRX Production Dual-Channel Email Service
- * Handles Admin Notifications (to avrx.india@gmail.com) and Client Auto-Replies
- * Supports Resend API, SMTP (Hostinger/cPanel/Gmail), and In-Memory Lead Logging
+ * AVRX Centralized Email Dispatch Service
+ * Handles Dual-Channel Email Notifications:
+ * 1. Admin Email (to avrx.india@gmail.com)
+ * 2. User Confirmation Email (to visitor's submitted email address)
  */
 
 import nodemailer from 'nodemailer';
@@ -69,26 +70,27 @@ async function sendViaResend(
 }
 
 /**
- * Main Lead Email Dispatcher
+ * Main Centralized Lead Email Dispatcher
  */
 export async function sendLeadEmails(lead: LeadData, ipAddress?: string): Promise<EmailSendResult> {
   const adminEmail = process.env.ADMIN_EMAIL || 'avrx.india@gmail.com';
   const emailFrom = process.env.EMAIL_FROM || 'contact@avrx.in';
-  const fromName = process.env.EMAIL_FROM_NAME || 'AVRX Digital & Financial Solution';
+  const fromName = process.env.EMAIL_FROM_NAME || 'AVRX Digital and Financial Solution';
   const formattedSender = `${fromName} <${emailFrom}>`;
 
   // API Key for Transactional Providers (Resend)
   const resendApiKey = process.env.RESEND_API_KEY || process.env.EMAIL_API_KEY;
 
   // SMTP Settings
-  const smtpHost = process.env.SMTP_HOST || 'mail.avrx.in';
-  const smtpPort = Number(process.env.SMTP_PORT) || 465;
-  const smtpUser = process.env.SMTP_USER || process.env.EMAIL_FROM || 'contact@avrx.in';
-  const smtpPass = process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD;
+  const smtpHost = process.env.SMTP_HOST || process.env.EMAIL_HOST || 'mail.avrx.in';
+  const smtpPort = Number(process.env.SMTP_PORT || process.env.EMAIL_PORT) || 465;
+  const smtpUser = process.env.SMTP_USER || process.env.EMAIL_USER || process.env.EMAIL_FROM || 'contact@avrx.in';
+  const smtpPass = process.env.SMTP_PASS || process.env.EMAIL_PASSWORD || process.env.GMAIL_APP_PASSWORD;
   const smtpSecure = process.env.SMTP_SECURE === 'true' || smtpPort === 465;
 
-  const adminSubject = `New AVRX Website Enquiry — ${lead.name} — ${lead.serviceCategory}`;
-  const clientSubject = `We Received Your Enquiry — AVRX Digital & Financial Solution`;
+  const formName = lead.formName || lead.formType || 'Website Inquiry';
+  const adminSubject = `[AVRX WEBSITE LEAD] ${formName} — ${lead.name}`;
+  const clientSubject = `AVRX — We Received Your Request`;
 
   const adminHtml = generateAdminNotificationHtml(lead);
   const adminText = generateAdminNotificationText(lead);
@@ -105,12 +107,12 @@ export async function sendLeadEmails(lead: LeadData, ipAddress?: string): Promis
   if (resendApiKey) {
     transportMode = 'resend-api';
 
-    // 1a. Dispatch Admin Notification
+    // 1a. Dispatch Admin Notification to avrx.india@gmail.com
     const adminRes = await sendViaResend(
       resendApiKey,
       formattedSender,
       adminEmail,
-      lead.email, // Reply-To client's email so clicking Reply goes to the user!
+      lead.email, // Reply-To client's email so clicking Reply in Gmail goes to user
       adminSubject,
       adminHtml,
       adminText
@@ -118,18 +120,22 @@ export async function sendLeadEmails(lead: LeadData, ipAddress?: string): Promis
     adminEmailSent = adminRes.success;
     adminError = adminRes.error;
 
-    // 1b. Dispatch Client Confirmation
-    const clientRes = await sendViaResend(
-      resendApiKey,
-      formattedSender,
-      lead.email,
-      adminEmail, // Reply-To AVRX
-      clientSubject,
-      clientHtml,
-      clientText
-    );
-    clientEmailSent = clientRes.success;
-    clientError = clientRes.error;
+    // 1b. Dispatch User Confirmation to submitted email
+    if (lead.email && !lead.email.endsWith('@avrx-lead.in')) {
+      const clientRes = await sendViaResend(
+        resendApiKey,
+        formattedSender,
+        lead.email,
+        adminEmail, // Reply-To AVRX
+        clientSubject,
+        clientHtml,
+        clientText
+      );
+      clientEmailSent = clientRes.success;
+      clientError = clientRes.error;
+    } else {
+      clientEmailSent = true;
+    }
   }
   // 2. Try SMTP Transport via Nodemailer
   else if (smtpPass) {
@@ -148,7 +154,7 @@ export async function sendLeadEmails(lead: LeadData, ipAddress?: string): Promis
         }
       });
 
-      // 2a. Admin Notification
+      // 2a. Admin Notification to avrx.india@gmail.com
       try {
         await transporter.sendMail({
           from: formattedSender,
@@ -164,32 +170,36 @@ export async function sendLeadEmails(lead: LeadData, ipAddress?: string): Promis
         console.error('[AVRX EMAIL] SMTP Admin Error:', err?.message || err);
       }
 
-      // 2b. Client Auto-Reply
-      try {
-        await transporter.sendMail({
-          from: formattedSender,
-          to: lead.email,
-          replyTo: adminEmail,
-          subject: clientSubject,
-          text: clientText,
-          html: clientHtml
-        });
+      // 2b. User Confirmation
+      if (lead.email && !lead.email.endsWith('@avrx-lead.in')) {
+        try {
+          await transporter.sendMail({
+            from: formattedSender,
+            to: lead.email,
+            replyTo: adminEmail,
+            subject: clientSubject,
+            text: clientText,
+            html: clientHtml
+          });
+          clientEmailSent = true;
+        } catch (err: any) {
+          clientError = err?.message || 'SMTP Client send failed';
+          console.error('[AVRX EMAIL] SMTP Client Error:', err?.message || err);
+        }
+      } else {
         clientEmailSent = true;
-      } catch (err: any) {
-        clientError = err?.message || 'SMTP Client send failed';
-        console.error('[AVRX EMAIL] SMTP Client Error:', err?.message || err);
       }
     } catch (err: any) {
       adminError = err?.message || 'SMTP Transporter init failed';
       console.error('[AVRX EMAIL] Transporter Error:', err?.message || err);
     }
   }
-  // 3. Fallback: Log and record lead in memory / persistent store
+  // 3. Fallback: In-memory logging
   else {
     transportMode = 'simulated-logged';
     adminEmailSent = true;
     clientEmailSent = true;
-    console.log(`[AVRX LEAD SIMULATION] Lead ${lead.id} received from ${lead.name} (${lead.email}). Captured and saved.`);
+    console.log(`[AVRX LEAD SIMULATION] Captured lead ${lead.id} from ${lead.name} (${lead.email}, ${lead.phone}) for "${formName}". Ready for delivery.`);
   }
 
   // Record into Lead Storage
@@ -216,4 +226,3 @@ export async function sendLeadEmails(lead: LeadData, ipAddress?: string): Promis
     }
   };
 }
-

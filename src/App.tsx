@@ -28,11 +28,20 @@ import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
 import { DisclaimerPage } from './pages/DisclaimerPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { ServiceDetailPage } from './pages/ServiceDetailPage';
+import { AskAVRXAIFloating } from './components/common/AskAVRXAIFloating';
+import { MobileBottomNav } from './components/layout/MobileBottomNav';
 
 export function App() {
   const [currentPage, setCurrentPage] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       const path = window.location.pathname;
+      if (path.startsWith('/services/') && path !== '/services/') {
+        return 'service-detail';
+      }
+      if (path === '/services') {
+        return 'services';
+      }
       if (path.startsWith('/blog/')) {
         return 'blog-post';
       }
@@ -41,6 +50,16 @@ export function App() {
       }
     }
     return 'home';
+  });
+
+  const [selectedServiceSlug, setSelectedServiceSlug] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname;
+      if (path.startsWith('/services/') && path !== '/services/') {
+        return path.replace('/services/', '');
+      }
+    }
+    return 'website-design';
   });
 
   const [selectedBlogPostId, setSelectedBlogPostId] = useState<string | null>(() => {
@@ -65,7 +84,12 @@ export function App() {
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname;
-      if (path.startsWith('/blog/')) {
+      if (path.startsWith('/services/') && path !== '/services/') {
+        setSelectedServiceSlug(path.replace('/services/', ''));
+        setCurrentPage('service-detail');
+      } else if (path === '/services') {
+        setCurrentPage('services');
+      } else if (path.startsWith('/blog/')) {
         setSelectedBlogPostId(path.replace('/blog/', ''));
         setCurrentPage('blog-post');
       } else if (path === '/blog') {
@@ -81,18 +105,29 @@ export function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const handleNavigate = (page: string, postSlug?: string) => {
-    if (page === 'blog-post' && postSlug) {
-      setSelectedBlogPostId(postSlug);
+  const handleNavigate = (page: string, slugOrPostId?: string) => {
+    if (page === 'service-detail' && slugOrPostId) {
+      setSelectedServiceSlug(slugOrPostId);
+      setCurrentPage('service-detail');
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, '', `/services/${slugOrPostId}`);
+      }
+    } else if (page === 'blog-post' && slugOrPostId) {
+      setSelectedBlogPostId(slugOrPostId);
       setCurrentPage('blog-post');
       if (typeof window !== 'undefined') {
-        window.history.pushState({}, '', `/blog/${postSlug}`);
+        window.history.pushState({}, '', `/blog/${slugOrPostId}`);
       }
     } else if (page === 'blog') {
       setSelectedBlogPostId(null);
       setCurrentPage('blog');
       if (typeof window !== 'undefined') {
         window.history.pushState({}, '', '/blog');
+      }
+    } else if (page === 'services') {
+      setCurrentPage('services');
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, '', '/services');
       }
     } else {
       setSelectedBlogPostId(null);
@@ -112,6 +147,8 @@ export function App() {
     switch (currentPage) {
       case 'home':
         return <HomePage onNavigate={handleNavigate} />;
+      case 'service-detail':
+        return <ServiceDetailPage serviceSlug={selectedServiceSlug} onNavigate={handleNavigate} />;
       case 'digital-solutions':
         return <DigitalSolutionsPage onNavigate={handleNavigate} />;
       case 'financial-solutions':
@@ -205,8 +242,14 @@ export function App() {
         {/* Floating WhatsApp CTA */}
         <WhatsAppButton />
 
+        {/* Floating Ask AVRX AI Assistant */}
+        <AskAVRXAIFloating onNavigate={handleNavigate} />
+
         {/* Global Footer with Tribute Line */}
         <Footer onNavigate={handleNavigate} onReplayLaunch={() => setShowLaunchScreen(true)} />
+
+        {/* Mobile Sticky Bottom Navigation Bar */}
+        <MobileBottomNav activePage={currentPage} onNavigate={handleNavigate} />
 
       </div>
     </ThemeProvider>
