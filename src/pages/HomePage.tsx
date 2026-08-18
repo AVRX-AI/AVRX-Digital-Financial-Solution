@@ -1,20 +1,21 @@
 import React from 'react';
-import { Hero } from '../components/home/Hero';
-import { AIAssistantSection } from '../components/home/AIAssistantSection';
-import { SolutionsGrid } from '../components/home/SolutionsGrid';
-import { ProjectShowcaseSection } from '../components/showcase/ProjectShowcaseSection';
-import { HealthCheckerSection } from '../components/home/HealthCheckerSection';
-import { AIToolsSuiteSection } from '../components/home/AIToolsSuiteSection';
-import { SmartServiceFinder } from '../components/home/SmartServiceFinder';
-import { WhyAVRX } from '../components/home/WhyAVRX';
-import { HowItWorks } from '../components/home/HowItWorks';
-import { BusinessOSPreview } from '../components/home/BusinessOSPreview';
-import { BlogSection } from '../components/blog/BlogSection';
-import { FinalCTA } from '../components/home/FinalCTA';
+import { AICommandCenterHero } from '../components/home/AICommandCenterHero';
+import { TopClientsSection } from '../components/home/TopClientsSection';
+import { WhyChooseAVRXSection } from '../components/home/WhyChooseAVRXSection';
+import { DigitalSolutionsSection } from '../components/home/DigitalSolutionsSection';
+import { FinancialSolutionsSection } from '../components/home/FinancialSolutionsSection';
+import { TaxDocumentationSection } from '../components/home/TaxDocumentationSection';
+import { AIHubSection } from '../components/home/AIHubSection';
+import { AIConversationalSearch } from '../components/home/AIConversationalSearch';
+import { FinanceCalculatorLab } from '../components/home/FinanceCalculatorLab';
+import { WebsiteHealthScannerSection } from '../components/home/WebsiteHealthScannerSection';
+import { AIProjectBuilderSection } from '../components/home/AIProjectBuilderSection';
+import { BusinessReadinessScoreSection } from '../components/home/BusinessReadinessScoreSection';
+import { ProjectsShowcaseLab } from '../components/home/ProjectsShowcaseLab';
+import { ResourceCenterSection } from '../components/home/ResourceCenterSection';
+import { SmartJourneyContactSection } from '../components/home/SmartJourneyContactSection';
 import { SEO } from '../components/common/SEO';
 import { TricolourSeparator } from '../components/common/TricolourSeparator';
-import { GENERAL_FAQS } from '../data/servicesData';
-import { ArrowRight, HelpCircle, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 interface HomePageProps {
   onNavigate: (page: string, postSlug?: string) => void;
@@ -22,95 +23,68 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
-    <div className="min-h-screen bg-[#050811] text-white">
+    <div className="min-h-screen bg-[#030712] text-white selection:bg-cyan-500 selection:text-slate-950 pb-16 md:pb-0">
       <SEO
-        title="AVRX Digital & Financial Solution | Next-Gen Ecosystem"
-        description="AVRX helps individuals and businesses build, grow, protect and manage their digital and financial future with modern technology-driven solutions."
+        title="AVRX.in — Build Digital. Grow Smarter. Finance Better."
+        description="Next-generation digital engineering, business loans, IRDAI insurance, tax compliance, and 70+ in-browser AI tools by AVRX Digital and Financial Solution."
       />
 
-      {/* 2. Hero + 3D AI Core + Independence Day Aura */}
-      <Hero onNavigate={onNavigate} />
+      {/* 01 — CINEMATIC FULL-SCREEN HERO */}
+      <AICommandCenterHero onNavigate={onNavigate} />
 
-      {/* Tricolour Separator 1 */}
+      {/* Tricolour Separator */}
       <TricolourSeparator />
 
-      {/* 3. AVRX AI Assistant */}
-      <AIAssistantSection />
+      {/* 02 — TOP CLIENTS MARQUEE */}
+      <TopClientsSection />
 
-      {/* 4. Solution Categories */}
-      <SolutionsGrid onNavigate={onNavigate} />
+      {/* 03 — WHY CHOOSE AVRX */}
+      <WhyChooseAVRXSection onNavigate={onNavigate} />
 
-      {/* Tricolour Separator 2 */}
+      {/* Tricolour Separator */}
       <TricolourSeparator />
 
-      {/* 5. Interactive Projects Showcase */}
-      <ProjectShowcaseSection onNavigate={onNavigate} />
+      {/* 04 — DIGITAL SOLUTIONS */}
+      <DigitalSolutionsSection onNavigate={onNavigate} />
 
-      {/* 10. Website Health Checker */}
-      <HealthCheckerSection onNavigate={onNavigate} />
+      {/* 05 — FINANCIAL SOLUTIONS */}
+      <FinancialSolutionsSection onNavigate={onNavigate} />
 
-      {/* Tricolour Separator 3 */}
+      {/* 06 — TAX & DOCUMENTATION */}
+      <TaxDocumentationSection onNavigate={onNavigate} />
+
+      {/* Tricolour Separator */}
       <TricolourSeparator />
 
-      {/* 10b. Interactive AI Multi-Tool Suite */}
-      <AIToolsSuiteSection onNavigate={onNavigate} />
+      {/* 07 — AVRX AI TOOLS SUITE */}
+      <AIHubSection onNavigate={onNavigate} />
 
-      {/* 11. Smart Service Finder */}
-      <SmartServiceFinder onNavigate={onNavigate} />
+      {/* 08 — INTERACTIVE FINANCIAL CALCULATOR LAB */}
+      <FinanceCalculatorLab onNavigate={onNavigate} />
 
-      {/* 12. Why AVRX */}
-      <WhyAVRX />
+      {/* 09 — WEBSITE HEALTH & SPEED SCANNER */}
+      <WebsiteHealthScannerSection onNavigate={onNavigate} />
 
-      {/* 13. How It Works */}
-      <HowItWorks onNavigate={onNavigate} />
-
-      {/* 14. Business Command Center Preview */}
-      <BusinessOSPreview />
-
-      {/* 15. Latest Insights / Blog Section */}
-      <BlogSection onNavigate={onNavigate} />
-
-      {/* Tricolour Separator 4 */}
+      {/* Tricolour Separator */}
       <TricolourSeparator />
 
-      {/* FAQ Highlights Section */}
-      <section className="py-20 bg-[#070b16] border-t border-slate-800/80">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest text-cyan-400 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
-              Clear Answers
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mt-3">
-              Frequently Asked Questions
-            </h2>
-          </div>
+      {/* 10 — AI PROJECT BUILDER & COST ESTIMATOR */}
+      <AIProjectBuilderSection onNavigate={onNavigate} />
 
-          <div className="space-y-4">
-            {GENERAL_FAQS.map((faq, idx) => (
-              <div key={idx} className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
-                <h3 className="text-base font-bold text-white flex items-center gap-2">
-                  <HelpCircle className="w-5 h-5 text-cyan-400 shrink-0" />
-                  <span>{faq.question}</span>
-                </h3>
-                <p className="text-slate-400 text-sm leading-relaxed pl-7">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
+      {/* 11 — BUSINESS READINESS EVALUATOR */}
+      <BusinessReadinessScoreSection onNavigate={onNavigate} />
 
-          <div className="text-center mt-8">
-            <button
-              onClick={() => onNavigate('faq')}
-              className="text-xs font-bold text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1 hover:underline"
-            >
-              <span>View All Frequently Asked Questions</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* 12 — PROJECTS SHOWCASE LAB */}
+      <ProjectsShowcaseLab onNavigate={onNavigate} />
 
-      {/* 18. Final CTA */}
-      <FinalCTA onNavigate={onNavigate} />
+      {/* 13 — RESOURCE CENTER & KNOWLEDGE BASE */}
+      <ResourceCenterSection onNavigate={onNavigate} />
+
+      {/* Tricolour Separator */}
+      <TricolourSeparator />
+
+      {/* 14 — CONTACT & SMART INTAKE WIZARD */}
+      <SmartJourneyContactSection onNavigate={onNavigate} />
     </div>
   );
 };

@@ -30,6 +30,8 @@ import { PasswordGeneratorTool } from '../components/tools/PasswordGeneratorTool
 import { AgeCalculatorTool } from '../components/tools/AgeCalculatorTool';
 import { QrCodeGeneratorTool } from '../components/tools/QrCodeGeneratorTool';
 import { ImageCompressorTool } from '../components/tools/ImageCompressorTool';
+import { ImageBackgroundChangerTool } from '../components/tools/ImageBackgroundChangerTool';
+import { WebsiteTrafficSpeedTool } from '../components/tools/WebsiteTrafficSpeedTool';
 import { MetaTagGeneratorTool } from '../components/tools/MetaTagGeneratorTool';
 
 import { 
@@ -167,11 +169,15 @@ export const AIToolsPage: React.FC = () => {
         return <JpgToPdfTool />;
       case 'image-compressor':
         return <ImageCompressorTool />;
-      case 'pdf-editor':
-        return <PdfEditorTool />;
+      case 'image-background-remover':
+      case 'image-background-changer':
+        return <ImageBackgroundChangerTool />;
       case 'website-health-checker':
       case 'ai-seo-audit':
         return <WebsiteAuditTool />;
+      case 'website-traffic-checker':
+      case 'website-speed-test':
+        return <WebsiteTrafficSpeedTool />;
       case 'meta-tag-generator':
         return <MetaTagGeneratorTool />;
       case 'loan-emi-calculator':

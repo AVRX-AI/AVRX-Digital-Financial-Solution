@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, ArrowRight, ShieldCheck, CheckCircle2, X } from 'lucide-react';
 import { SITE_CONFIG } from '../../config';
+import { submitForm } from '../../utils/formSubmit';
 import brandLogo from '../../assets/images/avrx_white_logo_1786467039540.jpg';
 
 interface FooterProps {
@@ -19,18 +20,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onReplayLaunch }) =>
 
     setLoading(true);
     try {
-      await fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: 'Newsletter Subscriber',
-          email: email.trim(),
-          phone: '+91 00000 00000',
-          serviceCategory: 'AVRX Business Intelligence Newsletter',
-          subject: 'Newsletter Subscription',
-          message: 'User requested subscription to AVRX Business Intelligence Newsletter.',
-          sourcePage: 'Footer Newsletter Form'
-        })
+      await submitForm({
+        formName: 'Footer Newsletter Form',
+        name: 'Newsletter Subscriber',
+        email: email.trim(),
+        phone: '9630661536',
+        service: 'AVRX Business Intelligence Newsletter',
+        serviceCategory: 'AVRX Business Intelligence Newsletter',
+        subject: 'AVRX Newsletter Subscription',
+        message: `Newsletter subscription request for ${email.trim()}`,
+        sourcePage: 'Footer Newsletter Banner'
       });
       setSubscribed(true);
       setEmail('');
@@ -52,7 +51,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onReplayLaunch }) =>
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#FF9933]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#138808]/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 relative z-10">
         
         {/* Top Newsletter & Callout Banner */}
         <div className="bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-900 border border-slate-800/80 rounded-3xl p-6 sm:p-10 mb-16 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">

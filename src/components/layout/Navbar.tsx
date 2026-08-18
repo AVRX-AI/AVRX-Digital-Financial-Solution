@@ -143,7 +143,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
       {/* Subtle Tricolour Line Accent */}
       <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#FF9933]/50 via-white/60 via-[#138808]/50 to-transparent opacity-75" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between relative">
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 flex items-center justify-between relative">
         
         {/* Brand Logo */}
         <div className="flex items-center gap-3">
@@ -163,7 +163,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-sm font-medium text-slate-300">
           <button
             onClick={() => handleNav('home')}
             className={`hover:text-cyan-400 transition ${activePage === 'home' ? 'text-cyan-400 font-semibold' : ''}`}
@@ -171,51 +171,26 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
             {t('nav.home')}
           </button>
 
-          {/* Solutions Dropdown Mega Menu */}
-          <div
-            className="relative"
-            onMouseEnter={() => setSolutionsOpen(true)}
-            onMouseLeave={() => setSolutionsOpen(false)}
+          <button
+            onClick={() => handleNav('digital-solutions')}
+            className={`hover:text-cyan-400 transition ${activePage === 'digital-solutions' ? 'text-cyan-400 font-semibold' : ''}`}
           >
-            <button
-              onClick={() => setSolutionsOpen(!solutionsOpen)}
-              className={`flex items-center gap-1 hover:text-cyan-400 transition py-2 ${
-                ['digital-solutions', 'financial-solutions', 'tax-solutions', 'insurance-solutions', 'hosting-products'].includes(activePage)
-                  ? 'text-cyan-400 font-semibold'
-                  : ''
-              }`}
-            >
-              <span>{t('nav.solutions')}</span>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${solutionsOpen ? 'rotate-180 text-cyan-400' : ''}`} />
-            </button>
+            Digital
+          </button>
 
-            {solutionsOpen && (
-              <div className="absolute top-full left-0 w-[500px] bg-[#0b0f19]/98 backdrop-blur-2xl border border-slate-800 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.8)] grid grid-cols-1 gap-2 animate-in fade-in zoom-in-95 duration-150">
-                <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 px-3 py-1">
-                  AVRX Ecosystem Solutions
-                </div>
-                {solutionCategories.map(cat => (
-                  <button
-                    key={cat.id}
-                    onClick={() => handleNav(cat.id)}
-                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-cyan-500/10 hover:border-cyan-500/30 border border-transparent transition group text-left"
-                  >
-                    <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
-                      {cat.icon}
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white group-hover:text-cyan-300 transition text-sm">
-                        {cat.title}
-                      </div>
-                      <div className="text-xs text-slate-400 mt-0.5 leading-snug">
-                        {cat.desc}
-                      </div>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          <button
+            onClick={() => handleNav('financial-solutions')}
+            className={`hover:text-cyan-400 transition ${activePage === 'financial-solutions' ? 'text-cyan-400 font-semibold' : ''}`}
+          >
+            Finance
+          </button>
+
+          <button
+            onClick={() => handleNav('tax-solutions')}
+            className={`hover:text-cyan-400 transition ${activePage === 'tax-solutions' ? 'text-cyan-400 font-semibold' : ''}`}
+          >
+            Tax &amp; Documentation
+          </button>
 
           {/* AI Tools Mega Menu (Flagship Next-Gen AI Interactive Suite) */}
           <div
@@ -229,7 +204,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
                 activePage === 'ai-tools' ? 'text-cyan-400 font-semibold' : ''
               }`}
             >
-              <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+              <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
               <span>AI Tools</span>
               <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${aiToolsOpen ? 'rotate-180 text-cyan-400' : ''}`} />
             </button>
