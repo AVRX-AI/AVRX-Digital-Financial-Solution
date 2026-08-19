@@ -23,6 +23,7 @@ export const TaxDocumentationSection: React.FC<TaxDocumentationProps> = ({ onNav
       badge: 'Mandatory',
       turnaround: '24-48 Hours Processing',
       desc: 'Official 15-digit GSTIN allotment for proprietorships, partnerships, LLPs, and companies.',
+      imageUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
       features: ['100% Digital Processing', 'ARN Generation in 24 Hrs', 'HSN/SAC Classification', 'Zero Rejection Guarantee'],
       icon: FileCheck,
       color: 'border-amber-500/30 hover:border-amber-500/80',
@@ -34,6 +35,7 @@ export const TaxDocumentationSection: React.FC<TaxDocumentationProps> = ({ onNav
       badge: 'Monthly / Quarterly',
       turnaround: 'On-Time Compliance',
       desc: 'Accurate monthly GST return filing with automated GSTR-2B reconciliation for maximum ITC claims.',
+      imageUrl: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=800&q=80',
       features: ['Automated ITC Matching', 'GSTR-1 & 3B E-Filing', 'Avoid Late Fee Penalties', 'Dedicated Tax Manager'],
       icon: Calculator,
       color: 'border-amber-500/30 hover:border-amber-500/80',
@@ -45,6 +47,7 @@ export const TaxDocumentationSection: React.FC<TaxDocumentationProps> = ({ onNav
       badge: 'Salaried & Business',
       turnaround: 'Fast Refund Processing',
       desc: 'Expert CA review of Form 16, AIS/TIS, Capital Gains, and Crypto income under Old vs New Tax Regimes.',
+      imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
       features: ['Max Tax Deductions', 'Form 26AS Reconciliation', 'TDS Refund Acceleration', 'Notice Rectification Support'],
       icon: FileText,
       color: 'border-amber-500/30 hover:border-amber-500/80',
@@ -56,6 +59,7 @@ export const TaxDocumentationSection: React.FC<TaxDocumentationProps> = ({ onNav
       badge: 'First-Time Filers',
       turnaround: 'Instant Verification',
       desc: 'Official Income Tax e-filing portal profile setup, e-verification linkage, and bank account validation.',
+      imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
       features: ['E-Filing Portal Setup', 'PAN-Aadhaar Linkage', 'Pre-Validated Bank Account', 'Digital Signature (DSC) Sync'],
       icon: FileCheck,
       color: 'border-amber-500/30 hover:border-amber-500/80',
@@ -67,6 +71,7 @@ export const TaxDocumentationSection: React.FC<TaxDocumentationProps> = ({ onNav
       badge: 'Govt Certified',
       turnaround: 'Same Day Certificate',
       desc: 'Government MSME Udyam registration certificate unlocking priority lending and electricity subsidies.',
+      imageUrl: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
       features: ['Instant Udyam Certificate', 'Priority Bank Loan Rates', 'Delayed Payment Protection', 'Lifetime Validity'],
       icon: Award,
       color: 'border-amber-500/30 hover:border-amber-500/80',
@@ -78,6 +83,7 @@ export const TaxDocumentationSection: React.FC<TaxDocumentationProps> = ({ onNav
       badge: 'Subsidy Ready',
       turnaround: 'Government Schemes',
       desc: 'Official MSME databank mapping for government procurement tenders and capital subsidy schemes.',
+      imageUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
       features: ['Govt Tender EMD Exemption', 'ISO Certification Subsidy', 'Concession on Patent/Trademark', 'Priority Sector Lending'],
       icon: ShieldCheck,
       color: 'border-amber-500/30 hover:border-amber-500/80',
@@ -89,6 +95,7 @@ export const TaxDocumentationSection: React.FC<TaxDocumentationProps> = ({ onNav
       badge: 'Pvt Ltd / LLP / OPC',
       turnaround: '3-7 Working Days',
       desc: 'Complete incorporation package including SPICe+ filing, DIN, DSC, PAN, TAN, MOA, and AOA.',
+      imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
       features: ['Name Approval (RUN)', 'Incorporation Certificate', 'PAN & TAN Issued Together', 'Bank Account Opening Assist'],
       icon: Building,
       color: 'border-amber-500/30 hover:border-amber-500/80',
@@ -100,6 +107,7 @@ export const TaxDocumentationSection: React.FC<TaxDocumentationProps> = ({ onNav
       badge: 'Statutory Shield',
       turnaround: 'Annual Filings',
       desc: 'MCA annual filings (AOC-4, MGT-7), DIR-3 KYC, board resolutions, and statutory secretarial support.',
+      imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
       features: ['Avoid Rs 100/day Penalties', 'Director DIR-3 KYC Renewal', 'Statutory Registers Maintained', 'Secretarial Audit Check'],
       icon: ShieldCheck,
       color: 'border-amber-500/30 hover:border-amber-500/80',
@@ -142,22 +150,45 @@ export const TaxDocumentationSection: React.FC<TaxDocumentationProps> = ({ onNav
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {taxServices.filter(s => ['gst-registration', 'itr-filing', 'company-registration'].includes(s.id)).map((item) => {
             const Icon = item.icon;
+            const itemImage = 'imageUrl' in item ? (item as any).imageUrl : undefined;
             return (
               <div
                 key={item.id}
-                className="flex flex-col justify-between p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 via-[#070b14]/95 to-slate-900/90 border border-slate-800 hover:border-amber-500/50 shadow-xl hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] transition-all duration-300 group hover:-translate-y-1"
+                className="flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 via-[#070b14]/95 to-slate-900/90 border border-slate-800 hover:border-amber-500/50 shadow-xl hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] transition-all duration-300 group hover:-translate-y-1 overflow-hidden"
               >
                 <div className="space-y-4">
-                  
-                  {/* Card Top */}
-                  <div className="flex items-center justify-between">
-                    <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-amber-400 group-hover:scale-110 transition-transform">
-                      <Icon className="w-5 h-5" />
+                  {/* Thumbnail Image Header */}
+                  {itemImage && (
+                    <div className="relative h-36 w-full rounded-xl overflow-hidden border border-slate-800 bg-slate-950 group-hover:border-amber-500/40 transition-colors">
+                      <img
+                        src={itemImage}
+                        alt={item.title}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                      
+                      {/* Floating Badge & Icon */}
+                      <div className="absolute top-2.5 left-2.5 p-2 rounded-lg bg-slate-950/85 backdrop-blur-md border border-slate-700/80 text-amber-400">
+                        <Icon className="w-4 h-4" />
+                      </div>
+
+                      <span className="absolute top-2.5 right-2.5 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-amber-500/90 text-slate-950 shadow-sm">
+                        {item.badge}
+                      </span>
                     </div>
-                    <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20">
-                      {item.badge}
-                    </span>
-                  </div>
+                  )}
+
+                  {!itemImage && (
+                    <div className="flex items-center justify-between">
+                      <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-amber-400 group-hover:scale-110 transition-transform">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                        {item.badge}
+                      </span>
+                    </div>
+                  )}
 
                   <div>
                     <h3 className="text-lg font-bold text-white group-hover:text-amber-300 transition-colors line-clamp-1">

@@ -175,7 +175,7 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ onNavigate }) => {
       badge: 'Collateral Free',
       title: 'Business & Working Capital Loans',
       description: 'Collateral-free working capital, machinery loans, and expansion financing customized for MSMEs, startups, and established enterprises.',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=1200&q=80',
       features: [
         'Business Capital up to ₹1 Crore',
         'Collateral-Free Financing Options',

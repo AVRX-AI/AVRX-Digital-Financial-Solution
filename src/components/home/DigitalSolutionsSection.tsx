@@ -51,6 +51,7 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
       badge: 'Flagship',
       tagline: '11 Tailored Website Sub-Services',
       desc: 'Engineered for speed, high conversion, and seamless mobile responsiveness across all industries.',
+      imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
       features: ['Lightning Fast Load Speed', 'SEO Schema Integrated', '100% Mobile Fluid', 'WhatsApp Lead CTAs'],
       icon: Globe,
       color: 'from-cyan-500/20 to-blue-500/20',
@@ -63,6 +64,7 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
       badge: 'Native & Cross',
       tagline: 'Flutter & React Native Architecture',
       desc: 'Custom mobile apps designed for high engagement, Play Store & App Store deployment, push notifications and payment integration.',
+      imageUrl: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
       features: ['Google Play & iOS Store Release', 'Offline Sync & Fast Caching', 'Biometric & UPI Payments', 'Engaging Push Alerts'],
       icon: Smartphone,
       color: 'from-blue-500/20 to-indigo-500/20',
@@ -75,6 +77,7 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
       badge: 'Enterprise',
       tagline: 'Custom SaaS, Dashboards & ERPs',
       desc: 'Robust full-stack web portals, customer dashboards, admin panels, CRM workflows, and database-driven enterprise systems.',
+      imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
       features: ['Role-Based User Permissions', 'Real-time Analytical Dashboards', 'REST/GraphQL API Endpoints', 'Bank-Grade Security'],
       icon: Layers,
       color: 'from-indigo-500/20 to-violet-500/20',
@@ -87,6 +90,7 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
       badge: 'High ROI',
       tagline: 'Google Ads, Meta & Social Growth',
       desc: 'Targeted performance campaigns on Meta (Facebook/Instagram) and Google Ads engineered to generate real customers and qualified inquiries.',
+      imageUrl: 'https://images.unsplash.com/photo-1533750516457-a7f992034fec?auto=format&fit=crop&w=800&q=80',
       features: ['Targeted Lead Generation Ads', 'Social Media Brand Identity', 'Conversion Funnel Audits', 'Transparent Weekly ROI Reports'],
       icon: Megaphone,
       color: 'from-purple-500/20 to-pink-500/20',
@@ -99,6 +103,7 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
       badge: 'Organic Traffic',
       tagline: 'Top Google Rankings & Local Search',
       desc: 'Technical SEO audits, on-page optimization, content strategies, and high-authority link acquisition for sustainable search rankings.',
+      imageUrl: 'https://images.unsplash.com/photo-1571786256017-aee7a0c009b6?auto=format&fit=crop&w=800&q=80',
       features: ['Keyword & Competitor Analysis', 'Core Web Vitals Speed Fixes', 'Google Search Console Sync', 'White-Hat Backlink Strategy'],
       icon: TrendingUp,
       color: 'from-emerald-500/20 to-teal-500/20',
@@ -111,6 +116,7 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
       badge: '99.9% Uptime',
       tagline: 'NVMe SSD Cloud Servers & LiteSpeed',
       desc: 'Ultra-fast NVMe cloud hosting with free SSL, automated daily backups, LiteSpeed web server caching, and 24/7 technical monitoring.',
+      imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
       features: ['NVMe Ultra-Fast SSD Drives', 'Free Unlimited Wildcard SSL', '1-Click App Deployment', 'Daily Offsite Backups'],
       icon: Server,
       color: 'from-amber-500/20 to-orange-500/20',
@@ -123,6 +129,7 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
       badge: 'Professional',
       tagline: 'name@yourcompany.com Setup',
       desc: 'Enterprise custom domain email accounts with anti-spam protection, mobile sync, webmail access, and high inbox deliverability.',
+      imageUrl: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=800&q=80',
       features: ['Custom Domain Branding', 'Spam & Phishing Shield', 'Outlook & Gmail Sync', '99.9% Deliverability'],
       icon: Mail,
       color: 'from-teal-500/20 to-cyan-500/20',
@@ -215,18 +222,41 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
             return (
               <div
                 key={service.id}
-                className={`flex flex-col justify-between p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 to-[#070b14]/95 border ${service.borderColor} shadow-xl hover:shadow-[0_0_30px_rgba(0,240,255,0.15)] transition-all duration-300 group hover:-translate-y-1`}
+                className={`flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 to-[#070b14]/95 border ${service.borderColor} shadow-xl hover:shadow-[0_0_30px_rgba(0,240,255,0.15)] transition-all duration-300 group hover:-translate-y-1 overflow-hidden`}
               >
                 <div className="space-y-4">
-                  {/* Card Top Header */}
-                  <div className="flex items-center justify-between">
-                    <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-cyan-400 group-hover:scale-110 transition-transform">
-                      <IconComponent className="w-5 h-5" />
+                  {/* Thumbnail Image Header */}
+                  {service.imageUrl && (
+                    <div className="relative h-36 w-full rounded-xl overflow-hidden border border-slate-800 bg-slate-950 group-hover:border-cyan-500/40 transition-colors">
+                      <img
+                        src={service.imageUrl}
+                        alt={service.title}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                      
+                      {/* Floating Badge & Icon */}
+                      <div className="absolute top-2.5 left-2.5 p-2 rounded-lg bg-slate-950/85 backdrop-blur-md border border-slate-700/80 text-cyan-400">
+                        <IconComponent className="w-4 h-4" />
+                      </div>
+
+                      <span className="absolute top-2.5 right-2.5 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-cyan-500/90 text-slate-950 shadow-sm">
+                        {service.badge}
+                      </span>
                     </div>
-                    <span className="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-slate-900 text-cyan-300 border border-slate-800">
-                      {service.badge}
-                    </span>
-                  </div>
+                  )}
+
+                  {!service.imageUrl && (
+                    <div className="flex items-center justify-between">
+                      <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-cyan-400 group-hover:scale-110 transition-transform">
+                        <IconComponent className="w-5 h-5" />
+                      </div>
+                      <span className="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-slate-900 text-cyan-300 border border-slate-800">
+                        {service.badge}
+                      </span>
+                    </div>
+                  )}
 
                   <div>
                     <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-1">

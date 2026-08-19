@@ -7,14 +7,7 @@ import {
   Rocket, 
   Sparkles, 
   ArrowRight,
-  CheckCircle2,
-  Handshake,
-  Shield,
-  Zap,
-  Star,
-  Award,
-  PhoneCall,
-  Clock
+  Handshake
 } from 'lucide-react';
 
 interface WhyChooseAVRXProps {
@@ -183,16 +176,19 @@ export const WhyChooseAVRXSection: React.FC<WhyChooseAVRXProps> = ({ onNavigate 
               </p>
             </div>
 
-            {/* Glowing Eye-Catching "Partner with AVRX" Button */}
+            {/* Glowing Eye-Catching "Partner With Us" Button */}
             {onNavigate && (
               <div className="w-full pt-2 relative z-10">
                 <button
-                  onClick={() => onNavigate('contact')}
-                  className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-slate-950 font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-300 transform hover:scale-[1.03] shadow-[0_0_35px_rgba(0,240,255,0.6)] hover:shadow-[0_0_50px_rgba(0,240,255,0.9)] cursor-pointer"
+                  onClick={() => onNavigate('partner')}
+                  className="relative group w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-300 to-teal-300 hover:from-emerald-300 hover:via-cyan-200 hover:to-teal-200 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-widest flex items-center justify-center gap-2.5 transition-all duration-300 transform hover:scale-[1.03] shadow-[0_0_35px_rgba(16,185,129,0.6),0_0_50px_rgba(0,240,255,0.4)] hover:shadow-[0_0_55px_rgba(16,185,129,0.85),0_0_80px_rgba(0,240,255,0.7)] cursor-pointer overflow-hidden"
                 >
-                  <Handshake className="w-4 h-4 text-slate-950" />
-                  <span>Partner with AVRX</span>
-                  <ArrowRight className="w-4 h-4 text-slate-950 group-hover:translate-x-1 transition-transform" />
+                  {/* Internal Light Glare Sweep Effect */}
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out pointer-events-none" />
+                  
+                  <Handshake className="w-4 h-4 text-slate-950 shrink-0" />
+                  <span>Partner With Us</span>
+                  <ArrowRight className="w-4 h-4 text-slate-950 group-hover:translate-x-1.5 transition-transform shrink-0" />
                 </button>
               </div>
             )}
@@ -238,81 +234,6 @@ export const WhyChooseAVRXSection: React.FC<WhyChooseAVRXProps> = ({ onNavigate 
                 </div>
               );
             })}
-          </div>
-
-        </div>
-
-        {/* Dedicated Highlighted "Partner with AVRX" Strategic Showcase Banner */}
-        <div className="relative rounded-3xl p-8 sm:p-12 bg-gradient-to-r from-[#071329] via-[#091f3d] to-[#0d1527] border-2 border-cyan-400/70 shadow-[0_0_60px_rgba(0,240,255,0.25)] overflow-hidden">
-          
-          {/* Eye-catching Light Beams & Shimmer */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-cyan-400/20 via-blue-500/15 to-transparent rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-purple-500/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute inset-0 bg-[radial-gradient(#00f0ff_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
-
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            {/* Left Content */}
-            <div className="lg:col-span-8 space-y-5 text-left">
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-cyan-400/15 border border-cyan-400/40 text-cyan-300 text-xs font-mono font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(0,240,255,0.3)]">
-                <Handshake className="w-4 h-4 text-cyan-300 animate-bounce" />
-                <span>STRATEGIC PARTNERSHIP CO-CREATION</span>
-              </div>
-
-              <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
-                Partner with{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 drop-shadow-[0_0_25px_rgba(0,240,255,0.4)]">
-                  AVRX Enterprise
-                </span>
-              </h3>
-
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-2xl">
-                Collaborate with our seasoned engineers, Chartered Accountants, and certified capital underwriters. We build, scale, fund, and protect your enterprise with zero friction.
-              </p>
-
-              {/* 4 Pillars of Partnership */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                {[
-                  { label: 'Zero Vendor Lock-in', sub: 'Open-Source Stack', icon: Zap },
-                  { label: 'Instant Priority SLA', sub: '2-4 Hour Window', icon: Clock },
-                  { label: 'Direct CA & Legal', sub: 'Regulatory Shield', icon: Shield },
-                  { label: 'Capital Facilitation', sub: 'Subsidies & DPRs', icon: Award }
-                ].map((pill, pIdx) => {
-                  const PillIcon = pill.icon;
-                  return (
-                    <div key={pIdx} className="p-3.5 rounded-2xl bg-slate-950/70 border border-cyan-500/20 backdrop-blur-md space-y-1 hover:border-cyan-400/50 transition">
-                      <div className="flex items-center gap-1.5 text-cyan-300 text-xs font-bold">
-                        <PillIcon className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                        <span className="truncate">{pill.label}</span>
-                      </div>
-                      <div className="text-[10px] text-slate-400 font-mono">
-                        {pill.sub}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Right Action Box with Pulsing Glow */}
-            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4">
-              <button
-                onClick={() => onNavigate?.('contact')}
-                className="w-full py-4 px-8 rounded-2xl bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 hover:from-cyan-300 hover:to-blue-400 text-slate-950 font-black text-sm uppercase tracking-wider flex items-center justify-center gap-3 transition-all duration-300 transform hover:scale-[1.03] shadow-[0_0_40px_rgba(0,240,255,0.7)] cursor-pointer"
-              >
-                <span>Initiate Partnership</span>
-                <ArrowRight className="w-5 h-5 text-slate-950" />
-              </button>
-
-              <a
-                href="tel:+919630661536"
-                className="w-full py-3.5 px-6 rounded-2xl bg-slate-950/90 hover:bg-slate-900 border border-slate-700 hover:border-cyan-400 text-slate-200 hover:text-cyan-300 text-xs font-bold font-mono tracking-wider flex items-center justify-center gap-2 transition cursor-pointer shadow-lg"
-              >
-                <PhoneCall className="w-4 h-4 text-cyan-400" />
-                <span>Call Us: +91 96306 61536</span>
-              </a>
-            </div>
-
           </div>
 
         </div>

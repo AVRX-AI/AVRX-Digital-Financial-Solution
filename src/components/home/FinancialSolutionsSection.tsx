@@ -35,6 +35,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Fast Disbursal',
       rate: 'Interest from 10.5% p.a.*',
       desc: 'Instant collateral-free funds up to ₹25 Lakhs for medical emergencies, weddings, education, or travel.',
+      imageUrl: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
       features: ['Up to ₹25 Lakhs', 'Tenure 12-60 Months', '100% Digital KYC', 'Minimal Documents'],
       icon: CircleDollarSign
     },
@@ -44,6 +45,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Growth Capital',
       rate: 'Interest from 12.0% p.a.*',
       desc: 'Unsecured working capital, machinery financing, and expansion credit for enterprises and startups.',
+      imageUrl: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=1200&q=80',
       features: ['Up to ₹1 Crore', 'Collateral-Free Options', 'Quick Sanction Cycle', 'Flexible Repayment'],
       icon: Briefcase
     },
@@ -53,6 +55,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Low Downpayment',
       rate: 'Interest from 8.8% p.a.*',
       desc: 'High on-road financing for new vehicles and competitive funding for certified pre-owned cars.',
+      imageUrl: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80',
       features: ['Up to 100% On-Road Funding', 'Tenure up to 7 Years', 'Used Car Valuation Support', 'Spot Approvals'],
       icon: Car
     },
@@ -62,6 +65,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'High Value',
       rate: 'Interest from 9.25% p.a.*',
       desc: 'Unlock deep liquidity against residential, commercial, or industrial properties with long tenures.',
+      imageUrl: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
       features: ['Up to ₹5 Crores Sanction', 'Tenures up to 15 Years', 'Lower Interest Rate', 'Retain Full Ownership'],
       icon: Landmark
     },
@@ -71,6 +75,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Instant Rewards',
       rate: 'Pre-Approved Offers',
       desc: 'Compare and apply for top lifestyle, fuel, travel, and cashback credit cards with lifetime-free benefits.',
+      imageUrl: 'https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=800&q=80',
       features: ['Zero Annual Fee Options', 'Airport Lounge Access', 'Instant Reward Points', 'Digital Card Issuance'],
       icon: CreditCard
     },
@@ -80,6 +85,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Lowest Rates',
       rate: 'Interest from 8.35% p.a.*',
       desc: 'Affordable home purchase and plot construction loans with long repayment tenures up to 30 years.',
+      imageUrl: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80',
       features: ['Up to 90% Property Cost', 'Tenures up to 30 Years', 'Tax Benefits 80C & 24b', 'Balance Transfer Support'],
       icon: Home
     },
@@ -89,6 +95,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Spot Approval',
       rate: 'Interest from 9.9% p.a.*',
       desc: 'Instant financing for commuter bikes, sports motorcycles, and high-efficiency electric scooters (EVs).',
+      imageUrl: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80',
       features: ['Up to 95% On-Road Funding', 'Instant In-Showroom Approval', 'Low Monthly EMIs', 'EV Subsidies Included'],
       icon: Bike
     },
@@ -98,6 +105,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Govt Backed',
       rate: 'Subsidies up to 35%*',
       desc: 'Comprehensive guidance to secure government-backed credit facilities and capital subsidies.',
+      imageUrl: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
       features: ['Subsidies up to 35%', 'Project Report Preparation', 'CGTMSE Collateral Waiver', 'Direct Bank Coordination'],
       icon: Landmark
     },
@@ -107,6 +115,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: '35% Subsidy',
       rate: 'Govt PMEGP Program',
       desc: 'Prime Minister Employment Generation Programme financing for setting up new manufacturing or service units.',
+      imageUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
       features: ['Up to ₹50 Lakhs Project Size', 'Margin Money Subsidy 15-35%', 'CA-Certified DPR Included', 'Portal Filing Assistance'],
       icon: Briefcase
     },
@@ -116,6 +125,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Zero Collateral',
       rate: 'MUDRA Scheme',
       desc: 'Collateral-free micro loans up to ₹10 Lakhs under the Pradhan Mantri MUDRA Yojana for small business owners.',
+      imageUrl: 'https://images.unsplash.com/photo-1589758438368-0ad531db3366?auto=format&fit=crop&w=800&q=80',
       features: ['Shishu (up to ₹50K)', 'Kishore (₹50K to ₹5L)', 'Tarun (₹5L to ₹10L)', 'No Collateral Security'],
       icon: CircleDollarSign
     }
@@ -129,6 +139,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Instant PDF',
       categoryType: 'Comprehensive & Third Party',
       desc: 'Instant vehicle policy issuance with cashless repair network across 5,000+ garages nationwide.',
+      imageUrl: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80',
       features: ['Zero Dep & Engine Protect', 'Cashless Claims Network', 'Instant NCB Transfer', '24x7 Roadside Assist'],
       icon: Shield
     },
@@ -138,6 +149,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Starts @ ₹499/yr',
       categoryType: 'Bike / Scooter / EV',
       desc: 'Comprehensive & mandatory third-party insurance for all scooters, commuter bikes, and electric 2-wheelers.',
+      imageUrl: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80',
       features: ['Instant Policy Issuance', 'Personal Accident Cover ₹15L', 'No Inspection Required', 'Break-in Renewal Support'],
       icon: Bike
     },
@@ -147,6 +159,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Cashless Garages',
       categoryType: 'Private & Fleet',
       desc: 'Complete accidental damage, theft, and natural calamity protection for private cars and commercial fleets.',
+      imageUrl: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80',
       features: ['Bumper to Bumper Zero Dep', 'Consumable & Tyre Cover', 'Key Replacement Benefit', 'Instant Claim Concierge'],
       icon: Car
     },
@@ -156,6 +169,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Commercial Fleet',
       categoryType: 'Trucks / Pickups / Vans',
       desc: 'Heavy and light goods carriage commercial vehicle policies compliant with national transport regulations.',
+      imageUrl: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80',
       features: ['Goods in Transit Coverage', 'Driver & Cleaner Personal Cover', 'Third Party Legal Liability', 'Multi-Vehicle Fleet Rates'],
       icon: Truck
     },
@@ -165,6 +179,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Agriculture Plan',
       categoryType: 'Farm Machinery',
       desc: 'Dedicated rural & agricultural vehicle insurance safeguarding tractors, trailers, and harvester machinery.',
+      imageUrl: 'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800&q=80',
       features: ['Farm Equipment Damage Cover', 'Third Party Rural Liability', 'Subsidized Rural Premiums', 'Fast Claim Settlement'],
       icon: Tractor
     },
@@ -174,6 +189,7 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
       badge: 'Heavy Machinery',
       categoryType: 'Excavator / Cranes / JCB',
       desc: 'Specialized Contractor Plant & Machinery (CPM) insurance covering cranes, excavators, loaders, and pavers.',
+      imageUrl: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80',
       features: ['On-Site Accidental Damage', 'Burglary & Vandalism Shield', 'Operator Liability Cover', 'High Sum Insured Protection'],
       icon: HardHat
     },
@@ -269,28 +285,55 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
           {(activeTab === 'loans' ? loanServices : insuranceServices).slice(0, 3).map((item) => {
             const Icon = item.icon;
             const isLoan = activeTab === 'loans';
+            const itemImage = 'imageUrl' in item ? (item as any).imageUrl : undefined;
             return (
               <div
                 key={item.id}
-                className={`flex flex-col justify-between p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 via-[#070b14]/95 to-slate-900/90 border border-slate-800 ${
+                className={`flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 via-[#070b14]/95 to-slate-900/90 border border-slate-800 ${
                   isLoan ? 'hover:border-emerald-500/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)]' : 'hover:border-cyan-500/50 hover:shadow-[0_0_30px_rgba(0,240,255,0.15)]'
-                } shadow-xl transition-all duration-300 group hover:-translate-y-1`}
+                } shadow-xl transition-all duration-300 group hover:-translate-y-1 overflow-hidden`}
               >
                 <div className="space-y-4">
-                  
-                  {/* Top row */}
-                  <div className="flex items-center justify-between">
-                    <div className={`p-3 rounded-xl bg-slate-950 border border-slate-800 ${
-                      isLoan ? 'text-emerald-400' : 'text-cyan-400'
-                    } group-hover:scale-110 transition-transform`}>
-                      <Icon className="w-5 h-5" />
+                  {/* Thumbnail Image Header */}
+                  {itemImage && (
+                    <div className="relative h-36 w-full rounded-xl overflow-hidden border border-slate-800 bg-slate-950 group-hover:border-slate-700 transition-colors">
+                      <img
+                        src={itemImage}
+                        alt={item.title}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                      
+                      {/* Floating Badge & Icon */}
+                      <div className={`absolute top-2.5 left-2.5 p-2 rounded-lg bg-slate-950/85 backdrop-blur-md border border-slate-700/80 ${
+                        isLoan ? 'text-emerald-400' : 'text-cyan-400'
+                      }`}>
+                        <Icon className="w-4 h-4" />
+                      </div>
+
+                      <span className={`absolute top-2.5 right-2.5 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full ${
+                        isLoan ? 'bg-emerald-500/90 text-slate-950' : 'bg-cyan-500/90 text-slate-950'
+                      } shadow-sm`}>
+                        {item.badge}
+                      </span>
                     </div>
-                    <span className={`text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full ${
-                      isLoan ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20' : 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20'
-                    } border`}>
-                      {item.badge}
-                    </span>
-                  </div>
+                  )}
+
+                  {!itemImage && (
+                    <div className="flex items-center justify-between">
+                      <div className={`p-3 rounded-xl bg-slate-950 border border-slate-800 ${
+                        isLoan ? 'text-emerald-400' : 'text-cyan-400'
+                      } group-hover:scale-110 transition-transform`}>
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <span className={`text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full ${
+                        isLoan ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20' : 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20'
+                      } border`}>
+                        {item.badge}
+                      </span>
+                    </div>
+                  )}
 
                   <div>
                     <h3 className={`text-lg font-bold text-white ${

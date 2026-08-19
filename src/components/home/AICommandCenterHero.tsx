@@ -1,25 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { 
   ArrowRight, 
   Sparkles, 
-  Code2, 
-  TrendingUp, 
-  DollarSign, 
-  ShieldCheck, 
-  Cpu, 
   PhoneCall, 
-  Layers, 
-  ChevronRight,
-  CheckCircle2,
-  Zap,
-  Globe,
-  Bot,
-  Activity,
-  Award,
-  Lock,
-  ArrowUpRight
+  CheckCircle2
 } from 'lucide-react';
-import { Hero3DCanvas } from './Hero3DCanvas';
+import { ServicesSlider } from './ServicesSlider';
 import { AshokaChakraHolo } from '../common/AshokaChakraHolo';
 import { TricolourRibbonWave } from '../common/TricolourRibbonWave';
 
@@ -29,69 +15,7 @@ interface AICommandCenterHeroProps {
 }
 
 export const AICommandCenterHero: React.FC<AICommandCenterHeroProps> = ({ onNavigate }) => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [activeTab, setActiveTab] = useState<'build' | 'grow' | 'finance' | 'protect' | 'automate'>('build');
   const heroRef = useRef<HTMLElement | null>(null);
-
-  // Mouse move handler for 3D parallax
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!heroRef.current) return;
-    const rect = heroRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setMousePos({ x, y });
-  };
-
-  const floatingPanels = [
-    {
-      id: 'panel-ai',
-      title: 'AI INTELLIGENCE',
-      desc: '70+ in-browser tools & neural engines',
-      status: 'Active • 99.9% Uptime',
-      icon: Cpu,
-      color: 'text-cyan-400',
-      borderColor: 'border-cyan-500/40',
-      glow: 'shadow-[0_0_20px_rgba(0,240,255,0.25)]',
-      position: 'top-4 left-0 sm:-left-4',
-      target: 'ai-tools'
-    },
-    {
-      id: 'panel-finance',
-      title: 'SMART FINANCE',
-      desc: 'Instant loan checks & PMEGP subsidies',
-      status: 'RBI Compliant Rates',
-      icon: DollarSign,
-      color: 'text-emerald-400',
-      borderColor: 'border-emerald-500/40',
-      glow: 'shadow-[0_0_20px_rgba(16,185,129,0.25)]',
-      position: 'top-8 right-0 sm:-right-4',
-      target: 'financial-solutions'
-    },
-    {
-      id: 'panel-digital',
-      title: 'DIGITAL SOLUTIONS',
-      desc: 'High-speed websites & mobile apps',
-      status: 'Next-Gen 2026 Core',
-      icon: Code2,
-      color: 'text-blue-400',
-      borderColor: 'border-blue-500/40',
-      glow: 'shadow-[0_0_20px_rgba(59,130,246,0.25)]',
-      position: 'bottom-8 left-0 sm:-left-4',
-      target: 'digital-solutions'
-    },
-    {
-      id: 'panel-growth',
-      title: 'BUSINESS GROWTH',
-      desc: 'SEO dominance & automated filings',
-      status: 'Zero Rejection Rate',
-      icon: TrendingUp,
-      color: 'text-purple-400',
-      borderColor: 'border-purple-500/40',
-      glow: 'shadow-[0_0_20px_rgba(168,85,247,0.25)]',
-      position: 'bottom-4 right-0 sm:-right-4',
-      target: 'tax-solutions'
-    }
-  ];
 
   const headlineLetters = [
     { text: 'Build', highlight: false },
@@ -111,7 +35,6 @@ export const AICommandCenterHero: React.FC<AICommandCenterHeroProps> = ({ onNavi
     <section 
       ref={heroRef}
       id="hero-command-center"
-      onMouseMove={handleMouseMove}
       className="relative min-h-screen pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden bg-[#030712] text-white flex flex-col justify-center select-none"
     >
       {/* 1. Futuristic Cinematic Atmosphere */}
@@ -148,11 +71,11 @@ export const AICommandCenterHero: React.FC<AICommandCenterHeroProps> = ({ onNavi
           </div>
         </div>
 
-        {/* Hero 2-Column Split: Headline & CTA on Left, 3D Intelligence Visual with Floating Panels on Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        {/* Hero 2-Column Split: Headline & CTA on Left, Interactive Services Slider on Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-center">
           
           {/* Left Column (Headline + Value Proposition + CTAs) */}
-          <div className="lg:col-span-7 space-y-8 text-left">
+          <div className="lg:col-span-6 xl:col-span-6 space-y-8 text-left">
             
             {/* Animated Headline */}
             <div className="space-y-2">
@@ -242,53 +165,9 @@ export const AICommandCenterHero: React.FC<AICommandCenterHeroProps> = ({ onNavi
 
           </div>
 
-          {/* Right Column: 3D Intelligence Visual Canvas + 4 Floating Glass Panels */}
-          <div className="lg:col-span-5 relative flex items-center justify-center min-h-[460px] sm:min-h-[520px]">
-            
-            {/* 3D Canvas Visual in Center */}
-            <div 
-              className="relative w-full h-[460px] sm:h-[500px] flex items-center justify-center transition-transform duration-200 ease-out"
-              style={{
-                transform: `perspective(1000px) rotateY(${mousePos.x * 12}deg) rotateX(${-mousePos.y * 12}deg)`
-              }}
-            >
-              <Hero3DCanvas />
-
-              {/* 4 Floating Glass Panels (Section 11) */}
-              {floatingPanels.map((panel, idx) => {
-                const Icon = panel.icon;
-                return (
-                  <button
-                    key={panel.id}
-                    onClick={() => onNavigate(panel.target)}
-                    className={`absolute ${panel.position} z-20 p-3.5 sm:p-4 rounded-2xl bg-slate-950/80 hover:bg-slate-900/95 border ${panel.borderColor} ${panel.glow} backdrop-blur-xl transition-all duration-300 hover:scale-108 text-left max-w-[200px] sm:max-w-[220px] group cursor-pointer animate-float-${(idx % 2) + 1}`}
-                    style={{
-                      transform: `translate(${mousePos.x * (idx % 2 === 0 ? 15 : -15)}px, ${mousePos.y * (idx < 2 ? 15 : -15)}px)`
-                    }}
-                  >
-                    <div className="flex items-center justify-between mb-1.5">
-                      <div className={`p-1.5 rounded-lg bg-slate-900 border border-slate-800 ${panel.color} group-hover:scale-110 transition-transform`}>
-                        <Icon className="w-4 h-4" />
-                      </div>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-white transition-colors" />
-                    </div>
-
-                    <div className="text-xs font-black text-white group-hover:text-cyan-300 transition-colors">
-                      {panel.title}
-                    </div>
-                    <div className="text-[10px] text-slate-400 leading-tight mt-0.5">
-                      {panel.desc}
-                    </div>
-                    <div className="mt-2 text-[9px] font-mono text-cyan-400/90 font-semibold flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>{panel.status}</span>
-                    </div>
-                  </button>
-                );
-              })}
-
-            </div>
-
+          {/* Right Column: Attractive Interactive Services Slider */}
+          <div className="lg:col-span-6 xl:col-span-6 relative flex items-center justify-center w-full">
+            <ServicesSlider onNavigate={onNavigate} />
           </div>
 
         </div>
