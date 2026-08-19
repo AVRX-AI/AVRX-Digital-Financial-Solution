@@ -3,6 +3,7 @@ import { TAX_SERVICES } from '../data/servicesData';
 import { ServiceItem } from '../types';
 import { SEO } from '../components/common/SEO';
 import { DisclaimerBanner } from '../components/common/DisclaimerBanner';
+import { renderServiceIcon } from '../utils/iconMap';
 import { FileText, Check, ArrowRight, ShieldCheck, PhoneCall, ChevronDown } from 'lucide-react';
 
 interface TaxSolutionsPageProps {
@@ -56,17 +57,22 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
                   setSelectedService(svc);
                   setActiveFaq(null);
                 }}
-                className={`w-full text-left p-4 rounded-2xl border transition flex items-center justify-between ${
+                className={`w-full text-left p-3.5 rounded-2xl border transition flex items-center justify-between gap-3 ${
                   selectedService?.id === svc.id
                     ? 'bg-amber-500/15 border-amber-400 text-white shadow-[0_0_20px_rgba(245,158,11,0.2)] font-bold'
                     : 'bg-slate-900/80 border-slate-800 text-slate-300 hover:bg-slate-800/80'
                 }`}
               >
-                <div>
-                  <div className="text-sm">{svc.title}</div>
-                  <div className="text-[11px] text-slate-400 font-normal line-clamp-1 mt-0.5">{svc.priceStarting}</div>
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="p-2 rounded-xl bg-slate-950 border border-slate-800 text-amber-400 shrink-0">
+                    {renderServiceIcon(svc.iconName, 'w-4 h-4')}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-sm truncate">{svc.title}</div>
+                    <div className="text-[11px] text-slate-400 font-normal line-clamp-1 mt-0.5">{svc.priceStarting}</div>
+                  </div>
                 </div>
-                <ArrowRight className={`w-4 h-4 ${selectedService?.id === svc.id ? 'text-amber-400' : 'text-slate-600'}`} />
+                <ArrowRight className={`w-4 h-4 shrink-0 ${selectedService?.id === svc.id ? 'text-amber-400' : 'text-slate-600'}`} />
               </button>
             ))}
           </div>
@@ -75,6 +81,25 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
           {selectedService && (
             <div className="lg:col-span-8 bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl backdrop-blur-xl">
               
+              {/* Optional Hero Image Banner */}
+              {selectedService.imageUrl && (
+                <div className="relative h-48 sm:h-56 w-full rounded-2xl overflow-hidden border border-slate-800">
+                  <img
+                    src={selectedService.imageUrl}
+                    alt={selectedService.title}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                    <div className="flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-950/80 backdrop-blur-md border border-slate-700/80 text-amber-300 text-xs font-semibold">
+                      {renderServiceIcon(selectedService.iconName, 'w-3.5 h-3.5')}
+                      <span>{selectedService.category}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-800">
                 <div>
                   <div className="flex items-center gap-3">

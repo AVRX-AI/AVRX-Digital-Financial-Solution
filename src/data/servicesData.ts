@@ -10,6 +10,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     iconName: 'Layout',
     badge: 'Popular',
     priceStarting: '₹9,999',
+    imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
     features: [
       'Custom Responsive UI/UX Design',
       'Ultra-Fast Loading & Core Web Vitals Optimization',
@@ -51,6 +52,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     iconName: 'Building2',
     badge: 'Enterprise',
     priceStarting: '₹19,999',
+    imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
     features: [
       'Multi-Page Enterprise Navigation',
       'Investor & Newsroom Publishing Systems',
@@ -76,6 +78,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     iconName: 'ShoppingBag',
     badge: 'High Demand',
     priceStarting: '₹24,999',
+    imageUrl: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=800&q=80',
     features: [
       'Unlimited Product Catalogues & Categories',
       'Seamless Razorpay/Stripe Payment Gateway Integration',
@@ -96,6 +99,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     fullDesc: 'Tailor-made web applications designed for custom workflows, SaaS MVPs, customer portals, and internal management tools with TypeScript, Node.js, and cloud backend architecture.',
     iconName: 'Code2',
     priceStarting: '₹29,999',
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
     features: [
       'Full-Stack Architecture (React + Express / Next.js)',
       'Database Modeling & Authentication Systems',
@@ -116,6 +120,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     fullDesc: 'High-performance Android apps with offline support, push notifications, biometric auth, and smooth fluid animations published directly to Google Play Store.',
     iconName: 'Smartphone',
     priceStarting: '₹24,999',
+    imageUrl: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
     features: [
       'Native Flutter / React Native App Build',
       'Play Store Publishing & Guidelines Compliance',
@@ -133,8 +138,9 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     category: 'digital',
     shortDesc: 'Premium iOS applications engineered for iPhone and iPad ecosystems.',
     fullDesc: 'Elegant iOS mobile apps engineered following Apple Human Interface Guidelines for App Store distribution, delivering high performance and security.',
-    iconName: 'Apple',
+    iconName: 'Smartphone',
     priceStarting: '₹29,999',
+    imageUrl: 'https://images.unsplash.com/photo-1510519138197-04075c7e145c?auto=format&fit=crop&w=800&q=80',
     features: [
       'iOS Human Interface Guidelines Compliance',
       'Apple Pay Integration & StoreKit Support',
@@ -153,6 +159,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     fullDesc: 'Data-driven marketing campaigns on Meta (Facebook/Instagram) and Google Ads engineered to generate high-intent sales leads, inquiries, and brand awareness.',
     iconName: 'Megaphone',
     priceStarting: '₹9,999/mo',
+    imageUrl: 'https://images.unsplash.com/photo-1533750516457-a7f992034fec?auto=format&fit=crop&w=800&q=80',
     features: [
       'Google Search & Display Performance Ads',
       'Meta (Facebook & Instagram) Targeted Lead Ads',
@@ -172,6 +179,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     fullDesc: 'Comprehensively optimize your website to rank higher on Google search results for valuable business keywords and drive sustainable organic traffic.',
     iconName: 'TrendingUp',
     priceStarting: '₹14,999/mo',
+    imageUrl: 'https://images.unsplash.com/photo-1571786256017-aee7a0c009b6?auto=format&fit=crop&w=800&q=80',
     features: [
       'In-depth Keyword & Competitor Analysis',
       'Technical SEO Audit & Core Web Vitals Fixes',
@@ -191,6 +199,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     fullDesc: 'Transform legacy WordPress or older websites with contemporary 2026 aesthetics, mobile responsiveness, rapid load speed, and improved lead conversion UI.',
     iconName: 'RefreshCw',
     priceStarting: '₹9,999',
+    imageUrl: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
     features: [
       'Modern UI/UX Visual Revamp',
       'Speed Boost & Code Refactoring',
@@ -209,6 +218,7 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     fullDesc: 'Comprehensive website upkeep service keeping your platform secure, bug-free, updated, backed up, and fast round-the-clock.',
     iconName: 'ShieldCheck',
     priceStarting: '₹4,999/mo',
+    imageUrl: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
     features: [
       '24/7 Security Scanning & Firewall Protection',
       'Daily Automated Offsite Backups',
@@ -231,6 +241,7 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
     fullDesc: 'Access quick personal loans with competitive interest rates, minimal documentation, and flexible repayment tenures from top RBI-regulated lending partners.',
     iconName: 'UserCheck',
     priceStarting: 'Interest from 10.5% p.a.*',
+    imageUrl: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80',
     features: [
       'Loan Amounts from ₹50,000 up to ₹25 Lakhs',
       'Tenure Options from 12 to 60 Months',
@@ -251,6 +262,7 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
     iconName: 'Briefcase',
     badge: 'Popular',
     priceStarting: 'Interest from 12% p.a.*',
+    imageUrl: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=1200&q=80',
     features: [
       'Business Capital up to ₹1 Crore',
       'Collateral-Free Financing Options Available',
@@ -269,6 +281,7 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
     fullDesc: 'Secure long-term housing loans with attractive floating/fixed interest rates, balance transfer facilities, and maximum tenure options up to 30 years.',
     iconName: 'Home',
     priceStarting: 'Interest from 8.35% p.a.*',
+    imageUrl: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
     features: [
       'Up to 90% Property Cost Financing',
       'Tenure up to 30 Years for Low Monthly EMIs',
@@ -287,6 +300,7 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
     fullDesc: 'Finance your new or pre-owned personal or commercial vehicle with high on-road funding ratios and flexible repayment terms.',
     iconName: 'Car',
     priceStarting: 'Interest from 8.8% p.a.*',
+    imageUrl: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
     features: [
       'Up to 100% On-Road Price Funding for Select Profiles',
       'New & Used Vehicle Financing Support',
@@ -305,6 +319,7 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
     fullDesc: 'Leverage your existing real estate assets to raise high-ticket capital for major business expansion, debt consolidation, or strategic investments.',
     iconName: 'Key',
     priceStarting: 'Interest from 9.25% p.a.*',
+    imageUrl: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=800&q=80',
     features: [
       'High Sanction Limits up to ₹5 Crores',
       'Lower Interest Rates compared to Unsecured Loans',
@@ -323,6 +338,7 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
     fullDesc: 'Switch existing home, business, or personal loans to lower interest lenders and unlock top-up capital without hassles.',
     iconName: 'Percent',
     priceStarting: 'Save up to 2% Interest*',
+    imageUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
     features: [
       'Significant EMI Cost Reduction',
       'Top-up Loan Amount Facility Available',
@@ -342,6 +358,7 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
     iconName: 'Landmark',
     badge: 'Govt Scheme',
     priceStarting: 'Subsidies up to 35%*',
+    imageUrl: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
     features: [
       'PMEGP Subsidy Loan Application Guidance',
       'MUDRA Loan (Shishu, Kishore, Tarun) Facilitation',
@@ -364,6 +381,7 @@ export const TAX_SERVICES: ServiceItem[] = [
     iconName: 'FileCheck',
     badge: 'Essential',
     priceStarting: '₹2,499',
+    imageUrl: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=800&q=80',
     features: [
       '100% Digital Document Verification',
       'ARN Application Generation within 24 Hours',
@@ -382,6 +400,7 @@ export const TAX_SERVICES: ServiceItem[] = [
     fullDesc: 'Ensure monthly/quarterly GST return compliance without late fees or tax notices. Includes automated GSTR-2B reconciliation for maximum ITC claims.',
     iconName: 'Calculator',
     priceStarting: '₹1,499/mo',
+    imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
     features: [
       'GSTR-1 Sales & GSTR-3B Monthly Return Filing',
       'Automated GSTR-2A/2B Input Tax Credit Reconciliation',
@@ -401,6 +420,7 @@ export const TAX_SERVICES: ServiceItem[] = [
     iconName: 'FileText',
     badge: 'Tax Season',
     priceStarting: '₹999',
+    imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80',
     features: [
       'Expert CA Review of AIS/TIS & Form 26AS',
       'Optimization under Old vs New Tax Regime',
@@ -419,6 +439,7 @@ export const TAX_SERVICES: ServiceItem[] = [
     fullDesc: 'Get your official Udyam Certificate to unlock MSME benefits including priority bank loans, lower loan interest rates, protection against delayed payments, and electricity concessions.',
     iconName: 'Award',
     priceStarting: '₹499',
+    imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
     features: [
       'Instant Udyam Registration Certificate',
       'NIC Code Classification for Business Activities',
@@ -436,6 +457,7 @@ export const TAX_SERVICES: ServiceItem[] = [
     fullDesc: 'Complete compliance management for Private Limited, LLP, and OPC entities including ROC annual filings, director KYC, and maintenance of statutory registers.',
     iconName: 'ShieldAlert',
     priceStarting: '₹4,999/yr',
+    imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
     features: [
       'ROC Annual Filings (MGT-7 & AOC-4)',
       'DIR-3 KYC Director Annual Renewal',
@@ -454,6 +476,7 @@ export const TAX_SERVICES: ServiceItem[] = [
     fullDesc: 'Strategic tax structure advice for HNWIs, startups, crypto traders, and corporate entities to legally optimize tax liability and resolve tax department notices.',
     iconName: 'HelpCircle',
     priceStarting: '₹1,999/session',
+    imageUrl: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80',
     features: [
       '30/60 Mins Direct Phone / Video Consultation',
       'Custom Tax Savings Blueprint Preparation',
@@ -472,8 +495,9 @@ export const INSURANCE_SERVICES: ServiceItem[] = [
     category: 'insurance',
     shortDesc: 'Comprehensive car, bike, and commercial vehicle insurance with instant cash-free claims.',
     fullDesc: 'Protect your vehicles against accident damage, theft, third-party liability, and natural disasters with cash-free repairs across 5,000+ network garages.',
-    iconName: 'Shield',
+    iconName: 'Car',
     badge: 'Instant Renewal',
+    imageUrl: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
     features: [
       'Comprehensive & Third-Party Cover Options',
       'Zero Depreciation, Engine Protect & Consumable Add-ons',
@@ -492,6 +516,7 @@ export const INSURANCE_SERVICES: ServiceItem[] = [
     fullDesc: 'Comprehensive health protection covering hospitalization costs, pre/post admission expenses, ICU charges, day care procedures, and critical illness treatments.',
     iconName: 'HeartPulse',
     badge: 'Must Have',
+    imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
     features: [
       'Cashless Hospitalization across 10,000+ Hospitals',
       'No Room Rent Capping Options Available',
@@ -509,6 +534,7 @@ export const INSURANCE_SERVICES: ServiceItem[] = [
     shortDesc: 'Global travel coverage for flight delays, lost baggage, and international medical emergencies.',
     fullDesc: 'Schengen & global visa compliant travel insurance policies protecting leisure and business travelers against unexpected overseas emergencies.',
     iconName: 'Plane',
+    imageUrl: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80',
     features: [
       'Schengen Visa Mandatory Coverage Compliance',
       'Medical Expenses & Emergency Evacuation up to $500,000',
@@ -526,6 +552,7 @@ export const INSURANCE_SERVICES: ServiceItem[] = [
     shortDesc: 'Protection for your house structure and home contents against fire, theft, and natural hazards.',
     fullDesc: 'Safeguard your home building structure and valuable interior belongings (furniture, appliances, electronics) against fire, floods, earthquake, and burglary.',
     iconName: 'Home',
+    imageUrl: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
     features: [
       'Structure & Contents Comprehensive Cover',
       'Protection against Natural Calamities (Floods, Earthquakes)',
@@ -543,6 +570,7 @@ export const INSURANCE_SERVICES: ServiceItem[] = [
     shortDesc: 'Commercial shopkeeper insurance covering stock, inventory, machinery, and cash-in-transit.',
     fullDesc: 'Customized business property insurance designed for shop owners, showrooms, offices, and warehouses to cover goods, machinery, and business interruption.',
     iconName: 'Store',
+    imageUrl: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
     features: [
       'Shop Structure & Inventory Stock Cover',
       'Cash in Till & Transit Security Coverage',
@@ -564,6 +592,7 @@ export const HOSTING_PRODUCTS: ServiceItem[] = [
     fullDesc: 'Pre-designed enterprise WordPress theme templates optimized for Core Web Vitals, elementor compatible, responsive, and SEO ready.',
     iconName: 'Palette',
     priceStarting: '₹2,499',
+    imageUrl: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
     features: ['100% Responsive Design', 'Elementor & Gutenberg Compatible', '1-Click Demo Import', 'Lifetime Updates'],
     benefits: ['Launch professional sites in hours', 'Clean fast lightweight code'],
     process: ['Select Theme', 'Download Asset Package', 'Import & Customize'],
@@ -578,6 +607,7 @@ export const HOSTING_PRODUCTS: ServiceItem[] = [
     iconName: 'Server',
     badge: '99.9% Uptime',
     priceStarting: '₹199/mo',
+    imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
     features: [
       'NVMe Ultra SSD Storage',
       'Free Unlimited Wildcard SSL Certificates',
@@ -598,6 +628,7 @@ export const HOSTING_PRODUCTS: ServiceItem[] = [
     fullDesc: 'Host multiple client websites or business entities under one master management console with dedicated isolated resources and white-label cPanels.',
     iconName: 'Layers',
     priceStarting: '₹999/mo',
+    imageUrl: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
     features: [
       'Host 10 to 100+ Websites',
       'White-Label WHM / cPanel Accounts',
@@ -616,6 +647,7 @@ export const HOSTING_PRODUCTS: ServiceItem[] = [
     fullDesc: 'Register and protect your online brand address with free domain privacy protection, DNS management, and seamless WHOIS masking.',
     iconName: 'Globe',
     priceStarting: '₹499/yr',
+    imageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
     features: ['Instant .COM & .IN Registration', 'Free WHOIS Privacy Guard', 'Advanced DNS Management Interface', 'Easy Domain Transfer'],
     benefits: ['Secure your brand name before competitors', 'Complete DNS control'],
     process: ['Search Availability', 'Add to Cart', 'Instant Activation'],

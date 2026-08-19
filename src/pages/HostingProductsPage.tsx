@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { HOSTING_PRODUCTS } from '../data/servicesData';
 import { ServiceItem } from '../types';
 import { SEO } from '../components/common/SEO';
+import { renderServiceIcon } from '../utils/iconMap';
 import { Server, Check, ArrowRight, ShieldCheck, Zap, PhoneCall } from 'lucide-react';
 
 interface HostingProductsPageProps {
@@ -65,17 +66,22 @@ export const HostingProductsPage: React.FC<HostingProductsPageProps> = ({ onNavi
               <button
                 key={prod.id}
                 onClick={() => setSelectedProduct(prod)}
-                className={`w-full text-left p-4 rounded-2xl border transition flex items-center justify-between ${
+                className={`w-full text-left p-3.5 rounded-2xl border transition flex items-center justify-between gap-3 ${
                   selectedProduct?.id === prod.id
                     ? 'bg-blue-500/15 border-blue-400 text-white shadow-[0_0_20px_rgba(59,130,246,0.2)] font-bold'
                     : 'bg-slate-900/80 border-slate-800 text-slate-300 hover:bg-slate-800/80'
                 }`}
               >
-                <div>
-                  <div className="text-sm">{prod.title}</div>
-                  <div className="text-[11px] text-slate-400 font-normal line-clamp-1 mt-0.5">{prod.priceStarting}</div>
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="p-2 rounded-xl bg-slate-950 border border-slate-800 text-blue-400 shrink-0">
+                    {renderServiceIcon(prod.iconName, 'w-4 h-4')}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-sm truncate">{prod.title}</div>
+                    <div className="text-[11px] text-slate-400 font-normal line-clamp-1 mt-0.5">{prod.priceStarting}</div>
+                  </div>
                 </div>
-                <ArrowRight className={`w-4 h-4 ${selectedProduct?.id === prod.id ? 'text-blue-400' : 'text-slate-600'}`} />
+                <ArrowRight className={`w-4 h-4 shrink-0 ${selectedProduct?.id === prod.id ? 'text-blue-400' : 'text-slate-600'}`} />
               </button>
             ))}
           </div>
@@ -83,6 +89,25 @@ export const HostingProductsPage: React.FC<HostingProductsPageProps> = ({ onNavi
           {selectedProduct && (
             <div className="lg:col-span-8 bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl backdrop-blur-xl">
               
+              {/* Optional Hero Image Banner */}
+              {selectedProduct.imageUrl && (
+                <div className="relative h-48 sm:h-56 w-full rounded-2xl overflow-hidden border border-slate-800">
+                  <img
+                    src={selectedProduct.imageUrl}
+                    alt={selectedProduct.title}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                    <div className="flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-950/80 backdrop-blur-md border border-slate-700/80 text-blue-300 text-xs font-semibold">
+                      {renderServiceIcon(selectedProduct.iconName, 'w-3.5 h-3.5')}
+                      <span>{selectedProduct.category}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-800">
                 <div>
                   <div className="flex items-center gap-3">

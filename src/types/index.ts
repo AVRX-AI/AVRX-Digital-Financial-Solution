@@ -8,6 +8,7 @@ export interface ServiceItem {
   fullDesc: string;
   iconName: string;
   badge?: string;
+  imageUrl?: string;
   features: string[];
   benefits: string[];
   process: string[];

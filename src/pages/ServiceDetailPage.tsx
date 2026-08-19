@@ -89,7 +89,7 @@ const SERVICE_IMAGES: Record<string, string> = {
   'website-redesign': 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80',
   'website-maintenance': 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80',
   'personal-loan': 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1200&q=80',
-  'business-loan': 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+  'business-loan': 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=1200&q=80',
   'home-loan': 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80',
   'car-loan': 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80',
   'mortgage-loan': 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1200&q=80',
@@ -189,7 +189,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
   const targetId = SLUG_ALIASES[serviceSlug] || serviceSlug;
   const service = allServices.find(s => s.id === targetId) || allServices[0];
 
-  const heroImage = SERVICE_IMAGES[service.id] || SERVICE_IMAGES[serviceSlug] || SERVICE_IMAGES.default;
+  const heroImage = service.imageUrl || SERVICE_IMAGES[service.id] || SERVICE_IMAGES[serviceSlug] || SERVICE_IMAGES.default;
 
   // Category display details
   const getCategoryMeta = (cat: string) => {
@@ -432,6 +432,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
                   src={heroImage}
                   alt={service.title}
                   loading="lazy"
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050811] via-transparent to-transparent opacity-90" />
