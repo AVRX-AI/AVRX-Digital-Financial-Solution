@@ -1,9 +1,9 @@
 export const SITE_CONFIG = {
-  name: "AVRX - No 1 Digital & Financial Solution in Chhattisgarh",
+  name: "AVRX | No 1 Digital & Financial Solution Company in Chhattisgarh India",
   shortName: "AVRX",
   domain: "avrx.in",
   url: "https://avrx.in",
-  tagline: "One Platform. Powerful Digital, Financial & AI Solutions.",
+  tagline: "AVRX | No 1 Digital & Financial Solution Company in Chhattisgarh India",
   description: "AVRX helps individuals, startups, and businesses build, grow, protect, and manage their digital and financial future with modern technology-driven solutions.",
   contact: {
     email: "support@avrx.in",
