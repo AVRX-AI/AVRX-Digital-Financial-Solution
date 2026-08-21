@@ -10,25 +10,14 @@ import { SITE_CONFIG } from '../../config';
 import { 
   Sparkles, 
   Search, 
-  Filter, 
   ArrowRight, 
-  ExternalLink, 
   Monitor, 
   Smartphone, 
-  Star, 
-  CheckCircle2, 
-  SlidersHorizontal,
-  Layers,
-  MessageCircle,
-  PhoneCall,
-  Zap,
-  Code2,
-  Building2,
-  ShoppingBag,
-  TrendingUp,
-  ShieldCheck,
-  Eye,
-  Rocket
+  ShieldCheck, 
+  Zap, 
+  Layers, 
+  MessageCircle, 
+  Eye
 } from 'lucide-react';
 
 interface ProjectShowcaseSectionProps {
@@ -87,7 +76,7 @@ export const ProjectShowcaseSection: React.FC<ProjectShowcaseSectionProps> = ({
     setIsModalOpen(true);
   };
 
-  const handleNavigateToContact = (projectName: string) => {
+  const handleNavigateToContact = () => {
     setIsModalOpen(false);
     onNavigate('contact');
   };
@@ -100,15 +89,17 @@ export const ProjectShowcaseSection: React.FC<ProjectShowcaseSectionProps> = ({
   };
 
   return (
-    <section id="projects-showcase" className="py-16 sm:py-24 bg-[#030611] text-white relative overflow-hidden">
+    <section id="projects-showcase" className="w-full py-16 sm:py-24 bg-[#030611] text-white relative overflow-hidden">
       
       {/* Background Ambient Aura */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-gradient-to-b from-cyan-500/15 via-blue-600/5 to-transparent blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/2 -right-40 w-96 h-96 bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[1200px] h-[500px] bg-gradient-to-b from-cyan-500/15 via-blue-600/5 to-transparent blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 -right-40 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 -left-40 w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
+      {/* Full-width Stretched Layout Container */}
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 relative z-10 space-y-16">
         
-        {/* 1. CINEMATIC HERO SECTION */}
+        {/* 1. CINEMATIC HERO INTRO */}
         <div className="text-center max-w-4xl mx-auto space-y-6 pt-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-black uppercase tracking-widest shadow-[0_0_20px_rgba(0,240,255,0.25)]">
             <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
@@ -122,23 +113,23 @@ export const ProjectShowcaseSection: React.FC<ProjectShowcaseSectionProps> = ({
             </span>
           </h2>
 
-          <p className="text-slate-300 text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-300 text-sm sm:text-lg max-w-3xl mx-auto leading-relaxed">
             Explore high-conversion websites, native mobile applications, and enterprise financial portals designed with immersive interactive experiences.
           </p>
 
           {/* Quick Stat Highlights */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            <div className="px-4 py-2 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-md flex items-center gap-2">
+            <div className="px-4 py-2.5 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-md flex items-center gap-2">
               <Zap className="w-4 h-4 text-cyan-400" />
               <span className="text-xs font-bold text-white">98% Avg Performance Score</span>
             </div>
 
-            <div className="px-4 py-2 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-md flex items-center gap-2">
+            <div className="px-4 py-2.5 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-md flex items-center gap-2">
               <Smartphone className="w-4 h-4 text-cyan-400" />
               <span className="text-xs font-bold text-white">Mobile-First Fluid UX</span>
             </div>
 
-            <div className="px-4 py-2 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-md flex items-center gap-2">
+            <div className="px-4 py-2.5 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-md flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-cyan-400" />
               <span className="text-xs font-bold text-white">Bank-Grade Architecture</span>
             </div>
@@ -227,20 +218,20 @@ export const ProjectShowcaseSection: React.FC<ProjectShowcaseSectionProps> = ({
             })}
           </div>
 
-          {/* Search Bar & Result Counter */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-3 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-md">
-            <div className="relative w-full sm:w-96">
+          {/* Search Bar & Result Counter - Stretched Wide */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-md">
+            <div className="relative w-full sm:w-96 md:w-[480px]">
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="Search by keyword, tech, or industry (e.g. React, E-Commerce)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9.5 pr-4 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition"
+                className="w-full pl-9.5 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition"
               />
             </div>
 
-            <div className="text-xs text-slate-400 flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
+            <div className="text-xs sm:text-sm text-slate-400 flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
               <span>
                 Showing <strong className="text-cyan-400">{filteredProjects.length}</strong> of {PROJECTS_DATA.length} projects
               </span>
@@ -258,7 +249,7 @@ export const ProjectShowcaseSection: React.FC<ProjectShowcaseSectionProps> = ({
 
         </div>
 
-        {/* 7. PROJECTS CARDS GRID */}
+        {/* 7. STRETCHED PROJECTS CARDS GRID */}
         {filteredProjects.length === 0 ? (
           <div className="p-12 text-center rounded-3xl bg-slate-900/50 border border-slate-800 space-y-3">
             <Layers className="w-10 h-10 text-slate-600 mx-auto" />
@@ -277,20 +268,20 @@ export const ProjectShowcaseSection: React.FC<ProjectShowcaseSectionProps> = ({
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
             {filteredProjects.map((project) => {
               const isApp = project.projectType === 'android-app' || project.projectType === 'ios-app';
 
               return (
                 <div
                   key={project.id}
-                  className="rounded-3xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(0,0,0,0.8)] flex flex-col justify-between overflow-hidden group"
+                  className="rounded-3xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)] flex flex-col justify-between overflow-hidden group"
                 >
                   <div>
                     {/* Visual Card Top Thumbnail with Photography */}
                     <div 
                       onClick={() => handleOpenProject(project)}
-                      className="relative h-52 sm:h-56 bg-slate-950 p-5 flex flex-col justify-between cursor-pointer overflow-hidden border-b border-slate-800"
+                      className="relative h-56 sm:h-60 bg-slate-950 p-5 flex flex-col justify-between cursor-pointer overflow-hidden border-b border-slate-800"
                     >
                       {/* Cover photography */}
                       <img 
@@ -371,7 +362,7 @@ export const ProjectShowcaseSection: React.FC<ProjectShowcaseSectionProps> = ({
                   <div className="p-5 pt-0 border-t border-slate-800/50 mt-2">
                     <button
                       onClick={() => handleOpenProject(project)}
-                      className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-slate-950 border border-slate-700 hover:border-transparent text-slate-200 font-bold text-xs transition-all duration-200 flex items-center justify-center gap-1.5 shadow-sm group-hover:shadow-[0_0_15px_rgba(0,240,255,0.25)]"
+                      className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-slate-950 border border-slate-700 hover:border-transparent text-slate-200 font-bold text-xs transition-all duration-200 flex items-center justify-center gap-1.5 shadow-sm group-hover:shadow-[0_0_15px_rgba(0,240,255,0.25)] cursor-pointer"
                     >
                       <span>Explore Live Experience</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -384,26 +375,26 @@ export const ProjectShowcaseSection: React.FC<ProjectShowcaseSectionProps> = ({
           </div>
         )}
 
-        {/* 8. BOTTOM CONVERSION CTA BANNER */}
-        <div className="mt-16 rounded-3xl bg-gradient-to-r from-cyan-950/70 via-[#071128] to-blue-950/70 border border-cyan-500/40 p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl">
+        {/* 8. STRETCHED BOTTOM CONVERSION CTA BANNER */}
+        <div className="mt-16 rounded-3xl bg-gradient-to-r from-cyan-950/70 via-[#071128] to-blue-950/70 border border-cyan-500/40 p-8 sm:p-14 text-center relative overflow-hidden shadow-2xl">
           
-          <div className="max-w-2xl mx-auto space-y-4 relative z-10">
-            <span className="text-xs font-black uppercase tracking-widest text-cyan-400 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30">
+          <div className="max-w-3xl mx-auto space-y-5 relative z-10">
+            <span className="text-xs font-black uppercase tracking-widest text-cyan-400 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30">
               Transform Your Digital Presence
             </span>
 
-            <h3 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
+            <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
               Ready to Build a High-End Digital Experience?
             </h3>
 
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
               Let's turn your vision into an interactive, fast, and high-converting product. Transparent pricing, modern engineering, and complete post-launch support.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
               <button
                 onClick={() => onNavigate('contact')}
-                className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-slate-950 font-black text-xs sm:text-sm hover:brightness-110 shadow-[0_0_25px_rgba(0,240,255,0.4)] transition flex items-center gap-2"
+                className="px-6 py-4 rounded-xl bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-slate-950 font-black text-xs sm:text-sm hover:brightness-110 shadow-[0_0_25px_rgba(0,240,255,0.4)] transition flex items-center gap-2 cursor-pointer"
               >
                 <span>Start Your Project With AVRX</span>
                 <ArrowRight className="w-4 h-4" />
@@ -411,7 +402,7 @@ export const ProjectShowcaseSection: React.FC<ProjectShowcaseSectionProps> = ({
 
               <button
                 onClick={handleWhatsApp}
-                className="px-5 py-3.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500/60 text-slate-200 hover:text-emerald-300 font-semibold text-xs sm:text-sm transition flex items-center gap-2"
+                className="px-6 py-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500/60 text-slate-200 hover:text-emerald-300 font-semibold text-xs sm:text-sm transition flex items-center gap-2 cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-400" />
                 <span>Talk to AVRX on WhatsApp</span>

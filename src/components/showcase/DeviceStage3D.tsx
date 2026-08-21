@@ -138,12 +138,12 @@ export const DeviceStage3D: React.FC<DeviceStage3DProps> = ({ projects, onOpenPr
       </div>
 
       {/* Main 3D Stage Visual Centerpiece */}
-      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center justify-center">
+      <div className="relative z-10 w-full max-w-6xl 2xl:max-w-7xl mx-auto flex flex-col items-center justify-center">
         
         {/* Active Stage Device Display */}
         <div 
           onClick={() => onOpenProject(currentSelection)}
-          className="relative w-full rounded-2xl bg-[#02050e] border border-cyan-500/40 p-3 sm:p-4 shadow-[0_25px_80px_rgba(0,0,0,0.9)] cursor-pointer group transition-all duration-300 hover:scale-[1.01] hover:border-cyan-400 overflow-hidden"
+          className="relative w-full rounded-2xl bg-[#02050e] border border-cyan-500/40 p-3 sm:p-5 shadow-[0_25px_80px_rgba(0,0,0,0.9)] cursor-pointer group transition-all duration-300 hover:scale-[1.01] hover:border-cyan-400 overflow-hidden"
         >
           {/* Top Realistic Device Frame / Browser Bar */}
           <div className="px-4 py-2.5 bg-slate-900/90 rounded-xl mb-3 flex items-center justify-between text-xs text-slate-400 border border-slate-800">
@@ -171,7 +171,7 @@ export const DeviceStage3D: React.FC<DeviceStage3DProps> = ({ projects, onOpenPr
           </div>
 
           {/* Device Screen Realistic High-Fidelity UI Presentation */}
-          <div className="relative rounded-xl overflow-hidden bg-slate-950 aspect-[16/9] sm:aspect-[21/9] max-h-[460px] border border-slate-800 flex flex-col justify-between">
+          <div className="relative rounded-xl overflow-hidden bg-slate-950 aspect-[16/9] sm:aspect-[21/9] max-h-[520px] border border-slate-800 flex flex-col justify-between">
             
             {/* Background High-Resolution Photography */}
             <img 

@@ -156,10 +156,10 @@ export const FeaturedProjectBanner: React.FC<FeaturedProjectBannerProps> = ({
         <div className="lg:col-span-5 flex justify-center">
           <div 
             onClick={() => onOpenViewer(currentProject)}
-            className="w-full max-w-md rounded-2xl bg-[#030610] border border-cyan-500/40 p-3 shadow-2xl hover:border-cyan-400 transition-all duration-300 hover:scale-[1.02] cursor-pointer group relative overflow-hidden"
+            className="w-full max-w-lg xl:max-w-xl 2xl:max-w-2xl rounded-2xl bg-[#030610] border border-cyan-500/40 p-3 sm:p-4 shadow-2xl hover:border-cyan-400 transition-all duration-300 hover:scale-[1.02] cursor-pointer group relative overflow-hidden"
           >
             {/* Top Device Bar */}
-            <div className="px-3 py-1.5 bg-slate-900/90 rounded-xl mb-2 flex items-center justify-between text-[11px] text-slate-400 border border-slate-800">
+            <div className="px-3 py-2 bg-slate-900/90 rounded-xl mb-2 flex items-center justify-between text-[11px] text-slate-400 border border-slate-800">
               <div className="flex items-center gap-1.5">
                 <div className="w-2 h-2 rounded-full bg-rose-500" />
                 <div className="w-2 h-2 rounded-full bg-amber-500" />
@@ -176,7 +176,7 @@ export const FeaturedProjectBanner: React.FC<FeaturedProjectBannerProps> = ({
             </div>
 
             {/* Inner Graphic Realistic Mockup Preview with Cover Image */}
-            <div className="w-full h-60 sm:h-72 rounded-xl relative overflow-hidden border border-slate-800 flex flex-col justify-between p-4 bg-slate-950">
+            <div className="w-full h-64 sm:h-80 lg:h-96 rounded-xl relative overflow-hidden border border-slate-800 flex flex-col justify-between p-4 sm:p-6 bg-slate-950">
               
               {/* Actual Realistic Cover Photo */}
               <img 
