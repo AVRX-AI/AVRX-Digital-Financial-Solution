@@ -15,8 +15,8 @@ export const SEO: React.FC<SEOProps> = ({
   type = 'website'
 }) => {
   const fullTitle = title
-    ? `${title} | ${SITE_CONFIG.name}`
-    : `${SITE_CONFIG.name} | Digital, Financial, Tax, Insurance & AI Ecosystem`;
+    ? (title.includes('AVRX') ? title : `${title} | ${SITE_CONFIG.shortName}`)
+    : SITE_CONFIG.name;
 
   useEffect(() => {
     document.title = fullTitle;
