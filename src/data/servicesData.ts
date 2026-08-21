@@ -70,6 +70,84 @@ export const DIGITAL_SERVICES: ServiceItem[] = [
     whyChooseUs: ['Used by fast-growing brands & corporate leaders', 'Strict SLA uptime guarantees']
   },
   {
+    id: 'landing-page-development',
+    title: 'Landing Pages & Sales Funnels',
+    category: 'digital',
+    shortDesc: 'High-converting single-page landing experiences designed for paid ads, products, and lead generation.',
+    fullDesc: 'Custom designed high-impact landing pages engineered specifically to maximize visitor conversions for marketing campaigns, product launches, event registrations, and direct lead generation.',
+    iconName: 'Layout',
+    badge: 'High Conversion',
+    priceStarting: '₹4,999',
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Conversion-Centric UX & Visual Hierarchy',
+      'Instant Lead Capture Forms & CRM Webhooks',
+      'Direct WhatsApp & Call Click-to-Action Hooks',
+      'Sub-Second Page Load Speed for Low Ad Bounce Rates',
+      'Meta Pixel & Google Ads Conversion Tracking Setup',
+      'A/B Split Test Ready Architecture'
+    ],
+    benefits: [
+      'Lower customer acquisition costs on paid ad campaigns',
+      'Double your lead capture rates with distraction-free UI',
+      '100% mobile-optimized layout'
+    ],
+    process: [
+      'Offer & Copywriting Strategy',
+      'High-Impact Wireframe & UI Mockup',
+      'Speed-Optimized Frontend Coding',
+      'Tracking & Analytics Integration',
+      'Launch & Campaign Live Test'
+    ],
+    whyChooseUs: [
+      'Engineered for maximum ROI on ad spend',
+      'Ultra-fast delivery within 3 to 5 business days'
+    ],
+    faqs: [
+      { question: 'Can I link this landing page with my Google or Facebook ads?', answer: 'Yes, we integrate all necessary conversion tags, Meta Pixel, Google Ads tracking, and Google Analytics 4 tags.' },
+      { question: 'How soon can a landing page be made live?', answer: 'Landing pages are typically completed and launched within 3 to 5 working days.' }
+    ]
+  },
+  {
+    id: 'web-portal-development',
+    title: 'Web Portal Development',
+    category: 'digital',
+    shortDesc: 'Customer, employee, vendor, and multi-tier business management portal ecosystems.',
+    fullDesc: 'Comprehensive cloud-based web portals for customer self-service, employee workflows, distributor networks, and business management. Features robust role-based access control, secure authentication, and real-time database integrations.',
+    iconName: 'Building2',
+    badge: 'Enterprise',
+    priceStarting: '₹34,999',
+    imageUrl: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Customer & Client Self-Service Portals',
+      'Employee Management & Attendance Portals',
+      'Vendor & Distributor Inventory Ecosystems',
+      'Role-Based Access Control (RBAC) & Permissions',
+      'Real-Time Reporting Dashboards & Data Export',
+      'Bank-Grade 256-Bit SSL Data Encryption'
+    ],
+    benefits: [
+      'Eliminate manual operational bottlenecks and paperwork',
+      'Provide 24/7 self-service convenience to clients and stakeholders',
+      'Unified real-time data visibility across departments'
+    ],
+    process: [
+      'User Flow & Department Requirements Mapping',
+      'Database Architecture & Security Blueprint',
+      'Frontend Portal & Admin Dashboard Development',
+      'Security Auditing & User Acceptance Testing',
+      'Deployment & Staff Training'
+    ],
+    whyChooseUs: [
+      'Bespoke scalable architecture with zero per-user licensing fees',
+      'Enterprise SLA uptime and data backup protection'
+    ],
+    faqs: [
+      { question: 'What types of portals can AVRX build?', answer: 'We build Customer Portals, Vendor/Supplier Portals, Employee HRMS Portals, B2B Distributor Dashboards, and Franchise Management systems.' },
+      { question: 'Is user data secured inside the portal?', answer: 'Yes, all portals feature encrypted authentication, session timeouts, role-based permission tiers, and automated database backups.' }
+    ]
+  },
+  {
     id: 'e-commerce-solutions',
     title: 'E-Commerce Solutions',
     category: 'digital',
@@ -368,6 +446,43 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
     benefits: ['Capital subsidies available up to 35%', 'Collateral-free credit under CGTMSE'],
     process: ['Scheme Eligibility Audit', 'Detailed Project Report (DPR) Creation', 'Portal Application & Bank Follow-up'],
     whyChooseUs: ['Specialized CA/Financial expert team for Govt loan DPR creation']
+  },
+  {
+    id: 'fixed-deposits',
+    title: 'Fixed Deposits & Term Savings',
+    category: 'financial',
+    shortDesc: 'High-yield corporate & bank fixed deposit comparison, planning, and documentation support.',
+    fullDesc: 'Maximize guaranteed returns on surplus funds through top-rated corporate fixed deposits, scheduled commercial banks, and RBI-regulated NBFC term deposits offering yields up to 8.75% p.a.',
+    iconName: 'Coins',
+    badge: 'High Yield',
+    priceStarting: 'Yields up to 8.75% p.a.*',
+    imageUrl: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Comparative Interest Rate Audits Across Top Banks & AAA NBFCs',
+      'Senior Citizen Higher Interest Rate Benefits (Extra 0.50% - 0.75%)',
+      'Flexible Payouts (Monthly, Quarterly, Cumulative at Maturity)',
+      'DICGC Insurance Protection up to ₹5 Lakhs per Bank',
+      'Zero Penalty Premature Withdrawal Guidance'
+    ],
+    benefits: [
+      'Guaranteed predictable returns with capital preservation',
+      'Higher returns than traditional savings accounts',
+      'Flexible tenures ranging from 7 days to 10 years'
+    ],
+    process: [
+      'Financial Goal & Tenure Planning',
+      'Lender & Issuer Yield Comparison',
+      'Digital KYC & Application Booking',
+      'FD Certificate Delivery'
+    ],
+    whyChooseUs: [
+      'Direct comparison across 30+ top institutions',
+      'Dedicated relationship concierge'
+    ],
+    faqs: [
+      { question: 'What is the highest FD interest rate available currently?', answer: 'Top rated corporate and small finance bank FDs currently offer rates between 7.50% and 8.75% p.a., with higher rates for senior citizens.' },
+      { question: 'Are my fixed deposits insured?', answer: 'Bank fixed deposits are insured under DICGC up to ₹5,00,000 per depositor per bank.' }
+    ]
   }
 ];
 
@@ -485,6 +600,82 @@ export const TAX_SERVICES: ServiceItem[] = [
     benefits: ['Clear tax confusion before major financial transactions', 'Save significant tax legally'],
     process: ['Book Session', 'Share Tax Context', 'Live Consultation & Action Plan'],
     whyChooseUs: ['Senior CAs with 10+ years experience']
+  },
+  {
+    id: 'company-registration',
+    title: 'Company & Business Registration',
+    category: 'tax',
+    shortDesc: 'Private Limited, LLP, One Person Company (OPC), and Partnership business incorporation.',
+    fullDesc: 'End-to-end company incorporation services with Ministry of Corporate Affairs (MCA). Includes DIN, DSC, PAN, TAN, MoA, AoA, GST registration, and corporate bank account opening guidance.',
+    iconName: 'Building2',
+    badge: 'Startup Ready',
+    priceStarting: '₹6,999',
+    imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Private Limited / LLP / OPC Incorporation Support',
+      'Name Approval Application & RUN / SPICe+ Form E-Filing',
+      'Digital Signature Certificates (DSC) for 2 Directors',
+      'Director Identification Numbers (DIN) Allotment',
+      'MoA & AoA Drafting & Incorporation Certificate (COI)',
+      'Company PAN, TAN & Corporate Bank Account Resolution'
+    ],
+    benefits: [
+      'Limited liability protection for founders & shareholders',
+      'Raise angel/venture capital easily with registered equity',
+      'High credibility with global enterprise clients'
+    ],
+    process: [
+      'Name Availability Search & DSC Setup',
+      'SPICe+ Part A & Part B Form E-Filing on MCA Portal',
+      'Certificate of Incorporation (COI) Issuance',
+      'Post-Incorporation Compliance & Bank Setup'
+    ],
+    whyChooseUs: [
+      'Fast 5 to 7 day incorporation timeline',
+      'Zero hidden govt stamp duty surprises',
+      'Free post-incorporation compliance consultation'
+    ],
+    faqs: [
+      { question: 'What is the minimum number of directors needed for Private Limited?', answer: 'A minimum of 2 directors and 2 shareholders are required. The directors can also be the shareholders.' },
+      { question: 'How long does company registration take in India?', answer: 'Typically 5 to 7 working days once all director KYC documents (PAN, Aadhaar, bank statements) are submitted.' },
+      { question: 'Is physical office presence required for registration?', answer: 'No, any commercial or residential address with a valid utility bill and NOC can serve as your registered office address.' }
+    ]
+  },
+  {
+    id: 'pan-services',
+    title: 'PAN Card & Direct Tax Services',
+    category: 'tax',
+    shortDesc: 'New PAN application, PAN corrections, Aadhaar-PAN linking, and duplicate card issuance.',
+    fullDesc: 'Fast-track PAN card documentation services for individuals, businesses, trusts, minors, and NRIs. Includes correction of demographic details, re-issuance, and statutory Aadhaar-PAN linking compliance.',
+    iconName: 'CreditCard',
+    priceStarting: '₹299',
+    imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'New PAN Application (Form 49A / 49AA for NRIs)',
+      'PAN Correction (Name, DOB, Father Name, Address)',
+      'Instant e-PAN Generation in 24 to 48 Hours',
+      'Aadhaar-PAN Mandatory Linking Facilitation',
+      'Company / Partnership Firm PAN Allotment'
+    ],
+    benefits: [
+      'Mandatory identification for all banking and tax transactions',
+      'Avoid high 20% TDS deduction rates by linking PAN with Aadhaar',
+      'Doorstep physical PVC card delivery across India'
+    ],
+    process: [
+      'Identity & Address Proof Upload',
+      'Application Form Verification',
+      'NSDL / UTIITSL Portal Submission',
+      'e-PAN PDF & Physical Card Dispatch'
+    ],
+    whyChooseUs: [
+      '100% error-free form submission',
+      'Instant tracking acknowledgement number'
+    ],
+    faqs: [
+      { question: 'How long does it take to get an e-PAN?', answer: 'Digital e-PAN is typically issued within 24 to 48 hours, while the physical PVC card arrives at your address in 7 to 10 days.' },
+      { question: 'What documents are required for PAN application?', answer: 'Proof of Identity (Aadhaar/Voter ID/Passport), Proof of Address, and Proof of Date of Birth with recent photographs.' }
+    ]
   }
 ];
 
