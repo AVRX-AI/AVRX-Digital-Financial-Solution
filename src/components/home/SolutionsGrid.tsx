@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { MagneticCard, GlowPreset } from '../common/MagneticCard';
 import { 
   Code2, 
   DollarSign, 
@@ -473,15 +474,28 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ onNavigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredServices.map(service => {
             const badgeColor = getCategoryBadgeColor(service.category);
+            const categoryGlowMap: Record<string, GlowPreset> = {
+              digital: 'cyan',
+              financial: 'emerald',
+              tax: 'amber',
+              insurance: 'purple'
+            };
+            const glow = categoryGlowMap[service.category] || 'cyan';
 
             return (
-              <div
+              <MagneticCard
                 key={service.id}
+                glowColor={glow}
+                enableTilt={true}
+                tiltStrength={3}
+                spotlightRadius={420}
+                spotlightOpacity={0.22}
+                soundOnHover={true}
                 onClick={() => {
                   onNavigate('service-detail', service.slug);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="group relative rounded-3xl bg-slate-900/85 border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-1.5 shadow-xl hover:shadow-[0_0_30px_rgba(0,240,255,0.15)] flex flex-col justify-between overflow-hidden cursor-pointer backdrop-blur-sm"
+                className="rounded-3xl bg-slate-900/85 border border-slate-800 hover:border-cyan-500/50 shadow-xl flex flex-col justify-between overflow-hidden cursor-pointer backdrop-blur-sm"
               >
                 {/* Image Showcase Container with subtle zoom on hover */}
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950">
@@ -548,7 +562,7 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ onNavigate }) => {
                   </div>
                 </div>
 
-              </div>
+              </MagneticCard>
             );
           })}
         </div>

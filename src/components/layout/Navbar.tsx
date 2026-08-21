@@ -4,13 +4,20 @@ import {
   Menu, 
   X, 
   ChevronDown, 
+  Home,
+  Code2,
   Code, 
+  Landmark,
   DollarSign, 
   FileText, 
   Shield, 
   Server, 
   Sparkles, 
+  FolderGit2,
+  CreditCard,
+  Users,
   Handshake,
+  PhoneCall,
   ArrowRight,
   PenTool,
   Palette,
@@ -31,6 +38,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { SITE_CONFIG } from '../../config';
 import brandLogo from '../../assets/images/avrx_white_logo_1786467039540.jpg';
 import { AI_SUITE_CATEGORIES, POPULAR_HIGHLIGHTED_TOOLS } from '../../data/aiToolsSuiteData';
+import { launchSoundEngine } from '../../utils/launchSoundEngine';
 
 interface NavbarProps {
   activePage: string;
@@ -39,7 +47,7 @@ interface NavbarProps {
   onReplayLaunch?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSearch }) => {
+export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSearch, onReplayLaunch }) => {
   const { language, setLanguage, t } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -163,33 +171,53 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-5 xl:gap-6 text-sm font-medium text-slate-300">
+        <nav className="hidden lg:flex items-center gap-2 xl:gap-2.5 text-xs xl:text-sm font-medium text-slate-300">
           <button
             onClick={() => handleNav('home')}
-            className={`hover:text-cyan-400 transition ${activePage === 'home' ? 'text-cyan-400 font-semibold' : ''}`}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl transition-all ${
+              activePage === 'home' 
+                ? 'bg-cyan-500/15 text-cyan-300 font-bold border border-cyan-500/30 shadow-[0_0_12px_rgba(0,240,255,0.25)]' 
+                : 'hover:text-cyan-300 hover:bg-slate-800/50'
+            }`}
           >
-            {t('nav.home')}
+            <Home className="w-3.5 h-3.5 text-cyan-400" />
+            <span>{t('nav.home')}</span>
           </button>
 
           <button
             onClick={() => handleNav('digital-solutions')}
-            className={`hover:text-cyan-400 transition ${activePage === 'digital-solutions' ? 'text-cyan-400 font-semibold' : ''}`}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl transition-all ${
+              activePage === 'digital-solutions' 
+                ? 'bg-blue-500/15 text-blue-300 font-bold border border-blue-500/30 shadow-[0_0_12px_rgba(59,130,246,0.25)]' 
+                : 'hover:text-blue-300 hover:bg-slate-800/50'
+            }`}
           >
-            Digital
+            <Code2 className="w-3.5 h-3.5 text-blue-400" />
+            <span>Digital</span>
           </button>
 
           <button
             onClick={() => handleNav('financial-solutions')}
-            className={`hover:text-cyan-400 transition ${activePage === 'financial-solutions' ? 'text-cyan-400 font-semibold' : ''}`}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl transition-all ${
+              activePage === 'financial-solutions' 
+                ? 'bg-emerald-500/15 text-emerald-300 font-bold border border-emerald-500/30 shadow-[0_0_12px_rgba(16,185,129,0.25)]' 
+                : 'hover:text-emerald-300 hover:bg-slate-800/50'
+            }`}
           >
-            Finance
+            <Landmark className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Finance</span>
           </button>
 
           <button
             onClick={() => handleNav('tax-solutions')}
-            className={`hover:text-cyan-400 transition ${activePage === 'tax-solutions' ? 'text-cyan-400 font-semibold' : ''}`}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl transition-all ${
+              activePage === 'tax-solutions' 
+                ? 'bg-amber-500/15 text-amber-300 font-bold border border-amber-500/30 shadow-[0_0_12px_rgba(245,158,11,0.25)]' 
+                : 'hover:text-amber-300 hover:bg-slate-800/50'
+            }`}
           >
-            Tax &amp; Documentation
+            <FileText className="w-3.5 h-3.5 text-amber-400" />
+            <span>Tax &amp; Legal</span>
           </button>
 
           {/* AI Tools Mega Menu (Flagship Next-Gen AI Interactive Suite) */}
@@ -200,13 +228,15 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
           >
             <button
               onClick={() => handleNav('ai-tools')}
-              className={`flex items-center gap-1.5 hover:text-cyan-400 transition py-2 ${
-                activePage === 'ai-tools' ? 'text-cyan-400 font-semibold' : ''
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl transition-all ${
+                activePage === 'ai-tools' 
+                  ? 'bg-purple-500/15 text-purple-300 font-bold border border-purple-500/30 shadow-[0_0_12px_rgba(168,85,247,0.25)]' 
+                  : 'hover:text-purple-300 hover:bg-slate-800/50'
               }`}
             >
-              <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+              <Sparkles className="w-3.5 h-3.5 text-purple-400 animate-pulse" />
               <span>AI Tools</span>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${aiToolsOpen ? 'rotate-180 text-cyan-400' : ''}`} />
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${aiToolsOpen ? 'rotate-180 text-purple-400' : 'text-slate-400'}`} />
             </button>
 
             {aiToolsOpen && (
@@ -226,7 +256,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
                   </div>
                   <button
                     onClick={() => handleNav('ai-tools')}
-                    className="px-3.5 py-1.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-bold transition flex items-center gap-1 shadow-[0_0_15px_rgba(6,182,212,0.3)] shrink-0"
+                    className="px-3.5 py-1.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-bold transition flex items-center gap-1 shadow-[0_0_15px_rgba(6,182,212,0.3)] shrink-0 cursor-pointer"
                   >
                     <span>Open Full Suite</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -246,7 +276,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
                         <button
                           key={cat.id}
                           onClick={() => handleNav('ai-tools')}
-                          className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-cyan-500/10 hover:border-cyan-500/30 border border-transparent transition text-left group"
+                          className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-cyan-500/10 hover:border-cyan-500/30 border border-transparent transition text-left group cursor-pointer"
                         >
                           <div className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 shrink-0 group-hover:scale-110 transition-transform">
                             {getCategoryIcon(cat.id)}
@@ -276,7 +306,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
                         <button
                           key={tool.id}
                           onClick={() => handleNav('ai-tools', tool.id)}
-                          className="w-full flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 hover:bg-cyan-500/15 border border-slate-800 hover:border-cyan-500/40 text-left transition group"
+                          className="w-full flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 hover:bg-cyan-500/15 border border-slate-800 hover:border-cyan-500/40 text-left transition group cursor-pointer"
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
                             <div className="p-1.5 rounded-lg bg-slate-950 border border-slate-800 shrink-0 text-cyan-400 group-hover:scale-105 transition-transform">
@@ -299,7 +329,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
                     <div className="pt-2 text-center">
                       <button
                         onClick={() => handleNav('ai-tools')}
-                        className="text-[11px] text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center gap-1 transition"
+                        className="text-[11px] text-cyan-400 hover:text-cyan-300 font-semibold inline-flex items-center gap-1 transition cursor-pointer"
                       >
                         <span>Browse full catalogue of 70+ AI tools</span>
                         <ArrowRight className="w-3 h-3" />
@@ -315,23 +345,38 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
 
           <button
             onClick={() => handleNav('projects')}
-            className={`hover:text-cyan-400 transition ${activePage === 'projects' ? 'text-cyan-400 font-semibold' : ''}`}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl transition-all ${
+              activePage === 'projects' 
+                ? 'bg-violet-500/15 text-violet-300 font-bold border border-violet-500/30 shadow-[0_0_12px_rgba(139,92,246,0.25)]' 
+                : 'hover:text-violet-300 hover:bg-slate-800/50'
+            }`}
           >
-            Projects
+            <FolderGit2 className="w-3.5 h-3.5 text-violet-400" />
+            <span>Projects</span>
           </button>
 
           <button
             onClick={() => handleNav('pricing')}
-            className={`hover:text-cyan-400 transition ${activePage === 'pricing' ? 'text-cyan-400 font-semibold' : ''}`}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl transition-all ${
+              activePage === 'pricing' 
+                ? 'bg-teal-500/15 text-teal-300 font-bold border border-teal-500/30 shadow-[0_0_12px_rgba(20,184,166,0.25)]' 
+                : 'hover:text-teal-300 hover:bg-slate-800/50'
+            }`}
           >
-            {t('nav.pricing')}
+            <CreditCard className="w-3.5 h-3.5 text-teal-400" />
+            <span>{t('nav.pricing')}</span>
           </button>
 
           <button
             onClick={() => handleNav('about')}
-            className={`hover:text-cyan-400 transition ${activePage === 'about' ? 'text-cyan-400 font-semibold' : ''}`}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl transition-all ${
+              activePage === 'about' 
+                ? 'bg-indigo-500/15 text-indigo-300 font-bold border border-indigo-500/30 shadow-[0_0_12px_rgba(99,102,241,0.25)]' 
+                : 'hover:text-indigo-300 hover:bg-slate-800/50'
+            }`}
           >
-            {t('nav.about')}
+            <Users className="w-3.5 h-3.5 text-indigo-400" />
+            <span>{t('nav.about')}</span>
           </button>
 
           {/* Highlighted Partner With Us Link */}
@@ -353,17 +398,22 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
 
           <button
             onClick={() => handleNav('contact')}
-            className={`hover:text-cyan-400 transition ${activePage === 'contact' ? 'text-cyan-400 font-semibold' : ''}`}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl transition-all ${
+              activePage === 'contact' 
+                ? 'bg-pink-500/15 text-pink-300 font-bold border border-pink-500/30 shadow-[0_0_12px_rgba(236,72,153,0.25)]' 
+                : 'hover:text-pink-300 hover:bg-slate-800/50'
+            }`}
           >
-            {t('nav.contact')}
+            <PhoneCall className="w-3.5 h-3.5 text-pink-400" />
+            <span>{t('nav.contact')}</span>
           </button>
         </nav>
 
         {/* Right Tools & Action Buttons */}
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-2.5">
           <button
             onClick={onOpenSearch}
-            className="p-2 text-slate-400 hover:text-cyan-400 hover:bg-slate-800/60 rounded-xl transition border border-slate-800/60"
+            className="p-2 text-slate-400 hover:text-cyan-400 hover:bg-slate-800/60 rounded-xl transition border border-slate-800/60 cursor-pointer"
             title="Search Solutions"
           >
             <Search className="w-4 h-4" />
@@ -372,13 +422,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
           <div className="flex items-center bg-slate-900 border border-slate-800 rounded-xl p-0.5 text-xs font-semibold">
             <button
               onClick={() => setLanguage('EN')}
-              className={`px-2 py-1 rounded-lg transition ${language === 'EN' ? 'bg-cyan-500 text-slate-950 shadow' : 'text-slate-400 hover:text-white'}`}
+              className={`px-2 py-1 rounded-lg transition cursor-pointer ${language === 'EN' ? 'bg-cyan-500 text-slate-950 shadow font-bold' : 'text-slate-400 hover:text-white'}`}
             >
               EN
             </button>
             <button
               onClick={() => setLanguage('HI')}
-              className={`px-2 py-1 rounded-lg transition ${language === 'HI' ? 'bg-cyan-500 text-slate-950 shadow' : 'text-slate-400 hover:text-white'}`}
+              className={`px-2 py-1 rounded-lg transition cursor-pointer ${language === 'HI' ? 'bg-cyan-500 text-slate-950 shadow font-bold' : 'text-slate-400 hover:text-white'}`}
             >
               हिन्दी
             </button>
@@ -386,7 +436,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
 
           <button
             onClick={() => handleNav('contact')}
-            className="btn-tricolour-hover px-4 py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 hover:brightness-110 rounded-xl shadow-[0_0_20px_rgba(0,240,255,0.4)] transition transform hover:scale-105 active:scale-95"
+            className="btn-tricolour-hover px-4 py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 hover:brightness-110 rounded-xl shadow-[0_0_20px_rgba(0,240,255,0.4)] transition transform hover:scale-105 active:scale-95 cursor-pointer"
           >
             {t('nav.get_started')}
           </button>
@@ -438,15 +488,21 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
             <div className="flex flex-col gap-2 pt-2">
               <button
                 onClick={() => handleNav('home')}
-                className={`text-left p-3 rounded-xl font-medium text-base ${activePage === 'home' ? 'bg-cyan-500/10 text-cyan-400 font-semibold' : 'text-slate-200'}`}
+                className={`text-left p-3 rounded-xl font-medium text-base flex items-center gap-3 ${
+                  activePage === 'home' 
+                    ? 'bg-cyan-500/15 text-cyan-400 font-semibold border border-cyan-500/30' 
+                    : 'text-slate-200 hover:bg-slate-800/60'
+                }`}
               >
-                {t('nav.home')}
+                <Home className="w-5 h-5 text-cyan-400 shrink-0" />
+                <span>{t('nav.home')}</span>
               </button>
 
               {/* Mobile Solutions Accordion */}
               <div className="border border-slate-800/80 rounded-2xl p-2 bg-slate-950/60 space-y-1">
-                <div className="text-xs font-bold uppercase tracking-wider text-slate-400 px-3 py-1">
-                  Solutions Categories
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-400 px-3 py-1 flex items-center gap-2">
+                  <Layers className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Solutions Categories</span>
                 </div>
                 {solutionCategories.map(cat => (
                   <button
@@ -455,23 +511,27 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
                     className="w-full text-left p-2.5 rounded-xl hover:bg-slate-800/60 text-slate-200 flex items-center gap-3 text-sm"
                   >
                     {cat.icon}
-                    <span>{cat.title}</span>
+                    <div>
+                      <div className="font-semibold text-white text-xs sm:text-sm">{cat.title}</div>
+                      <div className="text-[11px] text-slate-400">{cat.desc}</div>
+                    </div>
                   </button>
                 ))}
               </div>
 
               {/* Mobile AI Tools Accordion */}
-              <div className="border border-cyan-500/30 rounded-2xl p-3 bg-cyan-950/20 space-y-2">
+              <div className="border border-purple-500/30 rounded-2xl p-3 bg-purple-950/20 space-y-2">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-cyan-300 font-bold text-sm">
-                    <Sparkles className="w-4 h-4 text-cyan-400" />
+                  <div className="flex items-center gap-2 text-purple-300 font-bold text-sm">
+                    <Sparkles className="w-4 h-4 text-purple-400 animate-pulse" />
                     <span>Next-Gen AI Suite</span>
                   </div>
                   <button
                     onClick={() => handleNav('ai-tools')}
-                    className="text-xs text-cyan-400 underline font-semibold"
+                    className="text-xs text-purple-300 underline font-semibold flex items-center gap-1"
                   >
-                    View All
+                    <span>View All</span>
+                    <ArrowRight className="w-3 h-3" />
                   </button>
                 </div>
                 <div className="grid grid-cols-2 gap-2 pt-1">
@@ -479,9 +539,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
                     <button
                       key={t.id}
                       onClick={() => handleNav('ai-tools', t.id)}
-                      className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-left text-xs text-slate-200 hover:text-cyan-300 truncate"
+                      className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-left text-xs text-slate-200 hover:text-cyan-300 truncate flex items-center gap-2"
                     >
-                      {t.name}
+                      {getToolIcon(t.icon)}
+                      <span className="truncate">{t.name}</span>
                     </button>
                   ))}
                 </div>
@@ -489,23 +550,38 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
 
               <button
                 onClick={() => handleNav('projects')}
-                className={`text-left p-3 rounded-xl font-medium text-base ${activePage === 'projects' ? 'bg-cyan-500/10 text-cyan-400 font-semibold' : 'text-slate-200'}`}
+                className={`text-left p-3 rounded-xl font-medium text-base flex items-center gap-3 ${
+                  activePage === 'projects' 
+                    ? 'bg-violet-500/15 text-violet-400 font-semibold border border-violet-500/30' 
+                    : 'text-slate-200 hover:bg-slate-800/60'
+                }`}
               >
-                Projects Showcase
+                <FolderGit2 className="w-5 h-5 text-violet-400 shrink-0" />
+                <span>Projects Showcase</span>
               </button>
 
               <button
                 onClick={() => handleNav('pricing')}
-                className={`text-left p-3 rounded-xl font-medium text-base ${activePage === 'pricing' ? 'bg-cyan-500/10 text-cyan-400 font-semibold' : 'text-slate-200'}`}
+                className={`text-left p-3 rounded-xl font-medium text-base flex items-center gap-3 ${
+                  activePage === 'pricing' 
+                    ? 'bg-teal-500/15 text-teal-400 font-semibold border border-teal-500/30' 
+                    : 'text-slate-200 hover:bg-slate-800/60'
+                }`}
               >
-                {t('nav.pricing')}
+                <CreditCard className="w-5 h-5 text-teal-400 shrink-0" />
+                <span>{t('nav.pricing')}</span>
               </button>
 
               <button
                 onClick={() => handleNav('about')}
-                className={`text-left p-3 rounded-xl font-medium text-base ${activePage === 'about' ? 'bg-cyan-500/10 text-cyan-400 font-semibold' : 'text-slate-200'}`}
+                className={`text-left p-3 rounded-xl font-medium text-base flex items-center gap-3 ${
+                  activePage === 'about' 
+                    ? 'bg-indigo-500/15 text-indigo-400 font-semibold border border-indigo-500/30' 
+                    : 'text-slate-200 hover:bg-slate-800/60'
+                }`}
               >
-                {t('nav.about')}
+                <Users className="w-5 h-5 text-indigo-400 shrink-0" />
+                <span>{t('nav.about')}</span>
               </button>
 
               {/* Highlighted Partner With Us link */}
@@ -530,9 +606,14 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
 
               <button
                 onClick={() => handleNav('contact')}
-                className={`text-left p-3 rounded-xl font-medium text-base ${activePage === 'contact' ? 'bg-cyan-500/10 text-cyan-400 font-semibold' : 'text-slate-200'}`}
+                className={`text-left p-3 rounded-xl font-medium text-base flex items-center gap-3 ${
+                  activePage === 'contact' 
+                    ? 'bg-pink-500/15 text-pink-400 font-semibold border border-pink-500/30' 
+                    : 'text-slate-200 hover:bg-slate-800/60'
+                }`}
               >
-                {t('nav.contact')}
+                <PhoneCall className="w-5 h-5 text-pink-400 shrink-0" />
+                <span>{t('nav.contact')}</span>
               </button>
             </div>
           </div>

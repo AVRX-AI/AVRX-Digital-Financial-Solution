@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { MagneticCard } from '../common/MagneticCard';
 import { 
   CircleDollarSign, 
   Shield, 
@@ -17,8 +18,15 @@ import {
   Truck, 
   Tractor, 
   HardHat, 
-  ShieldCheck
+  ShieldCheck,
+  TrendingUp,
+  Percent,
+  Clock,
+  Zap,
+  Building2,
+  FileCheck
 } from 'lucide-react';
+import { launchSoundEngine } from '../../utils/launchSoundEngine';
 
 interface FinancialSolutionsProps {
   onNavigate: (page: string, slug?: string) => void;
@@ -27,251 +35,240 @@ interface FinancialSolutionsProps {
 export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ onNavigate }) => {
   const [activeTab, setActiveTab] = useState<'loans' | 'insurance'>('loans');
 
-  // Comprehensive Loan Solutions
+  // Comprehensive Loan Solutions with distinctive rich colors
   const loanServices = [
     {
       id: 'personal-loan',
       title: 'Personal Loan',
-      badge: 'Fast Disbursal',
+      badge: 'Instant Disbursal',
+      badgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40',
       rate: 'Interest from 10.5% p.a.*',
-      desc: 'Instant collateral-free funds up to ₹25 Lakhs for medical emergencies, weddings, education, or travel.',
+      desc: 'Instant collateral-free funds up to ₹25 Lakhs for medical emergencies, weddings, education, or personal liquidity.',
       imageUrl: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80',
-      features: ['Up to ₹25 Lakhs', 'Tenure 12-60 Months', '100% Digital KYC', 'Minimal Documents'],
-      icon: CircleDollarSign
+      features: ['Up to ₹25 Lakhs Limit', 'Flexible Tenure 12-60 Months', '100% Digital KYC Approval', 'Minimal Physical Paperwork'],
+      icon: CircleDollarSign,
+      themeColor: 'from-cyan-500 to-blue-600',
+      borderColor: 'border-cyan-500/40 hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(6,182,212,0.3)]',
+      cardBg: 'from-cyan-950/30 via-slate-900/90 to-slate-950'
     },
     {
       id: 'business-loan',
-      title: 'Business Loan',
+      title: 'Business & Working Capital Loan',
       badge: 'Growth Capital',
-      rate: 'Interest from 12.0% p.a.*',
-      desc: 'Unsecured working capital, machinery financing, and expansion credit for enterprises and startups.',
+      badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/40',
+      rate: 'Interest from 11.5% p.a.*',
+      desc: 'Unsecured working capital, machinery financing, inventory credit, and expansion funding for enterprises and MSMEs.',
       imageUrl: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=1200&q=80',
-      features: ['Up to ₹1 Crore', 'Collateral-Free Options', 'Quick Sanction Cycle', 'Flexible Repayment'],
-      icon: Briefcase
+      features: ['Up to ₹1 Crore Sanction', 'Collateral-Free Options', 'Express 48-Hour Approval', 'Overdraft (OD/CC) Facility'],
+      icon: Briefcase,
+      themeColor: 'from-emerald-500 to-teal-600',
+      borderColor: 'border-emerald-500/40 hover:border-emerald-400 hover:shadow-[0_0_35px_rgba(16,185,129,0.3)]',
+      cardBg: 'from-emerald-950/30 via-slate-900/90 to-slate-950'
+    },
+    {
+      id: 'govt-subsidy-loan',
+      title: 'PMEGP & Govt Subsidy Schemes',
+      badge: '35% Govt Subsidy',
+      badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-400/40',
+      rate: 'Govt PMEGP & MUDRA',
+      desc: 'Prime Minister Employment Generation Programme financing with up to 35% capital subsidy and CA-certified project reports.',
+      imageUrl: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
+      features: ['Up to 35% Margin Money Subsidy', 'Loans Up to ₹50 Lakhs', 'CGTMSE Collateral Security Waiver', 'End-to-End DPR Filing Support'],
+      icon: Landmark,
+      themeColor: 'from-amber-500 to-orange-600',
+      borderColor: 'border-amber-500/40 hover:border-amber-400 hover:shadow-[0_0_35px_rgba(245,158,11,0.3)]',
+      cardBg: 'from-amber-950/30 via-slate-900/90 to-slate-950'
     },
     {
       id: 'car-loan',
       title: 'Car Loan (New & Used)',
       badge: 'Low Downpayment',
-      rate: 'Interest from 8.8% p.a.*',
-      desc: 'High on-road financing for new vehicles and competitive funding for certified pre-owned cars.',
+      badgeColor: 'bg-blue-500/20 text-blue-300 border-blue-400/40',
+      rate: 'Interest from 8.75% p.a.*',
+      desc: 'High on-road financing for new vehicles and competitive funding for certified pre-owned cars with fast spot approvals.',
       imageUrl: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80',
-      features: ['Up to 100% On-Road Funding', 'Tenure up to 7 Years', 'Used Car Valuation Support', 'Spot Approvals'],
-      icon: Car
-    },
-    {
-      id: 'property-loan',
-      title: 'Loan Against Property (LAP)',
-      badge: 'High Value',
-      rate: 'Interest from 9.25% p.a.*',
-      desc: 'Unlock deep liquidity against residential, commercial, or industrial properties with long tenures.',
-      imageUrl: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
-      features: ['Up to ₹5 Crores Sanction', 'Tenures up to 15 Years', 'Lower Interest Rate', 'Retain Full Ownership'],
-      icon: Landmark
-    },
-    {
-      id: 'credit-cards',
-      title: 'Credit Cards Advisory',
-      badge: 'Instant Rewards',
-      rate: 'Pre-Approved Offers',
-      desc: 'Compare and apply for top lifestyle, fuel, travel, and cashback credit cards with lifetime-free benefits.',
-      imageUrl: 'https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=800&q=80',
-      features: ['Zero Annual Fee Options', 'Airport Lounge Access', 'Instant Reward Points', 'Digital Card Issuance'],
-      icon: CreditCard
+      features: ['Up to 100% On-Road Funding', 'Tenure up to 7 Years', 'Used Car Valuation Support', 'Zero Foreclosure Penalty Options'],
+      icon: Car,
+      themeColor: 'from-blue-500 to-indigo-600',
+      borderColor: 'border-blue-500/40 hover:border-blue-400 hover:shadow-[0_0_35px_rgba(59,130,246,0.3)]',
+      cardBg: 'from-blue-950/30 via-slate-900/90 to-slate-950'
     },
     {
       id: 'home-loan',
       title: 'Home Loan & Construction',
       badge: 'Lowest Rates',
+      badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-400/40',
       rate: 'Interest from 8.35% p.a.*',
-      desc: 'Affordable home purchase and plot construction loans with long repayment tenures up to 30 years.',
+      desc: 'Affordable home purchase, renovation, and plot construction loans with long repayment tenures up to 30 years.',
       imageUrl: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80',
-      features: ['Up to 90% Property Cost', 'Tenures up to 30 Years', 'Tax Benefits 80C & 24b', 'Balance Transfer Support'],
-      icon: Home
+      features: ['Up to 90% Property Valuation', 'Tenures up to 30 Years', 'Tax Exemption under 80C & 24(b)', 'Fast Balance Transfer with Top-Up'],
+      icon: Home,
+      themeColor: 'from-purple-500 to-violet-600',
+      borderColor: 'border-purple-500/40 hover:border-purple-400 hover:shadow-[0_0_35px_rgba(168,85,247,0.3)]',
+      cardBg: 'from-purple-950/30 via-slate-900/90 to-slate-950'
     },
     {
-      id: 'bike-loan',
-      title: 'Two-Wheeler & Bike Loan',
-      badge: 'Spot Approval',
-      rate: 'Interest from 9.9% p.a.*',
-      desc: 'Instant financing for commuter bikes, sports motorcycles, and high-efficiency electric scooters (EVs).',
-      imageUrl: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80',
-      features: ['Up to 95% On-Road Funding', 'Instant In-Showroom Approval', 'Low Monthly EMIs', 'EV Subsidies Included'],
-      icon: Bike
-    },
-    {
-      id: 'govt-subsidy-loan',
-      title: 'Govt Subsidy Scheme Loans',
-      badge: 'Govt Backed',
-      rate: 'Subsidies up to 35%*',
-      desc: 'Comprehensive guidance to secure government-backed credit facilities and capital subsidies.',
-      imageUrl: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
-      features: ['Subsidies up to 35%', 'Project Report Preparation', 'CGTMSE Collateral Waiver', 'Direct Bank Coordination'],
-      icon: Landmark
-    },
-    {
-      id: 'pmegp-loan',
-      title: 'PMEGP Scheme Loan',
-      badge: '35% Subsidy',
-      rate: 'Govt PMEGP Program',
-      desc: 'Prime Minister Employment Generation Programme financing for setting up new manufacturing or service units.',
-      imageUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
-      features: ['Up to ₹50 Lakhs Project Size', 'Margin Money Subsidy 15-35%', 'CA-Certified DPR Included', 'Portal Filing Assistance'],
-      icon: Briefcase
-    },
-    {
-      id: 'mudra-loan',
-      title: 'MUDRA Loan (Shishu/Kishore/Tarun)',
-      badge: 'Zero Collateral',
-      rate: 'MUDRA Scheme',
-      desc: 'Collateral-free micro loans up to ₹10 Lakhs under the Pradhan Mantri MUDRA Yojana for small business owners.',
-      imageUrl: 'https://images.unsplash.com/photo-1589758438368-0ad531db3366?auto=format&fit=crop&w=800&q=80',
-      features: ['Shishu (up to ₹50K)', 'Kishore (₹50K to ₹5L)', 'Tarun (₹5L to ₹10L)', 'No Collateral Security'],
-      icon: CircleDollarSign
+      id: 'property-loan',
+      title: 'Loan Against Property (LAP)',
+      badge: 'High Value',
+      badgeColor: 'bg-rose-500/20 text-rose-300 border-rose-400/40',
+      rate: 'Interest from 9.25% p.a.*',
+      desc: 'Unlock deep liquidity against residential, commercial, or industrial properties while retaining complete property ownership.',
+      imageUrl: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
+      features: ['Up to ₹5 Crores Funding', 'Tenures up to 15 Years', 'Lower Interest Rate vs Personal Loans', 'Flexible Overdraft Repayment'],
+      icon: Landmark,
+      themeColor: 'from-rose-500 to-pink-600',
+      borderColor: 'border-rose-500/40 hover:border-rose-400 hover:shadow-[0_0_35px_rgba(244,63,94,0.3)]',
+      cardBg: 'from-rose-950/30 via-slate-900/90 to-slate-950'
     }
   ];
 
-  // Comprehensive Insurance Solutions
+  // Comprehensive Insurance Solutions with distinctive rich colors
   const insuranceServices = [
     {
       id: 'motor-insurance',
-      title: 'Motor Insurance (All Vehicles)',
-      badge: 'Instant PDF',
+      title: 'Motor Vehicle Insurance (All Types)',
+      badge: 'Instant Policy',
+      badgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40',
       categoryType: 'Comprehensive & Third Party',
-      desc: 'Instant vehicle policy issuance with cashless repair network across 5,000+ garages nationwide.',
+      desc: 'Instant vehicle policy issuance with cashless repair network across 5,000+ garages nationwide and zero-depreciation covers.',
       imageUrl: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80',
-      features: ['Zero Dep & Engine Protect', 'Cashless Claims Network', 'Instant NCB Transfer', '24x7 Roadside Assist'],
-      icon: Shield
-    },
-    {
-      id: 'two-wheeler-insurance',
-      title: 'Two Wheeler Bike Insurance',
-      badge: 'Starts @ ₹499/yr',
-      categoryType: 'Bike / Scooter / EV',
-      desc: 'Comprehensive & mandatory third-party insurance for all scooters, commuter bikes, and electric 2-wheelers.',
-      imageUrl: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80',
-      features: ['Instant Policy Issuance', 'Personal Accident Cover ₹15L', 'No Inspection Required', 'Break-in Renewal Support'],
-      icon: Bike
-    },
-    {
-      id: 'four-wheeler-insurance',
-      title: 'Four Wheeler Car Insurance',
-      badge: 'Cashless Garages',
-      categoryType: 'Private & Fleet',
-      desc: 'Complete accidental damage, theft, and natural calamity protection for private cars and commercial fleets.',
-      imageUrl: 'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80',
-      features: ['Bumper to Bumper Zero Dep', 'Consumable & Tyre Cover', 'Key Replacement Benefit', 'Instant Claim Concierge'],
-      icon: Car
-    },
-    {
-      id: 'goods-vehicle-insurance',
-      title: 'Goods Commercial Vehicle Insurance',
-      badge: 'Commercial Fleet',
-      categoryType: 'Trucks / Pickups / Vans',
-      desc: 'Heavy and light goods carriage commercial vehicle policies compliant with national transport regulations.',
-      imageUrl: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80',
-      features: ['Goods in Transit Coverage', 'Driver & Cleaner Personal Cover', 'Third Party Legal Liability', 'Multi-Vehicle Fleet Rates'],
-      icon: Truck
-    },
-    {
-      id: 'tractor-insurance',
-      title: 'Tractor & Agro Vehicle Insurance',
-      badge: 'Agriculture Plan',
-      categoryType: 'Farm Machinery',
-      desc: 'Dedicated rural & agricultural vehicle insurance safeguarding tractors, trailers, and harvester machinery.',
-      imageUrl: 'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=800&q=80',
-      features: ['Farm Equipment Damage Cover', 'Third Party Rural Liability', 'Subsidized Rural Premiums', 'Fast Claim Settlement'],
-      icon: Tractor
-    },
-    {
-      id: 'construction-equipment-insurance',
-      title: 'Construction Equipment Policy',
-      badge: 'Heavy Machinery',
-      categoryType: 'Excavator / Cranes / JCB',
-      desc: 'Specialized Contractor Plant & Machinery (CPM) insurance covering cranes, excavators, loaders, and pavers.',
-      imageUrl: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80',
-      features: ['On-Site Accidental Damage', 'Burglary & Vandalism Shield', 'Operator Liability Cover', 'High Sum Insured Protection'],
-      icon: HardHat
+      features: ['Bumper-to-Bumper Zero Dep Cover', '5,000+ Cashless Network Garages', 'Instant NCB Transfer Discount', '24x7 Emergency Roadside Assist'],
+      icon: Shield,
+      themeColor: 'from-cyan-500 to-blue-600',
+      borderColor: 'border-cyan-500/40 hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(6,182,212,0.3)]',
+      cardBg: 'from-cyan-950/30 via-slate-900/90 to-slate-950'
     },
     {
       id: 'health-insurance',
-      title: 'Health & Medical Insurance',
+      title: 'Health & Family Floater Insurance',
       badge: '10,000+ Hospitals',
-      categoryType: 'Family & Individual',
-      desc: 'Cashless hospitalization, ICU coverage, and daycare treatment protection for your entire family.',
-      features: ['No Room Rent Capping', 'Pre/Post Hospitalization 180 Days', 'Section 80D Tax Benefit', '24x7 Emergency Concierge'],
-      icon: HeartPulse
+      badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/40',
+      categoryType: 'Cashless Medical Coverage',
+      desc: 'Cashless hospitalization, ICU coverage, critical illness riders, and daycare treatment protection for your entire family.',
+      imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+      features: ['Zero Room Rent Capping', 'Pre & Post Hospitalization 180 Days', 'Section 80D Tax Benefit', 'Instant Claim Settlement Support'],
+      icon: HeartPulse,
+      themeColor: 'from-emerald-500 to-teal-600',
+      borderColor: 'border-emerald-500/40 hover:border-emerald-400 hover:shadow-[0_0_35px_rgba(16,185,129,0.3)]',
+      cardBg: 'from-emerald-950/30 via-slate-900/90 to-slate-950'
+    },
+    {
+      id: 'construction-equipment-insurance',
+      title: 'Excavator, JCB & Heavy Plant Policy',
+      badge: 'Heavy Machinery',
+      badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-400/40',
+      categoryType: 'Contractor Plant & Machinery',
+      desc: 'Specialized Contractor Plant & Machinery (CPM) insurance covering excavators, cranes, loaders, JCBs, and road rollers.',
+      imageUrl: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80',
+      features: ['On-Site Accidental Damage Coverage', 'Burglary, Riot & Vandalism Shield', 'Operator & Third-Party Liability', 'High Sum Insured Protection'],
+      icon: HardHat,
+      themeColor: 'from-amber-500 to-orange-600',
+      borderColor: 'border-amber-500/40 hover:border-amber-400 hover:shadow-[0_0_35px_rgba(245,158,11,0.3)]',
+      cardBg: 'from-amber-950/30 via-slate-900/90 to-slate-950'
+    },
+    {
+      id: 'commercial-vehicle-insurance',
+      title: 'Goods & Commercial Vehicle Fleet',
+      badge: 'Fleet Discount',
+      badgeColor: 'bg-indigo-500/20 text-indigo-300 border-indigo-400/40',
+      categoryType: 'Trucks / Pickups / Tankers',
+      desc: 'Heavy and light goods carriage commercial vehicle policies fully compliant with national transport regulations.',
+      imageUrl: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80',
+      features: ['Goods in Transit Damage Shield', 'Driver & Helper Personal Accident Cover', 'Third-Party Legal Liability Protection', 'Special Multi-Vehicle Fleet Rates'],
+      icon: Truck,
+      themeColor: 'from-indigo-500 to-purple-600',
+      borderColor: 'border-indigo-500/40 hover:border-indigo-400 hover:shadow-[0_0_35px_rgba(99,102,241,0.3)]',
+      cardBg: 'from-indigo-950/30 via-slate-900/90 to-slate-950'
     },
     {
       id: 'life-insurance',
-      title: 'Life & Term Insurance',
-      badge: 'High Sum Assured',
-      categoryType: 'Family Security',
-      desc: 'Pure risk term insurance and guaranteed return plans securing your family’s financial future.',
-      features: ['₹1 Crore+ Term Cover', 'Critical Illness Riders', 'Zero Stage Claim Assistance', 'Section 80C Tax Exemption'],
-      icon: ShieldCheck
-    },
-    {
-      id: 'travel-insurance',
-      title: 'International Travel Insurance',
-      badge: 'Visa Compliant',
-      categoryType: 'Schengen & Global',
-      desc: 'Embassy-approved global travel insurance covering emergency medical expenses, flight delays, and lost baggage.',
-      features: ['Schengen Visa Mandatory Compliant', 'Medical Emergencies up to $500K', 'Baggage Loss Reimbursement', 'Instant PDF for Embassy'],
-      icon: Plane
+      title: 'Life & Term Insurance Plans',
+      badge: '₹1 Cr+ Cover',
+      badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-400/40',
+      categoryType: 'Family Financial Security',
+      desc: 'Pure risk term insurance and guaranteed return plans securing your family’s financial future with zero stage claim assistance.',
+      imageUrl: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=800&q=80',
+      features: ['High Sum Assured up to ₹5 Crores', 'Critical Illness & Disability Riders', '100% Online Instant Policy PDF', 'Section 80C Tax Exemption'],
+      icon: ShieldCheck,
+      themeColor: 'from-purple-500 to-violet-600',
+      borderColor: 'border-purple-500/40 hover:border-purple-400 hover:shadow-[0_0_35px_rgba(168,85,247,0.3)]',
+      cardBg: 'from-purple-950/30 via-slate-900/90 to-slate-950'
     },
     {
       id: 'shop-insurance',
-      title: 'Shop & Property Insurance',
-      badge: 'Business Protection',
-      categoryType: 'Stock & Structure',
-      desc: 'All-risk commercial shopkeeper insurance protecting stock inventory, cash in till, and building structure.',
-      features: ['Fire & Earthquake Shield', 'Theft & Burglary Compensation', 'Cash-in-Transit Protection', 'Plate Glass Damage Cover'],
-      icon: Store
+      title: 'Shopkeeper & Inventory Insurance',
+      badge: 'All-Risk Shield',
+      badgeColor: 'bg-rose-500/20 text-rose-300 border-rose-400/40',
+      categoryType: 'Retail & Warehouse',
+      desc: 'All-risk commercial shopkeeper insurance protecting stock inventory, cash in till, electronic equipment, and building structure.',
+      imageUrl: 'https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&w=800&q=80',
+      features: ['Fire, Flood & Earthquake Shield', 'Theft & Shoplifting Compensation', 'Cash in Safe & Transit Coverage', 'Plate Glass & Signboard Cover'],
+      icon: Store,
+      themeColor: 'from-rose-500 to-pink-600',
+      borderColor: 'border-rose-500/40 hover:border-rose-400 hover:shadow-[0_0_35px_rgba(244,63,94,0.3)]',
+      cardBg: 'from-rose-950/30 via-slate-900/90 to-slate-950'
     }
   ];
 
   return (
-    <section id="financial-solutions" className="relative py-24 bg-[#050811] text-white border-t border-slate-800/80 overflow-hidden select-none">
+    <section id="financial-solutions" className="relative py-28 bg-[#040814] text-white border-t border-slate-800/80 overflow-hidden select-none">
+      
       {/* Background ambient lighting */}
-      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 relative z-10 space-y-12">
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 relative z-10 space-y-16">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-800/80 pb-8">
-          <div className="space-y-3 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 border-b border-slate-800/80 pb-10">
+          <div className="space-y-4 max-w-4xl">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-spin-slow" />
               <span>CATEGORY 02</span>
+              <span className="text-slate-600">•</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 font-black">
+                FINANCIAL ADVISORY &amp; RISK PROTECTION
+              </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
-              FINANCIAL SOLUTIONS
+
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+              FINANCIAL SOLUTIONS &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">CREDIT LINES</span>
             </h2>
-            <p className="text-slate-400 text-base sm:text-lg leading-relaxed">
-              Empowering personal ambitions and business scale with competitive loans, government subsidy schemes, and comprehensive insurance coverage.
+
+            <p className="text-slate-300 text-base sm:text-xl leading-relaxed font-normal max-w-3xl">
+              Empowering personal ambitions and business scale with competitive loans, government subsidy schemes (PMEGP / MUDRA), and IRDAI-certified insurance coverage.
             </p>
           </div>
 
-          {/* Tab Selector */}
-          <div className="flex items-center p-1 bg-slate-900 border border-slate-800 rounded-2xl shrink-0">
+          {/* High-Impact Tab Selector */}
+          <div className="flex items-center p-1.5 bg-slate-950 border-2 border-slate-800 rounded-2xl shrink-0 shadow-2xl backdrop-blur-xl">
             <button
-              onClick={() => setActiveTab('loans')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition ${
+              onClick={() => {
+                setActiveTab('loans');
+                launchSoundEngine.playClickTick();
+              }}
+              onMouseEnter={() => launchSoundEngine.playHoverChirp()}
+              className={`flex items-center gap-2.5 px-6 sm:px-8 py-3 rounded-xl font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                 activeTab === 'loans'
-                  ? 'bg-emerald-500 text-slate-950 shadow-[0_0_20px_rgba(16,185,129,0.3)]'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 shadow-[0_0_25px_rgba(16,185,129,0.4)] scale-105'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-900/60'
               }`}
             >
               <CircleDollarSign className="w-4 h-4" />
-              <span>Loans & Schemes ({loanServices.length})</span>
+              <span>Loans &amp; Schemes ({loanServices.length})</span>
             </button>
+
             <button
-              onClick={() => setActiveTab('insurance')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition ${
+              onClick={() => {
+                setActiveTab('insurance');
+                launchSoundEngine.playClickTick();
+              }}
+              onMouseEnter={() => launchSoundEngine.playHoverChirp()}
+              className={`flex items-center gap-2.5 px-6 sm:px-8 py-3 rounded-xl font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                 activeTab === 'insurance'
-                  ? 'bg-cyan-500 text-slate-950 shadow-[0_0_20px_rgba(0,240,255,0.3)]'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-[0_0_25px_rgba(0,240,255,0.4)] scale-105'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-900/60'
               }`}
             >
               <Shield className="w-4 h-4" />
@@ -280,23 +277,30 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
           </div>
         </div>
 
-        {/* Cards Grid (3 Featured Services + 4th "See All Services" Card) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {(activeTab === 'loans' ? loanServices : insuranceServices).slice(0, 3).map((item) => {
+        {/* Dynamic Cards Grid with Rich Color Themes */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+          {(activeTab === 'loans' ? loanServices : insuranceServices).map((item) => {
             const Icon = item.icon;
-            const isLoan = activeTab === 'loans';
             const itemImage = 'imageUrl' in item ? (item as any).imageUrl : undefined;
+            const glow = activeTab === 'loans' ? 'emerald' : 'purple';
             return (
-              <div
+              <MagneticCard
                 key={item.id}
-                className={`flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 via-[#070b14]/95 to-slate-900/90 border border-slate-800 ${
-                  isLoan ? 'hover:border-emerald-500/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)]' : 'hover:border-cyan-500/50 hover:shadow-[0_0_30px_rgba(0,240,255,0.15)]'
-                } shadow-xl transition-all duration-300 group hover:-translate-y-1 overflow-hidden`}
+                glowColor={glow}
+                enableTilt={true}
+                tiltStrength={3.5}
+                spotlightRadius={420}
+                spotlightOpacity={0.25}
+                soundOnHover={true}
+                className={`flex flex-col justify-between p-6 rounded-3xl bg-gradient-to-b ${item.cardBg} border ${item.borderColor} shadow-xl backdrop-blur-xl`}
               >
+                {/* Top Subtle Light Accent */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${item.themeColor} opacity-80`} />
+
                 <div className="space-y-4">
                   {/* Thumbnail Image Header */}
                   {itemImage && (
-                    <div className="relative h-36 w-full rounded-xl overflow-hidden border border-slate-800 bg-slate-950 group-hover:border-slate-700 transition-colors">
+                    <div className="relative h-44 w-full rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group-hover:border-emerald-500/40 transition-colors">
                       <img
                         src={itemImage}
                         alt={item.title}
@@ -306,188 +310,85 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
                       
                       {/* Floating Badge & Icon */}
-                      <div className={`absolute top-2.5 left-2.5 p-2 rounded-lg bg-slate-950/85 backdrop-blur-md border border-slate-700/80 ${
-                        isLoan ? 'text-emerald-400' : 'text-cyan-400'
-                      }`}>
-                        <Icon className="w-4 h-4" />
+                      <div className="absolute top-3 left-3 p-2 rounded-xl bg-slate-950/90 backdrop-blur-md border border-slate-700/80 text-white">
+                        <Icon className="w-4 h-4 text-emerald-400" />
                       </div>
 
-                      <span className={`absolute top-2.5 right-2.5 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full ${
-                        isLoan ? 'bg-emerald-500/90 text-slate-950' : 'bg-cyan-500/90 text-slate-950'
-                      } shadow-sm`}>
-                        {item.badge}
-                      </span>
-                    </div>
-                  )}
-
-                  {!itemImage && (
-                    <div className="flex items-center justify-between">
-                      <div className={`p-3 rounded-xl bg-slate-950 border border-slate-800 ${
-                        isLoan ? 'text-emerald-400' : 'text-cyan-400'
-                      } group-hover:scale-110 transition-transform`}>
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <span className={`text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full ${
-                        isLoan ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20' : 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20'
-                      } border`}>
+                      <span className={`absolute top-3 right-3 text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full border backdrop-blur-md ${item.badgeColor}`}>
                         {item.badge}
                       </span>
                     </div>
                   )}
 
                   <div>
-                    <h3 className={`text-lg font-bold text-white ${
-                      isLoan ? 'group-hover:text-emerald-300' : 'group-hover:text-cyan-300'
-                    } transition-colors line-clamp-1`}>
+                    <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors line-clamp-1">
                       {item.title}
                     </h3>
-                    <div className={`text-xs font-mono ${
-                      isLoan ? 'text-emerald-400/90' : 'text-cyan-400/90'
-                    } font-semibold mt-0.5`}>
+                    <div className="text-xs font-mono text-emerald-400 mt-1 font-semibold">
                       {'rate' in item ? item.rate : ('categoryType' in item ? item.categoryType : '')}
                     </div>
-                    <p className="text-xs text-slate-400 mt-2 leading-relaxed line-clamp-2">
+                    <p className="text-xs text-slate-300 mt-2 leading-relaxed line-clamp-2 font-normal">
                       {item.desc}
                     </p>
                   </div>
 
                   {/* Bullet features */}
                   <div className="space-y-1.5 pt-3 border-t border-slate-800/80">
-                    {item.features.slice(0, 3).map((feat, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs text-slate-300">
-                        <CheckCircle2 className={`w-3.5 h-3.5 ${
-                          isLoan ? 'text-emerald-400' : 'text-cyan-400'
-                        } shrink-0`} />
+                    {item.features.map((feat, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-xs text-slate-300 font-medium">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                         <span className="truncate">{feat}</span>
                       </div>
                     ))}
                   </div>
-
                 </div>
 
                 {/* Visit Now button */}
                 <div className="pt-5 mt-5 border-t border-slate-800/80">
                   <button
-                    onClick={() => onNavigate('service-detail', item.id)}
-                    className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-950 ${
-                      isLoan ? 'hover:bg-emerald-500 hover:border-emerald-400' : 'hover:bg-cyan-500 hover:border-cyan-400'
-                    } text-slate-200 hover:text-slate-950 font-bold text-xs transition duration-200 border border-slate-800 group/btn`}
+                    onClick={() => {
+                      launchSoundEngine.playClickTick();
+                      onNavigate('service-detail', item.id);
+                    }}
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-slate-950 hover:bg-gradient-to-r hover:from-emerald-500 hover:to-teal-600 text-slate-200 hover:text-slate-950 font-bold text-xs uppercase tracking-wider transition-all duration-300 border border-slate-800 hover:border-emerald-400 shadow-md group/btn cursor-pointer"
                   >
-                    <span>Visit Now</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                    <span>Check Eligibility &amp; Apply</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1.5 transition-transform" />
                   </button>
                 </div>
 
-              </div>
+              </MagneticCard>
             );
           })}
+        </div>
 
-          {/* 4th Card: See All Financial / Insurance Services */}
-          {activeTab === 'loans' ? (
-            <div className="flex flex-col justify-between p-6 rounded-2xl bg-gradient-to-br from-emerald-950/30 via-slate-900/90 to-teal-950/30 border border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.1)] hover:shadow-[0_0_40px_rgba(16,185,129,0.25)] transition-all duration-300 group hover:-translate-y-1 relative overflow-hidden">
-              
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
-
-              <div className="space-y-4 relative z-10">
-                <div className="flex items-center justify-between">
-                  <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 group-hover:scale-110 transition-transform">
-                    <CircleDollarSign className="w-5 h-5 text-emerald-400" />
-                  </div>
-                  <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-                    10+ Loan Types
-                  </span>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
-                    See All Loan Services
-                  </h3>
-                  <div className="text-xs font-mono text-emerald-400/90 mt-0.5">
-                    Subsidies &amp; Capital Finance
-                  </div>
-                  <p className="text-xs text-slate-400 mt-2 leading-relaxed">
-                    Compare lowest interest rates, check CIBIL eligibility, and calculate EMI for all loan types.
-                  </p>
-                </div>
-
-                {/* Mini tags of more loan types */}
-                <div className="pt-3 border-t border-slate-800/80 flex flex-wrap gap-1.5">
-                  {['Home Loan / LAP', 'Commercial Vehicle', 'Machinery Finance', 'Project DPR Reports', 'MUDRA Tarun'].map((tag, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-950/80 border border-slate-800 text-slate-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Explore Button */}
-              <div className="pt-5 mt-5 border-t border-slate-800/80 relative z-10">
-                <button
-                  onClick={() => onNavigate('financial-solutions')}
-                  className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black text-xs uppercase tracking-wider transition duration-200 shadow-lg group/btn"
-                >
-                  <span>See All Loan Services</span>
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
-              </div>
-
+        {/* Comprehensive Financial Bottom CTA Banner */}
+        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-emerald-950/40 via-slate-900/90 to-cyan-950/40 border-2 border-emerald-500/40 shadow-[0_0_40px_rgba(16,185,129,0.15)] flex flex-col md:flex-row items-center justify-between gap-6 backdrop-blur-2xl">
+          <div className="space-y-2 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-emerald-300 uppercase tracking-wider">
+              <Zap className="w-4 h-4 text-emerald-400 animate-pulse" />
+              <span>Direct Bank &amp; NBFC Tie-ups</span>
             </div>
-          ) : (
-            <div className="flex flex-col justify-between p-6 rounded-2xl bg-gradient-to-br from-cyan-950/30 via-slate-900/90 to-blue-950/30 border border-cyan-500/50 shadow-[0_0_30px_rgba(0,240,255,0.1)] hover:shadow-[0_0_40px_rgba(0,240,255,0.25)] transition-all duration-300 group hover:-translate-y-1 relative overflow-hidden">
-              
-              <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
+            <h3 className="text-2xl sm:text-3xl font-black text-white">
+              Need Assistance with Business Project Reports or DPRs?
+            </h3>
+            <p className="text-slate-300 text-xs sm:text-sm max-w-2xl font-normal">
+              Our in-house senior Chartered Accountants prepare certified bank-ready Detailed Project Reports (DPR) for PMEGP, MUDRA, Stand-Up India, and term loan sanctions.
+            </p>
+          </div>
 
-              <div className="space-y-4 relative z-10">
-                <div className="flex items-center justify-between">
-                  <div className="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 group-hover:scale-110 transition-transform">
-                    <Shield className="w-5 h-5 text-cyan-400" />
-                  </div>
-                  <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
-                    25+ Insurers
-                  </span>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
-                    See All Insurance Policies
-                  </h3>
-                  <div className="text-xs font-mono text-cyan-400/90 mt-0.5">
-                    IRDAI Certified Protection
-                  </div>
-                  <p className="text-xs text-slate-400 mt-2 leading-relaxed">
-                    Zero-hassle claims, instant digital policy issuance, and maximum coverage for life, health &amp; fleet.
-                  </p>
-                </div>
-
-                {/* Mini tags of more insurance types */}
-                <div className="pt-3 border-t border-slate-800/80 flex flex-wrap gap-1.5">
-                  {['Excavator / JCB Plant', 'International Travel', 'Shop & Inventory', 'Marine Cargo', 'Directors D&O'].map((tag, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-950/80 border border-slate-800 text-slate-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Explore Button */}
-              <div className="pt-5 mt-5 border-t border-slate-800/80 relative z-10">
-                <button
-                  onClick={() => onNavigate('insurance-solutions')}
-                  className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-slate-950 font-black text-xs uppercase tracking-wider transition duration-200 shadow-lg group/btn"
-                >
-                  <span>See All Insurance</span>
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
-              </div>
-
-            </div>
-          )}
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <button
+              onClick={() => {
+                launchSoundEngine.playClickTick();
+                onNavigate(activeTab === 'loans' ? 'financial-solutions' : 'insurance-solutions');
+              }}
+              className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-300 hover:to-teal-400 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg hover:scale-105 transition-all cursor-pointer flex items-center gap-2"
+            >
+              <span>{activeTab === 'loans' ? 'Explore All Loans' : 'Explore All Insurance'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
       </div>

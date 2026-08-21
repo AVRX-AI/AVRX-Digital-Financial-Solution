@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Sparkles, Volume2, VolumeX, ArrowRight, Compass } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Sparkles, Volume2, VolumeX, ArrowRight, Compass, Music2 } from 'lucide-react';
 import { AshokaChakraHolo } from './AshokaChakraHolo';
 import brandLogo from '../../assets/images/avrx_white_logo_1786467039540.jpg';
+import { launchSoundEngine } from '../../utils/launchSoundEngine';
 
 interface AVRXLaunchScreenProps {
   onComplete: () => void;
@@ -13,9 +14,11 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
   const [countdownNum, setCountdownNum] = useState<number | string>(3);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
   const [reducedMotion, setReducedMotion] = useState<boolean>(false);
-  
-  // Audio Context Ref
-  const audioCtxRef = useRef<AudioContext | null>(null);
+
+  // Sync mute state with sound engine
+  useEffect(() => {
+    launchSoundEngine.setMuted(!soundEnabled);
+  }, [soundEnabled]);
 
   // Check reduced motion & session
   useEffect(() => {
@@ -27,6 +30,8 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
     // Opening cinematic transition timer -> set to 'ready' after 1.8s
     const timer = setTimeout(() => {
       setPhase('ready');
+      // Play atmospheric welcome boot chord shimmer
+      launchSoundEngine.playWelcomeChime();
     }, 1800);
 
     // Prevent body scrolling during launch screen
@@ -35,103 +40,8 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
     return () => {
       clearTimeout(timer);
       document.body.style.overflow = 'auto';
-      if (audioCtxRef.current && audioCtxRef.current.state !== 'closed') {
-        audioCtxRef.current.close().catch(() => {});
-      }
     };
   }, []);
-
-  // Web Audio Synthesizer for high-tech launch sound effects
-  const getAudioContext = () => {
-    if (!audioCtxRef.current) {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      if (AudioCtx) {
-        audioCtxRef.current = new AudioCtx();
-      }
-    }
-    if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') {
-      audioCtxRef.current.resume();
-    }
-    return audioCtxRef.current;
-  };
-
-  const playTone = (freq: number, type: OscillatorType = 'sine', duration: number = 0.2, gainVal: number = 0.15) => {
-    if (!soundEnabled) return;
-    try {
-      const ctx = getAudioContext();
-      if (!ctx) return;
-
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      osc.type = type;
-      osc.frequency.setValueAtTime(freq, ctx.currentTime);
-
-      gain.gain.setValueAtTime(gainVal, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start();
-      osc.stop(ctx.currentTime + duration);
-    } catch {
-      // Audio not supported or blocked
-    }
-  };
-
-  const playRocketRumble = () => {
-    if (!soundEnabled) return;
-    try {
-      const ctx = getAudioContext();
-      if (!ctx) return;
-
-      // Sub-bass oscillator
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(55, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(140, ctx.currentTime + 1.8);
-
-      // Noise buffer for engine thrust
-      const bufferSize = ctx.sampleRate * 2;
-      const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-      const output = noiseBuffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        output[i] = Math.random() * 2 - 1;
-      }
-
-      const whiteNoise = ctx.createBufferSource();
-      whiteNoise.buffer = noiseBuffer;
-
-      const filter = ctx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(300, ctx.currentTime);
-      filter.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 1.8);
-
-      const noiseGain = ctx.createGain();
-      noiseGain.gain.setValueAtTime(0.2, ctx.currentTime);
-      noiseGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 2.0);
-
-      whiteNoise.connect(filter);
-      filter.connect(noiseGain);
-      noiseGain.connect(ctx.destination);
-
-      gain.gain.setValueAtTime(0.25, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 2.2);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start();
-      whiteNoise.start();
-
-      osc.stop(ctx.currentTime + 2.2);
-      whiteNoise.stop(ctx.currentTime + 2.2);
-    } catch {
-      // Ignore
-    }
-  };
 
   // Launch button trigger
   const handleLaunchClick = () => {
@@ -144,25 +54,27 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
 
     setPhase('countdown');
     setCountdownNum(3);
-    playTone(520, 'sine', 0.25, 0.2);
+    
+    // Stage 3 sound & brief
+    launchSoundEngine.playCountdownPulse(3);
 
     // 3 -> 2
     setTimeout(() => {
       setCountdownNum(2);
-      playTone(660, 'sine', 0.25, 0.2);
-    }, 700);
+      launchSoundEngine.playCountdownPulse(2);
+    }, 750);
 
     // 2 -> 1
     setTimeout(() => {
       setCountdownNum(1);
-      playTone(880, 'sine', 0.25, 0.25);
-    }, 1400);
+      launchSoundEngine.playCountdownPulse(1);
+    }, 1500);
 
     // 1 -> LIFTOFF!
     setTimeout(() => {
       setCountdownNum('🚀 LIFTOFF!');
-      playTone(1100, 'triangle', 0.5, 0.3);
-      playRocketRumble();
+      // Multi-layer sonic boom, roaring thruster exhaust, warp glissando & celestial victory chord
+      launchSoundEngine.playRocketLiftoff();
       setPhase('launching');
 
       // Transition to final flash & completion
@@ -171,11 +83,12 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
         setTimeout(() => {
           finishLaunch();
         }, 600);
-      }, 1500);
-    }, 2100);
+      }, 1600);
+    }, 2250);
   };
 
   const finishLaunch = () => {
+    launchSoundEngine.playClickTick();
     try {
       sessionStorage.setItem('avrx_launch_completed', 'true');
     } catch {
@@ -261,19 +174,28 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
 
         {/* Audio Mute/Unmute Toggle */}
         <button
-          onClick={() => setSoundEnabled(!soundEnabled)}
-          className="p-2 rounded-xl bg-slate-900/80 border border-slate-700/80 hover:border-cyan-400 text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs backdrop-blur-md"
+          onClick={() => {
+            const nextSound = !soundEnabled;
+            setSoundEnabled(nextSound);
+            launchSoundEngine.setMuted(!nextSound);
+            if (nextSound) {
+              launchSoundEngine.playWelcomeChime();
+            } else {
+              launchSoundEngine.playClickTick();
+            }
+          }}
+          className="p-2 rounded-xl bg-slate-900/80 border border-slate-700/80 hover:border-cyan-400 text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs backdrop-blur-md cursor-pointer"
           title={soundEnabled ? 'Mute Sound' : 'Enable Audio'}
         >
           {soundEnabled ? (
             <>
-              <Volume2 className="w-4 h-4 text-cyan-400" />
-              <span className="hidden sm:inline">Audio On</span>
+              <Volume2 className="w-4 h-4 text-cyan-400 animate-pulse" />
+              <span className="hidden sm:inline">Sound FX On</span>
             </>
           ) : (
             <>
               <VolumeX className="w-4 h-4 text-slate-400" />
-              <span className="hidden sm:inline">Audio Muted</span>
+              <span className="hidden sm:inline">Sound FX Muted</span>
             </>
           )}
         </button>
@@ -497,6 +419,7 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
               {/* Primary High-Impact Launch Button */}
               <button
                 onClick={handleLaunchClick}
+                onMouseEnter={() => launchSoundEngine.playHoverChirp()}
                 disabled={phase === 'opening'}
                 className="group relative px-8 sm:px-12 py-4 sm:py-5 rounded-2xl bg-slate-950/80 hover:bg-slate-900 border border-slate-700/80 backdrop-blur-xl shadow-[0_0_35px_rgba(0,240,255,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden"
               >

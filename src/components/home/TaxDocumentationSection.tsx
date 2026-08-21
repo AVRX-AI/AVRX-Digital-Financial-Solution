@@ -1,4 +1,5 @@
 import React from 'react';
+import { MagneticCard } from '../common/MagneticCard';
 import { 
   FileCheck, 
   Calculator, 
@@ -8,8 +9,15 @@ import {
   ShieldCheck, 
   Sparkles, 
   ArrowRight, 
-  CheckCircle2 
+  CheckCircle2,
+  Scale,
+  Clock,
+  Shield,
+  Zap,
+  HelpCircle,
+  FileSpreadsheet
 } from 'lucide-react';
+import { launchSoundEngine } from '../../utils/launchSoundEngine';
 
 interface TaxDocumentationProps {
   onNavigate: (page: string, slug?: string) => void;
@@ -20,146 +28,154 @@ export const TaxDocumentationSection: React.FC<TaxDocumentationProps> = ({ onNav
     {
       id: 'gst-registration',
       title: 'GST Registration',
-      badge: 'Mandatory',
-      turnaround: '24-48 Hours Processing',
-      desc: 'Official 15-digit GSTIN allotment for proprietorships, partnerships, LLPs, and companies.',
+      badge: 'Mandatory for Biz',
+      badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-400/40',
+      turnaround: '24-48 Hours Digital Issuance',
+      desc: 'Official 15-digit GSTIN allotment for proprietorships, partnerships, LLPs, and companies with guaranteed zero rejection support.',
       imageUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
-      features: ['100% Digital Processing', 'ARN Generation in 24 Hrs', 'HSN/SAC Classification', 'Zero Rejection Guarantee'],
+      features: ['100% Digital Online Filing', 'ARN Generation in 24 Hrs', 'HSN/SAC Classification', 'CA Verification Check'],
       icon: FileCheck,
-      color: 'border-amber-500/30 hover:border-amber-500/80',
-      tagColor: 'bg-amber-500/10 text-amber-300 border-amber-500/20'
+      themeColor: 'from-amber-500 to-yellow-600',
+      borderColor: 'border-amber-500/40 hover:border-amber-400 hover:shadow-[0_0_35px_rgba(245,158,11,0.3)]',
+      cardBg: 'from-amber-950/30 via-slate-900/90 to-slate-950'
     },
     {
       id: 'gst-filing',
       title: 'GST Return Filing (GSTR-1 / 3B / 9)',
-      badge: 'Monthly / Quarterly',
-      turnaround: 'On-Time Compliance',
-      desc: 'Accurate monthly GST return filing with automated GSTR-2B reconciliation for maximum ITC claims.',
+      badge: 'Zero Penalty',
+      badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/40',
+      turnaround: 'Monthly & Quarterly Cycles',
+      desc: 'Accurate monthly GST return filing with automated GSTR-2B input tax credit (ITC) reconciliation to maximize cash savings.',
       imageUrl: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=800&q=80',
-      features: ['Automated ITC Matching', 'GSTR-1 & 3B E-Filing', 'Avoid Late Fee Penalties', 'Dedicated Tax Manager'],
+      features: ['Automated 2B vs Purchase Matching', 'GSTR-1 & 3B Direct E-Filing', 'Avoid ₹50/day Late Penalty', 'Dedicated CA Compliance Officer'],
       icon: Calculator,
-      color: 'border-amber-500/30 hover:border-amber-500/80',
-      tagColor: 'bg-amber-500/10 text-amber-300 border-amber-500/20'
+      themeColor: 'from-emerald-500 to-teal-600',
+      borderColor: 'border-emerald-500/40 hover:border-emerald-400 hover:shadow-[0_0_35px_rgba(16,185,129,0.3)]',
+      cardBg: 'from-emerald-950/30 via-slate-900/90 to-slate-950'
     },
     {
       id: 'itr-filing',
       title: 'Income Tax Return (ITR) Filing',
-      badge: 'Salaried & Business',
-      turnaround: 'Fast Refund Processing',
-      desc: 'Expert CA review of Form 16, AIS/TIS, Capital Gains, and Crypto income under Old vs New Tax Regimes.',
+      badge: 'Fast Refunds',
+      badgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40',
+      turnaround: 'Max Deductions Claimed',
+      desc: 'Expert CA review of Form 16, AIS/TIS, Capital Gains, and Crypto income under Old vs New Tax Regimes for maximum refund.',
       imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
-      features: ['Max Tax Deductions', 'Form 26AS Reconciliation', 'TDS Refund Acceleration', 'Notice Rectification Support'],
+      features: ['Max Tax Deductions (80C, 80D)', 'Form 26AS & AIS Reconciliation', 'TDS Refund Acceleration', 'Notice Rectification Guidance'],
       icon: FileText,
-      color: 'border-amber-500/30 hover:border-amber-500/80',
-      tagColor: 'bg-amber-500/10 text-amber-300 border-amber-500/20'
-    },
-    {
-      id: 'itr-registration',
-      title: 'ITR Registration & PAN Linking',
-      badge: 'First-Time Filers',
-      turnaround: 'Instant Verification',
-      desc: 'Official Income Tax e-filing portal profile setup, e-verification linkage, and bank account validation.',
-      imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
-      features: ['E-Filing Portal Setup', 'PAN-Aadhaar Linkage', 'Pre-Validated Bank Account', 'Digital Signature (DSC) Sync'],
-      icon: FileCheck,
-      color: 'border-amber-500/30 hover:border-amber-500/80',
-      tagColor: 'bg-amber-500/10 text-amber-300 border-amber-500/20'
+      themeColor: 'from-cyan-500 to-blue-600',
+      borderColor: 'border-cyan-500/40 hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(6,182,212,0.3)]',
+      cardBg: 'from-cyan-950/30 via-slate-900/90 to-slate-950'
     },
     {
       id: 'udyam-registration',
-      title: 'Udyam Registration',
-      badge: 'Govt Certified',
+      title: 'Udyam Registration (MSME)',
+      badge: 'Govt Subsidy Shield',
+      badgeColor: 'bg-indigo-500/20 text-indigo-300 border-indigo-400/40',
       turnaround: 'Same Day Certificate',
-      desc: 'Government MSME Udyam registration certificate unlocking priority lending and electricity subsidies.',
+      desc: 'Official Government MSME Udyam registration unlocking collateral-free bank loans, lower electricity tariffs, and tender exemptions.',
       imageUrl: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
-      features: ['Instant Udyam Certificate', 'Priority Bank Loan Rates', 'Delayed Payment Protection', 'Lifetime Validity'],
+      features: ['Instant Udyam Certificate', 'Priority Bank Loan Rates', 'Delayed Payment Legal Protection', 'Lifetime Validity'],
       icon: Award,
-      color: 'border-amber-500/30 hover:border-amber-500/80',
-      tagColor: 'bg-amber-500/10 text-amber-300 border-amber-500/20'
-    },
-    {
-      id: 'msme-registration',
-      title: 'MSME Databank & Scheme Registration',
-      badge: 'Subsidy Ready',
-      turnaround: 'Government Schemes',
-      desc: 'Official MSME databank mapping for government procurement tenders and capital subsidy schemes.',
-      imageUrl: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80',
-      features: ['Govt Tender EMD Exemption', 'ISO Certification Subsidy', 'Concession on Patent/Trademark', 'Priority Sector Lending'],
-      icon: ShieldCheck,
-      color: 'border-amber-500/30 hover:border-amber-500/80',
-      tagColor: 'bg-amber-500/10 text-amber-300 border-amber-500/20'
+      themeColor: 'from-indigo-500 to-purple-600',
+      borderColor: 'border-indigo-500/40 hover:border-indigo-400 hover:shadow-[0_0_35px_rgba(99,102,241,0.3)]',
+      cardBg: 'from-indigo-950/30 via-slate-900/90 to-slate-950'
     },
     {
       id: 'company-registration',
       title: 'Company & LLP Registration',
-      badge: 'Pvt Ltd / LLP / OPC',
+      badge: 'Pvt Ltd / OPC / LLP',
+      badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-400/40',
       turnaround: '3-7 Working Days',
-      desc: 'Complete incorporation package including SPICe+ filing, DIN, DSC, PAN, TAN, MOA, and AOA.',
+      desc: 'Complete incorporation package including SPICe+ MCA filing, DIN, DSC, PAN, TAN, MOA, AOA, and bank account setup.',
       imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-      features: ['Name Approval (RUN)', 'Incorporation Certificate', 'PAN & TAN Issued Together', 'Bank Account Opening Assist'],
+      features: ['Name Approval (RUN)', 'Incorporation Certificate (COI)', 'PAN & TAN Issued Together', 'Corporate Bank Account Assist'],
       icon: Building,
-      color: 'border-amber-500/30 hover:border-amber-500/80',
-      tagColor: 'bg-amber-500/10 text-amber-300 border-amber-500/20'
+      themeColor: 'from-purple-500 to-pink-600',
+      borderColor: 'border-purple-500/40 hover:border-purple-400 hover:shadow-[0_0_35px_rgba(168,85,247,0.3)]',
+      cardBg: 'from-purple-950/30 via-slate-900/90 to-slate-950'
     },
     {
       id: 'business-compliance',
       title: 'Annual ROC Compliance & Audits',
-      badge: 'Statutory Shield',
-      turnaround: 'Annual Filings',
-      desc: 'MCA annual filings (AOC-4, MGT-7), DIR-3 KYC, board resolutions, and statutory secretarial support.',
-      imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
-      features: ['Avoid Rs 100/day Penalties', 'Director DIR-3 KYC Renewal', 'Statutory Registers Maintained', 'Secretarial Audit Check'],
+      badge: 'Statutory Protection',
+      badgeColor: 'bg-rose-500/20 text-rose-300 border-rose-400/40',
+      turnaround: 'MCA Certified Filings',
+      desc: 'Annual filings (AOC-4, MGT-7), Director DIR-3 KYC, board resolutions, and statutory secretarial book-keeping support.',
+      imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+      features: ['Avoid ₹100/Day Delay Penalties', 'Director DIR-3 KYC Renewal', 'Statutory Registers Maintained', 'Secretarial Audit Verification'],
       icon: ShieldCheck,
-      color: 'border-amber-500/30 hover:border-amber-500/80',
-      tagColor: 'bg-amber-500/10 text-amber-300 border-amber-500/20'
+      themeColor: 'from-rose-500 to-orange-500',
+      borderColor: 'border-rose-500/40 hover:border-rose-400 hover:shadow-[0_0_35px_rgba(244,63,94,0.3)]',
+      cardBg: 'from-rose-950/30 via-slate-900/90 to-slate-950'
     }
   ];
 
   return (
-    <section id="tax-solutions" className="relative py-24 bg-[#030712] text-white border-t border-slate-800/80 overflow-hidden select-none">
-      {/* Background radial glow */}
-      <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
+    <section id="tax-solutions" className="relative py-28 bg-[#030712] text-white border-t border-slate-800/80 overflow-hidden select-none">
+      
+      {/* Background glowing auras */}
+      <div className="absolute top-1/3 left-1/3 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 relative z-10 space-y-12">
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 relative z-10 space-y-16">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-800/80 pb-8">
-          <div className="space-y-3 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 border-b border-slate-800/80 pb-10">
+          <div className="space-y-4 max-w-4xl">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-amber-500/40 text-amber-300 text-xs font-mono font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(245,158,11,0.2)]">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-spin-slow" />
               <span>CATEGORY 03</span>
+              <span className="text-slate-600">•</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 font-black">
+                LEGAL COMPLIANCE &amp; CA CERTIFICATION
+              </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
-              TAX & DOCUMENTATION
+
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+              TAX &amp; DOCUMENTATION <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400">SERVICES</span>
             </h2>
-            <p className="text-slate-400 text-base sm:text-lg leading-relaxed">
-              Certified Chartered Accountant & legal compliance services. Error-free GST registrations, timely ITR filings, Udyam certificates, and company incorporations.
+
+            <p className="text-slate-300 text-base sm:text-xl leading-relaxed font-normal max-w-3xl">
+              Certified Chartered Accountant and corporate legal services. Error-free GST registrations, timely ITR filings, Udyam certificates, and private limited incorporations.
             </p>
           </div>
 
           <button
-            onClick={() => onNavigate('tax-solutions')}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-amber-400 hover:text-amber-300 font-bold text-xs uppercase tracking-wider transition group shrink-0"
+            onClick={() => {
+              launchSoundEngine.playClickTick();
+              onNavigate('tax-solutions');
+            }}
+            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 shadow-[0_0_25px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 cursor-pointer group shrink-0"
           >
             <span>Explore All Tax Services</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
           </button>
         </div>
 
-        {/* Cards Grid (3 Featured Services + 4th "See All Services" Card) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {taxServices.filter(s => ['gst-registration', 'itr-filing', 'company-registration'].includes(s.id)).map((item) => {
+        {/* Dynamic Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+          {taxServices.map((item) => {
             const Icon = item.icon;
-            const itemImage = 'imageUrl' in item ? (item as any).imageUrl : undefined;
+            const itemImage = item.imageUrl;
             return (
-              <div
+              <MagneticCard
                 key={item.id}
-                className="flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 via-[#070b14]/95 to-slate-900/90 border border-slate-800 hover:border-amber-500/50 shadow-xl hover:shadow-[0_0_30px_rgba(245,158,11,0.15)] transition-all duration-300 group hover:-translate-y-1 overflow-hidden"
+                glowColor="amber"
+                enableTilt={true}
+                tiltStrength={3.5}
+                spotlightRadius={420}
+                spotlightOpacity={0.25}
+                soundOnHover={true}
+                className={`flex flex-col justify-between p-6 rounded-3xl bg-gradient-to-b ${item.cardBg} border ${item.borderColor} shadow-xl backdrop-blur-xl`}
               >
+                {/* Top Subtle Light Accent */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${item.themeColor} opacity-80`} />
+
                 <div className="space-y-4">
                   {/* Thumbnail Image Header */}
                   {itemImage && (
-                    <div className="relative h-36 w-full rounded-xl overflow-hidden border border-slate-800 bg-slate-950 group-hover:border-amber-500/40 transition-colors">
+                    <div className="relative h-44 w-full rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group-hover:border-amber-500/40 transition-colors">
                       <img
                         src={itemImage}
                         alt={item.title}
@@ -169,117 +185,84 @@ export const TaxDocumentationSection: React.FC<TaxDocumentationProps> = ({ onNav
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
                       
                       {/* Floating Badge & Icon */}
-                      <div className="absolute top-2.5 left-2.5 p-2 rounded-lg bg-slate-950/85 backdrop-blur-md border border-slate-700/80 text-amber-400">
+                      <div className="absolute top-3 left-3 p-2 rounded-xl bg-slate-950/90 backdrop-blur-md border border-slate-700/80 text-amber-400">
                         <Icon className="w-4 h-4" />
                       </div>
 
-                      <span className="absolute top-2.5 right-2.5 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-amber-500/90 text-slate-950 shadow-sm">
-                        {item.badge}
-                      </span>
-                    </div>
-                  )}
-
-                  {!itemImage && (
-                    <div className="flex items-center justify-between">
-                      <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-amber-400 group-hover:scale-110 transition-transform">
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                      <span className={`absolute top-3 right-3 text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full border backdrop-blur-md ${item.badgeColor}`}>
                         {item.badge}
                       </span>
                     </div>
                   )}
 
                   <div>
-                    <h3 className="text-lg font-bold text-white group-hover:text-amber-300 transition-colors line-clamp-1">
+                    <h3 className="text-xl font-bold text-white group-hover:text-amber-300 transition-colors line-clamp-1">
                       {item.title}
                     </h3>
-                    <div className="text-xs font-mono text-amber-400/90 font-semibold mt-0.5">
+                    <div className="text-xs font-mono text-amber-400 mt-1 font-semibold">
                       {item.turnaround}
                     </div>
-                    <p className="text-xs text-slate-400 mt-2 leading-relaxed line-clamp-2">
+                    <p className="text-xs text-slate-300 mt-2 leading-relaxed line-clamp-2 font-normal">
                       {item.desc}
                     </p>
                   </div>
 
                   {/* Bullet features */}
                   <div className="space-y-1.5 pt-3 border-t border-slate-800/80">
-                    {item.features.slice(0, 3).map((feat, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs text-slate-300">
+                    {item.features.map((feat, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-xs text-slate-300 font-medium">
                         <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                         <span className="truncate">{feat}</span>
                       </div>
                     ))}
                   </div>
-
                 </div>
 
                 {/* Visit Now button */}
                 <div className="pt-5 mt-5 border-t border-slate-800/80">
                   <button
-                    onClick={() => onNavigate('service-detail', item.id)}
-                    className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-950 hover:bg-amber-500 text-slate-200 hover:text-slate-950 font-bold text-xs transition duration-200 border border-slate-800 hover:border-amber-400 group/btn"
+                    onClick={() => {
+                      launchSoundEngine.playClickTick();
+                      onNavigate('service-detail', item.id);
+                    }}
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-slate-950 hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-600 text-slate-200 hover:text-slate-950 font-bold text-xs uppercase tracking-wider transition-all duration-300 border border-slate-800 hover:border-amber-400 shadow-md group/btn cursor-pointer"
                   >
-                    <span>Visit Now</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                    <span>File Consultation &amp; Apply</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1.5 transition-transform" />
                   </button>
                 </div>
 
-              </div>
+              </MagneticCard>
             );
           })}
+        </div>
 
-          {/* 4th Card: See All Tax & Compliance Services */}
-          <div className="flex flex-col justify-between p-6 rounded-2xl bg-gradient-to-br from-amber-950/30 via-slate-900/90 to-orange-950/30 border border-amber-500/50 shadow-[0_0_30px_rgba(245,158,11,0.1)] hover:shadow-[0_0_40px_rgba(245,158,11,0.25)] transition-all duration-300 group hover:-translate-y-1 relative overflow-hidden">
-            
-            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
-
-            <div className="space-y-4 relative z-10">
-              <div className="flex items-center justify-between">
-                <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 group-hover:scale-110 transition-transform">
-                  <Award className="w-5 h-5 text-amber-400" />
-                </div>
-                <span className="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">
-                  12+ Services
-                </span>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
-                  See All Tax &amp; Compliance
-                </h3>
-                <div className="text-xs font-mono text-amber-400/90 mt-0.5">
-                  CA Certified &amp; Legal Shield
-                </div>
-                <p className="text-xs text-slate-400 mt-2 leading-relaxed">
-                  Government registrations, Udyam MSME certificates, annual ROC returns, and statutory auditing.
-                </p>
-              </div>
-
-              {/* Mini tags of more tax types */}
-              <div className="pt-3 border-t border-slate-800/80 flex flex-wrap gap-1.5">
-                {['Udyam MSME Certificate', 'MSME Databank Subsidy', 'Annual ROC Filings', 'DIR-3 KYC Renewal', 'Trademark Filing'].map((tag, tIdx) => (
-                  <span
-                    key={tIdx}
-                    className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-950/80 border border-slate-800 text-slate-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+        {/* Bottom Banner */}
+        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-amber-950/40 via-slate-900/90 to-orange-950/40 border-2 border-amber-500/40 shadow-[0_0_40px_rgba(245,158,11,0.15)] flex flex-col md:flex-row items-center justify-between gap-6 backdrop-blur-2xl">
+          <div className="space-y-2 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-amber-300 uppercase tracking-wider">
+              <Shield className="w-4 h-4 text-amber-400 animate-pulse" />
+              <span>100% Tax Notice Protection</span>
             </div>
+            <h3 className="text-2xl sm:text-3xl font-black text-white">
+              Received a Tax Notice or Have Pending GST Rectifications?
+            </h3>
+            <p className="text-slate-300 text-xs sm:text-sm max-w-2xl font-normal">
+              Our seasoned tax advocates and CAs draft legal replies for Section 143(1), 148, and GST demand notices with 100% accuracy.
+            </p>
+          </div>
 
-            {/* Explore Button */}
-            <div className="pt-5 mt-5 border-t border-slate-800/80 relative z-10">
-              <button
-                onClick={() => onNavigate('tax-solutions')}
-                className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-xs uppercase tracking-wider transition duration-200 shadow-lg group/btn"
-              >
-                <span>See All Tax Solutions</span>
-                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-              </button>
-            </div>
-
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <button
+              onClick={() => {
+                launchSoundEngine.playClickTick();
+                onNavigate('contact');
+              }}
+              className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg hover:scale-105 transition-all cursor-pointer flex items-center gap-2"
+            >
+              <span>Consult Tax Advocate</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
 
