@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SEO } from '../components/common/SEO';
 import { ServiceItem } from '../types';
+import { WebsiteDesignPage } from './WebsiteDesignPage';
 import { 
   DIGITAL_SERVICES, 
   FINANCIAL_SERVICES, 
@@ -187,6 +188,12 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
   ];
 
   const targetId = SLUG_ALIASES[serviceSlug] || serviceSlug;
+  
+  // Render dedicated Website Design Master Service Page when website design/development is selected
+  if (targetId === 'website-design' || serviceSlug === 'website-design' || serviceSlug === 'website-development' || serviceSlug === 'web-design' || serviceSlug === 'web-development') {
+    return <WebsiteDesignPage onNavigate={onNavigate} />;
+  }
+
   const service = allServices.find(s => s.id === targetId) || allServices[0];
 
   const heroImage = service.imageUrl || SERVICE_IMAGES[service.id] || SERVICE_IMAGES[serviceSlug] || SERVICE_IMAGES.default;

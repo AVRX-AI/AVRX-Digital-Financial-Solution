@@ -1,11 +1,29 @@
 import React, { useState } from 'react';
 import { SITE_CONFIG } from '../config';
 import { SEO } from '../components/common/SEO';
-import { Mail, Phone, MapPin, Send, RefreshCw, MessageSquare, ShieldCheck, Clock } from 'lucide-react';
+import { PartnersSlider } from '../components/common/PartnersSlider';
+import { 
+  Mail, 
+  Phone, 
+  MapPin, 
+  Send, 
+  RefreshCw, 
+  MessageSquare, 
+  ShieldCheck, 
+  Clock, 
+  ChevronRight,
+  Sparkles,
+  MessageCircle,
+  ExternalLink
+} from 'lucide-react';
 import { submitLeadForm } from '../utils/formSubmit';
 import { SubmissionFeedbackModal } from '../components/common/SubmissionFeedbackModal';
 
-export const ContactPage: React.FC = () => {
+interface ContactPageProps {
+  onNavigate?: (page: string, slug?: string) => void;
+}
+
+export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -76,32 +94,62 @@ export const ContactPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#050811] text-white pt-28 pb-20">
+    <div className="min-h-screen bg-[#050811] text-white pt-24 pb-20 selection:bg-cyan-500 selection:text-slate-950">
       <SEO
         title="Contact Us | AVRX Digital & Financial Solution"
         description="Get in touch with AVRX specialists. Phone: +91 96306 61536, Email: support@avrx.in, Address: NH343 Waterpark Surguja Chhattisgarh INDIA."
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Main Container - Stretched Widescreen Layout */}
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-cyan-400 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
-            Dedicated Support
-          </span>
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white">
-            Get in Touch with <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">AVRX</span>
+        {/* Breadcrumb Navigation */}
+        <nav aria-label="Breadcrumb" className="pt-4 pb-6 flex items-center gap-2 text-xs text-slate-400">
+          <button 
+            onClick={() => onNavigate ? onNavigate('home') : null}
+            className="hover:text-cyan-400 transition-colors"
+          >
+            Home
+          </button>
+          <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
+          <span className="text-cyan-300 font-semibold">Contact Us</span>
+        </nav>
+
+        {/* 1. Page Hero Section */}
+        <div className="text-center max-w-4xl mx-auto my-8 space-y-5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(0,240,255,0.15)]">
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+            <span>24/7 DEDICATED CONCIERGE & DESK</span>
+          </div>
+
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-tight">
+            Connect with <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400">AVRX Specialists.</span>
           </h1>
-          <p className="text-slate-300 text-base sm:text-lg">
-            Have questions about website development, business loans, tax filings, or insurance? Our team is ready to guide you.
+
+          <p className="text-slate-300 text-sm sm:text-lg leading-relaxed max-w-3xl mx-auto">
+            Have questions regarding custom web architecture, business loans, GST filings, health cover, or AI integrations? Our multi-disciplinary team is standing by.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        {/* 2. Partners Slider */}
+        <div className="my-10">
+          <PartnersSlider 
+            title="Trusted Multi-Domain Network"
+            badgeText="INSTITUTIONAL ECOSYSTEM"
+            description="Facilitating secure, encrypted document submission and direct advisory response."
+            variant="compact"
+          />
+        </div>
+
+        {/* 3. Contact Details & Lead Gen Form */}
+        <div className="my-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* Left Contact Details Box */}
-          <div className="lg:col-span-5 bg-slate-900/90 border border-slate-800 rounded-3xl p-8 space-y-8 shadow-2xl">
-            <h3 className="text-2xl font-bold text-white">Direct Contact Channels</h3>
+          <div className="lg:col-span-5 bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-8 shadow-2xl backdrop-blur-xl">
+            <div>
+              <h3 className="text-2xl font-black text-white">Direct Communication Channels</h3>
+              <p className="text-xs text-slate-400 mt-1">Reach out directly via phone, WhatsApp, or official email.</p>
+            </div>
 
             <div className="space-y-6 text-sm text-slate-300">
               
@@ -110,7 +158,7 @@ export const ContactPage: React.FC = () => {
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs text-slate-400 uppercase font-mono font-bold">Call & WhatsApp</div>
+                  <div className="text-xs text-slate-400 uppercase font-mono font-bold">Direct Phone Line</div>
                   <div className="flex flex-col gap-0.5 mt-0.5">
                     <a href={`tel:${SITE_CONFIG.contact.phone.replace(/\s+/g, '')}`} className="text-base font-bold text-white hover:text-cyan-400 transition">
                       {SITE_CONFIG.contact.phone}
@@ -125,19 +173,38 @@ export const ContactPage: React.FC = () => {
 
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 shrink-0">
+                  <MessageCircle className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs text-slate-400 uppercase font-mono font-bold">WhatsApp Direct Advisory</div>
+                  <a 
+                    href={`https://wa.me/919630661536?text=${encodeURIComponent('Hello AVRX, I would like to inquire about your services.')}`}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 mt-1 text-sm font-bold text-emerald-400 hover:text-emerald-300 transition"
+                  >
+                    <span>Chat on WhatsApp (+91 96306 61536)</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                  <p className="text-xs text-slate-400 mt-1">Instant digital response during business hours</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 shrink-0">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs text-slate-400 uppercase font-mono font-bold">Official Email</div>
+                  <div className="text-xs text-slate-400 uppercase font-mono font-bold">Official Support Emails</div>
                   <div className="flex flex-col gap-0.5 mt-0.5">
-                    <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-base font-bold text-white hover:text-emerald-400 transition">
+                    <a href={`mailto:${SITE_CONFIG.contact.email}`} className="text-base font-bold text-white hover:text-cyan-400 transition">
                       {SITE_CONFIG.contact.email}
                     </a>
-                    <a href={`mailto:${SITE_CONFIG.contact.email2}`} className="text-base font-bold text-white hover:text-emerald-400 transition">
+                    <a href={`mailto:${SITE_CONFIG.contact.email2}`} className="text-base font-bold text-white hover:text-cyan-400 transition">
                       {SITE_CONFIG.contact.email2}
                     </a>
                   </div>
-                  <p className="text-xs text-slate-400 mt-1">Guaranteed reply within 2 business hours</p>
+                  <p className="text-xs text-slate-400 mt-1">Guaranteed response within 2 business hours</p>
                 </div>
               </div>
 
@@ -146,11 +213,11 @@ export const ContactPage: React.FC = () => {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs text-slate-400 uppercase font-mono font-bold">Head Office</div>
+                  <div className="text-xs text-slate-400 uppercase font-mono font-bold">Headquarters Address</div>
                   <div className="text-base font-bold text-white">
                     {SITE_CONFIG.contact.address}
                   </div>
-                  <p className="text-xs text-slate-400 mt-0.5">Digital & Financial Operations Hub</p>
+                  <p className="text-xs text-slate-400 mt-0.5">Digital & Financial Operations Command Hub</p>
                 </div>
               </div>
 
@@ -159,18 +226,21 @@ export const ContactPage: React.FC = () => {
             <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 text-xs text-slate-400 space-y-2">
               <div className="flex items-center gap-2 text-cyan-400 font-bold">
                 <ShieldCheck className="w-4 h-4" />
-                <span>Instant Confirmation &amp; Privacy Guaranteed</span>
+                <span>Instant Confirmation & Privacy Guaranteed</span>
               </div>
               <p>Every submission is delivered straight to our domain specialists. You will receive an instant email receipt with your lead reference ID.</p>
             </div>
           </div>
 
           {/* Right Lead Gen Form */}
-          <div className="lg:col-span-7 bg-slate-900/90 border border-slate-800 rounded-3xl p-8 sm:p-10 shadow-2xl">
+          <div className="lg:col-span-7 bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="flex items-center justify-between">
-                <h3 className="text-xl sm:text-2xl font-bold text-white">Request Expert Consultation</h3>
-                <span className="text-xs text-cyan-400 flex items-center gap-1 font-mono">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-black text-white">Request Expert Consultation</h3>
+                  <p className="text-xs text-slate-400 mt-0.5">Fill out your requirements for a priority callback.</p>
+                </div>
+                <span className="text-xs text-cyan-400 flex items-center gap-1 font-mono font-bold">
                   <Clock className="w-3.5 h-3.5" /> 2-Hour Response
                 </span>
               </div>
@@ -237,7 +307,7 @@ export const ContactPage: React.FC = () => {
                     type="text"
                     value={formData.location}
                     onChange={e => setFormData({ ...formData, location: e.target.value })}
-                    placeholder="e.g. Mumbai, Maharashtra"
+                    placeholder="e.g. Raipur, Chhattisgarh"
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
                   />
                 </div>
@@ -250,12 +320,12 @@ export const ContactPage: React.FC = () => {
                   onChange={e => setFormData({ ...formData, serviceCategory: e.target.value })}
                   className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
                 >
-                  <option value="Digital Solutions">Digital Solutions (Website, App, SEO)</option>
-                  <option value="Personal & Business Loans">Personal &amp; Business Loans (Financial Solutions)</option>
-                  <option value="GST & Income Tax Filing">GST, ITR, Udyam &amp; Company Registration</option>
-                  <option value="Motor & Health Insurance">Motor &amp; Health Insurance</option>
-                  <option value="Cloud Web Hosting">Cloud Web Hosting &amp; Domain Management</option>
-                  <option value="Next-Gen AI Interactive Suite">Next-Gen AI Tools &amp; Automation</option>
+                  <option value="Digital Solutions">Digital Solutions (Website, App, SEO, Portal)</option>
+                  <option value="Personal & Business Loans">Financial Solutions (Personal, Business, Home, Subsidy)</option>
+                  <option value="GST & Income Tax Filing">Tax & Documentation (GST, ITR, Udyam, Company Reg)</option>
+                  <option value="Motor & Health Insurance">Insurance Solutions (Health, Motor, Travel, Property)</option>
+                  <option value="Cloud Web Hosting">Cloud Web Hosting & Domain Management</option>
+                  <option value="Next-Gen AI Interactive Suite">Next-Gen AI Tools & Automation</option>
                 </select>
               </div>
 
@@ -273,12 +343,12 @@ export const ContactPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-slate-950 font-bold text-sm rounded-2xl shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:scale-[1.02] transition flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-slate-950 font-black text-sm rounded-2xl shadow-[0_0_25px_rgba(0,240,255,0.4)] hover:scale-[1.02] transition flex items-center justify-center gap-2 cursor-pointer"
               >
                 {loading ? (
                   <>
                     <RefreshCw className="w-4 h-4 animate-spin" />
-                    <span>Submitting &amp; Sending Emails...</span>
+                    <span>Submitting & Sending Notification...</span>
                   </>
                 ) : (
                   <>
@@ -305,4 +375,3 @@ export const ContactPage: React.FC = () => {
     </div>
   );
 };
-
