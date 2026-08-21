@@ -16,6 +16,9 @@ export interface ServiceItem {
   faqs?: { question: string; answer: string }[];
   popularFor?: string[];
   priceStarting?: string;
+  requirements?: string[];
+  whoNeedsThis?: string[];
+  complianceNote?: string;
 }
 
 export interface AIToolItem {

@@ -29,6 +29,7 @@ import { TermsPage } from './pages/TermsPage';
 import { DisclaimerPage } from './pages/DisclaimerPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
+import { WebsiteDesignPage } from './pages/WebsiteDesignPage';
 import { AskAVRXAIFloating } from './components/common/AskAVRXAIFloating';
 import { MobileBottomNav } from './components/layout/MobileBottomNav';
 
@@ -147,6 +148,9 @@ export function App() {
     switch (currentPage) {
       case 'home':
         return <HomePage onNavigate={handleNavigate} />;
+      case 'website-design':
+      case 'website-development':
+        return <WebsiteDesignPage onNavigate={handleNavigate} />;
       case 'service-detail':
         return <ServiceDetailPage serviceSlug={selectedServiceSlug} onNavigate={handleNavigate} />;
       case 'digital-solutions':
