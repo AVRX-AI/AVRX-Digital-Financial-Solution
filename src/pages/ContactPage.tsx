@@ -14,10 +14,15 @@ import {
   ChevronRight,
   Sparkles,
   MessageCircle,
-  ExternalLink
+  ExternalLink,
+  CheckCircle2,
+  Headphones,
+  Calendar,
+  Building2
 } from 'lucide-react';
 import { submitLeadForm } from '../utils/formSubmit';
 import { SubmissionFeedbackModal } from '../components/common/SubmissionFeedbackModal';
+import { launchSoundEngine } from '../utils/launchSoundEngine';
 
 interface ContactPageProps {
   onNavigate?: (page: string, slug?: string) => void;
@@ -33,6 +38,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
     message: '',
     website_hp: '' // Honeypot field for spambots
   });
+  const [selectedSpecialist, setSelectedSpecialist] = useState<string>('Web & Digital Architect');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [feedback, setFeedback] = useState<{
@@ -51,23 +57,28 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
     setErrorMessage('');
     setLoading(true);
+    launchSoundEngine.playLaserLaunch();
 
     const result = await submitLeadForm({
       name: formData.name,
       phone: formData.phone,
       email: formData.email,
       location: formData.location,
-      serviceCategory: formData.serviceCategory,
+      serviceCategory: `${formData.serviceCategory} (${selectedSpecialist})`,
       subject: `Website Inquiry — ${formData.serviceCategory}`,
       message: formData.message,
       sourcePage: 'Contact Us Page',
       formType: 'Main Contact Form',
-      website_hp: formData.website_hp
+      website_hp: formData.website_hp,
+      additionalFields: {
+        'Target Specialist': selectedSpecialist
+      }
     });
 
     setLoading(false);
 
     if (result.success) {
+      launchSoundEngine.playSuccessBell();
       setFeedback({
         isOpen: true,
         type: 'success',
@@ -84,6 +95,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
         website_hp: ''
       });
     } else {
+      launchSoundEngine.playErrorBuzz();
       setErrorMessage(result.message || 'Unable to submit your enquiry right now.');
       setFeedback({
         isOpen: true,
@@ -94,17 +106,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#050811] text-white pt-24 pb-20 selection:bg-cyan-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#040713] text-white pt-24 pb-20 selection:bg-cyan-500 selection:text-slate-950">
       <SEO
         title="Contact Us | AVRX Digital & Financial Solution"
         description="Get in touch with AVRX specialists. Phone: +91 96306 61536, Email: support@avrx.in, Address: NH343 Waterpark Surguja Chhattisgarh INDIA."
       />
 
+      {/* Ambient background glows */}
+      <div className="fixed top-20 left-1/4 w-[700px] h-[500px] bg-cyan-500/10 rounded-full blur-[180px] pointer-events-none" />
+      <div className="fixed bottom-20 right-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[180px] pointer-events-none" />
+
       {/* Main Container - Stretched Widescreen Layout */}
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12">
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 relative z-10 space-y-16">
         
         {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="pt-4 pb-6 flex items-center gap-2 text-xs text-slate-400">
+        <nav aria-label="Breadcrumb" className="pt-2 flex items-center gap-2 text-xs text-slate-400">
           <button 
             onClick={() => onNavigate ? onNavigate('home') : null}
             className="hover:text-cyan-400 transition-colors"
@@ -116,36 +132,29 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
         </nav>
 
         {/* 1. Page Hero Section */}
-        <div className="text-center max-w-4xl mx-auto my-8 space-y-5">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(0,240,255,0.15)]">
-            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-            <span>24/7 DEDICATED CONCIERGE & DESK</span>
+        <div className="text-center max-w-4xl mx-auto space-y-5">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-widest font-mono shadow-[0_0_20px_rgba(0,240,255,0.2)]">
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+            <span>24/7 DEDICATED CONCIERGE &amp; ADVISORY DESK</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-tight">
-            Connect with <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400">AVRX Specialists.</span>
+            Connect with <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-300">
+              AVRX Specialists.
+            </span>
           </h1>
 
-          <p className="text-slate-300 text-sm sm:text-lg leading-relaxed max-w-3xl mx-auto">
+          <p className="text-slate-300 text-base sm:text-xl leading-relaxed max-w-3xl mx-auto font-normal">
             Have questions regarding custom web architecture, business loans, GST filings, health cover, or AI integrations? Our multi-disciplinary team is standing by.
           </p>
         </div>
 
-        {/* 2. Partners Slider */}
-        <div className="my-10">
-          <PartnersSlider 
-            title="Trusted Multi-Domain Network"
-            badgeText="INSTITUTIONAL ECOSYSTEM"
-            description="Facilitating secure, encrypted document submission and direct advisory response."
-            variant="compact"
-          />
-        </div>
-
-        {/* 3. Contact Details & Lead Gen Form */}
-        <div className="my-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* 2. Contact Details & Lead Gen Form */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* Left Contact Details Box */}
-          <div className="lg:col-span-5 bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-8 shadow-2xl backdrop-blur-xl">
+          <div className="lg:col-span-5 bg-slate-950/95 border-2 border-cyan-500/40 rounded-3xl p-6 sm:p-8 space-y-8 shadow-[0_0_50px_rgba(0,240,255,0.15)] backdrop-blur-2xl">
             <div>
               <h3 className="text-2xl font-black text-white">Direct Communication Channels</h3>
               <p className="text-xs text-slate-400 mt-1">Reach out directly via phone, WhatsApp, or official email.</p>
@@ -158,7 +167,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs text-slate-400 uppercase font-mono font-bold">Direct Phone Line</div>
+                  <div className="text-xs text-slate-400 uppercase font-mono font-bold">Direct Phone Lines</div>
                   <div className="flex flex-col gap-0.5 mt-0.5">
                     <a href={`tel:${SITE_CONFIG.contact.phone.replace(/\s+/g, '')}`} className="text-base font-bold text-white hover:text-cyan-400 transition">
                       {SITE_CONFIG.contact.phone}
@@ -217,23 +226,23 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                   <div className="text-base font-bold text-white">
                     {SITE_CONFIG.contact.address}
                   </div>
-                  <p className="text-xs text-slate-400 mt-0.5">Digital & Financial Operations Command Hub</p>
+                  <p className="text-xs text-slate-400 mt-0.5">Digital &amp; Financial Operations Command Hub</p>
                 </div>
               </div>
 
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 text-xs text-slate-400 space-y-2">
-              <div className="flex items-center gap-2 text-cyan-400 font-bold">
+            <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 text-xs text-slate-400 space-y-2">
+              <div className="flex items-center gap-2 text-cyan-400 font-bold font-mono">
                 <ShieldCheck className="w-4 h-4" />
-                <span>Instant Confirmation & Privacy Guaranteed</span>
+                <span>Instant Confirmation &amp; Privacy Guaranteed</span>
               </div>
-              <p>Every submission is delivered straight to our domain specialists. You will receive an instant email receipt with your lead reference ID.</p>
+              <p>Every submission is delivered straight to our domain specialists. You will receive an instant email receipt with your reference ID.</p>
             </div>
           </div>
 
           {/* Right Lead Gen Form */}
-          <div className="lg:col-span-7 bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+          <div className="lg:col-span-7 bg-slate-950/95 border-2 border-cyan-500/40 rounded-3xl p-6 sm:p-10 shadow-[0_0_50px_rgba(0,240,255,0.15)] backdrop-blur-2xl">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -243,6 +252,35 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                 <span className="text-xs text-cyan-400 flex items-center gap-1 font-mono font-bold">
                   <Clock className="w-3.5 h-3.5" /> 2-Hour Response
                 </span>
+              </div>
+
+              {/* Specialist Selector */}
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-slate-300 uppercase font-mono">Select Preferred Specialist</label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {[
+                    'Web & Digital Architect',
+                    'Loan & Capital Advisor',
+                    'Chartered Accountant',
+                    'Insurance Underwriter'
+                  ].map(spec => (
+                    <button
+                      type="button"
+                      key={spec}
+                      onClick={() => {
+                        setSelectedSpecialist(spec);
+                        launchSoundEngine.playClickTick();
+                      }}
+                      className={`p-2 rounded-xl text-[11px] font-bold border transition text-center cursor-pointer ${
+                        selectedSpecialist === spec
+                          ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow font-extrabold'
+                          : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
+                      }`}
+                    >
+                      {spec}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               {/* Hidden Honeypot Field */}
@@ -264,91 +302,91 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 uppercase">Full Name *</label>
+                  <label className="text-xs font-semibold text-slate-300 uppercase font-mono">Full Name *</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Rahul Sharma"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 uppercase">Phone / WhatsApp Number *</label>
+                  <label className="text-xs font-semibold text-slate-300 uppercase font-mono">Phone / WhatsApp Number *</label>
                   <input
                     type="tel"
                     required
                     value={formData.phone}
                     onChange={e => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+91 98765 43210"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 uppercase">Email Address *</label>
+                  <label className="text-xs font-semibold text-slate-300 uppercase font-mono">Email Address *</label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={e => setFormData({ ...formData, email: e.target.value })}
                     placeholder="rahul@example.com"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-300 uppercase">City / State</label>
+                  <label className="text-xs font-semibold text-slate-300 uppercase font-mono">City / State</label>
                   <input
                     type="text"
                     value={formData.location}
                     onChange={e => setFormData({ ...formData, location: e.target.value })}
                     placeholder="e.g. Raipur, Chhattisgarh"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-300 uppercase">Service Category Interest</label>
+                <label className="text-xs font-semibold text-slate-300 uppercase font-mono">Service Category Interest</label>
                 <select
                   value={formData.serviceCategory}
                   onChange={e => setFormData({ ...formData, serviceCategory: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400 cursor-pointer"
                 >
                   <option value="Digital Solutions">Digital Solutions (Website, App, SEO, Portal)</option>
                   <option value="Personal & Business Loans">Financial Solutions (Personal, Business, Home, Subsidy)</option>
-                  <option value="GST & Income Tax Filing">Tax & Documentation (GST, ITR, Udyam, Company Reg)</option>
+                  <option value="GST & Income Tax Filing">Tax &amp; Documentation (GST, ITR, Udyam, Company Reg)</option>
                   <option value="Motor & Health Insurance">Insurance Solutions (Health, Motor, Travel, Property)</option>
-                  <option value="Cloud Web Hosting">Cloud Web Hosting & Domain Management</option>
-                  <option value="Next-Gen AI Interactive Suite">Next-Gen AI Tools & Automation</option>
+                  <option value="Cloud Web Hosting">Cloud Web Hosting &amp; Domain Management</option>
+                  <option value="Next-Gen AI Interactive Suite">Next-Gen AI Tools &amp; Automation</option>
                 </select>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-300 uppercase">Message / Requirements</label>
+                <label className="text-xs font-semibold text-slate-300 uppercase font-mono">Message / Requirements</label>
                 <textarea
                   rows={4}
                   value={formData.message}
                   onChange={e => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Describe your project, loan requirement, or tax questions..."
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-cyan-400"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-slate-950 font-black text-sm rounded-2xl shadow-[0_0_25px_rgba(0,240,255,0.4)] hover:scale-[1.02] transition flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-2xl shadow-[0_0_25px_rgba(0,240,255,0.4)] hover:scale-[1.02] transition flex items-center justify-center gap-2 cursor-pointer"
               >
                 {loading ? (
                   <>
                     <RefreshCw className="w-4 h-4 animate-spin" />
-                    <span>Submitting & Sending Notification...</span>
+                    <span>Submitting &amp; Sending Notification...</span>
                   </>
                 ) : (
                   <>
@@ -361,6 +399,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
           </div>
 
         </div>
+
+        {/* Partners Slider */}
+        <PartnersSlider 
+          title="Trusted Multi-Domain Network"
+          badgeText="INSTITUTIONAL ECOSYSTEM"
+          variant="compact"
+        />
 
       </div>
 

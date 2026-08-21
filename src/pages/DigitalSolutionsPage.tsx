@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { MagneticCard } from '../components/common/MagneticCard';
 import { DIGITAL_SERVICES } from '../data/servicesData';
 import { ServiceItem } from '../types';
 import { SEO } from '../components/common/SEO';
@@ -281,9 +282,15 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
             {digitalCategoryCards.map(card => {
               const Icon = card.icon;
               return (
-                <div
+                <MagneticCard
                   key={card.id}
-                  className="rounded-3xl bg-slate-900/80 border border-slate-800/90 hover:border-cyan-500/50 p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(0,240,255,0.12)] group relative overflow-hidden"
+                  glowColor="cyan"
+                  enableTilt={true}
+                  tiltStrength={3.5}
+                  spotlightRadius={420}
+                  spotlightOpacity={0.25}
+                  soundOnHover={true}
+                  className="rounded-3xl bg-slate-900/80 border border-slate-800/90 hover:border-cyan-500/50 p-6 sm:p-8 flex flex-col justify-between"
                 >
                   {/* Subtle Corner Glow */}
                   <div className="absolute top-0 right-0 w-36 h-36 bg-cyan-500/[0.04] rounded-full blur-2xl group-hover:bg-cyan-500/[0.1] transition-all" />
@@ -332,14 +339,14 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
 
                     <button
                       onClick={() => onNavigate('service-detail', card.slug)}
-                      className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 border border-cyan-500/30 hover:border-cyan-400 text-cyan-300 hover:text-slate-950 font-bold text-xs transition flex items-center justify-center gap-1.5 shadow-sm"
+                      className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 border border-cyan-500/30 hover:border-cyan-400 text-cyan-300 hover:text-slate-950 font-bold text-xs transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
                     >
                       <span>Learn More / Get Started</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
 
-                </div>
+                </MagneticCard>
               );
             })}
           </div>

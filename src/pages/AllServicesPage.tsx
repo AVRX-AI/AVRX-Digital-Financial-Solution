@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { MagneticCard, GlowPreset } from '../components/common/MagneticCard';
 import { DIGITAL_SERVICES, FINANCIAL_SERVICES, TAX_SERVICES, INSURANCE_SERVICES, HOSTING_PRODUCTS, AI_TOOLS } from '../data/servicesData';
 import { ServiceItem, AIToolItem } from '../types';
 import { SEO } from '../components/common/SEO';
@@ -116,9 +117,25 @@ export const AllServicesPage: React.FC<AllServicesPageProps> = ({ onNavigate }) 
             const badge = 'badge' in item ? item.badge : ('tag' in item ? item.tag : undefined);
             const price = 'priceStarting' in item ? item.priceStarting : undefined;
 
+            const categoryGlowMap: Record<string, GlowPreset> = {
+              digital: 'cyan',
+              financial: 'emerald',
+              tax: 'amber',
+              insurance: 'purple',
+              hosting: 'blue',
+              'ai-tool': 'rose'
+            };
+            const glow = categoryGlowMap[item.category] || 'cyan';
+
             return (
-              <div
+              <MagneticCard
                 key={item.id}
+                glowColor={glow}
+                enableTilt={true}
+                tiltStrength={3}
+                spotlightRadius={380}
+                spotlightOpacity={0.22}
+                soundOnHover={true}
                 onClick={() => {
                   if (item.category === 'ai-tool') {
                     onNavigate('ai-tools');
@@ -126,7 +143,7 @@ export const AllServicesPage: React.FC<AllServicesPageProps> = ({ onNavigate }) 
                     onNavigate('service-detail', item.id);
                   }
                 }}
-                className="rounded-3xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition cursor-pointer group flex flex-col justify-between overflow-hidden hover:-translate-y-1 shadow-lg"
+                className="rounded-3xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 cursor-pointer flex flex-col justify-between overflow-hidden shadow-lg"
               >
                 <div>
                   {/* Card Image Thumbnail */}
@@ -190,7 +207,7 @@ export const AllServicesPage: React.FC<AllServicesPageProps> = ({ onNavigate }) 
                     <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
-              </div>
+              </MagneticCard>
             );
           })}
         </div>

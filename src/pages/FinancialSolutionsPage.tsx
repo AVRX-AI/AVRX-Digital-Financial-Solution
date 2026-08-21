@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { MagneticCard } from '../components/common/MagneticCard';
 import { SEO } from '../components/common/SEO';
 import { PartnersSlider } from '../components/common/PartnersSlider';
 import { submitLeadForm } from '../utils/formSubmit';
@@ -833,10 +834,17 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {allFinancialServices.map((service) => {
               const Icon = service.icon;
+              const glow = service.category.toLowerCase().includes('insurance') || service.category.toLowerCase().includes('protection') ? 'purple' : 'emerald';
               return (
-                <div
+                <MagneticCard
                   key={service.id}
-                  className="rounded-3xl bg-slate-900/80 border border-slate-800/90 hover:border-emerald-500/50 flex flex-col justify-between overflow-hidden group transition-all duration-300 hover:shadow-[0_15px_40px_rgba(16,185,129,0.12)] hover:-translate-y-1"
+                  glowColor={glow}
+                  enableTilt={true}
+                  tiltStrength={3}
+                  spotlightRadius={400}
+                  spotlightOpacity={0.25}
+                  soundOnHover={true}
+                  className="rounded-3xl bg-slate-900/80 border border-slate-800/90 hover:border-emerald-500/50 flex flex-col justify-between overflow-hidden shadow-lg"
                 >
                   {/* Card Image Header */}
                   <div className="relative h-44 w-full overflow-hidden bg-slate-950">
@@ -892,14 +900,14 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
                       <div className="grid grid-cols-2 gap-2">
                         <button
                           onClick={() => onNavigate('service-detail', service.slug)}
-                          className="w-full py-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white font-bold text-xs transition"
+                          className="w-full py-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white font-bold text-xs transition cursor-pointer"
                         >
                           View Details
                         </button>
 
                         <button
                           onClick={() => handleOpenFormWithSolution(service.title)}
-                          className="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-black text-xs transition shadow-sm hover:scale-105"
+                          className="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-black text-xs transition shadow-sm hover:scale-105 cursor-pointer"
                         >
                           Enquire Now
                         </button>
@@ -912,7 +920,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
 
                   </div>
 
-                </div>
+                </MagneticCard>
               );
             })}
           </div>
