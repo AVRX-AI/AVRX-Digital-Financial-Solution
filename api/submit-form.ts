@@ -4,6 +4,8 @@
  */
 
 import { sendLeadEmails } from '../src/server/emailService';
+import { persistLead } from '../src/server/persistentLeadStore';
+import { sendWhatsAppNotification } from '../src/server/whatsappService';
 import { LeadData } from '../src/server/emailTemplates';
 
 interface GenericReq {
@@ -167,16 +169,33 @@ export default async function handler(req: GenericReq, res: GenericRes) {
       dynamicFields: Object.keys(dynamicFields).length > 0 ? dynamicFields : undefined
     };
 
-    // 6. Send Admin Notification to avrx.india@gmail.com and User Confirmation to user
+    // 6. Save the lead permanently BEFORE sending notifications.
+    // This guarantees that an email/WhatsApp provider failure does not lose the enquiry.
+    const initialRecord: any = {
+      ...leadData,
+      status: 'New',
+      emailStatus: 'failed',
+      ipAddress: clientIp
+    };
+    const persistence = await persistLead(initialRecord);
+
+    // 7. Send Admin + Client email notifications.
     const emailResult = await sendLeadEmails(leadData, clientIp);
 
-    // 7. Return Clean Structured Response
+    // 8. Optional WhatsApp Cloud API notification.
+    const whatsappResult = await sendWhatsAppNotification(leadData.name, leadData.phone, leadData.id);
+
+    // 9. Return a safe JSON response. Never redirect or return an empty body.
     return res.status(200).json({
       success: true,
       message: "Thank You!\n\nYour request has been submitted successfully.\n\nOur AVRX team will contact you shortly.",
       leadId: leadData.id,
       adminEmailSent: emailResult.adminEmailSent,
       clientEmailSent: emailResult.clientEmailSent,
+      databaseSaved: persistence.success,
+      databaseError: persistence.success ? undefined : persistence.error,
+      whatsappSent: whatsappResult.sent,
+      whatsappError: whatsappResult.sent ? undefined : whatsappResult.error,
       transport: emailResult.transport
     });
 
