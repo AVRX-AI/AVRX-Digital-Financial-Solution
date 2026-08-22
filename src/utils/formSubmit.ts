@@ -106,7 +106,9 @@ export async function submitForm(payload: FormSubmissionPayload): Promise<FormSu
       body: JSON.stringify(preparedPayload)
     });
 
-    const data = await response.json();
+    const raw = await response.text();
+    let data: any = {};
+    try { data = raw ? JSON.parse(raw) : {}; } catch { data = {}; }
 
     if (response.ok && data.success) {
       return {
