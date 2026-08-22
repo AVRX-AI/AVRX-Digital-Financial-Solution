@@ -1,20 +1,8 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "functions": {
-    "api/**/*.ts": {
-      "maxDuration": 30
-    }
-  },
-  "headers": [
+  "rewrites": [
     {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-store"
-        }
-      ]
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
     }
   ]
 }
