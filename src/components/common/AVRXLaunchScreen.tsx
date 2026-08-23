@@ -9,9 +9,8 @@ interface AVRXLaunchScreenProps {
 }
 
 export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }) => {
-  // Animation phases: 'opening' | 'ready' | 'countdown' | 'launching' | 'transition'
-  const [phase, setPhase] = useState<'opening' | 'ready' | 'countdown' | 'launching' | 'transition'>('opening');
-  const [countdownNum, setCountdownNum] = useState<number | string>(3);
+  // Animation phases: 'opening' | 'ready' | 'launching' | 'transition'
+  const [phase, setPhase] = useState<'opening' | 'ready' | 'launching' | 'transition'>('opening');
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
   const [reducedMotion, setReducedMotion] = useState<boolean>(false);
 
@@ -27,12 +26,12 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
       setReducedMotion(true);
     }
 
-    // Opening cinematic transition timer -> set to 'ready' after 1.8s
+    // Opening cinematic transition timer -> set to 'ready' after 1s
     const timer = setTimeout(() => {
       setPhase('ready');
       // Play atmospheric welcome boot chord shimmer
       launchSoundEngine.playWelcomeChime();
-    }, 1800);
+    }, 1000);
 
     // Prevent body scrolling during launch screen
     document.body.style.overflow = 'hidden';
@@ -43,52 +42,33 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
     };
   }, []);
 
-  // Launch button trigger
+  // Direct Launch trigger (NO COUNTDOWN)
   const handleLaunchClick = () => {
     if (phase !== 'ready') return;
+
+    // Trigger liftoff sound and JARVIS voice greeting immediately
+    launchSoundEngine.playRocketLiftoff();
+    launchSoundEngine.speakWelcomeToAVRX();
 
     if (reducedMotion) {
       finishLaunch();
       return;
     }
 
-    setPhase('countdown');
-    setCountdownNum(3);
-    
-    // Stage 3 sound & brief
-    launchSoundEngine.playCountdownPulse(3);
+    // Immediate rocket launch ascent
+    setPhase('launching');
 
-    // 3 -> 2
+    // Smooth direct transition into website (600ms rocket ascent)
     setTimeout(() => {
-      setCountdownNum(2);
-      launchSoundEngine.playCountdownPulse(2);
-    }, 750);
-
-    // 2 -> 1
-    setTimeout(() => {
-      setCountdownNum(1);
-      launchSoundEngine.playCountdownPulse(1);
-    }, 1500);
-
-    // 1 -> LIFTOFF!
-    setTimeout(() => {
-      setCountdownNum('🚀 LIFTOFF!');
-      // Multi-layer sonic boom, roaring thruster exhaust, warp glissando & celestial victory chord
-      launchSoundEngine.playRocketLiftoff();
-      setPhase('launching');
-
-      // Transition to final flash & completion
+      setPhase('transition');
       setTimeout(() => {
-        setPhase('transition');
-        setTimeout(() => {
-          finishLaunch();
-        }, 600);
-      }, 1600);
-    }, 2250);
+        finishLaunch();
+      }, 350);
+    }, 650);
   };
 
   const finishLaunch = () => {
-    launchSoundEngine.playClickTick();
+    launchSoundEngine.speakWelcomeToAVRX();
     try {
       sessionStorage.setItem('avrx_launch_completed', 'true');
     } catch {
@@ -403,20 +383,20 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
           />
         </div>
 
-        {/* 5. Countdown Display OR Launch Button */}
+        {/* 5. Direct Launch Action */}
         <div className="relative z-30 min-h-[90px] flex items-center justify-center">
-          {phase === 'countdown' || phase === 'launching' ? (
-            <div className="flex flex-col items-center justify-center gap-2 animate-in zoom-in-50 duration-200">
-              <div className="text-4xl sm:text-6xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-[#FF9933] via-white to-[#22c55e] filter drop-shadow-[0_0_20px_rgba(255,255,255,0.6)] font-mono">
-                {countdownNum}
+          {phase === 'launching' ? (
+            <div className="flex flex-col items-center justify-center gap-2 animate-in zoom-in-75 duration-200">
+              <div className="text-3xl sm:text-5xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-[#FF9933] via-white to-[#22c55e] filter drop-shadow-[0_0_20px_rgba(255,255,255,0.6)] font-mono">
+                🚀 LAUNCHING AVRX
               </div>
               <span className="text-xs uppercase font-mono tracking-widest text-cyan-300 animate-pulse">
-                Ignition Sequence Active
+                Entering Digital Ecosystem
               </span>
             </div>
           ) : (
             <div className="flex flex-col items-center gap-3">
-              {/* Primary High-Impact Launch Button */}
+              {/* Primary High-Impact Direct Launch Button */}
               <button
                 onClick={handleLaunchClick}
                 onMouseEnter={() => launchSoundEngine.playHoverChirp()}
@@ -436,7 +416,7 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
                     <Sparkles className="w-5 h-5 text-cyan-400 animate-pulse" />
                   </div>
                   <span className="text-[11px] font-mono tracking-widest text-slate-400 group-hover:text-cyan-300 uppercase transition">
-                    Enter the Future
+                    Direct Launch • Enter The Future
                   </span>
                 </div>
               </button>
