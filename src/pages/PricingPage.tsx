@@ -67,6 +67,30 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
   // Multi-Category Pricing Plans
   const categorizedPlans = [
     {
+      id: 'digital-static-onepage',
+      category: 'digital',
+      name: 'Static Onepage Website',
+      tagline: 'High-speed single-page website for local services, retail & fast lead capture',
+      badge: 'Best Value • ₹4,999',
+      badgeColor: 'border-cyan-500/40 text-cyan-300 bg-cyan-500/10',
+      price: '₹4,999',
+      period: 'one-time investment',
+      color: 'cyan',
+      glow: 'shadow-[0_0_30px_rgba(0,240,255,0.15)]',
+      border: 'border-cyan-500/40',
+      features: [
+        'Single-Page Smooth Fluid-Scroll Modern Layout',
+        '100% Mobile, Tablet & Desktop Responsive UI',
+        'Direct WhatsApp Floating Button & Instant Call Trigger',
+        'Lead Capture Contact Form with Instant Email Alerts',
+        'Google Maps Business Location & Direction Pin',
+        'Free SSL Security Certificate & Fast Cloud Hosting Setup',
+        'Sub-Second Page Load Speed (<0.5s) & 48-72h Delivery'
+      ],
+      ctaText: 'Launch for ₹4,999',
+      popular: false
+    },
+    {
       id: 'digital-starter',
       category: 'digital',
       name: 'Starter Business Web',

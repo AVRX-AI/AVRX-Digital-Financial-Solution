@@ -6,6 +6,7 @@ import { SearchModal } from './components/layout/SearchModal';
 import { WhatsAppButton } from './components/layout/WhatsAppButton';
 import { IndependenceDayAtmosphere } from './components/common/IndependenceDayAtmosphere';
 import { AVRXLaunchScreen } from './components/common/AVRXLaunchScreen';
+import { launchSoundEngine } from './utils/launchSoundEngine';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -104,6 +105,33 @@ export function App() {
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Announce "Welcome to AVRX" JARVIS voice greeting when website opens
+  useEffect(() => {
+    // Attempt automatic voice greeting on initial mount
+    const timer = setTimeout(() => {
+      launchSoundEngine.speakWelcomeToAVRX();
+    }, 400);
+
+    // Fallback: If browser autoplay policy requires user interaction, voice on first click/touch
+    const handleFirstGesture = () => {
+      launchSoundEngine.speakWelcomeToAVRX();
+      window.removeEventListener('click', handleFirstGesture);
+      window.removeEventListener('touchstart', handleFirstGesture);
+      window.removeEventListener('keydown', handleFirstGesture);
+    };
+
+    window.addEventListener('click', handleFirstGesture, { once: true });
+    window.addEventListener('touchstart', handleFirstGesture, { once: true });
+    window.addEventListener('keydown', handleFirstGesture, { once: true });
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('click', handleFirstGesture);
+      window.removeEventListener('touchstart', handleFirstGesture);
+      window.removeEventListener('keydown', handleFirstGesture);
+    };
   }, []);
 
   const handleNavigate = (page: string, slugOrPostId?: string) => {
@@ -210,7 +238,12 @@ export function App() {
         
         {/* 1. Cinematic Interactive Launch Experience Screen */}
         {showLaunchScreen && (
-          <AVRXLaunchScreen onComplete={() => setShowLaunchScreen(false)} />
+          <AVRXLaunchScreen
+            onComplete={() => {
+              setShowLaunchScreen(false);
+              launchSoundEngine.speakWelcomeToAVRX();
+            }}
+          />
         )}
 
         {/* Independence Day Global Ambient Particles & Initial Entry Wave */}

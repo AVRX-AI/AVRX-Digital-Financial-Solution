@@ -315,8 +315,30 @@ export const WebsiteDesignPage: React.FC<WebsiteDesignPageProps> = ({ onNavigate
     }
   };
 
-  // 8 Specific Website Categories Required by Master Prompt
+  // 9 Specific Website Categories
   const websiteCategories = [
+    {
+      id: 'static-onepage-website',
+      title: 'Static Onepage website',
+      suitableFor: 'Local shops, micro-enterprises, consultants, service providers, freelancers & quick promotions',
+      priceStarting: '₹4,999',
+      priceDisclaimer: 'Fixed Special Package — Complete single-page layout with domain & SSL setup support.',
+      imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+      badge: 'Best Value • ₹4,999',
+      features: [
+        'Single-Page Smooth Fluid Scroll Architecture',
+        'Hero Banner, About Us, Services, Highlights & Gallery',
+        '100% Mobile, Tablet & Desktop Ergonomic UI',
+        'Direct WhatsApp Floating Button & Call CTA',
+        'Lead Capture Form with Instant Email Alerts',
+        'Google Maps Location & Social Media Links',
+        'Sub-Second Ultra Fast Page Speed (<0.5s)',
+        'Basic On-Page SEO & Meta Tags for Google',
+        'Free SSL (HTTPS) Security Setup',
+        'Fast 48–72 Hours Turnaround Time'
+      ],
+      ctaText: 'Get Static Onepage Website'
+    },
     {
       id: 'business-website',
       title: 'Business Website',

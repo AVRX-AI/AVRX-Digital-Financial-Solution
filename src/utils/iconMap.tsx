@@ -48,6 +48,12 @@ import {
   User,
   GraduationCap,
   Utensils,
+  Scale,
+  FileSignature,
+  BadgeCheck,
+  BriefcaseBusiness,
+  FileSpreadsheet,
+  Stamp,
   LucideIcon
 } from 'lucide-react';
 
@@ -73,13 +79,19 @@ const ICON_MAP: Record<string, LucideIcon> = {
   CreditCard,
   Coins,
   DollarSign,
-  // Tax
+  // Tax & Legal
   FileCheck,
   Calculator,
   FileText,
   Award,
   ShieldAlert,
   HelpCircle,
+  Scale,
+  FileSignature,
+  BadgeCheck,
+  BriefcaseBusiness,
+  FileSpreadsheet,
+  Stamp,
   // Insurance
   Shield,
   HeartPulse,

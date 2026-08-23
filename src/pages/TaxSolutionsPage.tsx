@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { TAX_SERVICES } from '../data/servicesData';
 import { ServiceItem } from '../types';
 import { SEO } from '../components/common/SEO';
 import { PartnersSlider } from '../components/common/PartnersSlider';
+import { renderServiceIcon } from '../utils/iconMap';
 import { 
   FileText, 
   Check, 
@@ -27,7 +28,11 @@ import {
   Scale,
   BadgePercent,
   Layers,
-  FileCheck
+  FileCheck,
+  Search,
+  CheckSquare,
+  Shield,
+  Coins
 } from 'lucide-react';
 import { launchSoundEngine } from '../utils/launchSoundEngine';
 
@@ -38,6 +43,8 @@ interface TaxSolutionsPageProps {
 export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }) => {
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
   const [activeTab, setActiveTab] = useState<'regime' | 'gstcalc' | 'calendar'>('regime');
+  const [selectedFilter, setSelectedFilter] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   // Interactive Tax Regime Calculator State
   const [annualIncome, setAnnualIncome] = useState<number>(1200000);
@@ -50,62 +57,31 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
 
   // Calculate Tax under New Regime (FY 2024-25 / AY 2025-26 Budget Slabs)
   const calculateNewRegimeTax = (income: number) => {
-    // Standard deduction for salaried: ₹75,000
     const taxableIncome = Math.max(0, income - 75000);
-    
-    // Slabs:
-    // 0 - 3L: 0%
-    // 3L - 7L: 5%
-    // 7L - 10L: 10%
-    // 10L - 12L: 15%
-    // 12L - 15L: 20%
-    // > 15L: 30%
+    if (taxableIncome <= 700000) return 0;
+
     let tax = 0;
-    if (taxableIncome <= 700000) {
-      // 87A rebate makes tax up to 7L zero (plus marginal relief up to ~7.75L with std deduction)
-      return 0;
-    }
+    if (taxableIncome > 300000) tax += Math.min(taxableIncome - 300000, 400000) * 0.05;
+    if (taxableIncome > 700000) tax += Math.min(taxableIncome - 700000, 300000) * 0.10;
+    if (taxableIncome > 1000000) tax += Math.min(taxableIncome - 1000000, 200000) * 0.15;
+    if (taxableIncome > 1200000) tax += Math.min(taxableIncome - 1200000, 300000) * 0.20;
+    if (taxableIncome > 1500000) tax += (taxableIncome - 1500000) * 0.30;
 
-    if (taxableIncome > 300000) {
-      tax += Math.min(taxableIncome - 300000, 400000) * 0.05; // 3L to 7L
-    }
-    if (taxableIncome > 700000) {
-      tax += Math.min(taxableIncome - 700000, 300000) * 0.10; // 7L to 10L
-    }
-    if (taxableIncome > 1000000) {
-      tax += Math.min(taxableIncome - 1000000, 200000) * 0.15; // 10L to 12L
-    }
-    if (taxableIncome > 1200000) {
-      tax += Math.min(taxableIncome - 1200000, 300000) * 0.20; // 12L to 15L
-    }
-    if (taxableIncome > 1500000) {
-      tax += (taxableIncome - 1500000) * 0.30; // Above 15L
-    }
-
-    // 4% Health & Education Cess
     const cess = tax * 0.04;
     return Math.round(tax + cess);
   };
 
   // Calculate Tax under Old Regime
   const calculateOldRegimeTax = (income: number, ded80c: number, otherDed: number) => {
-    const totalDeductions = 50000 + Math.min(ded80c, 150000) + otherDed; // 50k standard deduction
+    const totalDeductions = 50000 + Math.min(ded80c, 150000) + otherDed;
     const taxableIncome = Math.max(0, income - totalDeductions);
 
-    if (taxableIncome <= 500000) {
-      return 0; // Section 87A rebate
-    }
+    if (taxableIncome <= 500000) return 0;
 
     let tax = 0;
-    if (taxableIncome > 250000) {
-      tax += Math.min(taxableIncome - 250000, 250000) * 0.05; // 2.5L to 5L
-    }
-    if (taxableIncome > 500000) {
-      tax += Math.min(taxableIncome - 500000, 500000) * 0.20; // 5L to 10L
-    }
-    if (taxableIncome > 1000000) {
-      tax += (taxableIncome - 1000000) * 0.30; // Above 10L
-    }
+    if (taxableIncome > 250000) tax += Math.min(taxableIncome - 250000, 250000) * 0.05;
+    if (taxableIncome > 500000) tax += Math.min(taxableIncome - 500000, 500000) * 0.20;
+    if (taxableIncome > 1000000) tax += (taxableIncome - 1000000) * 0.30;
 
     const cess = tax * 0.04;
     return Math.round(tax + cess);
@@ -116,304 +92,209 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
   const taxDifference = Math.abs(newRegimeTax - oldRegimeTax);
   const betterRegime = newRegimeTax < oldRegimeTax ? 'New Tax Regime' : 'Old Tax Regime';
 
-  // GST Late fee calculation (₹50/day for regular, ₹20/day for nil return)
+  // GST Late fee calculation
   const gstLateFee = gstTaxType === 'taxable' 
     ? Math.min(gstLateDays * 50, 10000) 
     : Math.min(gstLateDays * 20, 10000);
 
-  // Core 5 Tax & Documentation Pillars
-  const taxCategoryCards = [
-    {
-      id: 'gst-services',
-      slug: 'gst-filing',
-      title: 'GST Registration & Return Filing',
-      badge: 'Monthly & Annual',
-      badgeColor: 'border-amber-500/40 text-amber-300 bg-amber-500/10',
-      icon: Calculator,
-      glow: 'hover:shadow-[0_15px_40px_rgba(245,158,11,0.2)]',
-      border: 'hover:border-amber-500/60',
-      shortDesc: 'End-to-end GST solutions including new GSTIN registration, monthly GSTR-1/3B filing, and automated ITC reconciliation.',
-      features: [
-        'New GST Registration & Instant ARN Generation',
-        'Monthly GSTR-1 & GSTR-3B Return Filing',
-        'Automated GSTR-2B Input Tax Credit (ITC) Matching',
-        'Annual GSTR-9 Filing & Tax Audit Coordination',
-        'E-Way Bill & E-Invoicing Assistance',
-        'GST Notice Clarification & Reply Drafting'
-      ],
-      price: 'Starting from ₹1,499/mo'
-    },
-    {
-      id: 'itr-filing',
-      slug: 'itr-filing',
-      title: 'Income Tax Return (ITR) Filing',
-      badge: 'CA Verified',
-      badgeColor: 'border-emerald-500/40 text-emerald-300 bg-emerald-500/10',
-      icon: FileText,
-      glow: 'hover:shadow-[0_15px_40px_rgba(16,185,129,0.2)]',
-      border: 'hover:border-emerald-500/60',
-      shortDesc: 'Accurate, CA-reviewed ITR filing for salaried professionals, freelancers, businesses, capital gains, and NRIs.',
-      features: [
-        'Filing under Old vs New Tax Regime Optimization',
-        'Salaried Employees (Form 16 & AIS/TIS Scrutiny)',
-        'Business & Professional Presumptive Tax (44AD/44ADA)',
-        'Capital Gains (Stock Market, Mutual Funds, Real Estate)',
-        'Foreign Income & NRI Tax Compliance',
-        'Fast-Track Tax Refund Processing Support'
-      ],
-      price: 'Starting from ₹999'
-    },
-    {
-      id: 'udyam-registration',
-      slug: 'udyam-registration',
-      title: 'Udyam / MSME Registration',
-      badge: 'Govt Benefits',
-      badgeColor: 'border-cyan-500/40 text-cyan-300 bg-cyan-500/10',
-      icon: Award,
-      glow: 'hover:shadow-[0_15px_40px_rgba(0,240,255,0.2)]',
-      border: 'hover:border-cyan-500/60',
-      shortDesc: 'Official MSME Udyam registration to unlock priority bank lending, government tender access, and collateral exemptions.',
-      features: [
-        'Instant Digital Udyam Certificate Issuance',
-        'Priority Sector Bank Lending Concessions',
-        'Lower Interest Rates on Business Loans',
-        'Protection Against Delayed Payments (MSME Samadhaan)',
-        'Subsidy on Patent & Trademark Registrations',
-        '50% Concession on Govt Tender Fees'
-      ],
-      price: 'Starting from ₹499'
-    },
-    {
-      id: 'company-registration',
-      slug: 'company-registration',
-      title: 'Company & Business Registration',
-      badge: 'Startup Incorporation',
-      badgeColor: 'border-purple-500/40 text-purple-300 bg-purple-500/10',
-      icon: Building2,
-      glow: 'hover:shadow-[0_15px_40px_rgba(168,85,247,0.2)]',
-      border: 'hover:border-purple-500/60',
-      shortDesc: 'Incorporate Private Limited, LLP, One Person Company (OPC), or Partnership with Ministry of Corporate Affairs (MCA).',
-      features: [
-        'Private Limited / LLP / OPC Incorporation',
-        'Name Approval (RUN) & SPICe+ E-Filing',
-        'Digital Signature Certificates (DSC) for 2 Directors',
-        'Director Identification Number (DIN) Allocation',
-        'MoA, AoA & Certificate of Incorporation (COI)',
-        'Company PAN, TAN & Bank Resolution Kit'
-      ],
-      price: 'Starting from ₹6,999'
-    },
-    {
-      id: 'pan-services',
-      slug: 'pan-services',
-      title: 'PAN Card & Direct Tax Documentation',
-      badge: 'Fast Track',
-      badgeColor: 'border-pink-500/40 text-pink-300 bg-pink-500/10',
-      icon: CreditCard,
-      glow: 'hover:shadow-[0_15px_40px_rgba(236,72,153,0.2)]',
-      border: 'hover:border-pink-500/60',
-      shortDesc: 'New PAN applications, demographic corrections, Aadhaar-PAN linking, and fast e-PAN delivery.',
-      features: [
-        'New PAN Card Allotment (Form 49A / 49AA)',
-        'Correction of Name, DOB, Father Name, Address',
-        'Instant e-PAN Allotment within 24 to 48 Hours',
-        'Mandatory Aadhaar-PAN Linking Compliance',
-        'Company / Firm / Trust PAN Issuance',
-        'Doorstep PVC Card Delivery Across India'
-      ],
-      price: 'Starting from ₹299'
-    }
-  ];
+  // Filtered Tax Services
+  const filteredServices = useMemo(() => {
+    return TAX_SERVICES.filter(service => {
+      const matchesSearch = service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        service.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        service.features.some(f => f.toLowerCase().includes(searchQuery.toLowerCase()));
 
-  // Statutory Tax & Compliance Deadlines Calendar
+      if (!matchesSearch) return false;
+
+      if (selectedFilter === 'all') return true;
+      if (selectedFilter === 'tax' && (service.id.includes('gst') || service.id.includes('itr') || service.id.includes('pan'))) return true;
+      if (selectedFilter === 'startup' && (service.id.includes('company') || service.id.includes('udyam') || service.id.includes('trademark'))) return true;
+      if (selectedFilter === 'licenses' && (service.id.includes('fssai') || service.id.includes('iso') || service.id.includes('iec') || service.id.includes('gumasta'))) return true;
+      if (selectedFilter === 'compliance' && (service.id.includes('roc') || service.id.includes('advisory'))) return true;
+
+      return true;
+    });
+  }, [selectedFilter, searchQuery]);
+
+  // Visual style config for each tax service card
+  const getCardStyle = (index: number, id: string) => {
+    const styles = [
+      {
+        badgeColor: 'border-amber-500/40 text-amber-300 bg-amber-500/10',
+        glow: 'hover:shadow-[0_15px_40px_rgba(245,158,11,0.25)]',
+        border: 'border-amber-500/30 hover:border-amber-400',
+        textGradient: 'from-amber-400 to-orange-400',
+        btnBg: 'bg-amber-500/15 hover:bg-amber-400 hover:text-slate-950 text-amber-300 border-amber-500/30'
+      },
+      {
+        badgeColor: 'border-emerald-500/40 text-emerald-300 bg-emerald-500/10',
+        glow: 'hover:shadow-[0_15px_40px_rgba(16,185,129,0.25)]',
+        border: 'border-emerald-500/30 hover:border-emerald-400',
+        textGradient: 'from-emerald-400 to-teal-400',
+        btnBg: 'bg-emerald-500/15 hover:bg-emerald-400 hover:text-slate-950 text-emerald-300 border-emerald-500/30'
+      },
+      {
+        badgeColor: 'border-cyan-500/40 text-cyan-300 bg-cyan-500/10',
+        glow: 'hover:shadow-[0_15px_40px_rgba(6,182,212,0.25)]',
+        border: 'border-cyan-500/30 hover:border-cyan-400',
+        textGradient: 'from-cyan-400 to-blue-400',
+        btnBg: 'bg-cyan-500/15 hover:bg-cyan-400 hover:text-slate-950 text-cyan-300 border-cyan-500/30'
+      },
+      {
+        badgeColor: 'border-purple-500/40 text-purple-300 bg-purple-500/10',
+        glow: 'hover:shadow-[0_15px_40px_rgba(168,85,247,0.25)]',
+        border: 'border-purple-500/30 hover:border-purple-400',
+        textGradient: 'from-purple-400 to-indigo-400',
+        btnBg: 'bg-purple-500/15 hover:bg-purple-400 hover:text-slate-950 text-purple-300 border-purple-500/30'
+      },
+      {
+        badgeColor: 'border-rose-500/40 text-rose-300 bg-rose-500/10',
+        glow: 'hover:shadow-[0_15px_40px_rgba(244,63,94,0.25)]',
+        border: 'border-rose-500/30 hover:border-rose-400',
+        textGradient: 'from-rose-400 to-pink-400',
+        btnBg: 'bg-rose-500/15 hover:bg-rose-400 hover:text-slate-950 text-rose-300 border-rose-500/30'
+      },
+      {
+        badgeColor: 'border-orange-500/40 text-orange-300 bg-orange-500/10',
+        glow: 'hover:shadow-[0_15px_40px_rgba(249,115,22,0.25)]',
+        border: 'border-orange-500/30 hover:border-orange-400',
+        textGradient: 'from-orange-400 to-amber-400',
+        btnBg: 'bg-orange-500/15 hover:bg-orange-400 hover:text-slate-950 text-orange-300 border-orange-500/30'
+      }
+    ];
+
+    return styles[index % styles.length];
+  };
+
+  // Statutory Tax & Compliance Calendar (2026)
   const complianceCalendar = [
-    {
-      period: 'Every 11th of Month',
-      title: 'GSTR-1 Monthly Return',
-      tag: 'GST Returns',
-      tagColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-      desc: 'Outward supplies & sales invoice data filing for regular taxpayers with turnover > ₹5 Cr or monthly filers.'
-    },
-    {
-      period: 'Every 20th of Month',
-      title: 'GSTR-3B Summary Return',
-      tag: 'Tax Payment',
-      tagColor: 'text-rose-400 bg-rose-500/10 border-rose-500/30',
-      desc: 'Monthly summary return of outward & inward supplies with payment of self-assessed net GST liability.'
-    },
-    {
-      period: '15th Jun / Sep / Dec / Mar',
-      title: 'Advance Tax Installments',
-      tag: 'Direct Tax',
-      tagColor: 'text-blue-400 bg-blue-500/10 border-blue-500/30',
-      desc: 'Quarterly payment of advance income tax liability for businesses and professionals if tax exceeds ₹10,000.'
-    },
-    {
-      period: '31st July Annually',
-      title: 'Individual & Non-Audit ITR',
-      tag: 'Annual ITR',
-      tagColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
-      desc: 'Mandatory annual Income Tax Return filing deadline for salaried individuals, freelancers, and HUFs.'
-    },
-    {
-      period: '31st October Annually',
-      title: 'Corporate & Tax Audit ITR',
-      tag: 'Audit Report',
-      tagColor: 'text-purple-400 bg-purple-500/10 border-purple-500/30',
-      desc: 'Income tax return filing and CA tax audit report submission for businesses liable to statutory tax audit.'
-    },
-    {
-      period: '31st December Annually',
-      title: 'Annual GST Return (GSTR-9)',
-      tag: 'GST Annual',
-      tagColor: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30',
-      desc: 'Consolidated annual return filing for registered taxpayers reflecting all transactions of the financial year.'
-    }
+    { period: '11th of Every Month', title: 'GSTR-1 Outward Return', tag: 'Monthly GST', tagColor: 'border-amber-500/40 text-amber-300 bg-amber-500/10', desc: 'Monthly reporting of outward supplies and tax invoices on the GSTN portal.' },
+    { period: '20th of Every Month', title: 'GSTR-3B Summary Return', tag: 'Tax Payment', tagColor: 'border-emerald-500/40 text-emerald-300 bg-emerald-500/10', desc: 'Summary return and electronic payment of net GST tax liability after ITC offset.' },
+    { period: '15th June, Sep, Dec, Mar', title: 'Advance Tax Installments', tag: 'Income Tax', tagColor: 'border-cyan-500/40 text-cyan-300 bg-cyan-500/10', desc: 'Mandatory advance tax payment (15%, 45%, 75%, 100%) for individuals & corporations.' },
+    { period: '31st July', title: 'Individual & Salaried ITR', tag: 'Annual ITR', tagColor: 'border-purple-500/40 text-purple-300 bg-purple-500/10', desc: 'Statutory deadline for non-audit individual, salaried, and professional tax returns.' },
+    { period: '31st October', title: 'Corporate & Tax Audit ITR', tag: 'Audit Filing', tagColor: 'border-rose-500/40 text-rose-300 bg-rose-500/10', desc: 'Statutory filing for companies and business entities subject to Tax Audit under Sec 44AB.' },
+    { period: '31st December', title: 'GSTR-9 Annual GST Return', tag: 'Annual GST', tagColor: 'border-blue-500/40 text-blue-300 bg-blue-500/10', desc: 'Annual consolidation of inward/outward supplies, tax paid, and ITC reconciliations.' }
   ];
 
+  // Document Checklist ("What You'll Need")
   const taxDocumentChecklist = [
     {
-      title: 'GST Registration Checklist',
-      badge: '5 Mandatory Documents',
-      items: [
-        'PAN Card & Aadhaar Card of Applicant/Directors',
-        'Passport Size Photographs of Authorized Signatory',
-        'Business Address Proof (Electricity Bill / Property Tax Receipt)',
-        'Rent Agreement & Landlord NOC (if rented property)',
-        'Cancelled Cheque / Bank Statement with IFSC & Account Number'
-      ]
+      title: 'For GST & Business Tax',
+      badge: 'Immediate Registration',
+      items: ['PAN Card of Business / Proprietor', 'Aadhaar Card of Signatories', 'Electricity Bill / Property Tax Receipt', 'Rent Agreement & Landlord NOC', 'Bank Statement / Cancelled Cheque']
     },
     {
-      title: 'ITR Filing Checklist',
-      badge: 'Fast 1-Day Processing',
-      items: [
-        'PAN Card & Aadhaar Card',
-        'Form 16 (for salaried employees) or Form 16A (TDS)',
-        'Annual Information Statement (AIS) & Form 26AS',
-        'Bank Account Statements for all active accounts',
-        'Capital Gain Statements from Broker (Zerodha/Groww/Upstox)',
-        'Tax Saving Investment Proofs (80C, 80D, NPS, Home Loan Interest)'
-      ]
+      title: 'For Income Tax Return (ITR)',
+      badge: 'Direct Tax',
+      items: ['PAN & Aadhaar of Taxpayer', 'Form 16 / 16A (TDS Certificates)', 'Bank Statements (Full FY)', 'Annual Information Statement (AIS/TIS)', 'Investment & 80C/80D Proofs']
     },
     {
-      title: 'Company Incorporation Checklist',
-      badge: 'Ministry of Corporate Affairs',
-      items: [
-        'PAN & Aadhaar of all Directors & Shareholders',
-        'Identity Proof (Voter ID / Passport / Driving License)',
-        'Recent Bank Statement / Electricity Bill of Directors (< 2 months old)',
-        'Proposed Registered Office Address Proof & Utility Bill',
-        'NOC from Property Owner for Registered Office'
-      ]
+      title: 'For Startup / Company Setup',
+      badge: 'Corporate MCA',
+      items: ['Director Identification (DIN) KYC', 'Digital Signature Certificates (DSC)', 'Registered Office Utility Bill', 'MoA & AoA Drafts by CS', 'Name Approval Confirmation']
     }
   ];
 
+  // FAQ list
   const taxFaqs = [
     {
-      q: 'When is GST registration mandatory in India?',
-      a: 'GST registration is mandatory if your annual turnover exceeds ₹40 Lakhs for goods (₹20 Lakhs for special category states) or ₹20 Lakhs for service providers. It is also mandatory for anyone selling goods through e-commerce platforms like Amazon/Flipkart regardless of turnover.'
+      q: 'Who is required to obtain mandatory GST Registration in India?',
+      a: 'Businesses with annual turnover exceeding ₹40 Lakhs (₹20 Lakhs for Special Category States) for goods, or ₹20 Lakhs (₹10 Lakhs for Special Category) for service providers are required to register. Additionally, e-commerce sellers, interstate suppliers, and casual taxable persons require mandatory GST registration irrespective of turnover.'
     },
     {
-      q: 'Should I choose the New Tax Regime or the Old Tax Regime for ITR filing?',
-      a: 'Our Chartered Accountants calculate your tax liability under BOTH regimes. If you have significant deductions (80C, 80D, HRA, home loan interest exceeding ₹3.75 Lakhs), the Old Regime might save more. For individuals with lower deductions, the New Regime offers lower baseline tax slabs and zero tax up to ₹7.75 Lakhs (with standard deduction).'
+      q: 'What is the key difference between the Old and New Tax Regime?',
+      a: 'The New Tax Regime offers lower slab tax rates with a ₹75,000 standard deduction and full tax rebate up to ₹7.75 Lakhs taxable income (AY 2025-26), but disallows most deductions like 80C, 80D, and HRA. The Old Regime allows all major exemptions (80C up to ₹1.5L, 80D medical insurance, Home loan interest up to ₹2L, HRA) but features higher base tax slabs.'
     },
     {
-      q: 'What happens if I miss the ITR filing deadline of July 31st?',
-      a: 'Belated ITR can be filed up to December 31st with a late filing fee of up to ₹5,000 under Section 234F plus interest on unpaid tax under Section 234A. You also forfeit the ability to carry forward certain capital losses.'
+      q: 'How long does company incorporation take with MCA and AVRX?',
+      a: 'With AVRX digital facilitation, incorporation of a Private Limited Company or LLP typically completes in 5 to 7 working days, including RUN name approval, DSC generation, SPICe+ filing, and Certificate of Incorporation (COI) issuance.'
     },
     {
-      q: 'What is the validity of the Udyam MSME Registration Certificate?',
-      a: 'Udyam Registration has lifetime validity. There is no requirement for annual renewal, although businesses must update their turnover and investment details annually based on filed ITR and GST records.'
+      q: 'Can AVRX help me respond to an Income Tax or GST Notice?',
+      a: 'Yes! Our panel of senior Chartered Accountants and Tax Advocates reviews your notice, verifies your portal records, and prepares a legally sound reply with supporting documentation within 24 to 48 hours.'
     },
     {
-      q: 'How long does company incorporation take with AVRX?',
-      a: 'Company incorporation (Private Limited or LLP) typically takes 5 to 7 working days once all director KYC documents, digital signatures (DSC), and name approval forms are submitted on the MCA SPICe+ portal.'
+      q: 'How is client data protected during tax filing and document sharing?',
+      a: 'AVRX implements bank-grade 256-bit encryption for all file uploads and transactions. Your PAN, Aadhaar, bank records, and financial statements are strictly processed for statutory filings and never shared with unauthorized third parties.'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-[#040713] text-white pt-24 pb-20 selection:bg-amber-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#050811] text-white pt-24 pb-24 selection:bg-amber-500 selection:text-slate-950 relative overflow-hidden">
       <SEO
-        title="Tax & Documentation Solutions | GST, ITR, Udyam & Company Registration | AVRX"
-        description="Simplify tax and documentation. CA-backed GST registration, monthly return filing, individual & business ITR, Udyam MSME certificate, and company incorporation."
+        title="Tax, Legal & Compliance Solutions | AVRX Digital & Financial Solution"
+        description="Comprehensive GST, Income Tax Return (ITR), Company Registration, MSME Udyam, Trademark, and Legal Compliance services in India."
       />
 
-      {/* Ambient background glows */}
-      <div className="fixed top-20 left-1/4 w-[700px] h-[500px] bg-amber-500/10 rounded-full blur-[180px] pointer-events-none" />
-      <div className="fixed bottom-20 right-1/4 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[180px] pointer-events-none" />
+      {/* Dynamic Ambient Glows */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-amber-600/10 via-orange-600/5 to-transparent rounded-full blur-[140px] animate-pulse" />
+        <div className="absolute top-1/2 right-10 w-[500px] h-[500px] bg-gradient-to-bl from-emerald-600/10 via-cyan-600/5 to-transparent rounded-full blur-[130px]" />
+      </div>
 
-      {/* Main Container - Stretched Widescreen Layout */}
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 relative z-10 space-y-16">
-        
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="pt-2 flex items-center gap-2 text-xs text-slate-400">
-          <button 
-            onClick={() => onNavigate('home')}
-            className="hover:text-amber-400 transition-colors"
-          >
-            Home
-          </button>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
-          <span className="text-amber-300 font-semibold">Tax &amp; Documentation</span>
-        </nav>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24">
 
-        {/* 1. Page Hero Section */}
-        <div className="text-center max-w-4xl mx-auto space-y-5">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold uppercase tracking-widest font-mono shadow-[0_0_20px_rgba(245,158,11,0.2)]">
-            <FileText className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-            <span>CHARTERED ACCOUNTANT COMPLIANCE CONCIERGE</span>
+        {/* 1. Header Hero Section */}
+        <div className="text-center max-w-4xl mx-auto space-y-6 pt-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono font-bold uppercase shadow-sm">
+            <Scale className="w-3.5 h-3.5 text-amber-400" />
+            <span>TAX, LEGAL &amp; CORPORATE COMPLIANCE ECOSYSTEM</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-tight">
-            Simplify Your <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-300 to-yellow-300">
-              Tax &amp; Legal Compliance.
+          <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.12]">
+            Systematic Tax, Legal &amp;{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500">
+              Corporate Governance
             </span>
           </h1>
 
-          <p className="text-slate-300 text-base sm:text-xl leading-relaxed max-w-3xl mx-auto font-normal">
-            Chartered Accountant backed GST return filing, error-free ITR submissions, official Udyam MSME certification, and end-to-end company incorporation for entrepreneurs, freelancers, and businesses.
+          <p className="text-base sm:text-xl text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto">
+            From seamless GST registration and CA-reviewed ITR filing to Private Limited incorporation and trademark defense — AVRX simplifies compliance with 100% transparent pricing and rapid digital execution.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
+          {/* Quick Action Navigation Tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
             <button
               onClick={() => {
                 launchSoundEngine.playClickTick();
                 setActiveTab('regime');
               }}
-              className={`px-5 py-2 rounded-xl text-xs font-bold transition cursor-pointer border ${
+              className={`px-6 py-3 rounded-2xl text-xs font-bold transition cursor-pointer border flex items-center gap-2 ${
                 activeTab === 'regime' 
-                  ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.3)]' 
-                  : 'bg-slate-900/80 text-slate-300 border-slate-800 hover:text-white'
+                  ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.35)]' 
+                  : 'bg-slate-900/90 text-slate-300 border-slate-800 hover:text-white'
               }`}
             >
-              Tax Regime Calculator
+              <Scale className="w-4 h-4" />
+              <span>Tax Regime Comparator</span>
             </button>
             <button
               onClick={() => {
                 launchSoundEngine.playClickTick();
                 setActiveTab('gstcalc');
               }}
-              className={`px-5 py-2 rounded-xl text-xs font-bold transition cursor-pointer border ${
+              className={`px-6 py-3 rounded-2xl text-xs font-bold transition cursor-pointer border flex items-center gap-2 ${
                 activeTab === 'gstcalc' 
-                  ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.3)]' 
-                  : 'bg-slate-900/80 text-slate-300 border-slate-800 hover:text-white'
+                  ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.35)]' 
+                  : 'bg-slate-900/90 text-slate-300 border-slate-800 hover:text-white'
               }`}
             >
-              GST Late Fee Estimator
+              <Calculator className="w-4 h-4" />
+              <span>GST Late Fee Estimator</span>
             </button>
             <button
               onClick={() => {
                 launchSoundEngine.playClickTick();
                 setActiveTab('calendar');
               }}
-              className={`px-5 py-2 rounded-xl text-xs font-bold transition cursor-pointer border ${
+              className={`px-6 py-3 rounded-2xl text-xs font-bold transition cursor-pointer border flex items-center gap-2 ${
                 activeTab === 'calendar' 
-                  ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.3)]' 
-                  : 'bg-slate-900/80 text-slate-300 border-slate-800 hover:text-white'
+                  ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.35)]' 
+                  : 'bg-slate-900/90 text-slate-300 border-slate-800 hover:text-white'
               }`}
             >
-              Statutory Deadlines 2026
+              <Calendar className="w-4 h-4" />
+              <span>Statutory Deadlines 2026</span>
             </button>
           </div>
         </div>
@@ -550,7 +431,7 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
 
                 <div className={`p-5 rounded-2xl border transition-all ${
                   betterRegime === 'Old Tax Regime' 
-                    ? 'bg-gradient-to-b from-emerald-950/40 to-slate-900 border-emerald-400 shadow-[0_0_25px_rgba(16,185,129,0.2)]' 
+                    ? 'bg-gradient-to-b from-amber-950/40 to-slate-900 border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.2)]' 
                     : 'bg-slate-900/60 border-slate-800'
                 }`}>
                   <div className="flex items-center justify-between">
@@ -564,7 +445,7 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
                   <div className="text-2xl sm:text-3xl font-black text-white font-mono mt-2">
                     ₹{oldRegimeTax.toLocaleString('en-IN')}
                   </div>
-                  <div className="text-[11px] text-slate-400 mt-1">Includes 80C + 80D + HRA Deductions</div>
+                  <div className="text-[11px] text-slate-400 mt-1">Includes 80C, 80D &amp; ₹50,000 Standard Deduction</div>
                 </div>
 
                 <button
@@ -572,9 +453,10 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
                     launchSoundEngine.playClickTick();
                     onNavigate('service-detail', 'itr-filing');
                   }}
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-orange-400 text-slate-950 font-black text-xs uppercase tracking-wider transition cursor-pointer shadow-lg hover:scale-105"
+                  className="w-full py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider transition shadow-lg flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  File My ITR With A CA (From ₹999)
+                  <span>File ITR with Optimal Regime</span>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
 
@@ -583,20 +465,24 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
         )}
 
         {activeTab === 'gstcalc' && (
-          <div className="rounded-3xl bg-slate-950/95 border-2 border-amber-500/40 p-6 sm:p-10 backdrop-blur-2xl shadow-[0_0_50px_rgba(245,158,11,0.15)] space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
-              <div className="space-y-1">
-                <div className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
+          <div className="rounded-3xl bg-slate-950/95 border-2 border-amber-500/40 p-6 sm:p-10 backdrop-blur-2xl shadow-[0_0_50px_rgba(245,158,11,0.15)] space-y-8">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-800">
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-amber-400">
                   <Calculator className="w-4 h-4" />
-                  <span>GST LATE FEE &amp; INTEREST CALCULATOR</span>
+                  <span>GST STATUTORY LATE FEE &amp; PENALTY CALCULATOR</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-white">
-                  Estimate Penalty on Delayed GST Return Filing
+                <h2 className="text-2xl sm:text-4xl font-black text-white">
+                  Estimate Overdue GST Filing Penalty
                 </h2>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">
+                  Calculate statutory late fees under Section 47 of the CGST/SGST Act for delayed GSTR-1 and GSTR-3B submissions.
+                </p>
               </div>
-              <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 text-right">
-                <div className="text-xs text-slate-400 font-mono">Estimated Late Fee</div>
-                <div className="text-2xl sm:text-3xl font-black text-rose-400 font-mono">
+
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-900 border border-amber-500/40 text-right shrink-0">
+                <div className="text-[11px] font-mono text-slate-400 uppercase font-bold">Estimated Late Fee</div>
+                <div className="text-2xl sm:text-3xl font-black text-amber-300 font-mono mt-0.5">
                   ₹{gstLateFee.toLocaleString('en-IN')}
                 </div>
               </div>
@@ -659,16 +545,16 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between gap-4">
+            <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-xs text-amber-200">
-                Avoid further late penalties and interest on outward tax liability. File GSTR-1 and GSTR-3B immediately.
+                Avoid compounding late penalties and interest on outward tax liability. File GSTR-1 and GSTR-3B immediately.
               </div>
               <button
                 onClick={() => {
                   launchSoundEngine.playClickTick();
-                  onNavigate('service-detail', 'gst-filing');
+                  onNavigate('service-detail', 'gst-registration');
                 }}
-                className="px-5 py-2 rounded-xl bg-amber-400 text-slate-950 font-bold text-xs uppercase hover:bg-amber-300 transition shrink-0"
+                className="px-6 py-2.5 rounded-xl bg-amber-400 text-slate-950 font-bold text-xs uppercase hover:bg-amber-300 transition shrink-0 cursor-pointer"
               >
                 File GST Now
               </button>
@@ -685,37 +571,80 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
           </div>
         </div>
 
-        {/* 4. Core Offerings Grid */}
+        {/* 4. Complete Services Showcase Grid (All 12 Tax & Legal Services) */}
         <div className="space-y-8">
-          <div className="text-center max-w-3xl mx-auto space-y-2">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold uppercase font-mono">
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-              <span>KEY TAX &amp; LEGAL SERVICES</span>
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold uppercase font-mono">
+                <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                <span>COMPLETE CATALOG (12 SERVICES)</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-black text-white">
+                Comprehensive Tax, Legal &amp; Licensing Services
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-400 max-w-2xl">
+                Explore our full suite of certified tax, business incorporation, licensing, and compliance services. Click any service to view comprehensive features, benefits, and statutory checklists.
+              </p>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-white">
-              Complete Corporate &amp; Individual Compliance
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-400">
-              Select any compliance service below to view process timelines, deliverables, and transparent pricing.
-            </p>
+
+            {/* Search Input */}
+            <div className="relative w-full md:w-72">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                placeholder="Search tax, GST, ITR, company..."
+                className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-9 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+              />
+              <Search className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
+            </div>
           </div>
 
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap items-center gap-2 pt-2 border-b border-slate-800 pb-4">
+            {[
+              { id: 'all', label: `All Services (${TAX_SERVICES.length})` },
+              { id: 'tax', label: 'GST & Direct Tax' },
+              { id: 'startup', label: 'Company & Startup' },
+              { id: 'licenses', label: 'Licenses & Certificates' },
+              { id: 'compliance', label: 'Advisory & MCA Compliance' }
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => {
+                  launchSoundEngine.playClickTick();
+                  setSelectedFilter(tab.id);
+                }}
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer border ${
+                  selectedFilter === tab.id
+                    ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-md'
+                    : 'bg-slate-900/80 text-slate-400 border-slate-800 hover:text-white'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Grid of 12 Services */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {taxCategoryCards.map(item => {
-              const Icon = item.icon;
+            {filteredServices.map((item, idx) => {
+              const cardTheme = getCardStyle(idx, item.id);
+
               return (
                 <div
                   key={item.id}
-                  className={`rounded-3xl bg-slate-950/90 border border-slate-800 p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:scale-[1.02] group relative overflow-hidden backdrop-blur-xl ${item.glow} ${item.border}`}
+                  className={`rounded-3xl bg-slate-950/90 border p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:scale-[1.02] group relative overflow-hidden backdrop-blur-xl ${cardTheme.glow} ${cardTheme.border}`}
                 >
                   <div className="space-y-5">
                     {/* Header */}
                     <div className="flex items-center justify-between">
                       <div className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 text-amber-400 group-hover:scale-110 transition-transform">
-                        <Icon className="w-6 h-6" />
+                        {renderServiceIcon(item.iconName, 'w-6 h-6')}
                       </div>
-                      <span className={`px-3 py-1 rounded-full border text-[11px] font-mono font-bold ${item.badgeColor}`}>
-                        {item.badge}
+                      <span className={`px-3 py-1 rounded-full border text-[11px] font-mono font-bold ${cardTheme.badgeColor}`}>
+                        {item.badge || 'Verified'}
                       </span>
                     </div>
 
@@ -732,12 +661,12 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
                     {/* Features List */}
                     <div className="space-y-2 pt-3 border-t border-slate-800/80">
                       <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 font-mono">
-                        Included Deliverables:
+                        Key Package Inclusions:
                       </div>
-                      {item.features.map((feat, idx) => (
-                        <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
+                      {item.features.slice(0, 4).map((feat, fIdx) => (
+                        <div key={fIdx} className="flex items-start gap-2 text-xs text-slate-300">
                           <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
-                          <span>{feat}</span>
+                          <span className="line-clamp-1">{feat}</span>
                         </div>
                       ))}
                     </div>
@@ -746,18 +675,18 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
                   {/* Price & Action */}
                   <div className="pt-6 mt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
                     <div>
-                      <div className="text-[10px] uppercase font-mono text-slate-500 font-semibold">Transparent Fee</div>
-                      <div className="text-sm font-black text-amber-400 font-mono">{item.price}</div>
+                      <div className="text-[10px] uppercase font-mono text-slate-500 font-semibold">Starting Fee</div>
+                      <div className="text-sm font-black text-amber-400 font-mono">{item.priceStarting || '₹999'}</div>
                     </div>
 
                     <button
                       onClick={() => {
                         launchSoundEngine.playClickTick();
-                        onNavigate('service-detail', item.slug);
+                        onNavigate('service-detail', item.id);
                       }}
-                      className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-400 border border-amber-500/30 hover:border-amber-400 text-amber-300 hover:text-slate-950 font-bold text-xs transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                      className={`w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer border ${cardTheme.btnBg}`}
                     >
-                      <span>Get Started</span>
+                      <span>Explore Service</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -766,6 +695,23 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
               );
             })}
           </div>
+
+          {filteredServices.length === 0 && (
+            <div className="text-center py-12 p-8 rounded-3xl bg-slate-900/60 border border-slate-800 space-y-3">
+              <HelpCircle className="w-10 h-10 text-amber-400 mx-auto" />
+              <h3 className="text-lg font-bold text-white">No matching services found</h3>
+              <p className="text-xs text-slate-400">Try searching for different keywords or clear the filter.</p>
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setSelectedFilter('all');
+                }}
+                className="px-4 py-2 rounded-xl bg-amber-400 text-slate-950 font-bold text-xs"
+              >
+                Reset Filters
+              </button>
+            </div>
+          )}
         </div>
 
         {/* 5. Statutory Tax & Compliance Calendar */}

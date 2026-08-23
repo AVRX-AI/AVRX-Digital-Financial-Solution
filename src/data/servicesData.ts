@@ -2,6 +2,71 @@ import { ServiceItem, AIToolItem, PricingPlan, BlogPost } from '../types';
 
 export const DIGITAL_SERVICES: ServiceItem[] = [
   {
+    id: 'static-onepage-website',
+    title: 'Static Onepage website',
+    category: 'digital',
+    shortDesc: 'Affordable, lightning-fast single-page static website designed for local businesses, shops, and instant lead capture.',
+    fullDesc: 'A sleek, modern, ultra-fast single-page static website tailored for local service businesses, retail stores, consultants, startups, and professionals. Features seamless fluid-scroll sections, mobile-first responsiveness, high-converting lead capture form, direct WhatsApp chat, Google Map integration, and free SSL certificate for just ₹4,999.',
+    iconName: 'Globe',
+    badge: 'Best Value • ₹4,999',
+    priceStarting: '₹4,999',
+    imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Single-Page Smooth Fluid Scroll Layout',
+      '100% Mobile, Tablet & Desktop Ergonomic UI',
+      'Direct 1-Click WhatsApp Floating Chat & Call CTA',
+      'Lead Capture Contact Form with Instant Email Alerts',
+      'Google Maps Business Location & Direction Pin',
+      'Social Media Profile Integration & Quick Links',
+      'Basic On-Page SEO, OpenGraph & Meta Tags',
+      'Sub-Second Page Speed (<0.5s Load Time)',
+      'Free Auto-Renewing SSL Certificate (HTTPS)',
+      'Fast 48–72 Hours Turnaround Time'
+    ],
+    benefits: [
+      'Launch your professional brand online in just 2 to 3 days',
+      'Unbeatable price of ₹4,999 with zero hidden costs',
+      'Receive inquiries directly on your WhatsApp and email inbox',
+      'Zero complex CMS maintenance, database crashes, or slow page lag',
+      '100% full ownership of source code, design, and domain'
+    ],
+    process: [
+      'Discovery & Content Collection (Logo, Photos, Text)',
+      'High-Converting Single-Page Wireframing & UI Layout',
+      'Speed Optimization & Mobile-First Frontend Coding',
+      'Lead Form, WhatsApp & Google Maps Integration',
+      'Testing, SSL Activation & Live Domain Launch'
+    ],
+    whyChooseUs: [
+      'Fixed affordable price of ₹4,999 with premium craftsmanship',
+      'Handcrafted clean code — no heavy or slow WordPress plugins',
+      'Dual automated lead alert system on WhatsApp & Email',
+      'Dedicated post-launch support and easy upgrade path'
+    ],
+    faqs: [
+      { 
+        question: 'What is included in the ₹4,999 Static Onepage website package?', 
+        answer: 'The ₹4,999 package includes a complete single-page website with a Hero Banner, About Us section, Services/Products highlight, Photo Gallery, Customer Testimonials, Google Map pin, Contact/Lead Form with email alerts, direct WhatsApp button, and free SSL certificate setup.' 
+      },
+      { 
+        question: 'How fast will my website be delivered and made live?', 
+        answer: 'Once you provide your basic business details, logo, and photos, we deliver and launch your static onepage website within 48 to 72 hours (2–3 business days).' 
+      },
+      { 
+        question: 'Will my website work well on mobile phones?', 
+        answer: 'Yes, 100%. Over 80% of web traffic in India is mobile, so every section is designed mobile-first with thumb-friendly buttons, fast tapping, and zero horizontal scrolling.' 
+      },
+      { 
+        question: 'Can I add more pages or an online store later?', 
+        answer: 'Yes, absolutely! Our clean modular code structure makes it easy to scale up to a multi-page corporate website or full e-commerce store whenever your business grows.' 
+      },
+      { 
+        question: 'Are there any hidden or surprise renewal charges?', 
+        answer: 'Never. Our pricing is 100% transparent. The development fee is ₹4,999 one-time. Standard annual domain and cloud hosting renewals are billed transparently at actuals without lock-in.' 
+      }
+    ]
+  },
+  {
     id: 'website-design',
     title: 'Website Design',
     category: 'digital',
@@ -491,190 +556,682 @@ export const TAX_SERVICES: ServiceItem[] = [
     id: 'gst-registration',
     title: 'GST Registration',
     category: 'tax',
-    shortDesc: 'New GST registration for proprietorships, partnerships, LLPs, and private limited companies.',
-    fullDesc: 'Get your official 15-digit GSTIN number issued swiftly by government tax authorities with expert verification of business address and documents.',
+    shortDesc: 'Official 15-digit GSTIN registration for proprietorships, partnerships, LLPs, and private limited companies.',
+    fullDesc: 'Get your official 15-digit GSTIN number issued swiftly by government tax authorities with expert verification of business address, authorized signatory, and HSN/SAC codes. 100% digital, zero office visits required, with instant ARN generation within 24 hours.',
     iconName: 'FileCheck',
-    badge: 'Essential',
+    badge: 'Essential • ₹2,499',
     priceStarting: '₹2,499',
     imageUrl: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=800&q=80',
     features: [
-      '100% Digital Document Verification',
-      'ARN Application Generation within 24 Hours',
-      'GSTIN Allotment Certificate Issuance',
-      'Includes HSN/SAC Code Classification'
+      '100% Digital Document Verification & Prior Scrutiny',
+      'Instant ARN (Application Reference Number) within 24 Hours',
+      'HSN/SAC Code Classification for Products & Services',
+      'Principal & Additional Place of Business Registration',
+      'Resolution of Department Clarifications & Show Cause Notices',
+      'Final 15-Digit GSTIN Allotment & Downloadable Certificate',
+      'Composition Scheme vs Regular Scheme Advisory',
+      'Free 1-Month Post-Registration Invoicing & E-Way Bill Guidance'
     ],
-    benefits: ['Sell across India & on major e-commerce platforms', 'Legally claim Input Tax Credit (ITC)'],
-    process: ['Document Collection', 'Portal Upload', 'ARN Tracking', 'GST Certificate Download'],
-    whyChooseUs: ['Zero rejection rate due to prior expert compliance review']
+    benefits: [
+      'Legally sell products and services across all Indian states and UTs',
+      'Sell on top e-commerce marketplaces like Amazon, Flipkart & Meesho',
+      'Seamlessly claim Input Tax Credit (ITC) to save business purchase taxes',
+      'Build institutional credibility with corporate B2B clients and government tenders',
+      'Open current bank accounts and apply for business loans with ease'
+    ],
+    process: [
+      'Step 1: Document Collection & Aadhaar OTP KYC Verification',
+      'Step 2: Business Activity & HSN/SAC Mapping by GST Specialists',
+      'Step 3: SPICe+ / GST Portal Application E-Filing & ARN Generation',
+      'Step 4: Real-time Officer Processing & Clarification Management',
+      'Step 5: Official GSTIN Certificate (Form GST REG-06) Issuance & Delivery'
+    ],
+    whyChooseUs: [
+      'Zero rejection track record due to prior multi-point document audit',
+      'Dedicated Chartered Accountant and Tax Advocate assigned to your file',
+      'Super-fast turnaround: ARN in 24 hours, Certificate in 3–5 working days',
+      'Transparent pricing with zero hidden government challan fees'
+    ],
+    faqs: [
+      {
+        question: 'Who is required to obtain GST registration in India?',
+        answer: 'GST registration is mandatory for businesses with annual turnover exceeding ₹40 Lakhs for goods (₹20 Lakhs for special category states) and ₹20 Lakhs for services (₹10 Lakhs for special states). It is also mandatory for inter-state sellers, e-commerce sellers, and casual taxable persons regardless of turnover.'
+      },
+      {
+        question: 'What documents are required for new GST registration?',
+        answer: 'PAN card and Aadhaar of the owner/directors, passport photograph, business address proof (electricity bill, property tax receipt, or rent agreement with landlord NOC), and bank account proof (cancelled cheque or latest bank statement).'
+      },
+      {
+        question: 'How long does the entire GST registration process take?',
+        answer: 'ARN is generated within 24 hours of submission. Once submitted on the government portal, approval typically takes 3 to 7 working days, subject to government department processing.'
+      },
+      {
+        question: 'Can I register GST from a residential address or rented home?',
+        answer: 'Yes! A residential or rented address can be used as your registered business address by providing a recent electricity bill along with a simple Rent Agreement and Landlord NOC.'
+      },
+      {
+        question: 'What is the difference between Regular and Composition Scheme?',
+        answer: 'Under the Regular scheme, you collect GST from customers and claim ITC on inputs. Under the Composition scheme (for turnover up to ₹1.5 Cr), you pay a fixed flat rate (1% to 6%) but cannot collect GST from customers or claim ITC.'
+      }
+    ]
   },
   {
     id: 'gst-filing',
     title: 'GST Return Filing (GSTR-1, 3B, 9)',
     category: 'tax',
-    shortDesc: 'Monthly and quarterly GST return filing, reconciliation, and ITC optimization.',
-    fullDesc: 'Ensure monthly/quarterly GST return compliance without late fees or tax notices. Includes automated GSTR-2B reconciliation for maximum ITC claims.',
+    shortDesc: 'Monthly and quarterly GST return filing, automated GSTR-2B ITC reconciliation, and audit support.',
+    fullDesc: 'Ensure seamless, on-time monthly and quarterly GST compliance with zero penalty notices. Our CA-led compliance team handles automated GSTR-2B input credit reconciliation, outward supply reporting (GSTR-1), monthly tax payment summaries (GSTR-3B), annual returns (GSTR-9), and E-Invoicing.',
     iconName: 'Calculator',
+    badge: 'CA Verified • ₹1,499/mo',
     priceStarting: '₹1,499/mo',
     imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
     features: [
-      'GSTR-1 Sales & GSTR-3B Monthly Return Filing',
-      'Automated GSTR-2A/2B Input Tax Credit Reconciliation',
-      'Annual GSTR-9 Filing & Tax Audit Support',
-      'E-Way Bill & E-Invoicing System Assistance'
+      'Monthly / Quarterly GSTR-1 Outward Supplies E-Filing',
+      'Monthly GSTR-3B Tax Liability Computation & Return Filing',
+      'Automated GSTR-2A vs GSTR-2B Input Tax Credit (ITC) Matching',
+      'Quarterly Return Monthly Payment (QRMP) Scheme Setup',
+      'Annual GSTR-9 Filing & GSTR-9C Reconciliation Statement',
+      'E-Way Bill Generation & E-Invoicing Compliance Support',
+      'GST Challan Generation & Net Tax Offset Guidance',
+      'Proactive Advance Alerts before 11th & 20th Deadlines'
     ],
-    benefits: ['Avoid heavy late fee penalties and GST cancellation notices', 'Maximize eligible ITC savings'],
-    process: ['Sales & Purchase Data Collection', 'ITC Matching', 'Tax Calculation', 'Return Filing'],
-    whyChooseUs: ['Dedicated GST expert assigned to your business account']
+    benefits: [
+      'Eliminate heavy late fees (₹50/day) and interest penalties (18% p.a.)',
+      'Maximize Input Tax Credit savings by catching vendor non-filers early',
+      'Protect your GST registration from department cancellation orders',
+      'Maintain an unblemished tax compliance rating for tenders and bank loans',
+      'Dedicated CA desk so you can focus 100% on growing your core business'
+    ],
+    process: [
+      'Step 1: Monthly Sales & Purchase Invoice Data Ingestion',
+      'Step 2: Automated 2B Reconciliation to verify Vendor ITC availability',
+      'Step 3: Computation of Net Output Tax and Final Draft Approval',
+      'Step 4: Portal Challan Creation & Digital E-Filing via EVC / DSC',
+      'Step 5: Delivery of Signed Acknowledgement Receipts & ITC Log'
+    ],
+    whyChooseUs: [
+      'Proprietary ITC matching software saves average clients 15–20% on tax',
+      '100% on-time filing guarantee before statutory due dates',
+      'Experienced tax litigation team for GST scrutiny and notice replies',
+      'Real-time WhatsApp support for instant invoicing queries'
+    ],
+    faqs: [
+      {
+        question: 'What happens if I file my GST return after the due date?',
+        answer: 'Late filing attracts a penalty of ₹50 per day (₹20 per day for Nil returns) up to a maximum cap, plus 18% annual interest on the unpaid tax liability. Repeated delays can trigger GSTIN suspension.'
+      },
+      {
+        question: 'What is the importance of GSTR-2B reconciliation?',
+        answer: 'Under current GST law, you can only claim Input Tax Credit (ITC) if your supplier has uploaded their invoice in GSTR-1 and it appears in your GSTR-2B statement. Reconciliation ensures you never lose legitimate tax credits.'
+      },
+      {
+        question: 'Do I need to file GST returns if I had zero sales in a month?',
+        answer: 'Yes. Filing a Nil GST return is mandatory even if you had zero transactions. AVRX provides automated 1-click Nil return filing.'
+      }
+    ]
   },
   {
     id: 'itr-filing',
     title: 'Income Tax Return (ITR) Filing',
     category: 'tax',
-    shortDesc: 'Error-free ITR filing for salaried individuals, freelancers, business owners, and NRIs.',
-    fullDesc: 'File your income tax returns accurately under the correct ITR form (ITR-1 to ITR-7), claim maximum deductions, and get your tax refunds processed fast.',
+    shortDesc: 'CA-reviewed ITR filing for salaried individuals, freelancers, business owners, capital gains, and NRIs.',
+    fullDesc: 'File your income tax returns accurately under the correct ITR form (ITR-1 to ITR-7), optimize deductions under Old vs New tax regimes, scrutinize AIS/TIS and Form 26AS records, and fast-track tax refund deposits directly into your bank account.',
     iconName: 'FileText',
-    badge: 'Tax Season',
+    badge: 'High Accuracy • ₹999',
     priceStarting: '₹999',
     imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80',
     features: [
-      'Expert CA Review of AIS/TIS & Form 26AS',
-      'Optimization under Old vs New Tax Regime',
-      'Filing for Salaried, Business, Capital Gains & Crypto Traders',
-      'Notice Resolution & Rectification Support'
+      'Comprehensive AIS (Annual Information Statement) & Form 26AS Audit',
+      'Old vs New Tax Regime Comparative Savings Analysis',
+      'Salaried Professionals (Form 16, HRA, 80C, 80D, 80E, Home Loan Interest)',
+      'Freelancers & Professionals Presumptive Tax Filing (Section 44ADA)',
+      'Business Owners & Traders Presumptive Scheme (Section 44AD/44AE)',
+      'Capital Gains Scrutiny (Stocks, Mutual Funds, Crypto, Real Estate)',
+      'Foreign Assets, ESOPs & NRI Income Tax Compliance',
+      'Instant E-Verification & Automated Refund Status Tracker'
     ],
-    benefits: ['Claim eligible TDS refunds quickly', 'Mandatory for home/personal loan approvals'],
-    process: ['Form 16 / Income Data Upload', 'Tax Computation Audit', 'E-Filing & E-Verification'],
-    whyChooseUs: ['Chartered Accountant backed accuracy guarantee']
+    benefits: [
+      'Claim maximum legitimate deductions to minimize total payable income tax',
+      'Get TDS and advance tax refunds processed quickly into your bank account',
+      'Mandatory financial proof for Home Loans, Personal Loans & Credit Cards',
+      'Essential documentation for International Tourist & Business Visa approvals',
+      'Safeguard against Income Tax Section 148 & 143(1) mismatch notices'
+    ],
+    process: [
+      'Step 1: Upload Form 16, Bank Statements & Investment Receipts',
+      'Step 2: Chartered Accountant Review of AIS, TIS & 26AS Tax Credits',
+      'Step 3: Computation Sheet Preparation with Old vs New Regime Comparison',
+      'Step 4: Client Review, Approval & E-Filing on Income Tax Portal',
+      'Step 5: E-Verification via Aadhaar OTP & Delivery of ITR-V Acknowledgement'
+    ],
+    whyChooseUs: [
+      'Chartered Accountant verified accuracy for every individual filing',
+      'End-to-end support until tax refund is successfully credited',
+      'Free assistance for minor defect rectifications under Section 139(9)',
+      'Fast 24-hour turnaround for standard salaried and freelancer returns'
+    ],
+    faqs: [
+      {
+        question: 'Which tax regime should I choose: Old or New?',
+        answer: 'The New Regime offers lower slab tax rates with a ₹75,000 standard deduction and rebate up to ₹7 Lakhs, but disallows most deductions. The Old Regime is beneficial if your total deductions (80C, 80D, HRA, Home Loan Interest) exceed ₹3.75 Lakhs. Our CAs calculate both and choose the one that saves you maximum tax.'
+      },
+      {
+        question: 'What is the last date to file Income Tax Returns for individuals?',
+        answer: 'For individual non-audit taxpayers, the statutory deadline is usually 31st July of the relevant Assessment Year. Belated and revised returns can be filed until 31st December with a nominal late fee.'
+      },
+      {
+        question: 'Can I file ITR if I do not have a Form 16 from my employer?',
+        answer: 'Yes! Our experts can prepare and file your ITR using your monthly salary slips, bank account statements, and Form 26AS/AIS tax credit records.'
+      }
+    ]
   },
   {
     id: 'udyam-registration',
     title: 'Udyam / MSME Registration',
     category: 'tax',
-    shortDesc: 'Official MSME Udyam registration for government benefits, priority lending, and subsidies.',
-    fullDesc: 'Get your official Udyam Certificate to unlock MSME benefits including priority bank loans, lower loan interest rates, protection against delayed payments, and electricity concessions.',
+    shortDesc: 'Official MSME Udyam registration for priority bank lending, collateral subsidies, and tender perks.',
+    fullDesc: 'Get your official Ministry of MSME Udyam Certificate to unlock immense government perks including priority bank loans at discounted interest rates, exemption from Earnest Money Deposits (EMD) in government tenders, protection against delayed payments, and electricity tariff concessions.',
     iconName: 'Award',
+    badge: 'Govt Benefits • ₹499',
     priceStarting: '₹499',
     imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
     features: [
-      'Instant Udyam Registration Certificate',
-      'NIC Code Classification for Business Activities',
-      'Lifetime Validity with Zero Annual Renewal Required'
+      'Official Ministry of MSME Udyam Registration Certificate',
+      'Precise NIC (National Industrial Classification) Activity Code Mapping',
+      'Lifetime Validity with Zero Annual Renewal Required',
+      'Eligibility for Collateral-Free Loans under CGTMSE Scheme',
+      '50% Govt Fee Subsidy on Trademark & Patent Registrations',
+      'Access to MSME Samadhaan Portal for Recovery of Delayed Dues',
+      'Waiver of Earnest Money Deposit (EMD) in Government Tenders',
+      'Electricity Bill Concessions & ISO Certification Reimbursements'
     ],
-    benefits: ['Protection under MSME Delayed Payment Act (Samadhaan)', 'Eligibility for Govt tenders without EMD'],
-    process: ['Aadhaar & PAN Verification', 'Activity Mapping', 'Certificate Generation'],
-    whyChooseUs: ['Fast 24-hour delivery']
-  },
-  {
-    id: 'business-compliance',
-    title: 'Business Compliance Assistance',
-    category: 'tax',
-    shortDesc: 'Annual company secretarial filings, ROC filings, trade licenses, and statutory audits.',
-    fullDesc: 'Complete compliance management for Private Limited, LLP, and OPC entities including ROC annual filings, director KYC, and maintenance of statutory registers.',
-    iconName: 'ShieldAlert',
-    priceStarting: '₹4,999/yr',
-    imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
-    features: [
-      'ROC Annual Filings (MGT-7 & AOC-4)',
-      'DIR-3 KYC Director Annual Renewal',
-      'Minutes of Meeting & Board Resolutions Preparation',
-      'Statutory Audit Coordination'
+    benefits: [
+      'Lower interest rates (up to 1–1.5% discount) on commercial bank loans',
+      'Legal power to charge compound interest on buyers delaying payment beyond 45 days',
+      'Exclusive reservation for participation in central and state PSU tenders',
+      'Subsidies on technology upgrades, ISO certifications, and patent filings',
+      '100% digital verification completed within 24 hours'
     ],
-    benefits: ['Maintain clean company standing on MCA portal', 'Avoid heavy Rs 100/day ROC penalties'],
-    process: ['Compliance Audit', 'Document Drafting', 'ROC E-filing'],
-    whyChooseUs: ['Proactive reminder system for statutory deadlines']
-  },
-  {
-    id: 'tax-consultation',
-    title: 'Tax Advisory Services',
-    category: 'tax',
-    shortDesc: 'One-on-one consultation with senior tax experts for strategic tax planning and notice support.',
-    fullDesc: 'Strategic tax structure advice for HNWIs, startups, crypto traders, and corporate entities to legally optimize tax liability and resolve tax department notices.',
-    iconName: 'HelpCircle',
-    priceStarting: '₹1,999/session',
-    imageUrl: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80',
-    features: [
-      '30/60 Mins Direct Phone / Video Consultation',
-      'Custom Tax Savings Blueprint Preparation',
-      'Income Tax & GST Notice Draft Responses'
+    process: [
+      'Step 1: Enter Aadhaar Number and Name as per Aadhaar for OTP verification',
+      'Step 2: Submit PAN Details and verify business category (Micro / Small / Medium)',
+      'Step 3: NIC Code Selection for Manufacturing and Service activities',
+      'Step 4: Investment in Plant & Machinery and Annual Turnover Verification',
+      'Step 5: Instant Downloadable Udyam Certificate with verifiable QR Code'
     ],
-    benefits: ['Clear tax confusion before major financial transactions', 'Save significant tax legally'],
-    process: ['Book Session', 'Share Tax Context', 'Live Consultation & Action Plan'],
-    whyChooseUs: ['Senior CAs with 10+ years experience']
+    whyChooseUs: [
+      'Fast 24-hour delivery with correct enterprise classification',
+      'Expert advice on leveraging government MSME subsidy schemes',
+      'Zero physical paperwork — 100% paperless digital onboarding',
+      'Free guidance on MSME Samadhaan dispute filing'
+    ],
+    faqs: [
+      {
+        question: 'Who is eligible for MSME Udyam Registration?',
+        answer: 'Any enterprise engaged in manufacturing or service provision categorized as Micro (Investment < ₹1 Cr, Turnover < ₹5 Cr), Small (Investment < ₹10 Cr, Turnover < ₹50 Cr), or Medium (Investment < ₹50 Cr, Turnover < ₹250 Cr) is eligible.'
+      },
+      {
+        question: 'Is Udyam Registration valid for lifetime?',
+        answer: 'Yes, the Udyam Certificate has lifetime validity and does not require annual renewal. However, details are automatically updated each year based on your ITR and GST filings.'
+      },
+      {
+        question: 'Can traders and retail shops get Udyam Registration?',
+        answer: 'Yes! The Ministry of MSME allows Wholesale and Retail traders to register on the Udyam portal to access Priority Sector Lending benefits from banks.'
+      }
+    ]
   },
   {
     id: 'company-registration',
     title: 'Company & Business Registration',
     category: 'tax',
     shortDesc: 'Private Limited, LLP, One Person Company (OPC), and Partnership business incorporation.',
-    fullDesc: 'End-to-end company incorporation services with Ministry of Corporate Affairs (MCA). Includes DIN, DSC, PAN, TAN, MoA, AoA, GST registration, and corporate bank account opening guidance.',
+    fullDesc: 'End-to-end company incorporation services with the Ministry of Corporate Affairs (MCA). We handle name approval (RUN), Digital Signature Certificates (DSC), Director Identification Numbers (DIN), MoA & AoA drafting, Certificate of Incorporation (COI), PAN, TAN, GSTIN, and corporate bank account opening.',
     iconName: 'Building2',
-    badge: 'Startup Ready',
+    badge: 'Startup Ready • ₹6,999',
     priceStarting: '₹6,999',
     imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
     features: [
-      'Private Limited / LLP / OPC Incorporation Support',
-      'Name Approval Application & RUN / SPICe+ Form E-Filing',
-      'Digital Signature Certificates (DSC) for 2 Directors',
-      'Director Identification Numbers (DIN) Allotment',
-      'MoA & AoA Drafting & Incorporation Certificate (COI)',
-      'Company PAN, TAN & Corporate Bank Account Resolution'
+      'Private Limited / LLP / One Person Company (OPC) Incorporation',
+      'Name Approval via MCA RUN & SPICe+ Part A Form',
+      'Class 3 Digital Signature Certificates (DSC) with USB Tokens for 2 Directors',
+      'Director Identification Number (DIN) Allocation for all Directors',
+      'Custom Memorandum of Association (MoA) & Articles of Association (AoA)',
+      'Official Certificate of Incorporation (COI) with CIN Number',
+      'Corporate PAN & TAN Card Allocation',
+      '1-Click Corporate Bank Account Opening & Zero Balance Setup Assistance'
     ],
     benefits: [
-      'Limited liability protection for founders & shareholders',
-      'Raise angel/venture capital easily with registered equity',
-      'High credibility with global enterprise clients'
+      'Shield personal wealth with limited liability protection',
+      'Raise venture capital, angel investment, and equity funding effortlessly',
+      'Establish international enterprise credibility with clients and suppliers',
+      'Enjoy corporate tax benefits, perpetual succession, and transferable ownership',
+      'Complete company setup delivered in just 5 to 7 working days'
     ],
     process: [
-      'Name Availability Search & DSC Setup',
-      'SPICe+ Part A & Part B Form E-Filing on MCA Portal',
-      'Certificate of Incorporation (COI) Issuance',
-      'Post-Incorporation Compliance & Bank Setup'
+      'Step 1: Name Availability Check & Class 3 DSC Generation',
+      'Step 2: SPICe+ Part A (Name Reservation) & Part B Form Preparation',
+      'Step 3: MoA, AoA & Statutory Declarations Drafting by Company Secretaries',
+      'Step 4: Portal Submission & Central Registration Centre (CRC) Approval',
+      'Step 5: COI, PAN, TAN, EPFO, ESIC & Bank Resolution Dispatch'
     ],
     whyChooseUs: [
-      'Fast 5 to 7 day incorporation timeline',
-      'Zero hidden govt stamp duty surprises',
-      'Free post-incorporation compliance consultation'
+      'All-inclusive pricing with zero surprise government stamp duty bills',
+      'Expert Company Secretaries and Chartered Accountants manage your file',
+      'Free post-incorporation consultation for INC-20A Commencement of Business',
+      'Complimentary corporate stationery templates and board resolutions'
     ],
     faqs: [
-      { question: 'What is the minimum number of directors needed for Private Limited?', answer: 'A minimum of 2 directors and 2 shareholders are required. The directors can also be the shareholders.' },
-      { question: 'How long does company registration take in India?', answer: 'Typically 5 to 7 working days once all director KYC documents (PAN, Aadhaar, bank statements) are submitted.' },
-      { question: 'Is physical office presence required for registration?', answer: 'No, any commercial or residential address with a valid utility bill and NOC can serve as your registered office address.' }
+      {
+        question: 'What is the minimum requirement to start a Private Limited Company?',
+        answer: 'You need a minimum of 2 directors, 2 shareholders (directors can be shareholders), PAN and Aadhaar of all members, address proof, and a registered office address in India.'
+      },
+      {
+        question: 'Is there any minimum capital requirement for incorporation?',
+        answer: 'No! The government has abolished the minimum paid-up capital requirement. You can start a Private Limited company with as little as ₹1,000 capital.'
+      },
+      {
+        question: 'Can a residential address be used as the registered office?',
+        answer: 'Yes. Any residential or commercial address with a recent utility bill and landlord NOC is 100% valid for MCA company registration.'
+      }
+    ]
+  },
+  {
+    id: 'trademark-registration',
+    title: 'Trademark Registration & Brand IP',
+    category: 'tax',
+    shortDesc: 'Protect your brand name, logo, slogan, and intellectual property with official TM & ® marks.',
+    fullDesc: 'Protect your business name, logo, tagline, and brand identity from copycats with official Trademark Registration under the Controller General of Patents, Designs and Trade Marks. Includes comprehensive NICE class search, TM application filing in 24 hours, and examination report reply support.',
+    iconName: 'Stamp',
+    badge: 'Brand Protection • ₹4,999',
+    priceStarting: '₹4,999',
+    imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Comprehensive Public Trademark Database Search & Conflict Report',
+      'Classification under 45 International NICE Trademark Classes',
+      'TM Application Form TM-A Drafting & Electronic E-Filing',
+      'Use of the ™ Symbol within 24 Hours of Application Submission',
+      'Monitoring of Official Trademark Journal Publications',
+      'Examination Report Scrutiny & Objection Reply Drafting Support',
+      'Final Trademark Registration Certificate with ® Symbol Rights',
+      '10 Years Trademark Protection with Nationwide Legal Exclusivity'
+    ],
+    benefits: [
+      'Legal ownership preventing competitors from copying your brand name or logo',
+      'Build valuable intangible business assets that can be franchised or sold',
+      'Get Brand Registry on Amazon, Flipkart, and Google Play Store',
+      'Right to take legal action and claim damages against counterfeiters',
+      'Use the prestigious ® symbol to build customer trust and market prestige'
+    ],
+    process: [
+      'Step 1: In-depth Trademark Availability & Similarity Search',
+      'Step 2: Class Selection & Power of Attorney Authorization Setup',
+      'Step 3: Online TM-A Application Filing & Immediate Application Number',
+      'Step 4: Department Scrutiny, Examination & Journal Publication Tracking',
+      'Step 5: Issuance of Official Trademark Registration Certificate (Form RG-2)'
+    ],
+    whyChooseUs: [
+      'Experienced Trademark Attorneys with 98%+ registration success rate',
+      'Start using ™ symbol within 24 hours of filing',
+      'Proactive monitoring to prevent unauthorized third-party infringements',
+      'Discounted official government fee rates for MSME/Startups (₹4,500 vs ₹9,000)'
+    ],
+    faqs: [
+      {
+        question: 'When can I start using the ™ and ® symbols?',
+        answer: 'You can start using the ™ symbol immediately after our attorney files the application and generates your official TM Application Number (within 24 hours). The ® symbol can be used once the government grants the final Registration Certificate.'
+      },
+      {
+        question: 'How long is a registered trademark valid in India?',
+        answer: 'A registered trademark is valid for 10 years from the date of application. It can be easily renewed indefinitely every 10 years by paying the standard renewal fee.'
+      },
+      {
+        question: 'What is a Trademark Class?',
+        answer: 'Trademarks are categorized into 45 classes (Classes 1–34 for goods/products, Classes 35–45 for services). For example, Class 35 covers retail, e-commerce, and business services; Class 42 covers software and web development.'
+      }
+    ]
+  },
+  {
+    id: 'fssai-food-license',
+    title: 'FSSAI Food Safety License',
+    category: 'tax',
+    shortDesc: 'Basic, State, and Central FSSAI food safety licenses for restaurants, cloud kitchens, and traders.',
+    fullDesc: 'Obtain your 14-digit FSSAI Food License / Registration number swiftly from the Food Safety and Standards Authority of India. Mandatory for restaurants, cafes, cloud kitchens, bakeries, food processors, grocery stores, food exporters, and Zomato/Swiggy onboarding.',
+    iconName: 'Utensils',
+    badge: 'Food Safety • ₹1,499',
+    priceStarting: '₹1,499',
+    imageUrl: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'FSSAI Basic Registration (Turnover up to ₹12 Lakhs/year)',
+      'FSSAI State License (Turnover ₹12 Lakhs to ₹20 Crores/year)',
+      'FSSAI Central License (Turnover > ₹20 Crores / Importers / E-commerce)',
+      'Mandatory 14-Digit FSSAI License Number Generation',
+      'Fast-track onboarding support for Swiggy, Zomato, Blinkit & Zepto',
+      'Food Safety Management System (FSMS) Plan & Declaration Drafting',
+      'Annual Return Filing (Form D-1) & License Renewal Support'
+    ],
+    benefits: [
+      'Legally operate food manufacturing, packaging, and catering businesses in India',
+      'Mandatory requirement to list your restaurant/kitchen on Swiggy & Zomato',
+      'Build consumer trust with certified hygienic food preparation standards',
+      'Avoid hefty legal penalties and shop closure notices by food safety officers',
+      'Fast delivery in 3 to 7 working days'
+    ],
+    process: [
+      'Step 1: Business Category & Turnover Identification (Basic / State / Central)',
+      'Step 2: Document Verification (Kitchen Layout, Photo ID, Address Proof)',
+      'Step 3: FoSCoS Portal Form A / Form B Application Electronic Submission',
+      'Step 4: Food Safety Officer Verification & Clarification Clearance',
+      'Step 5: Delivery of Official 14-Digit FSSAI Certificate'
+    ],
+    whyChooseUs: [
+      'Zero application rejection track record with prior FoSCoS compliance check',
+      'Dedicated food industry compliance desk for cloud kitchens and D2C brands',
+      'Fast-track processing for quick restaurant launches',
+      'Renewal reminder alerts to prevent license lapses'
+    ],
+    faqs: [
+      {
+        question: 'Which FSSAI license do I need for my cloud kitchen or restaurant?',
+        answer: 'If your expected annual turnover is under ₹12 Lakhs, a Basic FSSAI Registration is sufficient. If turnover is between ₹12 Lakhs and ₹20 Crores, you require a State FSSAI License. For large chains or inter-state operations, a Central License is needed.'
+      },
+      {
+        question: 'Can I sell on Swiggy and Zomato with a Basic FSSAI registration?',
+        answer: 'Yes! Basic FSSAI registration is 100% accepted by Swiggy, Zomato, and other online food delivery apps for onboarding cloud kitchens and home chefs.'
+      }
+    ]
+  },
+  {
+    id: 'iso-certification',
+    title: 'ISO Certification (9001 / 27001)',
+    category: 'tax',
+    shortDesc: 'Internationally recognized ISO 9001, 27001, 14001, 45001 certification for quality and security.',
+    fullDesc: 'Elevate your business credibility and win high-value corporate and government tenders with accredited ISO Certification. We provide end-to-end consulting, gap analysis, documentation preparation, internal audit support, and certificate issuance for ISO 9001 (QMS), ISO 27001 (ISMS), ISO 14001 (EMS), and ISO 22000 (FSMS).',
+    iconName: 'BadgeCheck',
+    badge: 'Global Standard • ₹3,999',
+    priceStarting: '₹3,999',
+    imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'ISO 9001:2015 Quality Management System (QMS) Certification',
+      'ISO 27001:2022 Information Security Management System (ISMS)',
+      'ISO 14001 Environmental & ISO 45001 Occupational Health & Safety',
+      'Quality Manual, SOPs & Process Flow Documentation Drafting',
+      'Pre-Audit Gap Analysis & Readiness Assessment',
+      'Accredited Certification Body (IAF / Non-IAF) Audit Coordination',
+      'Verifiable Certificate with Global QR Code & Unique Certificate ID',
+      '3-Year Validity with Annual Surveillance Audit Guidance'
+    ],
+    benefits: [
+      'Mandatory prerequisite to qualify for major Government and PSU tenders',
+      'Demonstrate international quality and data security to enterprise clients',
+      'Streamline internal operational workflows and reduce process errors',
+      'Boost brand reputation and global export market acceptability',
+      'Complete turnaround in just 3 to 5 business days'
+    ],
+    process: [
+      'Step 1: Selection of ISO Standard & Scope Definition',
+      'Step 2: Business Workflow Documentation & Quality Manual Preparation',
+      'Step 3: Internal Audit & Implementation Review',
+      'Step 4: Formal Certification Body Assessment',
+      'Step 5: Issuance of Accredited ISO Certificate with Online Verification'
+    ],
+    whyChooseUs: [
+      'Recognized by IAF (International Accreditation Forum) & international bodies',
+      'Complete done-for-you documentation and SOP creation',
+      'Fast 3-day turnaround for urgent government tender deadlines',
+      'Affordable transparent pricing with no hidden audit fees'
+    ],
+    faqs: [
+      {
+        question: 'What is the difference between IAF and Non-IAF ISO certification?',
+        answer: 'IAF (International Accreditation Forum) certified certificates are globally recognized and required for government tenders and overseas exports. Non-IAF certificates are more economical and suitable for local branding and internal quality marketing.'
+      },
+      {
+        question: 'How long is an ISO certificate valid?',
+        answer: 'ISO certificates are valid for 3 years, subject to annual surveillance audits to ensure ongoing standard compliance.'
+      }
+    ]
+  },
+  {
+    id: 'iec-code',
+    title: 'Import Export Code (IEC)',
+    category: 'tax',
+    shortDesc: 'Official 10-digit Import Export Code (IEC) from DGFT for international trading and foreign remittances.',
+    fullDesc: 'Get your official 10-digit Import Export Code (IEC) issued directly by the Directorate General of Foreign Trade (DGFT), Ministry of Commerce. Mandatory for any individual or company importing goods into India, exporting products or services abroad, and receiving international payments via wire transfers.',
+    iconName: 'Globe',
+    badge: 'DGFT Approved • ₹1,999',
+    priceStarting: '₹1,999',
+    imageUrl: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Official DGFT 10-Digit IEC License Generation',
+      'PAN-linked IEC Registration with Customs & ICEGATE Integration',
+      'Lifetime Validity with Zero Annual Renewal Fees',
+      'Customs Clearance & Port Code Registration Support',
+      'AD Code (Authorized Dealer Code) Bank Letter Guidance',
+      'Assistance for Export Promotion Council (EPC) Registrations (RCMC)',
+      'Export Incentives & Duty Drawback Scheme Eligibility Setup'
+    ],
+    benefits: [
+      'Legally export software, services, and physical goods to over 190 countries',
+      'Clear customs smoothly without shipment holds or port penalties',
+      'Receive foreign currency inward remittances directly into Indian bank accounts',
+      'Avail export subsidies, Duty Drawbacks, and RoDTEP government tax benefits',
+      'Delivered in 24 to 48 hours with lifetime validity'
+    ],
+    process: [
+      'Step 1: Submission of PAN, Aadhaar & Bank Certificate / Cancelled Cheque',
+      'Step 2: DGFT Portal Profile Creation & Digital Signature Verification',
+      'Step 3: ANF-2A Form E-Filing & Application Submission',
+      'Step 4: Government Fee Payment & Processing',
+      'Step 5: Immediate Downloadable IEC Certificate Issuance'
+    ],
+    whyChooseUs: [
+      'Direct DGFT authorized filing with 24-hour turnaround',
+      'Free guidance on mandatory annual IEC profile validation',
+      'End-to-end support for AD Code and ICEGATE port registration',
+      'Expert advice on Duty Drawback and export benefit schemes'
+    ],
+    faqs: [
+      {
+        question: 'Do software and service exporters need an Import Export Code?',
+        answer: 'Yes! Service and software exporters receiving foreign payments require an IEC to legally claim export benefits and report foreign inward remittances to RBI.'
+      },
+      {
+        question: 'Does the IEC license require annual renewal?',
+        answer: 'The IEC code itself has lifetime validity. However, DGFT mandates a simple free annual online profile update between April and June each year, which our team handles for you.'
+      }
+    ]
+  },
+  {
+    id: 'shop-establishment-gumasta',
+    title: 'Shop & Establishment License (Gumasta)',
+    category: 'tax',
+    shortDesc: 'State municipal trade license and Gumasta registration for commercial shops, offices, and outlets.',
+    fullDesc: 'Obtain your official Shop and Establishment Registration (Gumasta License / Trade License) issued by your state Labour Department and Municipal Corporation. Mandatory for opening commercial bank accounts, proving commercial existence, and operating retail stores, offices, and warehouses.',
+    iconName: 'Store',
+    badge: 'Trade License • ₹999',
+    priceStarting: '₹999',
+    imageUrl: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Official State Labour Department Shop Act / Gumasta Certificate',
+      'Accepted by All Scheduled Commercial & Private Banks for Current Accounts',
+      'Registration for 0 to 10+ Employees Categories',
+      'Municipal Ward Trade License Compliance',
+      'Employee Working Hours & Holiday Compliance Structuring',
+      'Fast 48-Hour Delivery with Verifiable Govt Certificate'
+    ],
+    benefits: [
+      'Mandatory legal proof required by banks to open a business Current Account',
+      'Prevent harassment and penalties during municipal inspection visits',
+      'Valid proof of commercial business address across all government portals',
+      'Avail state government subsidies and local small business support schemes',
+      '100% online process with zero visits to municipal offices'
+    ],
+    process: [
+      'Step 1: Submit Business Name, Owner ID & Shop Front Photograph with Board',
+      'Step 2: Verify Commercial Address & Electricity Bill',
+      'Step 3: State Labour Portal Application E-Filing',
+      'Step 4: Inspector Review & Digital Processing',
+      'Step 5: Download Official Digital Shop Act Certificate'
+    ],
+    whyChooseUs: [
+      'Coverage across Maharashtra, MP, Delhi, UP, Karnataka, Gujarat & all major states',
+      'Fast 2 to 3-day certificate turnaround',
+      'Instant current account opening support with top partner banks',
+      'Hassle-free 100% digital execution'
+    ],
+    faqs: [
+      {
+        question: 'What is a Gumasta or Shop & Establishment License?',
+        answer: 'It is a mandatory state government trade license issued under the Shop and Establishment Act that regulates conditions of work, employee rights, and authorizes commercial operations within municipal limits.'
+      },
+      {
+        question: 'Can I open a Current Account without GST using a Shop Act license?',
+        answer: 'Yes! Most banks (HDFC, ICICI, SBI, Axis) accept a valid Shop & Establishment Registration Certificate along with PAN to open a business Current Account for proprietorships.'
+      }
+    ]
+  },
+  {
+    id: 'business-compliance',
+    title: 'Annual ROC & Company Compliance',
+    category: 'tax',
+    shortDesc: 'Annual company secretarial filings, ROC filings (MGT-7, AOC-4), director KYC, and audit coordination.',
+    fullDesc: 'Comprehensive compliance management for Private Limited, LLP, and OPC entities. We handle mandatory MCA filings including AOC-4 (Financial Statements), MGT-7 (Annual Return), DIR-3 KYC, Board Meeting Minutes, Statutory Registers, and Tax Audit coordination.',
+    iconName: 'ShieldAlert',
+    badge: 'MCA Compliance • ₹4,999/yr',
+    priceStarting: '₹4,999/yr',
+    imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Filing of MCA Form AOC-4 (Balance Sheet & P&L Statement)',
+      'Filing of MCA Form MGT-7 / MGT-7A (Annual Return)',
+      'Annual DIR-3 KYC for all Company Directors',
+      'Drafting of Statutory Board Meeting Minutes & AGM Resolutions',
+      'Maintenance of Electronic Statutory Registers under Companies Act 2013',
+      'Filing of Form INC-20A (Declaration of Commencement of Business)',
+      'Filing of Form DPT-3 (Return of Deposits / Outstanding Loans)',
+      'Statutory CA Audit Coordination & Financial Statement Scrutiny'
+    ],
+    benefits: [
+      'Avoid crippling MCA late fees of ₹100 per day per form with no upper cap',
+      'Protect directors from disqualification and DIN deactivation under Section 164',
+      'Maintain an Active & Clean MCA status to qualify for bank loans and funding',
+      'Ensure zero compliance stress with dedicated Company Secretaries (CS)',
+      'Save up to 60% compared to traditional standalone retainer fees'
+    ],
+    process: [
+      'Step 1: Annual Compliance Health Check & Financial Data Review',
+      'Step 2: Preparation of Board Report, Director Declarations & AGM Notice',
+      'Step 3: DIR-3 KYC Web E-Verification for all Directors',
+      'Step 4: E-Filing of AOC-4 & MGT-7 Forms with MCA Digital Signatures',
+      'Step 5: Dispatch of SRN Challans & MCA Filing Acknowledgements'
+    ],
+    whyChooseUs: [
+      'Dedicated Qualified Company Secretary (CS) assigned to your business',
+      'Automated statutory deadline calendar with proactive WhatsApp alerts',
+      'Zero penalty guarantee for all documents provided on schedule',
+      'Complete end-to-end assistance including audit coordination'
+    ],
+    faqs: [
+      {
+        question: 'What is the penalty for late filing of MCA annual returns?',
+        answer: 'Late filing of AOC-4 and MGT-7 attracts a harsh statutory penalty of ₹100 per day per form, which accumulates indefinitely with no upper limit. Directors can also face disqualification for up to 5 years.'
+      },
+      {
+        question: 'What is INC-20A and when must it be filed?',
+        answer: 'INC-20A is the mandatory Declaration of Commencement of Business that every newly incorporated company must file within 180 days of incorporation after depositing share subscription money.'
+      }
     ]
   },
   {
     id: 'pan-services',
-    title: 'PAN Card & Direct Tax Services',
+    title: 'PAN Card & Direct Tax Documentation',
     category: 'tax',
-    shortDesc: 'New PAN application, PAN corrections, Aadhaar-PAN linking, and duplicate card issuance.',
-    fullDesc: 'Fast-track PAN card documentation services for individuals, businesses, trusts, minors, and NRIs. Includes correction of demographic details, re-issuance, and statutory Aadhaar-PAN linking compliance.',
+    shortDesc: 'New PAN application, demographic corrections, Aadhaar-PAN linking, and fast e-PAN delivery.',
+    fullDesc: 'Fast-track PAN card documentation services for individuals, businesses, LLPs, trusts, minors, and NRIs. Includes new PAN allocation (Form 49A/49AA), correction of demographic details, re-issuance of lost cards, and mandatory Aadhaar-PAN linking compliance.',
     iconName: 'CreditCard',
+    badge: 'Fast Track • ₹299',
     priceStarting: '₹299',
     imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80',
     features: [
-      'New PAN Application (Form 49A / 49AA for NRIs)',
-      'PAN Correction (Name, DOB, Father Name, Address)',
-      'Instant e-PAN Generation in 24 to 48 Hours',
-      'Aadhaar-PAN Mandatory Linking Facilitation',
-      'Company / Partnership Firm PAN Allotment'
+      'New PAN Card Allotment (Form 49A for Citizens / 49AA for NRIs)',
+      'PAN Correction (Name, Date of Birth, Father Name, Signature & Photo)',
+      'Instant Digital e-PAN PDF Generation in 24 to 48 Hours',
+      'Mandatory Aadhaar-PAN Linking Compliance & Inoperative PAN Resolution',
+      'Company, Partnership Firm & Trust PAN Application',
+      'Doorstep Delivery of Tamper-Proof PVC Plastic Physical Card'
     ],
     benefits: [
-      'Mandatory identification for all banking and tax transactions',
-      'Avoid high 20% TDS deduction rates by linking PAN with Aadhaar',
-      'Doorstep physical PVC card delivery across India'
+      'Essential mandatory tax ID for all banking, salary, and investment transactions',
+      'Prevent high 20% TDS deduction rates by maintaining an active linked PAN',
+      '100% paperless digital verification with instant tracking number',
+      'Physical PVC card delivered anywhere in India within 7 to 10 days'
     ],
     process: [
-      'Identity & Address Proof Upload',
-      'Application Form Verification',
-      'NSDL / UTIITSL Portal Submission',
-      'e-PAN PDF & Physical Card Dispatch'
+      'Step 1: Upload Aadhaar / Address Proof & Identity Documents',
+      'Step 2: Form Review & Verification by Tax Documentation Team',
+      'Step 3: Submission on NSDL (Protean) / UTIITSL Official Portal',
+      'Step 4: Digital e-PAN Delivery via Email within 24–48 Hours',
+      'Step 5: Physical PVC Card Dispatched to Residential / Office Address'
     ],
     whyChooseUs: [
-      '100% error-free form submission',
-      'Instant tracking acknowledgement number'
+      '100% error-free form submission guarantee',
+      'Instant tracking acknowledgement number provided immediately',
+      'Specialized assistance for complex name change and photo correction cases'
     ],
     faqs: [
-      { question: 'How long does it take to get an e-PAN?', answer: 'Digital e-PAN is typically issued within 24 to 48 hours, while the physical PVC card arrives at your address in 7 to 10 days.' },
-      { question: 'What documents are required for PAN application?', answer: 'Proof of Identity (Aadhaar/Voter ID/Passport), Proof of Address, and Proof of Date of Birth with recent photographs.' }
+      {
+        question: 'How fast can I receive my digital e-PAN?',
+        answer: 'The digital e-PAN PDF is typically generated and emailed within 24 to 48 hours of successful verification. It is legally valid everywhere.'
+      },
+      {
+        question: 'What happens if my PAN is not linked with Aadhaar?',
+        answer: 'Unlinked PAN cards become "Inoperative", which means you cannot file ITR, receive tax refunds, or conduct high-value banking transactions, and TDS is deducted at the maximum rate of 20%.'
+      }
+    ]
+  },
+  {
+    id: 'tax-consultation',
+    title: 'Tax Advisory & Litigation Support',
+    category: 'tax',
+    shortDesc: 'One-on-one consultation with senior CAs for strategic tax savings, notice resolution, and capital gains.',
+    fullDesc: 'Strategic, high-impact tax planning and advisory services for business founders, HNWIs, salaried executives, crypto investors, and NRIs. Receive personalized guidance on tax minimization, income restructuring, capital gains reinvestment, and professional reply drafting for Income Tax & GST department notices.',
+    iconName: 'HelpCircle',
+    badge: 'Senior CA • ₹1,999',
+    priceStarting: '₹1,999/session',
+    imageUrl: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80',
+    features: [
+      '30/60 Minutes 1-on-1 Phone or Video Consultation with Senior CA',
+      'Comprehensive Tax Scrutiny & Section 143(1) / 148 Notice Reply Drafting',
+      'Capital Gains Optimization (Section 54, 54EC, 54F Real Estate Reinvestment)',
+      'Startup Tax Planning & Section 80-IAC Angel Tax Exemption Advisory',
+      'Crypto & Virtual Digital Assets (VDA) 30% Flat Tax & 1% TDS Structuring',
+      'NRI Tax Advisory (Double Taxation Avoidance Agreement - DTAA & Form 15CA/CB)'
+    ],
+    benefits: [
+      'Legally save up to lakhs in taxes through strategic restructuring',
+      'Resolve intimidating tax department notices with ironclad legal replies',
+      'Avoid costly audit errors before signing major property or business deals',
+      'Confidential and personalized financial advisory tailored to your exact goals'
+    ],
+    process: [
+      'Step 1: Book Consultation Slot & Upload Notice / Financial Queries',
+      'Step 2: Senior CA Conducts Pre-Consultation File Analysis',
+      'Step 3: Live 1-on-1 Strategy Video/Phone Consultation',
+      'Step 4: Delivery of Written Action Plan & Notice Reply Drafts'
+    ],
+    whyChooseUs: [
+      'Panel of senior Chartered Accountants with 12+ years experience',
+      'Actionable step-by-step solutions rather than vague theoretical advice',
+      'Prompt follow-up support post-consultation'
+    ],
+    faqs: [
+      {
+        question: 'Can you help me draft a reply to an Income Tax Notice?',
+        answer: 'Yes! Our senior CAs review your notice, analyze your filed ITR and 26AS/AIS records, and prepare an ironclad legal reply with supporting documents for upload on the e-filing portal.'
+      },
+      {
+        question: 'How can I save capital gains tax on property sale?',
+        answer: 'You can save capital gains tax by reinvesting the net gains into another residential property under Section 54/54F or into designated Capital Gains 54EC bonds (REC, PFC) within statutory time limits. Our CAs will guide you on the exact exemptions.'
+      }
     ]
   }
 ];
@@ -952,6 +1509,24 @@ export const AI_TOOLS: AIToolItem[] = [
 ];
 
 export const PRICING_PLANS: PricingPlan[] = [
+  {
+    id: 'static-onepage-website',
+    name: 'Static Onepage Website',
+    category: 'website',
+    price: '₹4,999',
+    billingPeriod: 'one-time',
+    description: 'Perfect for local businesses, shops, freelancers, and startups wanting an instant professional digital presence.',
+    features: [
+      'Single-Page Modern Fluid-Scroll Layout',
+      'Hero Banner, About, Services, Gallery & Contact',
+      '100% Mobile-Responsive & Fast Loading (<0.5s)',
+      'Direct WhatsApp Chat & Click-to-Call Buttons',
+      'Lead Capture Form with Instant Email Alerts',
+      'Google Maps Location Integration',
+      'Free SSL Certificate & Basic On-Page SEO'
+    ],
+    ctaText: 'Launch for ₹4,999'
+  },
   {
     id: 'starter-website',
     name: 'Starter Website',

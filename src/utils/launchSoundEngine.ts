@@ -320,9 +320,87 @@ class LaunchSoundEngine {
   }
 
   /**
-   * 5. Spoken AI Mission Voice (Optional Robotic Mission Audio)
-   * Crisp synthesized speech for countdown if supported
+   * 5. JARVIS AI Voice Greeting: "Welcome to AVRX"
+   * Sophisticated, calm, deep British male JARVIS voice greeting
    */
+  public speakWelcomeToAVRX() {
+    if (this.isMuted || typeof window === 'undefined') return;
+
+    try {
+      this.playWelcomeChime();
+    } catch {
+      // Ignore audio context autoplay restriction
+    }
+
+    if (!('speechSynthesis' in window)) return;
+
+    const speak = () => {
+      try {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance('Welcome to AVRX');
+        utterance.rate = 0.94; // Calm, deliberate, sophisticated pace
+        utterance.pitch = 0.92; // Deep, polished, resonant Jarvis tone
+        utterance.volume = 1.0;
+        utterance.lang = 'en-GB'; // British English for classic Jarvis accent
+
+        const voices = window.speechSynthesis.getVoices();
+        if (voices && voices.length > 0) {
+          // Priority 1: Specifically known British Male voices (Jarvis style: Daniel, Oliver, George, Arthur, Brian, Ryan, Google UK English Male)
+          const jarvisVoice = voices.find(v => {
+            const name = v.name.toLowerCase();
+            const lang = v.lang.toLowerCase();
+            const isBritish = lang.includes('en-gb') || lang.includes('en_gb') || name.includes('uk') || name.includes('british') || name.includes('united kingdom');
+            const isMale = name.includes('male') || name.includes('daniel') || name.includes('oliver') || 
+                           name.includes('george') || name.includes('arthur') || name.includes('brian') || 
+                           name.includes('ryan') || name.includes('alfred') || name.includes('charles') ||
+                           (name.includes('natural') && !name.includes('female') && !name.includes('sonia') && !name.includes('hazel') && !name.includes('libby') && !name.includes('mia'));
+            return isBritish && isMale;
+          }) ||
+          // Priority 2: Any British English voice
+          voices.find(v => {
+            const lang = v.lang.toLowerCase();
+            const name = v.name.toLowerCase();
+            return (lang === 'en-gb' || lang === 'en_gb' || name.includes('uk') || name.includes('british')) &&
+                   !name.includes('female') && !name.includes('hazel') && !name.includes('sonia');
+          }) ||
+          // Priority 3: Any English Male Voice (David, Mark, Guy, Alex, Google UK/US Male)
+          voices.find(v => {
+            const name = v.name.toLowerCase();
+            const lang = v.lang.toLowerCase();
+            return lang.startsWith('en') && (name.includes('male') || name.includes('david') || name.includes('guy') || name.includes('alex') || name.includes('daniel') || name.includes('george'));
+          }) ||
+          // Priority 4: Natural English Voice
+          voices.find(v => v.lang.toLowerCase().startsWith('en'));
+
+          if (jarvisVoice) {
+            utterance.voice = jarvisVoice;
+          }
+        }
+
+        window.speechSynthesis.speak(utterance);
+      } catch {
+        // Speech API blocked by browser policy
+      }
+    };
+
+    if (window.speechSynthesis.getVoices().length === 0) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.onvoiceschanged = null;
+        speak();
+      };
+      setTimeout(speak, 100);
+    } else {
+      speak();
+    }
+  }
+
+  // Alias for backward compatibility
+  public speakWelcomeToAVRXAI() {
+    this.speakWelcomeToAVRX();
+  }
+
+  /**
+   * 6. Spoken AI Mission Voice (Robotic Mission Audio)
   public speakMissionBrief(text: string) {
     if (this.isMuted || typeof window === 'undefined' || !window.speechSynthesis) return;
     try {
@@ -400,7 +478,7 @@ class LaunchSoundEngine {
   }
 
   /**
-   * 8. Success Chime
+   * 8. Success Chime & Swoosh
    */
   public playSuccessChime() {
     if (this.isMuted) return;
@@ -431,6 +509,13 @@ class LaunchSoundEngine {
     } catch {
       // Ignore
     }
+  }
+
+  /**
+   * 8b. Success Swoosh
+   */
+  public playSuccessSwoosh() {
+    this.playSuccessChime();
   }
 
   /**

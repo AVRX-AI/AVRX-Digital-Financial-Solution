@@ -82,15 +82,15 @@ export async function sendLeadEmails(lead: LeadData, ipAddress?: string): Promis
   const resendApiKey = process.env.RESEND_API_KEY || process.env.EMAIL_API_KEY;
 
   // SMTP Settings
-  const smtpHost = process.env.SMTP_HOST || process.env.EMAIL_HOST || 'mail.avrx.in';
+  const smtpHost = process.env.SMTP_HOST || process.env.EMAIL_HOST || (process.env.GMAIL_APP_PASSWORD ? 'smtp.gmail.com' : 'mail.avrx.in');
   const smtpPort = Number(process.env.SMTP_PORT || process.env.EMAIL_PORT) || 465;
-  const smtpUser = process.env.SMTP_USER || process.env.EMAIL_USER || process.env.EMAIL_FROM || 'contact@avrx.in';
+  const smtpUser = process.env.SMTP_USER || process.env.EMAIL_USER || process.env.GMAIL_USER || process.env.EMAIL_FROM || 'contact@avrx.in';
   const smtpPass = process.env.SMTP_PASS || process.env.EMAIL_PASSWORD || process.env.GMAIL_APP_PASSWORD;
   const smtpSecure = process.env.SMTP_SECURE === 'true' || smtpPort === 465;
 
   const formName = lead.formName || lead.formType || 'Website Inquiry';
-  const adminSubject = `[AVRX WEBSITE LEAD] ${formName} — ${lead.name}`;
-  const clientSubject = `AVRX — We Received Your Request`;
+  const adminSubject = `[AVRX NEW LEAD] ${formName} — ${lead.name} (${lead.phone})`;
+  const clientSubject = `AVRX — We Received Your Request (${lead.serviceCategory || lead.service || 'Digital & Financial Solutions'})`;
 
   const adminHtml = generateAdminNotificationHtml(lead);
   const adminText = generateAdminNotificationText(lead);

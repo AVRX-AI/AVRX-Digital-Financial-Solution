@@ -47,14 +47,14 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
       icon: Layout,
       shortDesc: 'High-speed, conversion-focused websites engineered for businesses, corporate brands, and e-commerce stores.',
       deliverables: [
+        'Static Onepage Websites (₹4,999)',
         'Business & Corporate Websites',
         'E-commerce & Online Stores',
         'High-Conversion Landing Pages',
         'Mobile Responsive UI/UX',
-        'Performance & Core Web Vitals Optimization',
         'SEO-Ready Architecture & Lead Forms'
       ],
-      price: 'Starting from ₹9,999'
+      price: 'Starting from ₹4,999'
     },
     {
       id: 'app-development',
