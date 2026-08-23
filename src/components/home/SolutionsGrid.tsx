@@ -101,12 +101,12 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ onNavigate }) => {
     },
     {
       id: 'ecommerce',
-      slug: 'ecommerce',
+      slug: 'e-commerce-solutions',
       category: 'digital',
       badge: 'High Conversion',
       title: 'E-Commerce Website',
       description: 'Build a complete online store designed to attract customers, simplify shopping, process UPI/card payments, and scale your online business.',
-      image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80',
       features: [
         'Unlimited Product Catalogues',
         'Seamless UPI & Razorpay/Stripe Payments',

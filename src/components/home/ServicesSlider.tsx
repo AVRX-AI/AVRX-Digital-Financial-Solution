@@ -167,7 +167,7 @@ export const HERO_SERVICES: FeaturedHeroService[] = [
     badge: '🚀 High Growth',
     priceOrRate: 'Starting ₹19,999',
     priceSub: 'Zero ongoing sales commissions',
-    imageUrl: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80',
     icon: ShoppingBag,
     colorTheme: {
       text: 'text-blue-400',

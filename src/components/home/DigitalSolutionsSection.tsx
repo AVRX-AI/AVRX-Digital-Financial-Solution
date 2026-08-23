@@ -31,7 +31,9 @@ import {
   Flame,
   Code2,
   Lock,
-  Gauge
+  Gauge,
+  Boxes,
+  Truck
 } from 'lucide-react';
 import { launchSoundEngine } from '../../utils/launchSoundEngine';
 
@@ -43,7 +45,7 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
   const [selectedSubtype, setSelectedSubtype] = useState<string>('all');
   const [activeFeatureTab, setActiveFeatureTab] = useState<'speed' | 'ai' | 'payments' | 'security' | 'seo'>('speed');
 
-  // 11 Specific Website Design Sub-Services with individual rich colors
+  // 12 Specific Website Design Sub-Services with individual rich colors
   const websiteTypes = [
     { id: 'small-business-website-design', name: 'Small Business', icon: Briefcase, desc: 'High-converting sites for local ventures, shops, and startups.', color: 'from-cyan-500 to-blue-500', glow: 'cyan' },
     { id: 'corporate-website-design', name: 'Corporate', icon: Building2, desc: 'Enterprise architecture with high brand authority.', color: 'from-blue-500 to-indigo-500', glow: 'blue' },
@@ -55,17 +57,18 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
     { id: 'real-estate-website-design', name: 'Real Estate', icon: Building2, desc: 'Property listings, builder showcases, and inquiry capture.', color: 'from-teal-500 to-emerald-500', glow: 'teal' },
     { id: 'restaurant-website-design', name: 'Restaurant', icon: Utensils, desc: 'Digital menus, food booking, and ambiance showcases.', color: 'from-orange-500 to-red-500', glow: 'orange' },
     { id: 'healthcare-website-design', name: 'Healthcare', icon: HeartPulse, desc: 'Clinic, hospital, and doctor appointment booking systems.', color: 'from-red-500 to-rose-500', glow: 'red' },
+    { id: 'b2b-portal-development', name: 'B2B & Wholesale', icon: Boxes, desc: 'Distributor portals, bulk quote engines, and dealer networks.', color: 'from-yellow-500 to-amber-500', glow: 'yellow' },
     { id: 'custom-website-design', name: 'Custom Website', icon: Cpu, desc: 'Bespoke custom-engineered architectures from scratch.', color: 'from-fuchsia-500 to-cyan-500', glow: 'fuchsia' },
   ];
 
-  // Core Digital Services List with vibrant themes & top-tier feature highlights
+  // Core Digital Services List with vibrant themes & top-tier feature highlights (8 Comprehensive Solutions)
   const coreDigitalServices = [
     {
       id: 'website-design',
       title: 'Website Design & Development',
       badge: 'Flagship Speed',
       badgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40',
-      tagline: '11 Tailored Architectures • React & Next.js',
+      tagline: '12 Tailored Architectures • React & Next.js',
       desc: 'Engineered for sub-second page loads, 98+ Google Lighthouse scores, high conversion rates, and seamless mobile responsiveness.',
       imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
       features: ['Sub-Second Load Times (98+ Core Web Vitals)', 'Structured JSON-LD SEO Schema', 'Mobile-First Fluid Responsive UI', '1-Click WhatsApp Lead Ingestion'],
@@ -76,6 +79,23 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
       borderColor: 'border-cyan-500/40 hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(6,182,212,0.3)]',
       glowColor: 'rgba(6,182,212,0.5)',
       hasSubtypes: true
+    },
+    {
+      id: 'e-commerce-solutions',
+      title: 'E-Commerce Solution',
+      badge: 'High Converting',
+      badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-400/40',
+      tagline: 'Full Online Store • 0% Commissions',
+      desc: 'Full-featured online store platforms with dynamic product catalogs, instant Razorpay/UPI/Cards checkout, automated WhatsApp tracking, and zero commission.',
+      imageUrl: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80',
+      features: ['Dynamic Product Catalog & Variant Selectors', 'Multi-Gateway UPI QR, Cards & NetBanking', 'Automated Courier Tracking & GST Invoices', 'Coupon Codes & Abandoned Cart Recovery'],
+      techStack: ['Next.js', 'Razorpay', 'Shiprocket', 'PostgreSQL', 'Tailwind'],
+      icon: ShoppingBag,
+      accentColor: 'from-emerald-500 to-teal-500',
+      cardBg: 'from-emerald-950/30 via-slate-900/90 to-slate-950',
+      borderColor: 'border-emerald-500/40 hover:border-emerald-400 hover:shadow-[0_0_35px_rgba(16,185,129,0.3)]',
+      glowColor: 'rgba(16,185,129,0.5)',
+      hasSubtypes: false
     },
     {
       id: 'android-app-development',
@@ -395,7 +415,7 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
                 <span>Specialized Industry Architectures</span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-black text-white mt-1">
-                Explore 11 Tailored Website Design Categories
+                Explore 12 Tailored Website Design Categories
               </h3>
             </div>
             <span className="text-xs text-slate-400 font-mono bg-slate-950/80 px-3 py-1.5 rounded-xl border border-slate-800">
@@ -403,7 +423,7 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
             </span>
           </div>
 
-          {/* 11 Subtypes Pill Grid with Vibrant Hover Effects */}
+          {/* 12 Subtypes Pill Grid with Vibrant Hover Effects */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3.5">
             {websiteTypes.map((type) => {
               const Icon = type.icon;

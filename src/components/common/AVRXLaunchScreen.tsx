@@ -29,8 +29,6 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
     // Opening cinematic transition timer -> set to 'ready' after 1s
     const timer = setTimeout(() => {
       setPhase('ready');
-      // Play atmospheric welcome boot chord shimmer
-      launchSoundEngine.playWelcomeChime();
     }, 1000);
 
     // Prevent body scrolling during launch screen
@@ -46,8 +44,7 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
   const handleLaunchClick = () => {
     if (phase !== 'ready') return;
 
-    // Trigger liftoff sound and JARVIS voice greeting immediately
-    launchSoundEngine.playRocketLiftoff();
+    // Trigger ONLY JARVIS voice greeting ("Welcome to AVRX")
     launchSoundEngine.speakWelcomeToAVRX();
 
     if (reducedMotion) {
@@ -159,23 +156,21 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
             setSoundEnabled(nextSound);
             launchSoundEngine.setMuted(!nextSound);
             if (nextSound) {
-              launchSoundEngine.playWelcomeChime();
-            } else {
-              launchSoundEngine.playClickTick();
+              launchSoundEngine.speakWelcomeToAVRX();
             }
           }}
           className="p-2 rounded-xl bg-slate-900/80 border border-slate-700/80 hover:border-cyan-400 text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs backdrop-blur-md cursor-pointer"
-          title={soundEnabled ? 'Mute Sound' : 'Enable Audio'}
+          title={soundEnabled ? 'Mute Voice' : 'Enable Voice'}
         >
           {soundEnabled ? (
             <>
               <Volume2 className="w-4 h-4 text-cyan-400 animate-pulse" />
-              <span className="hidden sm:inline">Sound FX On</span>
+              <span className="hidden sm:inline">Voice Audio On</span>
             </>
           ) : (
             <>
               <VolumeX className="w-4 h-4 text-slate-400" />
-              <span className="hidden sm:inline">Sound FX Muted</span>
+              <span className="hidden sm:inline">Voice Muted</span>
             </>
           )}
         </button>
@@ -399,7 +394,6 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
               {/* Primary High-Impact Direct Launch Button */}
               <button
                 onClick={handleLaunchClick}
-                onMouseEnter={() => launchSoundEngine.playHoverChirp()}
                 disabled={phase === 'opening'}
                 className="group relative px-8 sm:px-12 py-4 sm:py-5 rounded-2xl bg-slate-950/80 hover:bg-slate-900 border border-slate-700/80 backdrop-blur-xl shadow-[0_0_35px_rgba(0,240,255,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer overflow-hidden"
               >
