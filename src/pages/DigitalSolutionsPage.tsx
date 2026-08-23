@@ -26,7 +26,8 @@ import {
   Cpu,
   Star,
   CheckCircle2,
-  Lock
+  Lock,
+  ShoppingBag
 } from 'lucide-react';
 
 interface DigitalSolutionsPageProps {
@@ -56,6 +57,24 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
         'SEO-Ready Architecture & Lead Forms'
       ],
       price: 'Starting from ₹4,999'
+    },
+    {
+      id: 'e-commerce-solutions',
+      slug: 'e-commerce-solutions',
+      title: 'E-Commerce Solution',
+      badge: 'High Conversion',
+      icon: ShoppingBag,
+      bgImage: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80',
+      shortDesc: 'Full-featured online store platforms with dynamic product catalogs, instant UPI/Card checkout, and automated shipping.',
+      deliverables: [
+        'Dynamic Product Catalog & Variations',
+        'Razorpay, UPI QR, Cards & NetBanking Checkout',
+        'Automated Order & Shipping Tracking (Shiprocket)',
+        'Abandoned Cart Recovery via WhatsApp/Email',
+        'Coupons, Discounts & Flash Sales Engine',
+        'Admin Dashboard with Live Revenue Analytics'
+      ],
+      price: 'Starting from ₹14,999'
     },
     {
       id: 'app-development',

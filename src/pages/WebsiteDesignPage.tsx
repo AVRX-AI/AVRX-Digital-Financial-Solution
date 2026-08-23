@@ -22,6 +22,11 @@ import {
   Lock, 
   Code2, 
   ShoppingCart, 
+  ShoppingBag,
+  CreditCard,
+  Truck,
+  Boxes,
+  Percent,
   Building2, 
   Store, 
   UtensilsCrossed, 
@@ -384,26 +389,26 @@ export const WebsiteDesignPage: React.FC<WebsiteDesignPageProps> = ({ onNavigate
       ctaText: 'Build Corporate Website'
     },
     {
-      id: 'ecommerce-website',
-      title: 'E-Commerce Storefront',
-      suitableFor: 'Online retail stores, apparel brands, electronics sellers & D2C startups',
+      id: 'e-commerce-solutions',
+      title: 'E-Commerce Solution',
+      suitableFor: 'Retail shops, D2C brands, fashion boutiques, grocery delivery, electronics, handmade products & wholesale B2B/B2C stores',
       priceStarting: '₹14,999+',
-      priceDisclaimer: 'Starting from — final pricing depends on SKUs, gateways & integrations.',
-      imageUrl: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=800&q=80',
-      badge: 'Sales Engine',
+      priceDisclaimer: 'Starting from — includes full product catalog, online payment gateway (UPI/Cards), order & inventory management.',
+      imageUrl: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80',
+      badge: 'High-Converting Online Store',
       features: [
-        'Dynamic Product Catalog & Filtering',
-        'Product Detail Pages with Image Gallery',
-        'Multi-Category & Tag Architecture',
-        'Frictionless Shopping Cart & Checkout',
-        'Secure Payment Gateway (Razorpay/UPI/Cards)',
-        'Automated Order & Shipping Management',
-        'Customer Account & Order History Portal',
-        'Coupon Codes & Discount Engine',
-        'Inventory Tracking & Stock Alerts',
-        'Admin Dashboard with Sales Analytics'
+        'Dynamic Product Catalog & Category Taxonomy',
+        'High-Converting Product Detail Pages & Image Zoom',
+        'Multi-Gateway Payment Integration (Razorpay, UPI QR, Cards & NetBanking)',
+        'Frictionless 1-Page Shopping Cart & Instant Checkout',
+        'Automated Order Tracking, SMS/WhatsApp Alerts & GST Invoices',
+        'Customer Dashboard & Reorder History Portal',
+        'Coupon Codes, Tiered Discounts & Referral Engine',
+        'Automated Abandoned Cart Recovery Sequences',
+        'Real-Time Inventory Management & Low-Stock Alerts',
+        'Master Admin Dashboard with Real-Time Revenue Analytics'
       ],
-      ctaText: 'Start Ecommerce Project'
+      ctaText: 'Get E-Commerce Solution'
     },
     {
       id: 'landing-page',
@@ -1305,7 +1310,189 @@ export const WebsiteDesignPage: React.FC<WebsiteDesignPageProps> = ({ onNavigate
 
         </section>
 
-        {/* 14. PRICING COMPARISON TABLE */}
+        {/* 6. DEDICATED E-COMMERCE SOLUTION SPOTLIGHT SECTION */}
+        <section id="ecommerce-solutions-section" className="my-24 bg-gradient-to-br from-[#061b29] via-[#050e1b] to-[#02050f] border border-cyan-500/30 rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl relative overflow-hidden">
+          {/* Ambient Glows */}
+          <div className="absolute top-0 right-0 w-[500px] h-[350px] bg-cyan-500/[0.08] blur-[140px] pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[500px] h-[350px] bg-amber-500/[0.06] blur-[140px] pointer-events-none" />
+
+          <div className="relative z-10 space-y-12">
+            {/* Section Header */}
+            <div className="text-center max-w-4xl mx-auto space-y-4">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(0,240,255,0.2)]">
+                <ShoppingCart className="w-3.5 h-3.5 text-cyan-400" />
+                <span>E-COMMERCE SPECIALIZATION</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+                E-Commerce Solution — <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-amber-400">Sell 24/7 Across India &amp; Globally</span>
+              </h2>
+              <p className="text-slate-300 text-xs sm:text-base max-w-3xl mx-auto leading-relaxed">
+                Full-featured online store platforms engineered for maximum sales conversion. Includes dynamic product catalogues, instant UPI/Card payment gateway checkout, automated courier tracking, and zero recurring transaction commissions.
+              </p>
+            </div>
+
+            {/* Main Interactive Showcase: Left Visual Preview + Right Specs & Features */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+              {/* Left Side: Realistic Online Store Mockup Card */}
+              <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
+                <div className="relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl group">
+                  {/* Browser Bar */}
+                  <div className="px-4 py-3 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                    </div>
+                    <div className="px-3 py-1 rounded-lg bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-300 flex items-center gap-2 max-w-[260px] truncate">
+                      <Lock className="w-3 h-3 text-emerald-400 shrink-0" />
+                      <span className="truncate">https://store.yourbrand.com</span>
+                    </div>
+                    <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-mono font-bold">
+                      Live Store
+                    </span>
+                  </div>
+
+                  {/* Store Preview Image */}
+                  <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-900">
+                    <img
+                      src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80"
+                      alt="AVRX E-Commerce Solution Storefront"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+
+                    {/* Floating Product Highlight Card */}
+                    <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/90 backdrop-blur-xl border border-cyan-500/30 shadow-2xl flex items-center justify-between gap-4">
+                      <div>
+                        <div className="text-[10px] font-mono uppercase text-amber-400 font-bold">D2C Conversion Engine</div>
+                        <div className="text-sm sm:text-base font-black text-white">Instant 1-Click UPI &amp; Card Checkout</div>
+                        <div className="text-xs text-slate-400 mt-0.5">Sub-second cart loading • 0% revenue commission</div>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <div className="text-xs text-slate-400">Starting from</div>
+                        <div className="text-xl font-black text-cyan-400 font-mono">₹14,999+</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Performance Metrics Bar */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-center space-y-0.5">
+                    <div className="text-lg font-black text-emerald-400 font-mono">18s</div>
+                    <div className="text-[10px] uppercase font-bold text-slate-400">Avg Checkout</div>
+                  </div>
+                  <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-center space-y-0.5">
+                    <div className="text-lg font-black text-cyan-400 font-mono">0%</div>
+                    <div className="text-[10px] uppercase font-bold text-slate-400">Sales Commission</div>
+                  </div>
+                  <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-center space-y-0.5">
+                    <div className="text-lg font-black text-amber-400 font-mono">+42%</div>
+                    <div className="text-[10px] uppercase font-bold text-slate-400">Cart Recovery</div>
+                  </div>
+                  <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-center space-y-0.5">
+                    <div className="text-lg font-black text-purple-400 font-mono">100%</div>
+                    <div className="text-[10px] uppercase font-bold text-slate-400">Code Ownership</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side: 6 High-Impact Feature Breakdown Cards */}
+              <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition space-y-1.5">
+                    <div className="flex items-center gap-2 text-cyan-400">
+                      <ShoppingBag className="w-4 h-4" />
+                      <h4 className="font-bold text-sm text-white">Dynamic Product Catalog</h4>
+                    </div>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Unlimited products, category hierarchies, color/size variants, high-res galleries, and bulk CSV imports.
+                    </p>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition space-y-1.5">
+                    <div className="flex items-center gap-2 text-emerald-400">
+                      <CreditCard className="w-4 h-4" />
+                      <h4 className="font-bold text-sm text-white">Payment Gateways &amp; UPI</h4>
+                    </div>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Instant checkout via Razorpay, PhonePe, Paytm, Stripe, UPI QR, Credit/Debit Cards, NetBanking, and COD.
+                    </p>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition space-y-1.5">
+                    <div className="flex items-center gap-2 text-amber-400">
+                      <Truck className="w-4 h-4" />
+                      <h4 className="font-bold text-sm text-white">Courier &amp; Live Tracking</h4>
+                    </div>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Auto-sync with Shiprocket, Delhivery, BlueDart, automated WhatsApp tracking links &amp; GST invoices.
+                    </p>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition space-y-1.5">
+                    <div className="flex items-center gap-2 text-purple-400">
+                      <Percent className="w-4 h-4" />
+                      <h4 className="font-bold text-sm text-white">Coupons &amp; Cart Recovery</h4>
+                    </div>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Smart discount promo codes, flash sale banners, and automated WhatsApp/email abandoned cart triggers.
+                    </p>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition space-y-1.5">
+                    <div className="flex items-center gap-2 text-rose-400">
+                      <Boxes className="w-4 h-4" />
+                      <h4 className="font-bold text-sm text-white">Inventory &amp; Stock Alerts</h4>
+                    </div>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Real-time inventory deduction, low-stock alerts, out-of-stock badges, and backorder notifications.
+                    </p>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition space-y-1.5">
+                    <div className="flex items-center gap-2 text-blue-400">
+                      <BarChart3 className="w-4 h-4" />
+                      <h4 className="font-bold text-sm text-white">Master Admin Analytics</h4>
+                    </div>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Intuitive dashboard for revenue trends, order fulfillment, top SKUs, customer data, and sales reports.
+                    </p>
+                  </div>
+                </div>
+
+                {/* CTAs and Gateway Badges */}
+                <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800/90 space-y-4">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                      <div className="text-xs font-bold text-white">Supported Payment Gateways &amp; Logistics:</div>
+                      <div className="text-[11px] text-slate-400">Razorpay • PhonePe • Paytm • Stripe • Cashfree • Shiprocket • Delhivery</div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                    <button
+                      onClick={() => handleOpenFormWithPlan('E-Commerce Solution')}
+                      className="w-full sm:w-auto flex-1 py-3.5 px-6 rounded-xl bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-slate-950 font-black text-xs shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:scale-105 transition flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <span>Get E-Commerce Solution Quote</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+
+                    <button
+                      onClick={() => onNavigate('service-detail', 'e-commerce-solutions')}
+                      className="w-full sm:w-auto py-3.5 px-5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-bold text-xs transition text-center"
+                    >
+                      Explore E-Commerce Specs
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
         <section id="pricing-section" className="my-24 space-y-10">
           
           <div className="text-center max-w-3xl mx-auto space-y-3">

@@ -321,16 +321,10 @@ class LaunchSoundEngine {
 
   /**
    * 5. JARVIS AI Voice Greeting: "Welcome to AVRX"
-   * Sophisticated, calm, deep British male JARVIS voice greeting
+   * Sophisticated, calm, deep British male JARVIS voice greeting (Voice only - zero sound effects)
    */
   public speakWelcomeToAVRX() {
     if (this.isMuted || typeof window === 'undefined') return;
-
-    try {
-      this.playWelcomeChime();
-    } catch {
-      // Ignore audio context autoplay restriction
-    }
 
     if (!('speechSynthesis' in window)) return;
 
