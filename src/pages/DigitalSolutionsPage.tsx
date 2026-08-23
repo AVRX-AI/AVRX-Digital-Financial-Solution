@@ -45,6 +45,7 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
       title: 'Website Design & Development',
       badge: 'Popular',
       icon: Layout,
+      bgImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
       shortDesc: 'High-speed, conversion-focused websites engineered for businesses, corporate brands, and e-commerce stores.',
       deliverables: [
         'Static Onepage Websites (₹4,999)',
@@ -62,6 +63,7 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
       title: 'App Development (Android & iOS)',
       badge: 'High Impact',
       icon: Smartphone,
+      bgImage: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80',
       shortDesc: 'Native & cross-platform mobile apps engineered for fluid performance, security, and Play Store / App Store release.',
       deliverables: [
         'Android & iOS Mobile Applications',
@@ -79,6 +81,7 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
       title: 'Web Portal Development',
       badge: 'Enterprise',
       icon: Layers,
+      bgImage: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80',
       shortDesc: 'Enterprise web portals for customer self-service, employee management, and vendor networks.',
       deliverables: [
         'Customer & Client Self-Service Portals',
@@ -96,6 +99,7 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
       title: 'Web Application Development',
       badge: 'Full-Stack',
       icon: Code2,
+      bgImage: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
       shortDesc: 'Bespoke SaaS platforms, custom business automation, and robust web applications with TypeScript and Node.js.',
       deliverables: [
         'Custom Web Applications & SaaS MVPs',
@@ -113,6 +117,7 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
       title: 'Digital Marketing & Growth',
       badge: 'Lead Gen',
       icon: Megaphone,
+      bgImage: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=800&q=80',
       shortDesc: 'Targeted paid advertising and social media campaigns engineered to generate qualified business inquiries.',
       deliverables: [
         'Social Media Marketing & Branding',
@@ -130,6 +135,7 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
       title: 'Search Engine Optimization (SEO)',
       badge: 'Organic',
       icon: TrendingUp,
+      bgImage: 'https://images.unsplash.com/photo-1571721795195-a2ca2d3370a9?auto=format&fit=crop&w=800&q=80',
       shortDesc: 'Rank higher on Google search results for valuable high-intent keywords to secure organic inbound customers.',
       deliverables: [
         'In-Depth Technical SEO & Core Web Vitals',
@@ -182,23 +188,27 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
   const digitalFaqs = [
     {
       q: 'How long does it take to develop a custom business website or web portal?',
-      a: 'Standard business websites and landing pages are typically delivered in 5 to 10 working days. Complex custom web applications, e-commerce platforms, or multi-role portals take between 2 to 4 weeks depending on feature requirements.'
+      a: 'Standard business websites and landing pages are typically delivered in 3 to 7 working days. Complex custom web applications, e-commerce platforms, or multi-role portals take between 10 to 20 working days depending on custom feature requirements.'
     },
     {
       q: 'Can you redesign our existing outdated website without losing our Google rankings?',
-      a: 'Yes. We perform a complete URL and content mapping audit with 301 redirects, preserving your existing organic search rankings while drastically modernizing your visual identity and page speed.'
+      a: 'Yes. We perform a complete URL and content mapping audit with 301 redirects, preserving your existing organic search rankings while drastically modernizing your visual identity, mobile responsiveness, and page load speed.'
     },
     {
       q: 'Will my website and mobile app work smoothly on all devices?',
-      a: 'Absolutely. Every digital solution built by AVRX is developed mobile-first and tested rigorously across desktops, laptops, tablets, Android smartphones, and Apple iOS devices.'
+      a: 'Absolutely. Every digital solution built by AVRX is developed mobile-first and tested rigorously across iOS, Android smartphones, tablets, laptops, and ultra-wide 4K desktop screens.'
     },
     {
       q: 'Do you provide maintenance and security updates after the project is live?',
-      a: 'Yes. AVRX provides ongoing maintenance packages covering security patches, daily cloud backups, server monitoring, content updates, and dedicated developer support.'
+      a: 'Yes. AVRX provides ongoing maintenance packages covering security patches, daily cloud backups, server monitoring, content updates, SSL renewals, and dedicated developer support.'
     },
     {
       q: 'Can you integrate WhatsApp chat, payment gateways, and custom CRM forms?',
-      a: 'Yes. We seamlessly integrate Razorpay, Stripe, Cashfree, automated WhatsApp lead triggers, Google Sheets, custom CRM webhooks, and email notifications.'
+      a: 'Yes. We seamlessly integrate Razorpay, Stripe, Cashfree, UPI QR codes, automated WhatsApp lead triggers, Google Sheets, custom CRM webhooks, and instant email/SMS alerts.'
+    },
+    {
+      q: 'Do I get 100% source code ownership and database access?',
+      a: 'Yes, 100%. Upon project completion and final handover, all intellectual property, source code repositories, domain access, and cloud credentials belong fully to you with zero vendor lock-in.'
     }
   ];
 
@@ -290,15 +300,28 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
                   spotlightRadius={420}
                   spotlightOpacity={0.25}
                   soundOnHover={true}
-                  className="rounded-3xl bg-slate-900/80 border border-slate-800/90 hover:border-cyan-500/50 p-6 sm:p-8 flex flex-col justify-between"
+                  className="rounded-3xl bg-slate-900/80 border border-slate-800/90 hover:border-cyan-500/50 p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group"
                 >
-                  {/* Subtle Corner Glow */}
-                  <div className="absolute top-0 right-0 w-36 h-36 bg-cyan-500/[0.04] rounded-full blur-2xl group-hover:bg-cyan-500/[0.1] transition-all" />
+                  {/* Subtle Background Service Image (Shows faintly in background as requested) */}
+                  {card.bgImage && (
+                    <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none z-0">
+                      <img
+                        src={card.bgImage}
+                        alt={card.title}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover opacity-[0.07] group-hover:opacity-[0.15] transition-all duration-700 mix-blend-luminosity scale-105 group-hover:scale-100"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/40" />
+                    </div>
+                  )}
 
-                  <div className="space-y-5">
+                  {/* Subtle Corner Glow */}
+                  <div className="absolute top-0 right-0 w-36 h-36 bg-cyan-500/[0.04] rounded-full blur-2xl group-hover:bg-cyan-500/[0.1] transition-all z-0" />
+
+                  <div className="space-y-5 relative z-10">
                     {/* Icon & Badge Header */}
                     <div className="flex items-center justify-between">
-                      <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 text-cyan-400 group-hover:border-cyan-500/40 group-hover:text-cyan-300 transition-colors">
+                      <div className="p-3.5 rounded-2xl bg-slate-950/90 backdrop-blur-sm border border-slate-800 text-cyan-400 group-hover:border-cyan-500/40 group-hover:text-cyan-300 transition-colors shadow-inner">
                         <Icon className="w-6 h-6" />
                       </div>
                       <span className="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 text-[11px] font-mono font-bold">
@@ -331,7 +354,7 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
                   </div>
 
                   {/* Price & Action Buttons */}
-                  <div className="pt-6 mt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div className="pt-6 mt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 relative z-10">
                     <div>
                       <div className="text-[10px] uppercase font-mono text-slate-500">Starting At</div>
                       <div className="text-sm font-black text-cyan-400 font-mono">{card.price}</div>
@@ -561,23 +584,26 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
           </div>
         </div>
 
-        {/* 8. Digital Solutions FAQ Section */}
-        <div className="my-20 max-w-4xl mx-auto space-y-6">
+        {/* 8. Digital Solutions FAQ Section (2-Column Grid Layout) */}
+        <div className="my-20 max-w-6xl mx-auto space-y-8">
           <div className="text-center space-y-2">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase">
               <Sparkles className="w-3.5 h-3.5 text-purple-400" />
               <span>COMMON QUESTIONS</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">
+            <h2 className="text-2xl sm:text-4xl font-black text-white">
               Frequently Asked Questions on Digital Solutions
             </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Clear, transparent answers to technical, delivery and pricing queries.
+            </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
             {digitalFaqs.map((faq, idx) => (
               <div 
                 key={idx}
-                className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-900/80"
+                className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-900/80 hover:border-cyan-500/30 transition-colors"
               >
                 <button
                   onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}

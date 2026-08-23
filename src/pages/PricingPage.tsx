@@ -256,6 +256,14 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
     {
       q: 'How does your zero-upfront Loan & Subsidy concierge work?',
       a: 'We do not charge upfront consultation fees for loan eligibility checks. We assist with bank documentation, DPR project reports, and subsidy applications through our direct banking channel tie-ups.'
+    },
+    {
+      q: 'Do you provide GST invoices for corporate input tax credit (ITC)?',
+      a: 'Yes, absolutely. We issue fully compliant B2B GST tax invoices with itemized SAC/HSN codes so your company or firm can claim 100% input tax credit on your return.'
+    },
+    {
+      q: 'What ongoing maintenance and warranty support is provided after project delivery?',
+      a: 'All digital and website projects include 30 to 90 days of complimentary technical warranty, bug fixes, and security patches. Extended annual SLA support plans are also available.'
     }
   ];
 
@@ -646,10 +654,10 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* 4. FAQ Accordion */}
-        <div className="max-w-4xl mx-auto space-y-6">
+        {/* 4. FAQ Accordion (2-Column Grid Layout) */}
+        <div className="max-w-6xl mx-auto space-y-8">
           <div className="text-center space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-black text-white">
+            <h2 className="text-2xl sm:text-4xl font-black text-white">
               Frequently Asked Questions on Pricing
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
@@ -657,11 +665,11 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onNavigate }) => {
             </p>
           </div>
 
-          <div className="space-y-3 pt-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start pt-2">
             {pricingFaqs.map((faq, idx) => (
               <div 
                 key={idx}
-                className="rounded-2xl bg-slate-900/80 border border-slate-800 overflow-hidden transition"
+                className="rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/30 overflow-hidden transition"
               >
                 <button
                   onClick={() => {

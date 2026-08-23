@@ -221,6 +221,14 @@ export const InsuranceSolutionsPage: React.FC<InsuranceSolutionsPageProps> = ({ 
     {
       q: 'Is travel insurance mandatory for Schengen European visa applications?',
       a: 'Yes. European embassies mandate travel health insurance with a minimum medical coverage of €30,000 covering all Schengen member countries. All AVRX international travel policies fully comply with Schengen visa mandates.'
+    },
+    {
+      q: 'What is the cashless hospitalization procedure under Health Insurance?',
+      a: 'Simply present your health e-card and photo ID at the hospital insurance desk. The hospital initiates pre-authorization with the TPA, and approvals are typically granted within 1 to 2 hours with zero out-of-pocket cash requirements for admissible expenses.'
+    },
+    {
+      q: 'How does Commercial Shop & Property Insurance safeguard business assets?',
+      a: 'Commercial policies cover physical damage caused by fire, lightning, earthquake, floods, burglary, money-in-transit theft, and public liability, ensuring financial continuity following unexpected business disruptions.'
     }
   ];
 
@@ -619,8 +627,8 @@ export const InsuranceSolutionsPage: React.FC<InsuranceSolutionsPageProps> = ({ 
 
         </div>
 
-        {/* 6. FAQ Accordion */}
-        <div className="max-w-4xl mx-auto space-y-6">
+        {/* 6. FAQ Accordion (2-Column Grid Layout) */}
+        <div className="max-w-6xl mx-auto space-y-8">
           <div className="text-center space-y-2">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase font-mono">
               <Sparkles className="w-3.5 h-3.5 text-purple-400" />
@@ -629,13 +637,16 @@ export const InsuranceSolutionsPage: React.FC<InsuranceSolutionsPageProps> = ({ 
             <h2 className="text-2xl sm:text-4xl font-black text-white">
               Insurance &amp; Claims Support Queries
             </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Straightforward answers about cashless claims, waiting periods, and policy benefits.
+            </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
             {insuranceFaqs.map((faq, idx) => (
               <div 
                 key={idx}
-                className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/80"
+                className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/80 hover:border-purple-500/30 transition-colors"
               >
                 <button
                   onClick={() => {

@@ -1010,32 +1010,32 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
 
         </section>
 
-        {/* 12. FINANCIAL COMPARISON SECTION (INTERACTIVE TABS) */}
-        <section className="my-24 space-y-10">
+        {/* 12. FINANCIAL COMPARISON SECTION (INTERACTIVE TABS & STRETCHED MATRIX) */}
+        <section className="my-24 w-full max-w-7xl mx-auto space-y-10">
           
           <div className="text-center max-w-3xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-wider">
-              <SlidersHorizontal className="w-3.5 h-3.5 text-cyan-400" />
-              <span>DECISION MATRIX</span>
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-wider">
+              <SlidersHorizontal className="w-4 h-4 text-cyan-400" />
+              <span>DYNAMIC DECISION MATRIX</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
               Which Solution Fits Your Requirement?
             </h2>
             <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
-              Select your objective below to filter through the most relevant financial and protection instruments.
+              Explore categorized financial instruments tailored for personal milestones, working capital, vehicle acquisitions, and business asset protection.
             </p>
           </div>
 
           {/* Tab Navigation */}
-          <div className="flex flex-wrap items-center justify-center gap-2.5">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             {Object.keys(comparisonCategories).map((key) => (
               <button
                 key={key}
                 onClick={() => setActiveComparisonTab(key)}
-                className={`px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold uppercase tracking-wider transition ${
+                className={`px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-black uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                   activeComparisonTab === key
-                    ? 'bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 shadow-[0_0_20px_rgba(16,185,129,0.4)] scale-105'
-                    : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white'
+                    ? 'bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 shadow-[0_0_25px_rgba(16,185,129,0.4)] scale-105'
+                    : 'bg-slate-900/90 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
                 }`}
               >
                 {key}
@@ -1043,30 +1043,74 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
             ))}
           </div>
 
-          {/* Active Tab Content Card */}
-          <div className="rounded-3xl bg-slate-900/90 border border-slate-800 p-6 sm:p-10 shadow-2xl max-w-5xl mx-auto space-y-6">
-            <div>
-              <h3 className="text-2xl font-black text-white">{comparisonCategories[activeComparisonTab].title}</h3>
-              <p className="text-xs sm:text-sm text-slate-300 mt-1">{comparisonCategories[activeComparisonTab].desc}</p>
+          {/* Stretched Tab Content Card */}
+          <div className="rounded-3xl bg-slate-900/90 border border-slate-800 p-6 sm:p-10 lg:p-12 shadow-2xl space-y-8 w-full">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800/80">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest">Active Category Match</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-black text-white">{comparisonCategories[activeComparisonTab].title}</h3>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">{comparisonCategories[activeComparisonTab].desc}</p>
+              </div>
+              <div className="px-4 py-2 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-cyan-400 font-bold self-start md:self-auto">
+                {comparisonCategories[activeComparisonTab].services.length} Solutions Available
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+            {/* Expansive Stretched Service Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
               {comparisonCategories[activeComparisonTab].services.map((serviceName, idx) => (
-                <div key={idx} className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3 flex flex-col justify-between">
-                  <div>
-                    <div className="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-2">
-                      <Check className="w-4 h-4" />
+                <div 
+                  key={idx} 
+                  className="p-6 rounded-2xl bg-slate-950/90 border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 space-y-4 flex flex-col justify-between group shadow-lg"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                        <Check className="w-5 h-5" />
+                      </div>
+                      <span className="text-[10px] font-mono font-bold text-slate-500 uppercase px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800">
+                        Option 0{idx + 1}
+                      </span>
                     </div>
-                    <h4 className="text-base font-bold text-white">{serviceName}</h4>
-                    <p className="text-xs text-slate-400 mt-1">Structured guidance & eligibility assistance available.</p>
+
+                    <div>
+                      <h4 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                        {serviceName}
+                      </h4>
+                      <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                        Comprehensive loan &amp; insurance assistance with rapid verification, documentation review, and bank liaison.
+                      </p>
+                    </div>
+
+                    <div className="space-y-1.5 pt-2 border-t border-slate-900 text-xs text-slate-300">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        <span>Pre-application eligibility check</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        <span>Multiple regulated lender tie-ups</span>
+                      </div>
+                    </div>
                   </div>
 
-                  <button
-                    onClick={() => handleOpenFormWithSolution(serviceName)}
-                    className="w-full py-2 rounded-xl bg-slate-900 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold transition"
-                  >
-                    Enquire for {serviceName}
-                  </button>
+                  <div className="pt-3 border-t border-slate-800/80 grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => handleOpenFormWithSolution(serviceName)}
+                      className="w-full py-2.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs transition shadow-sm cursor-pointer"
+                    >
+                      Enquire Now
+                    </button>
+                    <button
+                      onClick={() => onNavigate('service-detail', serviceName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''))}
+                      className="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 font-bold text-xs transition cursor-pointer"
+                    >
+                      Details
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
@@ -1202,57 +1246,104 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
 
         </section>
 
-        {/* 15. DOCUMENT CHECKLIST (INTERACTIVE CATEGORIES) */}
-        <section className="my-24 space-y-10">
+        {/* 15. DOCUMENT CHECKLIST (STRETCHED EXPANSIVE BENTO GRID) */}
+        <section className="my-24 w-full max-w-7xl mx-auto space-y-10">
           
           <div className="text-center max-w-3xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider">
-              <FileText className="w-3.5 h-3.5 text-purple-400" />
-              <span>TRANSPARENT REQUIREMENTS</span>
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider">
+              <FileText className="w-4 h-4 text-purple-400" />
+              <span>DOCUMENT READINESS HUB</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
               What Documents May Be Required?
             </h2>
             <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
-              Exact requirements vary by product, lender/provider and applicant profile. Here is the general checklist.
+              Comprehensive itemized document requirements across borrower categories for prompt credit evaluation and swift bank sanctions.
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto space-y-6">
-            {/* Checklist Category Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              {Object.entries(documentCategories).map(([key, data]) => (
-                <button
-                  key={key}
-                  onClick={() => setActiveDocTab(key)}
-                  className={`px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition ${
-                    activeDocTab === key
-                      ? 'bg-emerald-400 text-slate-950 shadow-md font-black'
-                      : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white'
-                  }`}
-                >
-                  {data.label}
-                </button>
-              ))}
-            </div>
+          {/* Stretched Multi-Card Grid for All Document Categories */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Object.entries(documentCategories).map(([key, data], idx) => {
+              const borderStyles = [
+                'border-cyan-500/30 hover:border-cyan-400/80 bg-cyan-950/10',
+                'border-amber-500/30 hover:border-amber-400/80 bg-amber-950/10',
+                'border-emerald-500/30 hover:border-emerald-400/80 bg-emerald-950/10',
+                'border-purple-500/30 hover:border-purple-400/80 bg-purple-950/10',
+                'border-rose-500/30 hover:border-rose-400/80 bg-rose-950/10'
+              ];
+              const bStyle = borderStyles[idx % borderStyles.length];
 
-            {/* Checklist Items Container */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-slate-900/90 border border-slate-800 shadow-xl space-y-3">
-              <div className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                Required for {documentCategories[activeDocTab].label}:
-              </div>
-              <div className="space-y-2.5">
-                {documentCategories[activeDocTab].items.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 text-xs sm:text-sm text-slate-200">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    <span>{item}</span>
+              return (
+                <div 
+                  key={key} 
+                  className={`p-6 sm:p-7 rounded-3xl bg-slate-900/90 border ${bStyle} shadow-xl space-y-4 hover:-translate-y-1 transition duration-300 flex flex-col justify-between group`}
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-white font-mono font-bold text-xs">
+                          0{idx + 1}
+                        </div>
+                        <h3 className="text-base font-bold text-white group-hover:text-emerald-300 transition-colors">
+                          {data.label}
+                        </h3>
+                      </div>
+                      <span className="text-[10px] font-mono text-slate-500 uppercase">
+                        {data.items.length} Proofs
+                      </span>
+                    </div>
+
+                    <div className="space-y-2.5 pt-1">
+                      {data.items.map((item, i) => (
+                        <div key={i} className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs text-slate-200">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                          <span className="leading-snug">{item}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}
+
+                  <div className="pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
+                    <span className="font-mono text-emerald-400 font-semibold">Self-Attested / E-KYC</span>
+                    <button
+                      onClick={() => handleOpenFormWithSolution(`Document Guidance for ${data.label}`)}
+                      className="text-xs font-bold text-cyan-400 hover:text-cyan-300 transition cursor-pointer"
+                    >
+                      Need Help? &rarr;
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* Special Callout 6th Card: Expert Support */}
+            <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-emerald-950/30 via-slate-900 to-slate-950 border border-emerald-500/40 shadow-xl space-y-4 flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-emerald-400 text-xs font-mono font-bold uppercase">
+                  <ShieldCheck className="w-5 h-5" />
+                  <span>SPECIALIST ASSISTANCE</span>
+                </div>
+                <h3 className="text-xl font-bold text-white">Missing Some Paperwork?</h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Our loan concierges assist in preparing Chartered Accountant certified DPRs, net worth certificates, e-bank statement aggregation, and rent agreement affidavits.
+                </p>
+                <div className="p-3.5 rounded-xl bg-slate-950/90 border border-emerald-500/20 text-xs text-emerald-300">
+                  ⚡ 100% Free Initial Document Scrutiny &amp; CIBIL Assessment
+                </div>
               </div>
-              <div className="text-[11px] text-slate-500 italic pt-2">
-                *Note: Additional documentation such as property title deeds, CA certifications, or guarantor proofs may be requested based on specific institutional mandates.
-              </div>
+
+              <button
+                onClick={() => handleOpenFormWithSolution('Document Review & Loan Assistance')}
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-500 text-slate-950 font-black text-xs uppercase tracking-wider hover:scale-105 transition shadow-lg cursor-pointer"
+              >
+                Upload / Review My Documents
+              </button>
             </div>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 text-center text-xs text-slate-400 italic">
+            *Note: Additional documentation such as property chain deeds, sanctioned blueprint maps, or CA net worth certificates may be requested by specific institutional underwriters.
           </div>
 
         </section>
@@ -1325,24 +1416,27 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
 
         </section>
 
-        {/* 17. FINANCIAL FAQ ACCORDION */}
-        <section className="my-24 max-w-4xl mx-auto space-y-8">
+        {/* 17. FINANCIAL FAQ ACCORDION (2-COLUMN GRID LAYOUT) */}
+        <section className="my-24 max-w-6xl mx-auto space-y-8">
           
           <div className="text-center space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider">
               <HelpCircle className="w-3.5 h-3.5 text-purple-400" />
               <span>FREQUENTLY ASKED QUESTIONS</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Financial Solutions & Eligibility FAQs
+            <h2 className="text-3xl sm:text-5xl font-black text-white">
+              Financial Solutions &amp; Eligibility FAQs
             </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Clear guidance on eligibility criteria, documentation, interest benchmarks, and timelines.
+            </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
             {financialFaqs.map((faq, idx) => (
               <div 
                 key={idx}
-                className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-900/80"
+                className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-900/80 hover:border-emerald-500/30 transition-colors"
               >
                 <button
                   onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}

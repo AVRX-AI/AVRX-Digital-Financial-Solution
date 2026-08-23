@@ -32,7 +32,10 @@ import {
   Search,
   CheckSquare,
   Shield,
-  Coins
+  Coins,
+  Lock,
+  Star,
+  TrendingUp
 } from 'lucide-react';
 import { launchSoundEngine } from '../utils/launchSoundEngine';
 
@@ -176,6 +179,102 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
     { period: '31st December', title: 'GSTR-9 Annual GST Return', tag: 'Annual GST', tagColor: 'border-blue-500/40 text-blue-300 bg-blue-500/10', desc: 'Annual consolidation of inward/outward supplies, tax paid, and ITC reconciliations.' }
   ];
 
+  // Strategic Tax Advantages (8 full items for stretched bento grid)
+  const strategicTaxAdvantages = [
+    {
+      title: 'Guaranteed 100% On-Time SLA',
+      desc: 'Zero risk of government late fees with automated statutory calendar alerts and expedited filing pipelines.',
+      icon: Clock,
+      color: { bg: 'from-amber-500/15 via-slate-900/80 to-slate-950', border: 'border-amber-500/30 hover:border-amber-400', text: 'text-amber-400' }
+    },
+    {
+      title: 'CA & Advocate Supervised',
+      desc: 'Every return, incorporation draft, and tax calculation is verified by certified Chartered Accountants & Legal Advocates.',
+      icon: ShieldCheck,
+      color: { bg: 'from-emerald-500/15 via-slate-900/80 to-slate-950', border: 'border-emerald-500/30 hover:border-emerald-400', text: 'text-emerald-400' }
+    },
+    {
+      title: 'Optimized ITC & Tax Savings',
+      desc: 'Deep reconciliation of GSTR-2B/3B and AIS/TIS to claim 100% legitimate Input Tax Credit & income deductions.',
+      icon: Zap,
+      color: { bg: 'from-cyan-500/15 via-slate-900/80 to-slate-950', border: 'border-cyan-500/30 hover:border-cyan-400', text: 'text-cyan-400' }
+    },
+    {
+      title: 'Audit-Proof 256-Bit Vault',
+      desc: 'Bank-grade encrypted digital document repository keeping your books, challans, and receipts accessible forever.',
+      icon: Lock,
+      color: { bg: 'from-purple-500/15 via-slate-900/80 to-slate-950', border: 'border-purple-500/30 hover:border-purple-400', text: 'text-purple-400' }
+    },
+    {
+      title: 'Proactive Notice Defense',
+      desc: 'Comprehensive representation and reply drafting for Section 143(1), 148, or GST DRC-01 notices without stress.',
+      icon: Scale,
+      color: { bg: 'from-rose-500/15 via-slate-900/80 to-slate-950', border: 'border-rose-500/30 hover:border-rose-400', text: 'text-rose-400' }
+    },
+    {
+      title: 'Zero Hidden Government Surcharges',
+      desc: '100% transparent fee structure itemizing government challans, portal fees, and professional charges upfront.',
+      icon: Award,
+      color: { bg: 'from-blue-500/15 via-slate-900/80 to-slate-950', border: 'border-blue-500/30 hover:border-blue-400', text: 'text-blue-400' }
+    },
+    {
+      title: 'Pan-India Corporate Filing',
+      desc: 'Seamless company registration, ROC compliances, and shop licenses across all 28 states & 8 Union Territories.',
+      icon: Building2,
+      color: { bg: 'from-teal-500/15 via-slate-900/80 to-slate-950', border: 'border-teal-500/30 hover:border-teal-400', text: 'text-teal-400' }
+    },
+    {
+      title: 'Direct WhatsApp Concierge',
+      desc: 'Dedicated compliance manager assigned to your file for real-time status updates, challan dispatches, and queries.',
+      icon: Sparkles,
+      color: { bg: 'from-orange-500/15 via-slate-900/80 to-slate-950', border: 'border-orange-500/30 hover:border-orange-400', text: 'text-orange-400' }
+    }
+  ];
+
+  // Step-by-Step Execution Process Roadmap (5 phases)
+  const taxExecutionSteps = [
+    {
+      step: '01',
+      phase: 'Phase 01',
+      title: 'Intake & Requirement Scrutiny',
+      desc: 'Share basic PAN, entity details, and financial records via encrypted portal or direct WhatsApp specialist.',
+      sla: 'Within 2 Hours',
+      color: { text: 'text-amber-400', border: 'border-amber-500/40 hover:border-amber-400', badge: 'bg-amber-500/10 text-amber-300 border-amber-500/30' }
+    },
+    {
+      step: '02',
+      phase: 'Phase 02',
+      title: 'CA Audit & Document Validation',
+      desc: 'Senior tax professionals review invoices, TDS forms, AIS/TIS data, and calculate optimal deductions.',
+      sla: 'Same Day',
+      color: { text: 'text-cyan-400', border: 'border-cyan-500/40 hover:border-cyan-400', badge: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30' }
+    },
+    {
+      step: '03',
+      phase: 'Phase 03',
+      title: 'Draft Approval & Client Review',
+      desc: 'Detailed computation sheet, tax breakdown, and draft application shared with you for one-click digital sign-off.',
+      sla: 'Real-Time',
+      color: { text: 'text-emerald-400', border: 'border-emerald-500/40 hover:border-emerald-400', badge: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30' }
+    },
+    {
+      step: '04',
+      phase: 'Phase 04',
+      title: 'E-Filing & Portal Submission',
+      desc: 'Seamless direct API filing with Income Tax Department (ITD), GSTN, MCA, or MSME national databases.',
+      sla: 'Instant E-Filing',
+      color: { text: 'text-purple-400', border: 'border-purple-500/40 hover:border-purple-400', badge: 'bg-purple-500/10 text-purple-300 border-purple-500/30' }
+    },
+    {
+      step: '05',
+      phase: 'Phase 05',
+      title: 'Acknowledgment & Ongoing Support',
+      desc: 'Official ITR-V, GST Certificate, Udyam Registration, or MCA COI delivered with lifetime compliance advisory.',
+      sla: 'Lifetime Archive',
+      color: { text: 'text-rose-400', border: 'border-rose-500/40 hover:border-rose-400', badge: 'bg-rose-500/10 text-rose-300 border-rose-500/30' }
+    }
+  ];
+
   // Document Checklist ("What You'll Need")
   const taxDocumentChecklist = [
     {
@@ -216,6 +315,10 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
     {
       q: 'How is client data protected during tax filing and document sharing?',
       a: 'AVRX implements bank-grade 256-bit encryption for all file uploads and transactions. Your PAN, Aadhaar, bank records, and financial statements are strictly processed for statutory filings and never shared with unauthorized third parties.'
+    },
+    {
+      q: 'Can AVRX assist with annual MCA compliance and ROC filings?',
+      a: 'Yes. We manage end-to-end statutory annual compliances including AOC-4, MGT-7, DIR-3 KYC, auditor appointments (ADT-1), and board resolution documentation for Private Limited companies and LLPs.'
     }
   ];
 
@@ -766,8 +869,112 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
 
         </div>
 
-        {/* 6. Document Checklist ("What You'll Need") */}
-        <div className="space-y-8">
+        {/* 6. Strategic Value & Key Benefits (Stretched Expansive 4-Column Bento Grid) */}
+        <section className="space-y-8 w-full max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30 text-xs font-mono font-bold uppercase">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>TAX &amp; CORPORATE EXCELLENCE</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+              Key Benefits &amp; Strategic Advantages
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Comprehensive statutory protection, direct Chartered Accountant oversight, and optimized financial structures for all enterprises.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {strategicTaxAdvantages.map((adv, idx) => {
+              const IconComp = adv.icon;
+              return (
+                <div
+                  key={idx}
+                  className={`p-6 rounded-3xl bg-gradient-to-b ${adv.color.bg} border ${adv.color.border} space-y-4 hover:-translate-y-1.5 transition-all duration-300 shadow-xl group flex flex-col justify-between`}
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className={`w-12 h-12 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center justify-center ${adv.color.text} group-hover:scale-110 transition-transform shadow-md`}>
+                        <IconComp className="w-6 h-6" />
+                      </div>
+                      <span className="text-[10px] font-mono font-bold text-slate-500 uppercase px-2.5 py-1 rounded-lg bg-slate-900/80 border border-slate-800">
+                        0{idx + 1}
+                      </span>
+                    </div>
+
+                    <div>
+                      <div className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider">Advantage 0{idx + 1}</div>
+                      <h3 className="text-base font-bold text-white group-hover:text-amber-300 transition-colors mt-0.5">
+                        {adv.title}
+                      </h3>
+                      <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                        {adv.desc}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-800/60 flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 font-bold">
+                    <Check className="w-3.5 h-3.5" />
+                    <span>Verified Advantage</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* 7. Step-by-Step Execution Process Roadmap (Stretched Expansive 5-Column Timeline) */}
+        <section className="w-full max-w-7xl mx-auto p-8 sm:p-12 lg:p-14 rounded-3xl bg-gradient-to-b from-slate-950 via-slate-900/80 to-slate-950 border border-slate-800 space-y-12 shadow-2xl relative overflow-hidden">
+          
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30 text-xs font-mono font-bold uppercase">
+              <Clock className="w-4 h-4 text-amber-400" />
+              <span>TRANSPARENT STEP-BY-STEP EXECUTION ROADMAP</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+              How the Execution Process Works
+            </h2>
+            <p className="text-xs sm:text-base text-slate-300 leading-relaxed">
+              Expedited, fully paperless multi-stage workflow from initial document ingestion to CA verification, e-filing, and lifelong compliance support.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 relative">
+            {taxExecutionSteps.map((step, idx) => (
+              <div 
+                key={idx} 
+                className={`p-6 rounded-2xl bg-slate-900/90 border ${step.color.border} space-y-4 group hover:-translate-y-2 transition-all duration-300 shadow-xl flex flex-col justify-between`}
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+                    <span className={`text-3xl font-black font-mono ${step.color.text}`}>
+                      {step.step}
+                    </span>
+                    <span className={`px-2.5 py-1 rounded-md text-[10px] font-mono font-bold border ${step.color.badge}`}>
+                      {step.phase}
+                    </span>
+                  </div>
+
+                  <h4 className="text-sm sm:text-base font-bold text-white leading-snug group-hover:text-amber-300 transition-colors">
+                    {step.title}
+                  </h4>
+
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-slate-500">Target SLA</span>
+                  <span className="text-emerald-400 font-bold">{step.sla}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 8. Document Checklist ("What You'll Need") */}
+        <div className="space-y-8 w-full max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto space-y-2">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase font-mono">
               <FileCheck className="w-3.5 h-3.5 text-cyan-400" />
@@ -776,13 +983,16 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
             <h2 className="text-3xl sm:text-5xl font-black text-white">
               What You&apos;ll Need: Checklist
             </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Clear itemized list of KYC and business documentation needed for expedited processing.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {taxDocumentChecklist.map((group, idx) => (
               <div 
                 key={idx}
-                className="p-6 rounded-3xl bg-slate-950/90 border border-slate-800 space-y-4 hover:border-amber-500/40 transition-colors"
+                className="p-6 rounded-3xl bg-slate-950/90 border border-slate-800 space-y-4 hover:border-amber-500/40 transition-colors shadow-lg"
               >
                 <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                   <h4 className="font-bold text-white text-sm sm:text-base">{group.title}</h4>
@@ -804,8 +1014,8 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
           </div>
         </div>
 
-        {/* 7. FAQ Accordion */}
-        <div className="max-w-4xl mx-auto space-y-6">
+        {/* 7. FAQ Accordion (2-Column Grid Layout) */}
+        <div className="max-w-6xl mx-auto space-y-8">
           <div className="text-center space-y-2">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase font-mono">
               <Sparkles className="w-3.5 h-3.5 text-purple-400" />
@@ -814,13 +1024,16 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
             <h2 className="text-2xl sm:text-4xl font-black text-white">
               Tax &amp; Legal Documentation Queries
             </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Clear answers to common questions about GST, ITR, Incorporation, and Compliance.
+            </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
             {taxFaqs.map((faq, idx) => (
               <div 
                 key={idx}
-                className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/80"
+                className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/80 hover:border-amber-500/30 transition-colors"
               >
                 <button
                   onClick={() => {

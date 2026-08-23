@@ -390,10 +390,20 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
       'Tenure Options from 12 to 60 Months',
       '100% Digital & Hassle-free Paperwork Process',
       'No Collateral or Security Required',
-      'Quick Disbursement Post-Approval'
+      'Quick Disbursement Post-Approval',
+      'Flexible Part-Payment & Foreclosure Options'
     ],
-    benefits: ['Fulfill urgent personal requirements fast', 'Transparent interest & processing terms'],
-    process: ['Online Application Submission', 'Document Verification', 'Eligibility Check', 'Disbursement'],
+    benefits: [
+      'Fulfill urgent personal, medical, wedding, or travel needs instantly',
+      'Transparent interest rates starting from 10.5% p.a. with zero hidden fees',
+      'Zero collateral or asset hypothecation required for salaried & self-employed',
+      'Compare customized offers across 30+ leading private & PSU lending banks',
+      'Flexible EMI repayment tenures ranging from 12 to 60 months',
+      'Minimal documentation with online Aadhaar & salary slip e-verification',
+      'Part-prepayment and foreclosure options without exorbitant penalties',
+      'Free credit score review and personalized debt consolidation advisory'
+    ],
+    process: ['Online Application Submission', 'Document Verification', 'Eligibility Check', 'Sanction Letter', 'Disbursement'],
     whyChooseUs: ['Partnerships with leading banks and NBFCs', 'Dedicated loan manager assistance']
   },
   {
@@ -410,10 +420,21 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
       'Business Capital up to ₹1 Crore',
       'Collateral-Free Financing Options Available',
       'Flexible Daily/Monthly EMI Repayment Schemes',
-      'Minimal Financial Statement Requirements for Micro-Businesses'
+      'Minimal Financial Statement Requirements for Micro-Businesses',
+      'Fast-Track Approval within 48 to 72 Hours',
+      'Overdraft & Cash Credit (OD/CC) Limit Facilities'
     ],
-    benefits: ['Expand operational capacity smoothly', 'Build strong business credit score'],
-    process: ['Business Profile Evaluation', 'Financial Document Check', 'Lender Match', 'Approval'],
+    benefits: [
+      'Expand operational capacity, buy bulk raw materials, and scale inventory',
+      'Build a robust corporate CIBIL profile for future high-ticket sanctions',
+      'Unsecured working capital lines without freezing residential property',
+      'Tax-deductible interest payments reducing overall business tax liability',
+      'Custom repayment schedules aligned with seasonal business cash flows',
+      'Minimal balance sheet vintage required for emerging MSME firms',
+      'Direct liaison with senior bank credit managers and underwriting desks',
+      'Transparent processing charges with no unapproved broker cuts'
+    ],
+    process: ['Business Profile Evaluation', 'Financial Document Check', 'Lender Match', 'Approval', 'Disbursement'],
     whyChooseUs: ['Expert guidance on structuring loan applications for highest approval rates']
   },
   {
@@ -429,10 +450,21 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
       'Up to 90% Property Cost Financing',
       'Tenure up to 30 Years for Low Monthly EMIs',
       'Doorstep Property Legal & Technical Clearance',
-      'PMAY / Subsidy Support where applicable'
+      'PMAY / Subsidy Support where applicable',
+      'Balance Transfer Facility with Top-Up Capital',
+      'Customized Tranche Disbursement for Construction'
     ],
-    benefits: ['Own your home with comfortable EMI schedules', 'Tax benefits under Section 80C & 24(b)'],
-    process: ['Eligibility Assessment', 'Property Technical Evaluation', 'Sanction Letter Issuance', 'Disbursement'],
+    benefits: [
+      'Own your dream residential property with comfortable, low-EMI schedules',
+      'Substantial tax deductions under Section 80C (Principal) & Section 24(b) (Interest)',
+      'Free legal scrutiny and title search verifying clear seller property titles',
+      'Lowest benchmark interest rates starting from 8.35% p.a.',
+      'Flexible extended tenure options up to 30 years',
+      'Top-up loan availability for interior design and home renovation',
+      'Zero prepayment penalty on floating rate loans as per RBI mandates',
+      'End-to-end guidance from builder agreement to final property registration'
+    ],
+    process: ['Eligibility Assessment', 'Property Technical Evaluation', 'Sanction Letter Issuance', 'Legal Search', 'Disbursement'],
     whyChooseUs: ['Comparison across 20+ top housing finance institutions']
   },
   {
@@ -448,10 +480,21 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
       'Up to 100% On-Road Price Funding for Select Profiles',
       'New & Used Vehicle Financing Support',
       'Tenures up to 7 Years',
-      'Quick Spot Approval Schemes'
+      'Quick Spot Approval Schemes',
+      'Low Processing Fees & Instant Sanction Letters',
+      'Commercial Vehicle & Fleet Finance Options'
     ],
-    benefits: ['Drive your new vehicle with minimal down payment', 'Smooth RC endorsement process'],
-    process: ['Vehicle Selection', 'Application & CIBIL Check', 'Instant Approval'],
+    benefits: [
+      'Drive your favorite new or certified used vehicle with minimal down payment',
+      'Smooth RTO hypothecation and digital RC endorsement assistance',
+      'Attractive fixed and floating interest rate structures starting at 8.8% p.a.',
+      'Pre-approved loan options for existing bank account holders',
+      'Flexible tenures up to 84 months for pocket-friendly installments',
+      'Bundled comprehensive zero-dep insurance and roadside assistance guidance',
+      'Used car valuation checks ensuring fair market purchase price',
+      'Doorstep document collection and rapid 24-hour turnaround'
+    ],
+    process: ['Vehicle Selection', 'Application & CIBIL Check', 'Instant Approval', 'Dealer Coordination', 'Disbursement'],
     whyChooseUs: ['Direct tie-ups with major vehicle manufacturers & dealer networks']
   },
   {
@@ -467,10 +510,21 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
       'High Sanction Limits up to ₹5 Crores',
       'Lower Interest Rates compared to Unsecured Loans',
       'Longer Repayment Tenures up to 15 Years',
-      'Retain Occupancy & Full Ownership of Property'
+      'Retain Occupancy & Full Ownership of Property',
+      'Accepted for Residential, Commercial & Industrial Properties',
+      'Flexible Overdraft (OD) Drop-Line Limits Available'
     ],
-    benefits: ['Cheaper source of capital for large investments', 'Easier qualification terms'],
-    process: ['Property Valuation', 'Title Search & Legal Audit', 'Loan Sanction'],
+    benefits: [
+      'Access high-ticket liquidity up to ₹5 Crores at significantly lower interest',
+      'Continue occupying and operating your property without business disruption',
+      'Much longer repayment tenures up to 15 years keeping monthly installments manageable',
+      'Ideal instrument to consolidate multiple high-interest short-term debts',
+      'Accepted against residential houses, commercial shops, and industrial plots',
+      'Flexible drop-line overdraft facilities allowing interest payment only on utilized funds',
+      'Complete legal and technical appraisal support provided by senior empanelled advocates',
+      'Tax efficiency when funds are deployed for verifiable business growth'
+    ],
+    process: ['Property Valuation', 'Title Search & Legal Audit', 'Credit Assessment', 'Loan Sanction', 'Disbursement'],
     whyChooseUs: ['End-to-end assistance on title verification and legal clearance']
   },
   {
@@ -486,10 +540,21 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
       'Significant EMI Cost Reduction',
       'Top-up Loan Amount Facility Available',
       'Zero Prepayment Penalty on Floating Rates',
-      'Seamless Lender Handover Process'
+      'Seamless Lender Handover Process',
+      'Complete Foreclosure & NOC Document Assistance',
+      'Interest Rate Spread Negotiation with Target Banks'
     ],
-    benefits: ['Save lakhs of rupees over long loan tenures', 'Consolidate multiple EMIs into one'],
-    process: ['Existing EMI Audit', 'Refinance Calculation', 'Switch Approval'],
+    benefits: [
+      'Save lakhs of rupees in interest outflow over the remaining loan tenure',
+      'Reduce monthly EMI burden to free up disposable household/business cash flow',
+      'Unlock substantial top-up capital at prevailing low home/business loan rates',
+      'Consolidate multiple scattered credit lines into one streamlined monthly payment',
+      'Transition from high fixed rates to modern repo-rate linked transparent benchmarks',
+      'AVRX handles all inter-bank coordination, document retrieval, and NOC clearance',
+      'Free amortization savings calculation before initiating balance transfer',
+      'Zero upfront consultation fees for initial savings assessment'
+    ],
+    process: ['Existing EMI Audit', 'Refinance Calculation', 'Bank Selection', 'Switch Approval', 'Lender Payoff'],
     whyChooseUs: ['Free interest savings calculation before application']
   },
   {
@@ -506,10 +571,21 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
       'PMEGP Subsidy Loan Application Guidance',
       'MUDRA Loan (Shishu, Kishore, Tarun) Facilitation',
       'Project Report Preparation & Financial Forecasting',
-      'Documentation for CGTMSE Guarantee Scheme'
+      'Documentation for CGTMSE Guarantee Scheme',
+      'EDP Training & Portal Submission Support',
+      'Bank Appraisal & Margin Money Subsidy Liaison'
     ],
-    benefits: ['Capital subsidies available up to 35%', 'Collateral-free credit under CGTMSE'],
-    process: ['Scheme Eligibility Audit', 'Detailed Project Report (DPR) Creation', 'Portal Application & Bank Follow-up'],
+    benefits: [
+      'Direct government capital subsidies ranging from 15% to 35% under PMEGP',
+      'Collateral-free credit up to ₹2 Crores supported by CGTMSE guarantee cover',
+      'Subsidized lower interest rates designed for new manufacturing and service units',
+      'Special incentives and higher subsidy percentages for women and rural entrepreneurs',
+      'Comprehensive Detailed Project Report (DPR) crafted by experienced CAs',
+      'Step-by-step guidance on official government portals (KVIC, Udyam, JanSamarth)',
+      'Assistance in obtaining mandatory EDP (Entrepreneurship Development) certification',
+      'Dedicated follow-up with nodal agency officers and branch managers'
+    ],
+    process: ['Scheme Eligibility Audit', 'Detailed Project Report (DPR) Creation', 'Portal Application', 'EDP Completion', 'Bank Follow-up & Sanction'],
     whyChooseUs: ['Specialized CA/Financial expert team for Govt loan DPR creation']
   },
   {
@@ -570,14 +646,18 @@ export const TAX_SERVICES: ServiceItem[] = [
       'Resolution of Department Clarifications & Show Cause Notices',
       'Final 15-Digit GSTIN Allotment & Downloadable Certificate',
       'Composition Scheme vs Regular Scheme Advisory',
-      'Free 1-Month Post-Registration Invoicing & E-Way Bill Guidance'
+      'Free 1-Month Post-Registration Invoicing & E-Way Bill Guidance',
+      'Automated Bank Account Linking & Master Profile Setup'
     ],
     benefits: [
       'Legally sell products and services across all Indian states and UTs',
       'Sell on top e-commerce marketplaces like Amazon, Flipkart & Meesho',
       'Seamlessly claim Input Tax Credit (ITC) to save business purchase taxes',
       'Build institutional credibility with corporate B2B clients and government tenders',
-      'Open current bank accounts and apply for business loans with ease'
+      'Open current bank accounts and apply for business loans with ease',
+      'Avoid harsh un-registered business penalties under CGST Section 122',
+      'Direct GST portal credential handover with dedicated CA advisory support',
+      'Fast 24-Hour ARN turnaround with 100% prior document audit'
     ],
     process: [
       'Step 1: Document Collection & Aadhaar OTP KYC Verification',
@@ -633,14 +713,18 @@ export const TAX_SERVICES: ServiceItem[] = [
       'Annual GSTR-9 Filing & GSTR-9C Reconciliation Statement',
       'E-Way Bill Generation & E-Invoicing Compliance Support',
       'GST Challan Generation & Net Tax Offset Guidance',
-      'Proactive Advance Alerts before 11th & 20th Deadlines'
+      'Proactive Advance Alerts before 11th & 20th Deadlines',
+      'Notice & Mismatch Resolution Support with Tax Authorities'
     ],
     benefits: [
       'Eliminate heavy late fees (₹50/day) and interest penalties (18% p.a.)',
       'Maximize Input Tax Credit savings by catching vendor non-filers early',
       'Protect your GST registration from department cancellation orders',
       'Maintain an unblemished tax compliance rating for tenders and bank loans',
-      'Dedicated CA desk so you can focus 100% on growing your core business'
+      'Dedicated CA desk so you can focus 100% on growing your core business',
+      'Automated monthly summary statements for management reporting',
+      'Instant WhatsApp reminders 5 days prior to statutory due dates',
+      'Zero defect guarantee on all returns filed before statutory cutoff'
     ],
     process: [
       'Step 1: Monthly Sales & Purchase Invoice Data Ingestion',
@@ -688,14 +772,18 @@ export const TAX_SERVICES: ServiceItem[] = [
       'Business Owners & Traders Presumptive Scheme (Section 44AD/44AE)',
       'Capital Gains Scrutiny (Stocks, Mutual Funds, Crypto, Real Estate)',
       'Foreign Assets, ESOPs & NRI Income Tax Compliance',
-      'Instant E-Verification & Automated Refund Status Tracker'
+      'Instant E-Verification & Automated Refund Status Tracker',
+      'Audit of Past Filed Returns for Correction & Rectification'
     ],
     benefits: [
       'Claim maximum legitimate deductions to minimize total payable income tax',
       'Get TDS and advance tax refunds processed quickly into your bank account',
       'Mandatory financial proof for Home Loans, Personal Loans & Credit Cards',
       'Essential documentation for International Tourist & Business Visa approvals',
-      'Safeguard against Income Tax Section 148 & 143(1) mismatch notices'
+      'Safeguard against Income Tax Section 148 & 143(1) mismatch notices',
+      'Comparative tax savings report between Old vs New tax regime options',
+      'Carry forward capital and business losses to offset future taxable income',
+      'Direct Chartered Accountant consultation with written tax computation summary'
     ],
     process: [
       'Step 1: Upload Form 16, Bank Statements & Investment Receipts',
@@ -743,14 +831,21 @@ export const TAX_SERVICES: ServiceItem[] = [
       '50% Govt Fee Subsidy on Trademark & Patent Registrations',
       'Access to MSME Samadhaan Portal for Recovery of Delayed Dues',
       'Waiver of Earnest Money Deposit (EMD) in Government Tenders',
-      'Electricity Bill Concessions & ISO Certification Reimbursements'
+      'Electricity Bill Concessions & ISO Certification Reimbursements',
+      'Priority Sector Lending (PSL) Rate Reductions across Banks',
+      'Direct Onboarding on Govt e-Marketplace (GeM Portal)',
+      'Subsidized Participation in National & International Trade Fairs',
+      'Credit Linked Capital Subsidy (CLCSS) & Barcode Subsidy Access'
     ],
     benefits: [
       'Lower interest rates (up to 1–1.5% discount) on commercial bank loans',
       'Legal power to charge compound interest on buyers delaying payment beyond 45 days',
       'Exclusive reservation for participation in central and state PSU tenders',
       'Subsidies on technology upgrades, ISO certifications, and patent filings',
-      '100% digital verification completed within 24 hours'
+      '100% digital verification completed within 24 hours',
+      'Exemption from 50% government official fees on Trademark and Patent filings',
+      'Collateral-free credit guarantee up to ₹5 Crores under CGTMSE trust',
+      'Lifelong valid digital certificate with verifiable QR code and Zero annual maintenance'
     ],
     process: [
       'Step 1: Enter Aadhaar Number and Name as per Aadhaar for OTP verification',
@@ -798,14 +893,18 @@ export const TAX_SERVICES: ServiceItem[] = [
       'Custom Memorandum of Association (MoA) & Articles of Association (AoA)',
       'Official Certificate of Incorporation (COI) with CIN Number',
       'Corporate PAN & TAN Card Allocation',
-      '1-Click Corporate Bank Account Opening & Zero Balance Setup Assistance'
+      '1-Click Corporate Bank Account Opening & Zero Balance Setup Assistance',
+      'EPFO, ESIC & Professional Tax Registration Integrated'
     ],
     benefits: [
       'Shield personal wealth with limited liability protection',
       'Raise venture capital, angel investment, and equity funding effortlessly',
       'Establish international enterprise credibility with clients and suppliers',
       'Enjoy corporate tax benefits, perpetual succession, and transferable ownership',
-      'Complete company setup delivered in just 5 to 7 working days'
+      'Complete company setup delivered in just 5 to 7 working days',
+      'Includes corporate PAN, TAN, EPFO, ESIC and digital bank resolution kit',
+      'Complimentary INC-20A Commencement of Business filing guidance',
+      'Direct guidance from empanelled Company Secretaries (CS) and CAs'
     ],
     process: [
       'Step 1: Name Availability Check & Class 3 DSC Generation',
@@ -853,14 +952,18 @@ export const TAX_SERVICES: ServiceItem[] = [
       'Monitoring of Official Trademark Journal Publications',
       'Examination Report Scrutiny & Objection Reply Drafting Support',
       'Final Trademark Registration Certificate with ® Symbol Rights',
-      '10 Years Trademark Protection with Nationwide Legal Exclusivity'
+      '10 Years Trademark Protection with Nationwide Legal Exclusivity',
+      'Brand Registry Verification on Amazon & Flipkart Marketplace'
     ],
     benefits: [
       'Legal ownership preventing competitors from copying your brand name or logo',
       'Build valuable intangible business assets that can be franchised or sold',
       'Get Brand Registry on Amazon, Flipkart, and Google Play Store',
       'Right to take legal action and claim damages against counterfeiters',
-      'Use the prestigious ® symbol to build customer trust and market prestige'
+      'Use the prestigious ® symbol to build customer trust and market prestige',
+      'Immediate use of the ™ symbol within 24 hours of filing',
+      '50% discount on official government fees for MSME & Startup certificate holders',
+      'Proactive monitoring alerts against copycat applications filed in your class'
     ],
     process: [
       'Step 1: In-depth Trademark Availability & Similarity Search',
@@ -907,14 +1010,18 @@ export const TAX_SERVICES: ServiceItem[] = [
       'Mandatory 14-Digit FSSAI License Number Generation',
       'Fast-track onboarding support for Swiggy, Zomato, Blinkit & Zepto',
       'Food Safety Management System (FSMS) Plan & Declaration Drafting',
-      'Annual Return Filing (Form D-1) & License Renewal Support'
+      'Annual Return Filing (Form D-1) & License Renewal Support',
+      'Hygiene Rating & Food Business Operator (FBO) Compliance Kit'
     ],
     benefits: [
       'Legally operate food manufacturing, packaging, and catering businesses in India',
       'Mandatory requirement to list your restaurant/kitchen on Swiggy & Zomato',
       'Build consumer trust with certified hygienic food preparation standards',
       'Avoid hefty legal penalties and shop closure notices by food safety officers',
-      'Fast delivery in 3 to 7 working days'
+      'Fast delivery in 3 to 7 working days with verifiable 14-digit number',
+      'Full guidance on FSMS documentation and kitchen safety layout plans',
+      'Seamless multi-location expansion under state or central license umbrellas',
+      'Automated expiry alerts to ensure zero lapse in food trade permissions'
     ],
     process: [
       'Step 1: Business Category & Turnover Identification (Basic / State / Central)',
@@ -958,14 +1065,18 @@ export const TAX_SERVICES: ServiceItem[] = [
       'Pre-Audit Gap Analysis & Readiness Assessment',
       'Accredited Certification Body (IAF / Non-IAF) Audit Coordination',
       'Verifiable Certificate with Global QR Code & Unique Certificate ID',
-      '3-Year Validity with Annual Surveillance Audit Guidance'
+      '3-Year Validity with Annual Surveillance Audit Guidance',
+      'Internal Auditor Training & Process Quality Metric Framework'
     ],
     benefits: [
       'Mandatory prerequisite to qualify for major Government and PSU tenders',
       'Demonstrate international quality and data security to enterprise clients',
       'Streamline internal operational workflows and reduce process errors',
       'Boost brand reputation and global export market acceptability',
-      'Complete turnaround in just 3 to 5 business days'
+      'Complete turnaround in just 3 to 5 business days',
+      'Verifiable certificate registered with international accreditation bodies',
+      'Full assistance with SOP and Quality Manual creation',
+      'Qualify for government MSME reimbursement subsidies on certification costs'
     ],
     process: [
       'Step 1: Selection of ISO Standard & Scope Definition',
@@ -1008,14 +1119,18 @@ export const TAX_SERVICES: ServiceItem[] = [
       'Customs Clearance & Port Code Registration Support',
       'AD Code (Authorized Dealer Code) Bank Letter Guidance',
       'Assistance for Export Promotion Council (EPC) Registrations (RCMC)',
-      'Export Incentives & Duty Drawback Scheme Eligibility Setup'
+      'Export Incentives & Duty Drawback Scheme Eligibility Setup',
+      'Annual DGFT IEC Profile Validation & Portal Upkeep'
     ],
     benefits: [
       'Legally export software, services, and physical goods to over 190 countries',
       'Clear customs smoothly without shipment holds or port penalties',
       'Receive foreign currency inward remittances directly into Indian bank accounts',
       'Avail export subsidies, Duty Drawbacks, and RoDTEP government tax benefits',
-      'Delivered in 24 to 48 hours with lifetime validity'
+      'Delivered in 24 to 48 hours with lifetime validity',
+      'Direct link with ICEGATE and Indian Customs for automated tax clearing',
+      'No complex recurring compliance or annual renewal fees required',
+      'Essential authorization for e-commerce international shipping'
     ],
     process: [
       'Step 1: Submission of PAN, Aadhaar & Bank Certificate / Cancelled Cheque',
@@ -1057,14 +1172,18 @@ export const TAX_SERVICES: ServiceItem[] = [
       'Registration for 0 to 10+ Employees Categories',
       'Municipal Ward Trade License Compliance',
       'Employee Working Hours & Holiday Compliance Structuring',
-      'Fast 48-Hour Delivery with Verifiable Govt Certificate'
+      'Fast 48-Hour Delivery with Verifiable Govt Certificate',
+      'Trade Signboard & Business Address Proof Validation'
     ],
     benefits: [
       'Mandatory legal proof required by banks to open a business Current Account',
       'Prevent harassment and penalties during municipal inspection visits',
       'Valid proof of commercial business address across all government portals',
       'Avail state government subsidies and local small business support schemes',
-      '100% online process with zero visits to municipal offices'
+      '100% online process with zero visits to municipal offices',
+      'Official government certificate issued directly under state labor laws',
+      'Fast 48-hour processing without physical bureau bureaucracy',
+      'Legitimate verification required for state utility and supplier tie-ups'
     ],
     process: [
       'Step 1: Submit Business Name, Owner ID & Shop Front Photograph with Board',
@@ -1108,14 +1227,18 @@ export const TAX_SERVICES: ServiceItem[] = [
       'Maintenance of Electronic Statutory Registers under Companies Act 2013',
       'Filing of Form INC-20A (Declaration of Commencement of Business)',
       'Filing of Form DPT-3 (Return of Deposits / Outstanding Loans)',
-      'Statutory CA Audit Coordination & Financial Statement Scrutiny'
+      'Statutory CA Audit Coordination & Financial Statement Scrutiny',
+      'Auditor Appointment (Form ADT-1) & Statutory Disclosure Filings'
     ],
     benefits: [
       'Avoid crippling MCA late fees of ₹100 per day per form with no upper cap',
       'Protect directors from disqualification and DIN deactivation under Section 164',
       'Maintain an Active & Clean MCA status to qualify for bank loans and funding',
       'Ensure zero compliance stress with dedicated Company Secretaries (CS)',
-      'Save up to 60% compared to traditional standalone retainer fees'
+      'Save up to 60% compared to traditional standalone retainer fees',
+      'Automated alerts on upcoming statutory AGM and board meeting cutoffs',
+      'Complete preparation of Board Reports and Director Declarations',
+      'Direct audit synchronization between company auditor and CS team'
     ],
     process: [
       'Step 1: Annual Compliance Health Check & Financial Data Review',
@@ -1157,13 +1280,18 @@ export const TAX_SERVICES: ServiceItem[] = [
       'Instant Digital e-PAN PDF Generation in 24 to 48 Hours',
       'Mandatory Aadhaar-PAN Linking Compliance & Inoperative PAN Resolution',
       'Company, Partnership Firm & Trust PAN Application',
-      'Doorstep Delivery of Tamper-Proof PVC Plastic Physical Card'
+      'Doorstep Delivery of Tamper-Proof PVC Plastic Physical Card',
+      'Minor PAN to Major PAN Status Upgrade'
     ],
     benefits: [
       'Essential mandatory tax ID for all banking, salary, and investment transactions',
       'Prevent high 20% TDS deduction rates by maintaining an active linked PAN',
       '100% paperless digital verification with instant tracking number',
-      'Physical PVC card delivered anywhere in India within 7 to 10 days'
+      'Physical PVC card delivered anywhere in India within 7 to 10 days',
+      'Instant digital e-PAN PDF sent directly to your registered email',
+      'Direct NSDL / UTIITSL government authorized e-filing channel',
+      'Resolution of inoperative PAN status with seamless Aadhaar re-linking',
+      'Expert assistance for signature mismatches and photo updates'
     ],
     process: [
       'Step 1: Upload Aadhaar / Address Proof & Identity Documents',
@@ -1204,19 +1332,25 @@ export const TAX_SERVICES: ServiceItem[] = [
       'Capital Gains Optimization (Section 54, 54EC, 54F Real Estate Reinvestment)',
       'Startup Tax Planning & Section 80-IAC Angel Tax Exemption Advisory',
       'Crypto & Virtual Digital Assets (VDA) 30% Flat Tax & 1% TDS Structuring',
-      'NRI Tax Advisory (Double Taxation Avoidance Agreement - DTAA & Form 15CA/CB)'
+      'NRI Tax Advisory (Double Taxation Avoidance Agreement - DTAA & Form 15CA/CB)',
+      'Corporate Restructuring, Mergers & Tax Pass-Through Structuring'
     ],
     benefits: [
       'Legally save up to lakhs in taxes through strategic restructuring',
       'Resolve intimidating tax department notices with ironclad legal replies',
       'Avoid costly audit errors before signing major property or business deals',
-      'Confidential and personalized financial advisory tailored to your exact goals'
+      'Confidential and personalized financial advisory tailored to your exact goals',
+      'Written action roadmap and tax computation summary after every session',
+      'Panel of senior Chartered Accountants and High Court tax advocates',
+      'Protection against high penalty assessments and interest compounding',
+      'Follow-up verification check included with every consultation booking'
     ],
     process: [
       'Step 1: Book Consultation Slot & Upload Notice / Financial Queries',
       'Step 2: Senior CA Conducts Pre-Consultation File Analysis',
       'Step 3: Live 1-on-1 Strategy Video/Phone Consultation',
-      'Step 4: Delivery of Written Action Plan & Notice Reply Drafts'
+      'Step 4: Delivery of Written Action Plan & Notice Reply Drafts',
+      'Step 5: Follow-up Portal Upload & Hearing Compliance Tracking'
     ],
     whyChooseUs: [
       'Panel of senior Chartered Accountants with 12+ years experience',

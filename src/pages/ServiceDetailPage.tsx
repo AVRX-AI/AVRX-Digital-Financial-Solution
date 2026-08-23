@@ -44,7 +44,9 @@ import {
   ExternalLink,
   Lock,
   Percent,
-  Coins
+  Coins,
+  FileCheck,
+  Star
 } from 'lucide-react';
 
 interface ServiceDetailPageProps {
@@ -997,57 +999,92 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
 
         </div>
 
-        {/* 4. Strategic Value & Key Benefits (Vibrant Bento Grid) */}
+        {/* 4. Strategic Value & Key Benefits (Vibrant Bento Grid - Full Columns) */}
         {service.benefits && service.benefits.length > 0 && (
-          <section className="space-y-8">
+          <section className="space-y-8 w-full max-w-7xl mx-auto">
             <div className="text-center max-w-3xl mx-auto space-y-3">
               <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full ${theme.badgeBg} ${theme.badgeText} border ${theme.badgeBorder} text-xs font-mono font-bold uppercase`}>
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>BUSINESS VALUE &amp; ROI</span>
+                <span>BUSINESS VALUE &amp; STRATEGIC ROI</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
                 Key Benefits &amp; Strategic Advantages
               </h2>
               <p className="text-xs sm:text-sm text-slate-400">
-                Measurable advantages and business protection delivered with every {service.title} engagement.
+                Measurable financial, operational, and statutory advantages delivered with every {service.title} engagement.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-              {service.benefits.map((benefit, idx) => {
-                const colors = [
-                  { bg: 'from-amber-500/10 to-orange-500/5', border: 'border-amber-500/30 hover:border-amber-400', text: 'text-amber-400', icon: Sparkles },
-                  { bg: 'from-cyan-500/10 to-blue-500/5', border: 'border-cyan-500/30 hover:border-cyan-400', text: 'text-cyan-400', icon: Zap },
-                  { bg: 'from-emerald-500/10 to-teal-500/5', border: 'border-emerald-500/30 hover:border-emerald-400', text: 'text-emerald-400', icon: ShieldCheck },
-                  { bg: 'from-purple-500/10 to-indigo-500/5', border: 'border-purple-500/30 hover:border-purple-400', text: 'text-purple-400', icon: TrendingUp },
-                  { bg: 'from-rose-500/10 to-pink-500/5', border: 'border-rose-500/30 hover:border-rose-400', text: 'text-rose-400', icon: Award }
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {(() => {
+                // Ensure at least 8 benefits for full 2-row x 4-column balanced grid
+                const defaultStrategicAdvantages = [
+                  'Accelerated SLA with guaranteed fastest turnaround',
+                  'Direct supervision by empanelled Chartered Accountants & Specialists',
+                  'Bank-grade 256-bit data encryption & complete privacy',
+                  'Transparent itemized pricing with zero surprise surcharges'
                 ];
-                const c = colors[idx % colors.length];
-                const IconComponent = c.icon;
+                let combinedBenefits = [...service.benefits];
+                if (combinedBenefits.length < 8 && combinedBenefits.length >= 4) {
+                  const needed = 8 - combinedBenefits.length;
+                  for (let i = 0; i < needed; i++) {
+                    if (!combinedBenefits.includes(defaultStrategicAdvantages[i])) {
+                      combinedBenefits.push(defaultStrategicAdvantages[i]);
+                    }
+                  }
+                }
 
-                return (
-                  <div
-                    key={idx}
-                    className={`p-6 rounded-3xl bg-gradient-to-b ${c.bg} bg-slate-950 border ${c.border} space-y-4 hover:-translate-y-1.5 transition-all duration-300 shadow-lg group`}
-                  >
-                    <div className={`w-12 h-12 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center ${c.text} group-hover:scale-110 transition-transform shadow-md`}>
-                      <IconComponent className="w-6 h-6" />
+                return combinedBenefits.map((benefit, idx) => {
+                  const colors = [
+                    { bg: 'from-amber-500/15 via-slate-900/80 to-slate-950', border: 'border-amber-500/30 hover:border-amber-400', text: 'text-amber-400', icon: Sparkles },
+                    { bg: 'from-cyan-500/15 via-slate-900/80 to-slate-950', border: 'border-cyan-500/30 hover:border-cyan-400', text: 'text-cyan-400', icon: Zap },
+                    { bg: 'from-emerald-500/15 via-slate-900/80 to-slate-950', border: 'border-emerald-500/30 hover:border-emerald-400', text: 'text-emerald-400', icon: ShieldCheck },
+                    { bg: 'from-purple-500/15 via-slate-900/80 to-slate-950', border: 'border-purple-500/30 hover:border-purple-400', text: 'text-purple-400', icon: TrendingUp },
+                    { bg: 'from-rose-500/15 via-slate-900/80 to-slate-950', border: 'border-rose-500/30 hover:border-rose-400', text: 'text-rose-400', icon: Award },
+                    { bg: 'from-blue-500/15 via-slate-900/80 to-slate-950', border: 'border-blue-500/30 hover:border-blue-400', text: 'text-blue-400', icon: CheckCircle2 },
+                    { bg: 'from-teal-500/15 via-slate-900/80 to-slate-950', border: 'border-teal-500/30 hover:border-teal-400', text: 'text-teal-400', icon: FileCheck },
+                    { bg: 'from-indigo-500/15 via-slate-900/80 to-slate-950', border: 'border-indigo-500/30 hover:border-indigo-400', text: 'text-indigo-400', icon: Star }
+                  ];
+                  const c = colors[idx % colors.length];
+                  const IconComponent = c.icon;
+
+                  return (
+                    <div
+                      key={idx}
+                      className={`p-6 rounded-3xl bg-gradient-to-b ${c.bg} border ${c.border} space-y-4 hover:-translate-y-1.5 transition-all duration-300 shadow-xl group flex flex-col justify-between`}
+                    >
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <div className={`w-12 h-12 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center justify-center ${c.text} group-hover:scale-110 transition-transform shadow-md`}>
+                            <IconComponent className="w-6 h-6" />
+                          </div>
+                          <span className="text-[10px] font-mono font-bold text-slate-500 uppercase px-2.5 py-1 rounded-lg bg-slate-900/80 border border-slate-800">
+                            0{idx + 1}
+                          </span>
+                        </div>
+                        
+                        <div>
+                          <div className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider">Advantage 0{idx + 1}</div>
+                          <p className="text-sm text-slate-100 font-semibold leading-relaxed group-hover:text-white transition-colors mt-1">
+                            {benefit}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="pt-2 border-t border-slate-800/60 flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 font-bold">
+                        <Check className="w-3.5 h-3.5" />
+                        <span>Verified Advantage</span>
+                      </div>
                     </div>
-                    <div className="space-y-1.5">
-                      <div className="text-[11px] font-mono font-bold text-slate-500 uppercase">Advantage 0{idx + 1}</div>
-                      <p className="text-sm text-slate-200 font-semibold leading-relaxed group-hover:text-white transition-colors">
-                        {benefit}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                });
+              })()}
             </div>
           </section>
         )}
 
         {/* 5. Comprehensive Capabilities & What We Provide (Detailed Feature Cards) */}
-        <section className="space-y-8">
+        <section className="space-y-8 w-full max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto space-y-3">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 text-xs font-mono font-bold uppercase">
               <Layers className="w-3.5 h-3.5 text-cyan-400" />
@@ -1106,70 +1143,92 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
           </div>
         </section>
 
-        {/* 6. Step-by-Step Execution Process Roadmap */}
-        <section className="p-8 sm:p-12 rounded-3xl bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950 border border-slate-800 space-y-10 shadow-2xl relative overflow-hidden">
+        {/* 6. Step-by-Step Execution Process Roadmap (Stretched Expansive Timeline) */}
+        <section className="w-full max-w-7xl mx-auto p-8 sm:p-12 lg:p-14 rounded-3xl bg-gradient-to-b from-slate-950 via-slate-900/80 to-slate-950 border border-slate-800 space-y-12 shadow-2xl relative overflow-hidden">
           
           <div className="text-center max-w-3xl mx-auto space-y-3">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30 text-xs font-mono font-bold uppercase">
-              <Clock className="w-3.5 h-3.5 text-amber-400" />
-              <span>TRANSPARENT 5-STEP ROADMAP</span>
+              <Clock className="w-4 h-4 text-amber-400" />
+              <span>TRANSPARENT STEP-BY-STEP EXECUTION ROADMAP</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
               How the Execution Process Works
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400">
-              Clear, step-by-step roadmap from your initial inquiry to final certification handoff.
+            <p className="text-xs sm:text-base text-slate-300 leading-relaxed">
+              Expedited, fully paperless multi-stage workflow from initial document ingestion to final approval, sanction, and lifelong compliance tracking.
             </p>
           </div>
 
+          {/* Stretched Interactive Step Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 relative">
             {processSteps.map((step, idx) => {
               const stepColors = [
-                { text: 'text-cyan-400', border: 'border-cyan-500/40', badge: 'bg-cyan-500/10 text-cyan-300' },
-                { text: 'text-amber-400', border: 'border-amber-500/40', badge: 'bg-amber-500/10 text-amber-300' },
-                { text: 'text-emerald-400', border: 'border-emerald-500/40', badge: 'bg-emerald-500/10 text-emerald-300' },
-                { text: 'text-purple-400', border: 'border-purple-500/40', badge: 'bg-purple-500/10 text-purple-300' },
-                { text: 'text-rose-400', border: 'border-rose-500/40', badge: 'bg-rose-500/10 text-rose-300' }
+                { text: 'text-cyan-400', border: 'border-cyan-500/40 hover:border-cyan-400', badge: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30', glow: 'group-hover:shadow-[0_0_20px_rgba(0,240,255,0.2)]' },
+                { text: 'text-amber-400', border: 'border-amber-500/40 hover:border-amber-400', badge: 'bg-amber-500/10 text-amber-300 border-amber-500/30', glow: 'group-hover:shadow-[0_0_20px_rgba(245,158,11,0.2)]' },
+                { text: 'text-emerald-400', border: 'border-emerald-500/40 hover:border-emerald-400', badge: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30', glow: 'group-hover:shadow-[0_0_20px_rgba(16,185,129,0.2)]' },
+                { text: 'text-purple-400', border: 'border-purple-500/40 hover:border-purple-400', badge: 'bg-purple-500/10 text-purple-300 border-purple-500/30', glow: 'group-hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]' },
+                { text: 'text-rose-400', border: 'border-rose-500/40 hover:border-rose-400', badge: 'bg-rose-500/10 text-rose-300 border-rose-500/30', glow: 'group-hover:shadow-[0_0_20px_rgba(244,63,94,0.2)]' }
               ];
               const sc = stepColors[idx % stepColors.length];
 
               return (
                 <div 
                   key={idx} 
-                  className={`p-5 rounded-2xl bg-slate-900/90 border ${sc.border} space-y-3 group hover:-translate-y-1 transition duration-300 shadow-md flex flex-col justify-between`}
+                  className={`p-6 rounded-2xl bg-slate-900/90 border ${sc.border} ${sc.glow} space-y-4 group hover:-translate-y-2 transition-all duration-300 shadow-xl flex flex-col justify-between`}
                 >
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className={`text-2xl font-black font-mono ${sc.text}`}>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+                      <span className={`text-3xl font-black font-mono ${sc.text}`}>
                         0{idx + 1}
                       </span>
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${sc.badge}`}>
-                        Phase {idx + 1}
+                      <span className={`px-2.5 py-1 rounded-md text-[10px] font-mono font-bold border ${sc.badge}`}>
+                        Phase 0{idx + 1}
                       </span>
                     </div>
 
-                    <h4 className="text-xs sm:text-sm font-bold text-white leading-snug">
+                    <h4 className="text-sm sm:text-base font-bold text-white leading-snug group-hover:text-cyan-300 transition-colors">
                       {step}
                     </h4>
+
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      Handled with direct expert audit and real-time portal synchronization.
+                    </p>
                   </div>
 
-                  <div className="text-[10px] text-slate-500 font-mono pt-2 border-t border-slate-800">
-                    TAT: 2-24 Hours
+                  <div className="pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] font-mono">
+                    <span className="text-slate-500">SLA Window</span>
+                    <span className="text-emerald-400 font-bold">2–24 Hours</span>
                   </div>
                 </div>
               );
             })}
           </div>
 
-          <div className="text-center pt-2">
+          {/* Stretched Action Bar with Assurance Metrics */}
+          <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex flex-wrap items-center gap-6 text-xs text-slate-300">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>100% Digital Document Vault</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Live WhatsApp Milestone Updates</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>Zero Physical Office Queues</span>
+              </div>
+            </div>
+
             <button
               onClick={() => {
                 launchSoundEngine.playClickTick();
                 setIsLeadModalOpen(true);
               }}
-              className="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-[0_0_25px_rgba(0,240,255,0.3)] hover:scale-105 transition cursor-pointer"
+              className="w-full md:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-[0_0_25px_rgba(0,240,255,0.3)] hover:scale-105 transition cursor-pointer"
             >
-              Start Step 1 with AVRX Today
+              Initiate Step 1 with AVRX
             </button>
           </div>
         </section>
@@ -1254,8 +1313,8 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
           </div>
         </section>
 
-        {/* 8. Comprehensive FAQ Accordion */}
-        <section className="space-y-8 max-w-4xl mx-auto">
+        {/* 8. Comprehensive FAQ Accordion (2-Column Grid Layout) */}
+        <section className="space-y-8 max-w-6xl mx-auto">
           <div className="text-center space-y-3">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/30 text-xs font-mono font-bold uppercase">
               <HelpCircle className="w-3.5 h-3.5 text-purple-400" />
@@ -1269,7 +1328,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
             {serviceFaqs.map((faq, idx) => {
               const isOpen = openFaqIndex === idx;
               return (
@@ -1286,21 +1345,21 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
                       launchSoundEngine.playClickTick();
                       setOpenFaqIndex(isOpen ? null : idx);
                     }}
-                    className="w-full p-6 text-left flex items-center justify-between gap-4 transition cursor-pointer"
+                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-3 transition cursor-pointer"
                   >
-                    <span className="text-sm sm:text-base font-bold text-white flex items-center gap-3">
+                    <span className="text-xs sm:text-sm font-bold text-white flex items-center gap-2.5">
                       <HelpCircle className={`w-4 h-4 shrink-0 ${isOpen ? 'text-cyan-400' : 'text-slate-500'}`} />
                       <span>{faq.question}</span>
                     </span>
                     {isOpen ? (
-                      <ChevronUp className="w-5 h-5 text-cyan-400 shrink-0" />
+                      <ChevronUp className="w-4 h-4 text-cyan-400 shrink-0" />
                     ) : (
-                      <ChevronDown className="w-5 h-5 text-slate-500 shrink-0" />
+                      <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />
                     )}
                   </button>
 
                   {isOpen && (
-                    <div className="px-6 pb-6 pt-2 text-slate-300 text-xs sm:text-sm leading-relaxed border-t border-slate-800/80 pl-13">
+                    <div className="px-5 sm:px-6 pb-5 pt-2 text-slate-300 text-xs sm:text-sm leading-relaxed border-t border-slate-800/80">
                       {faq.answer}
                     </div>
                   )}

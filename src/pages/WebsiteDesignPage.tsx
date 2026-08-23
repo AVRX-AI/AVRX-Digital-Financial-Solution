@@ -706,49 +706,79 @@ export const WebsiteDesignPage: React.FC<WebsiteDesignPageProps> = ({ onNavigate
     }
   ];
 
-  // Interactive Mockup Hotspots
-  const interactiveFeatures: Record<string, { label: string; title: string; desc: string; icon: any; position: string }> = {
+  // Interactive Mockup Hotspots & Architecture Anatomy
+  const interactiveFeatures: Record<string, { label: string; title: string; desc: string; icon: any; position: string; badge: string; highlights: string[] }> = {
     responsive: {
       label: 'Responsive UI',
-      title: 'Fluid Adaptive Viewports',
-      desc: 'Automatically reflows typography and layouts from 360px mobile screens to 4K desktop displays.',
+      title: 'Fluid Adaptive Viewports & Mobile UX',
+      desc: 'Automatically reflows typography, touch targets, and visual hierarchy from 360px smartphones to 4K ultra-wide monitors with sub-pixel perfection.',
       icon: Smartphone,
-      position: 'top-8 left-8'
+      position: 'top-8 left-8',
+      badge: 'Core UI Layer',
+      highlights: ['Thumb-friendly bottom navigation', 'Adaptive fluid font scaling', 'Zero horizontal scroll on any screen']
+    },
+    speed: {
+      label: 'Ultra-Fast Speed',
+      title: 'Sub-Second Page Load (<0.4s)',
+      desc: 'Lightweight modern bundles, WebP/AVIF image formats, pre-fetched route chunks, and NVMe CDN edge caching guaranteeing 98+ Google Lighthouse scores.',
+      icon: Zap,
+      position: 'top-1/2 -left-4',
+      badge: 'Performance Engine',
+      highlights: ['<0.4s First Contentful Paint (FCP)', '98+ Google Core Web Vitals Pass', 'Brotli compression + Global CDN edge']
     },
     seo: {
-      label: 'SEO Ready',
-      title: 'Search Engine Optimization',
-      desc: 'Structured metadata, clean canonical URLs, OpenGraph social cards, and sitemap.xml for Google ranking.',
+      label: 'SEO & Schema',
+      title: 'Search Engine Optimization & Rich Snippets',
+      desc: 'Structured JSON-LD schema metadata, clean canonical URLs, OpenGraph social cards, and automated sitemap.xml to dominate Google organic rankings.',
       icon: Search,
-      position: 'top-8 right-8'
+      position: 'top-8 right-8',
+      badge: 'Google Rank Engine',
+      highlights: ['Local business schema JSON-LD', 'Dynamic OpenGraph & Twitter cards', 'Google Search Console & GA4 pre-mapped']
     },
     whatsapp: {
       label: 'WhatsApp CTA',
-      title: 'Instant 1-Click WhatsApp Chat',
-      desc: 'Floating chat widget routing prospective customers straight into your sales rep’s WhatsApp inbox.',
+      title: 'Instant 1-Click WhatsApp Sales Trigger',
+      desc: 'Floating animated chat widget routing prospective customers straight into your sales team’s WhatsApp inbox with pre-filled product/service inquiry text.',
       icon: MessageCircle,
-      position: 'bottom-16 right-8'
+      position: 'bottom-16 right-8',
+      badge: 'Conversion Trigger',
+      highlights: ['Pre-filled smart message prompts', 'Zero friction lead initiation', '24/7 sticky bottom trigger on mobile']
     },
     forms: {
-      label: 'Lead Forms',
-      title: 'Spam-Protected Contact Forms',
-      desc: 'Instant email delivery, SMS alerts, validation checks, and honeypot spam bot prevention.',
+      label: 'Lead Routing Forms',
+      title: 'Spam-Protected Real-Time Lead Engine',
+      desc: 'Instant email delivery, SMS notifications, Telegram/WhatsApp webhooks, client validation checks, and honeypot spam bot prevention.',
       icon: Send,
-      position: 'bottom-16 left-8'
-    },
-    speed: {
-      label: 'Ultra Fast',
-      title: 'Sub-Second Page Load',
-      desc: 'Lightweight modern bundles, WebP image formats, and NVMe CDN caching for 95+ Google Lighthouse scores.',
-      icon: Zap,
-      position: 'top-1/2 -left-4'
+      position: 'bottom-16 left-8',
+      badge: 'Automation API',
+      highlights: ['Instant email & SMS team notifications', 'Google Sheets & CRM webhook sync', 'Honeypot anti-spam defense']
     },
     security: {
-      label: 'SSL & Security',
-      title: 'HTTPS & Protected Codebase',
-      desc: '256-bit SSL encryption, sanitized form endpoints, and secure server headers protecting client data.',
+      label: 'SSL & Security Shield',
+      title: 'Bank-Grade 256-Bit SSL & HTTPS Shield',
+      desc: 'Auto-renewing 256-bit SSL encryption, sanitized form endpoints, Content Security Policies (CSP), and secure server headers protecting client data.',
       icon: Lock,
-      position: 'top-1/2 -right-4'
+      position: 'top-1/2 -right-4',
+      badge: 'Enterprise Trust',
+      highlights: ['256-bit TLS auto-renewing encryption', 'OWASP Top 10 vulnerability mitigation', 'Sanitized inputs & XSS prevention']
+    },
+    admin: {
+      label: 'CMS Admin Hub',
+      title: '1-Click Self-Editing Admin Dashboard',
+      desc: 'Intuitive visual content management interface letting you easily update text, upload photos, publish announcements, and manage leads without touching code.',
+      icon: Palette,
+      position: 'top-1/4 left-1/2',
+      badge: 'Self Management',
+      highlights: ['Zero-code visual text & image editor', 'Real-time preview before publishing', 'Role-based editor access controls']
+    },
+    analytics: {
+      label: 'Analytics & Heatmaps',
+      title: 'Real-Time Visitor Traffic & ROI Analytics',
+      desc: 'Built-in Google Analytics 4 tracking, conversion event tracking, user journey heatmaps, and weekly automated traffic summary reports.',
+      icon: BarChart3,
+      position: 'bottom-1/4 right-1/2',
+      badge: 'Business Intelligence',
+      highlights: ['Full GA4 conversion tracking', 'Click & scroll depth analytics', 'UTM campaign tracking integration']
     }
   };
 
@@ -1431,129 +1461,242 @@ export const WebsiteDesignPage: React.FC<WebsiteDesignPageProps> = ({ onNavigate
           </div>
         </section>
 
-        {/* 18. WEBSITE FEATURES SHOWCASE (INTERACTIVE MOCKUP WITH HOTSPOTS) */}
-        <section className="my-24 bg-gradient-to-br from-[#061424] via-[#050811] to-[#02050f] border border-cyan-500/30 rounded-3xl p-6 sm:p-12 shadow-2xl relative overflow-hidden">
+        {/* 18. WEBSITE FEATURES SHOWCASE (STRETCHED FULL-WIDTH MODERN WEBSITE ANATOMY) */}
+        <section className="my-24 bg-gradient-to-br from-[#061424] via-[#050811] to-[#02050f] border border-cyan-500/30 rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl relative overflow-hidden">
           
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-wider">
+          <div className="text-center max-w-4xl mx-auto mb-10 space-y-3">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(0,240,255,0.2)]">
               <SlidersHorizontal className="w-3.5 h-3.5 text-cyan-400" />
-              <span>INTERACTIVE EXPLORER</span>
+              <span>FULL-STACK ARCHITECTURAL EXPLORER</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
               Inside Our Modern Website Anatomy
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Click on any feature label below to see how it operates within the website architecture.
+            <p className="text-xs sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              Every layer of an AVRX website is systematically engineered for extreme speed, instant conversion, mobile elegance, and search engine dominance.
             </p>
           </div>
 
-          {/* Interactive Feature Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2.5 mb-8">
+          {/* Interactive Feature Category Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 max-w-5xl mx-auto">
             {Object.entries(interactiveFeatures).map(([key, data]) => {
               const Icon = data.icon;
+              const isSelected = activeFeatureKey === key;
               return (
                 <button
                   key={key}
                   onClick={() => setActiveFeatureKey(key)}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
-                    activeFeatureKey === key
-                      ? 'bg-cyan-400 text-slate-950 shadow-[0_0_20px_rgba(0,240,255,0.4)] scale-105'
-                      : 'bg-slate-950 border border-slate-800 text-slate-300 hover:border-slate-700'
+                  className={`px-4 py-2.5 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer border ${
+                    isSelected
+                      ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 border-cyan-300 shadow-[0_0_25px_rgba(0,240,255,0.4)] scale-105 font-black'
+                      : 'bg-slate-950/80 border-slate-800 text-slate-300 hover:border-cyan-500/50 hover:bg-slate-900'
                   }`}
                 >
-                  <Icon className="w-3.5 h-3.5" />
+                  <Icon className={`w-3.5 h-3.5 ${isSelected ? 'text-slate-950' : 'text-cyan-400'}`} />
                   <span>{data.label}</span>
                 </button>
               );
             })}
           </div>
 
-          {/* Central Mockup Display with Active Callout */}
-          <div className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-2xl p-6 sm:p-10">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          {/* Stretched Widescreen Interactive Architecture Studio */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-slate-950/90 border border-slate-800/90 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden backdrop-blur-md">
+            
+            {/* Left/Center: High-Fidelity Interactive Mockup with Live Benchmarks (7 Cols) */}
+            <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
               
-              <div className="md:col-span-7 relative rounded-xl overflow-hidden border border-slate-800">
-                <img
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80"
-                  alt="Feature Architecture Mockup"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-56 sm:h-72 object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-cyan-950/20 backdrop-blur-[1px]" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="p-4 rounded-2xl bg-slate-950/90 border border-cyan-500/50 shadow-2xl text-center space-y-1">
-                    <div className="text-xs font-mono text-cyan-300">ACTIVE HIGHLIGHT</div>
-                    <div className="text-base font-black text-white">{interactiveFeatures[activeFeatureKey].title}</div>
+              {/* Browser Window Header Mockup */}
+              <div className="rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl relative group">
+                
+                {/* Browser Top Bar */}
+                <div className="px-4 py-2.5 bg-slate-950 border-b border-slate-800 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                  </div>
+
+                  <div className="px-4 py-1 rounded-lg bg-slate-900 border border-slate-800 text-[11px] font-mono text-cyan-300 flex items-center gap-2 max-w-sm w-full truncate">
+                    <Lock className="w-3 h-3 text-emerald-400 shrink-0" />
+                    <span className="truncate">https://yourbusiness.com/demo-preview</span>
+                  </div>
+
+                  <div className="flex items-center gap-1 text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>0.38s</span>
+                  </div>
+                </div>
+
+                {/* Mockup Canvas */}
+                <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-950">
+                  <img
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80"
+                    alt="Feature Architecture Mockup"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover object-top opacity-70 group-hover:opacity-85 transition-opacity"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                  
+                  {/* Active Highlight Overlay Card */}
+                  <div className="absolute inset-x-4 bottom-4 p-4 rounded-2xl bg-slate-950/90 border border-cyan-500/40 shadow-2xl backdrop-blur-md flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2.5 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                        {React.createElement(interactiveFeatures[activeFeatureKey].icon, { className: 'w-5 h-5' })}
+                      </div>
+                      <div>
+                        <div className="text-[10px] font-mono uppercase tracking-wider text-cyan-300 font-bold">
+                          {interactiveFeatures[activeFeatureKey].badge}
+                        </div>
+                        <div className="text-sm font-black text-white">
+                          {interactiveFeatures[activeFeatureKey].title}
+                        </div>
+                      </div>
+                    </div>
+
+                    <span className="hidden sm:inline-block px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 text-[11px] font-mono font-bold shrink-0">
+                      Active In All Packages
+                    </span>
                   </div>
                 </div>
               </div>
 
-              <div className="md:col-span-5 space-y-4">
-                <div className="p-3 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 w-fit">
-                  {React.createElement(interactiveFeatures[activeFeatureKey].icon, { className: 'w-6 h-6' })}
+              {/* Real-Time Live Architectural Metric Gauges */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-center space-y-0.5">
+                  <div className="text-lg font-black text-cyan-400 font-mono">0.38s</div>
+                  <div className="text-[10px] uppercase font-bold text-slate-400">Cold Start LCP</div>
                 </div>
-                <h3 className="text-2xl font-black text-white">{interactiveFeatures[activeFeatureKey].title}</h3>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  {interactiveFeatures[activeFeatureKey].desc}
-                </p>
-                <div className="pt-2">
-                  <button
-                    onClick={() => handleOpenFormWithPlan(`Inquiry: ${interactiveFeatures[activeFeatureKey].title}`)}
-                    className="px-5 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs transition"
-                  >
-                    Implement on My Website
-                  </button>
+                <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-center space-y-0.5">
+                  <div className="text-lg font-black text-emerald-400 font-mono">99/100</div>
+                  <div className="text-[10px] uppercase font-bold text-slate-400">PageSpeed Score</div>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-center space-y-0.5">
+                  <div className="text-lg font-black text-purple-400 font-mono">A+ Grade</div>
+                  <div className="text-[10px] uppercase font-bold text-slate-400">SSL / TLS 1.3</div>
+                </div>
+                <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-center space-y-0.5">
+                  <div className="text-lg font-black text-amber-400 font-mono">100%</div>
+                  <div className="text-[10px] uppercase font-bold text-slate-400">Mobile Friendly</div>
                 </div>
               </div>
 
             </div>
+
+            {/* Right: Feature In-Depth Blueprint & Technical Specs (5 Cols) */}
+            <div className="lg:col-span-5 flex flex-col justify-between space-y-6 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 sm:p-8">
+              <div className="space-y-4">
+                
+                <div className="flex items-center justify-between">
+                  <div className="p-3.5 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 w-fit">
+                    {React.createElement(interactiveFeatures[activeFeatureKey].icon, { className: 'w-6 h-6' })}
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 text-xs font-mono font-bold">
+                    {interactiveFeatures[activeFeatureKey].badge}
+                  </span>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-black text-white">
+                    {interactiveFeatures[activeFeatureKey].title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mt-2">
+                    {interactiveFeatures[activeFeatureKey].desc}
+                  </p>
+                </div>
+
+                {/* Key Execution Highlights Checklist */}
+                <div className="space-y-2.5 pt-2 border-t border-slate-800">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 font-mono">
+                    Technical Capabilities Included:
+                  </div>
+                  {interactiveFeatures[activeFeatureKey].highlights.map((highlight, idx) => (
+                    <div key={idx} className="flex items-start gap-2 text-xs text-slate-200">
+                      <Check className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                      <span>{highlight}</span>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center gap-3">
+                <button
+                  onClick={() => handleOpenFormWithPlan(`Inquiry: ${interactiveFeatures[activeFeatureKey].title}`)}
+                  className="w-full sm:w-auto flex-1 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-slate-950 font-black text-xs shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:scale-105 transition flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span>Build This Into My Website</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+
+            </div>
+
           </div>
 
         </section>
 
-        {/* 19. BEFORE / AFTER WEBSITE SECTION (INTERACTIVE COMPARISON SLIDER) */}
-        <section className="my-24 space-y-10">
+        {/* 19. BEFORE / AFTER WEBSITE SECTION (EXPANDED WITH COMPREHENSIVE FEATURES) */}
+        <section className="my-24 space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(168,85,247,0.2)]">
               <Eye className="w-3.5 h-3.5 text-purple-400" />
-              <span>THE AVRX MAKEOVER</span>
+              <span>THE AVRX DIGITAL MAKEOVER</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
               Transform Your Digital Presence
             </h2>
             <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
-              Drag the interactive slider below to see the difference between an outdated generic website and a modern conversion-engineered AVRX website.
+              Drag the interactive split slider below to see how AVRX turns slow, outdated, zero-lead websites into high-speed conversion powerhouses.
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl select-none">
+          {/* Interactive Comparison Slider */}
+          <div className="max-w-6xl mx-auto relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl select-none">
             
             {/* Split Comparison Window */}
-            <div className="relative h-[360px] sm:h-[480px] w-full">
+            <div className="relative h-[400px] sm:h-[500px] w-full">
               
               {/* After: AVRX Modern Website (Right Side Background) */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#061a29] via-[#050c18] to-slate-950 flex items-center justify-center p-6 text-left">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#061e31] via-[#05101f] to-slate-950 flex items-center justify-end p-6 sm:p-12 text-left">
                 <div className="max-w-md space-y-4">
-                  <div className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-xs font-mono font-bold w-fit">
-                    MODERN AVRX ARCHITECTURE
+                  <div className="flex items-center gap-2">
+                    <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-xs font-mono font-bold">
+                      MODERN AVRX ARCHITECTURE
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[11px] font-mono font-bold">
+                      99/100 Speed
+                    </span>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-white">High-Converting & Ultra-Fast</h3>
-                  <div className="space-y-2 text-xs text-slate-300">
-                    <div className="flex items-center gap-2">
+
+                  <h3 className="text-2xl sm:text-3xl font-black text-white">
+                    High-Converting & Ultra-Fast
+                  </h3>
+
+                  <div className="space-y-2.5 text-xs text-slate-200">
+                    <div className="flex items-center gap-2.5">
                       <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <span>Sub-second 0.4s load times</span>
+                      <span><strong>0.4s Sub-Second</strong> Lightning Cold-Start Speed</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2.5">
                       <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <span>Instant 1-Click WhatsApp & Phone CTAs</span>
+                      <span><strong>1-Click Direct</strong> Floating WhatsApp & Instant Call CTAs</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2.5">
                       <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <span>Flawless thumb-friendly mobile layout</span>
+                      <span><strong>Thumb-Friendly</strong> Ergonomic Mobile App-Like Feel</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2.5">
                       <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <span>Modern typography & generous whitespace</span>
+                      <span><strong>Google Rich Snippet</strong> Structured SEO Schema Tags</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <span><strong>Bank-Grade 256-Bit SSL</strong> & DDoS Protected Cloud Server</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <span><strong>1-Click CMS Dashboard</strong> to update content anytime</span>
                     </div>
                   </div>
                 </div>
@@ -1561,29 +1704,58 @@ export const WebsiteDesignPage: React.FC<WebsiteDesignPageProps> = ({ onNavigate
 
               {/* Before: Old / Basic Website (Left Side Clipped) */}
               <div 
-                className="absolute inset-y-0 left-0 overflow-hidden bg-slate-900 border-r-2 border-cyan-400 shadow-2xl flex items-center justify-start p-6 text-left"
+                className="absolute inset-y-0 left-0 overflow-hidden bg-slate-900 border-r-2 border-cyan-400 shadow-2xl flex items-center justify-start p-6 sm:p-12 text-left"
                 style={{ width: `${beforeAfterPos}%` }}
               >
-                <div className="w-[450px] space-y-4">
-                  <div className="px-3 py-1 rounded-full bg-red-500/20 text-red-300 border border-red-500/40 text-xs font-mono font-bold w-fit">
-                    OLD / BASIC WEBSITE
+                <div className="w-[420px] sm:w-[480px] space-y-4">
+                  <div className="flex items-center gap-2">
+                    <span className="px-3 py-1 rounded-full bg-red-500/20 text-red-300 border border-red-500/40 text-xs font-mono font-bold">
+                      OLD / BASIC WEBSITE
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/30 text-[11px] font-mono font-bold">
+                      24/100 Speed
+                    </span>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-slate-400">Outdated & Cluttered</h3>
-                  <div className="space-y-2 text-xs text-slate-500">
-                    <div>• 4.5+ seconds slow loading times</div>
-                    <div>• Buried contact details and broken forms</div>
-                    <div>• Pinch-and-zoom broken mobile experience</div>
-                    <div>• Cramped text, dated fonts & zero leads</div>
+
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-400">
+                    Outdated, Slow & Cluttered
+                  </h3>
+
+                  <div className="space-y-2.5 text-xs text-slate-400">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-red-400 font-bold">✕</span>
+                      <span>4.8+ seconds slow loading times causing 65% bounce</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-red-400 font-bold">✕</span>
+                      <span>Broken or buried contact forms with zero lead alerts</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-red-400 font-bold">✕</span>
+                      <span>Pinch-and-zoom broken desktop view on mobile screens</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-red-400 font-bold">✕</span>
+                      <span>Missing Google Schema metadata and invisible ranking</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-red-400 font-bold">✕</span>
+                      <span>"Not Secure" browser warnings scaring away visitors</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-red-400 font-bold">✕</span>
+                      <span>Dependent on expensive developers for simple text changes</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Draggable Divider Handle */}
               <div 
-                className="absolute inset-y-0 -ml-4 flex items-center justify-center cursor-ew-resize pointer-events-none"
+                className="absolute inset-y-0 -ml-5 flex items-center justify-center cursor-ew-resize pointer-events-none z-30"
                 style={{ left: `${beforeAfterPos}%` }}
               >
-                <div className="w-8 h-8 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_20px_rgba(0,240,255,0.8)]">
+                <div className="w-10 h-10 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center shadow-[0_0_25px_rgba(0,240,255,0.9)] border-2 border-white">
                   <SlidersHorizontal className="w-4 h-4" />
                 </div>
               </div>
@@ -1595,17 +1767,81 @@ export const WebsiteDesignPage: React.FC<WebsiteDesignPageProps> = ({ onNavigate
                 max="95"
                 value={beforeAfterPos}
                 onChange={(e) => setBeforeAfterPos(Number(e.target.value))}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20"
+                className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-40"
                 aria-label="Before / After Website Comparison Slider"
               />
 
             </div>
 
-            <div className="px-6 py-3 bg-slate-900 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-              <span>← Drag Left to see Modern AVRX Website</span>
-              <span>Drag Right to see Old Website →</span>
+            <div className="px-6 py-3.5 bg-slate-900/90 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+              <span className="font-semibold text-slate-300">← Drag Left to see Modern AVRX Architecture</span>
+              <span className="font-semibold text-slate-300">Drag Right to see Outdated Website →</span>
             </div>
 
+          </div>
+
+          {/* 8-Point Comprehensive Feature Transformation Matrix */}
+          <div className="max-w-6xl mx-auto space-y-4 pt-4">
+            <div className="text-center space-y-1">
+              <h3 className="text-xl sm:text-2xl font-black text-white">
+                Detailed Transformation Matrix: Old Website vs. AVRX
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-400">
+                A systematic side-by-side comparison across the 8 key pillars of web engineering.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              
+              <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
+                <div className="text-xs font-mono font-bold text-cyan-400 uppercase">1. Page Load Speed</div>
+                <div className="text-sm font-bold text-white">Sub-0.4s Instant Load</div>
+                <div className="text-xs text-slate-400">Old: 4.8s slow spin vs AVRX: Brotli compression, NVMe SSD &amp; CDN caching.</div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
+                <div className="text-xs font-mono font-bold text-cyan-400 uppercase">2. Lead Capture Engine</div>
+                <div className="text-sm font-bold text-white">Instant WhatsApp + Alerts</div>
+                <div className="text-xs text-slate-400">Old: Static mailto link vs AVRX: Direct WhatsApp trigger &amp; instant SMS/Email.</div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
+                <div className="text-xs font-mono font-bold text-cyan-400 uppercase">3. Mobile Ergonomics</div>
+                <div className="text-sm font-bold text-white">Native App-Like UI</div>
+                <div className="text-xs text-slate-400">Old: Pinch-to-zoom desktop layout vs AVRX: Thumb-friendly mobile navigation.</div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
+                <div className="text-xs font-mono font-bold text-cyan-400 uppercase">4. Google Search SEO</div>
+                <div className="text-sm font-bold text-white">Rich Snippets &amp; Schema</div>
+                <div className="text-xs text-slate-400">Old: Zero meta tags vs AVRX: JSON-LD Local Business Schema &amp; fast indexing.</div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
+                <div className="text-xs font-mono font-bold text-cyan-400 uppercase">5. Security &amp; Trust</div>
+                <div className="text-sm font-bold text-white">256-Bit SSL HTTPS</div>
+                <div className="text-xs text-slate-400">Old: "Not Secure" warning vs AVRX: Auto-renewing SSL certificate &amp; CSP headers.</div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
+                <div className="text-xs font-mono font-bold text-cyan-400 uppercase">6. Content Control</div>
+                <div className="text-sm font-bold text-white">1-Click Admin CMS</div>
+                <div className="text-xs text-slate-400">Old: Dependent on agency vs AVRX: Intuitive visual self-management editor.</div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
+                <div className="text-xs font-mono font-bold text-cyan-400 uppercase">7. Code Ownership</div>
+                <div className="text-sm font-bold text-white">100% IP &amp; Source Code</div>
+                <div className="text-xs text-slate-400">Old: Locked in proprietary platforms vs AVRX: Full source code and asset handover.</div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
+                <div className="text-xs font-mono font-bold text-cyan-400 uppercase">8. Inbound ROI</div>
+                <div className="text-sm font-bold text-white">+340% Higher Conversion</div>
+                <div className="text-xs text-slate-400">Old: &lt;0.5% lead conversion vs AVRX: Multi-channel booking &amp; inquiry routing.</div>
+              </div>
+
+            </div>
           </div>
 
         </section>
@@ -1674,23 +1910,26 @@ export const WebsiteDesignPage: React.FC<WebsiteDesignPageProps> = ({ onNavigate
           </div>
         </section>
 
-        {/* 20. FAQ ACCORDION */}
-        <section className="my-24 max-w-4xl mx-auto space-y-8">
+        {/* 20. FAQ ACCORDION (2-COLUMN GRID LAYOUT) */}
+        <section className="my-24 max-w-6xl mx-auto space-y-8">
           <div className="text-center space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider">
               <HelpCircle className="w-3.5 h-3.5 text-purple-400" />
               <span>FREQUENTLY ASKED QUESTIONS</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
-              Website Design & Development FAQs
+            <h2 className="text-3xl sm:text-5xl font-black text-white">
+              Website Design &amp; Development FAQs
             </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Clear, transparent answers to help you select the ideal digital solution.
+            </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
             {webDesignFaqs.map((faq, idx) => (
               <div 
                 key={idx}
-                className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-900/80"
+                className="border border-slate-800 rounded-2xl overflow-hidden bg-slate-900/80 hover:border-cyan-500/30 transition-colors"
               >
                 <button
                   onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
