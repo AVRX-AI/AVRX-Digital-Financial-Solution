@@ -75,7 +75,17 @@ export const QuickEnquiryModal: React.FC<QuickEnquiryModalProps> = ({
         leadId: res.leadId,
         message: res.message
       });
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        location: '',
+        serviceCategory: defaultService,
+        message: '',
+        website_hp: ''
+      });
     } else {
+      setErrorMessage(res.message || 'Unable to submit enquiry right now. Please try again.');
       setFeedback({
         isOpen: true,
         type: 'error',

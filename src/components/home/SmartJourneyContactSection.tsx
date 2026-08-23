@@ -99,6 +99,14 @@ export const SmartJourneyContactSection: React.FC<SmartJourneyContactSectionProp
 
     if (result.success) {
       setSubmittedLeadId(result.leadId || `AVRX-${Math.floor(100000 + Math.random() * 900000)}`);
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        city: '',
+        requirement: '',
+        website_hp: ''
+      });
       setCurrentStep(4);
     } else {
       setErrorMessage(result.message || 'Error submitting request. Please retry or contact us directly on WhatsApp.');
