@@ -1,10 +1,8 @@
 /**
  * AVRX Centralized Serverless Function: /api/submit-form
  * Primary handler for all website form submissions on AVRX.in
+ * Connects directly to Supabase Edge Function: submit-client
  */
-
-import { sendLeadEmails } from '../src/server/emailService';
-import { LeadData } from '../src/server/emailTemplates';
 
 interface GenericReq {
   method?: string;
@@ -145,7 +143,7 @@ export default async function handler(req: GenericReq, res: GenericRes) {
       timeStyle: "short"
     }) + " IST";
 
-    const leadData: LeadData = {
+    const leadData = {
       id: leadId,
       formName: resolvedFormName,
       name: resolvedName,
@@ -167,17 +165,39 @@ export default async function handler(req: GenericReq, res: GenericRes) {
       dynamicFields: Object.keys(dynamicFields).length > 0 ? dynamicFields : undefined
     };
 
-    // 6. Send Admin Notification to avrx.india@gmail.com and User Confirmation to user
-    const emailResult = await sendLeadEmails(leadData, clientIp);
+    // 6. Forward exact JSON schema payload to Supabase Edge Function
+    const supabasePayload = {
+      name: resolvedName,
+      phone: resolvedPhone,
+      email: resolvedEmail,
+      message: resolvedMessage || `Enquiry for ${resolvedService}`
+    };
+
+    const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || '';
+    const supabaseHeaders: Record<string, string> = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    };
+    if (supabaseAnonKey) {
+      supabaseHeaders['apikey'] = supabaseAnonKey;
+      supabaseHeaders['Authorization'] = `Bearer ${supabaseAnonKey}`;
+    }
+
+    try {
+      await fetch('https://ncopprboovzhsqzqbrab.supabase.co/functions/v1/submit-client', {
+        method: 'POST',
+        headers: supabaseHeaders,
+        body: JSON.stringify(supabasePayload)
+      });
+    } catch (edgeErr: any) {
+      console.error('[SERVERLESS /api/submit-form -> SUPABASE EDGE ERROR]', edgeErr?.message || edgeErr);
+    }
 
     // 7. Return Clean Structured Response
     return res.status(200).json({
       success: true,
-      message: "Thank You!\n\nYour request has been submitted successfully.\n\nOur AVRX team will contact you shortly.",
-      leadId: leadData.id,
-      adminEmailSent: emailResult.adminEmailSent,
-      clientEmailSent: emailResult.clientEmailSent,
-      transport: emailResult.transport
+      message: "Thank you! Your enquiry has been received. Our team will contact you shortly.",
+      leadId: leadData.id
     });
 
   } catch (err: any) {

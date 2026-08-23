@@ -2,9 +2,6 @@ import express, { Request, Response } from "express";
 import path from "path";
 import { GoogleGenAI } from "@google/genai";
 import { createServer as createViteServer } from "vite";
-import { sendLeadEmails } from "./src/server/emailService";
-import { getAllLeads } from "./src/server/leadStore";
-import { LeadData } from "./src/server/emailTemplates";
 
 const app = express();
 const PORT = 3000;
@@ -864,7 +861,7 @@ const handleLeadSubmission = async (req: Request, res: Response) => {
       timeStyle: "short"
     }) + " IST";
 
-    const leadData: LeadData = {
+    const leadData = {
       id: leadId,
       formName: resolvedFormName,
       name: resolvedName,
@@ -886,17 +883,41 @@ const handleLeadSubmission = async (req: Request, res: Response) => {
       dynamicFields: Object.keys(dynamicFields).length > 0 ? dynamicFields : undefined
     };
 
-    // F. Execute Dual Email Dispatch (Admin Notification to avrx.india@gmail.com + User Confirmation)
-    const emailResult = await sendLeadEmails(leadData, clientIp);
+    // F. Forward exact JSON schema payload to Supabase Edge Function
+    const supabasePayload = {
+      name: resolvedName,
+      phone: resolvedPhone,
+      email: resolvedEmail,
+      message: resolvedMessage || `Enquiry for ${resolvedService}`
+    };
+
+    const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || '';
+    const supabaseHeaders: Record<string, string> = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    };
+    if (supabaseAnonKey) {
+      supabaseHeaders['apikey'] = supabaseAnonKey;
+      supabaseHeaders['Authorization'] = `Bearer ${supabaseAnonKey}`;
+    }
+
+    try {
+      const edgeRes = await fetch('https://ncopprboovzhsqzqbrab.supabase.co/functions/v1/submit-client', {
+        method: 'POST',
+        headers: supabaseHeaders,
+        body: JSON.stringify(supabasePayload)
+      });
+      const edgeData = await edgeRes.json().catch(() => null);
+      console.log('[SERVER -> SUPABASE EDGE SUBMISSION]', edgeRes.status, edgeData);
+    } catch (edgeErr: any) {
+      console.error('[SERVER -> SUPABASE EDGE ERROR]', edgeErr?.message || edgeErr);
+    }
 
     // G. Return Clean Structured Response
     res.json({
       success: true,
-      message: "Thank You!\n\nYour request has been submitted successfully.\n\nOur AVRX team will contact you shortly.",
-      leadId: leadData.id,
-      adminEmailSent: emailResult.adminEmailSent,
-      clientEmailSent: emailResult.clientEmailSent,
-      transport: emailResult.transport
+      message: "Thank you! Your enquiry has been received. Our team will contact you shortly.",
+      leadId: leadData.id
     });
 
   } catch (err: any) {
@@ -909,20 +930,19 @@ const handleLeadSubmission = async (req: Request, res: Response) => {
 };
 
 app.post("/api/submit-form", handleLeadSubmission);
-app.post("/api/send-form-email", handleLeadSubmission);
 app.post("/api/contact", handleLeadSubmission);
 app.post("/api/enquiry", handleLeadSubmission);
 app.post("/api/partner", handleLeadSubmission);
 
+// In-memory lead buffer for debug/backup
+const recentLeads: any[] = [];
+
 // 7. Secure Admin Leads Endpoint (View backed-up leads)
-app.get("/api/admin/leads", (req: Request, res: Response) => {
-  const secret = req.query.key || req.headers['x-admin-key'];
-  // Optional check or open for local verification
-  const leads = getAllLeads();
+app.get("/api/admin/leads", (_req: Request, res: Response) => {
   res.json({
     success: true,
-    totalLeads: leads.length,
-    leads
+    totalLeads: recentLeads.length,
+    leads: recentLeads
   });
 });
 
