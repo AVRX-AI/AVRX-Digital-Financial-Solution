@@ -54,6 +54,12 @@ import {
   BriefcaseBusiness,
   FileSpreadsheet,
   Stamp,
+  Users,
+  Sprout,
+  Fingerprint,
+  Bike,
+  Gem,
+  Banknote,
   LucideIcon
 } from 'lucide-react';
 
@@ -79,6 +85,12 @@ const ICON_MAP: Record<string, LucideIcon> = {
   CreditCard,
   Coins,
   DollarSign,
+  Users,
+  Sprout,
+  Fingerprint,
+  Bike,
+  Gem,
+  Banknote,
   // Tax & Legal
   FileCheck,
   Calculator,

@@ -31,6 +31,7 @@ import { DisclaimerPage } from './pages/DisclaimerPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { WebsiteDesignPage } from './pages/WebsiteDesignPage';
+import { EcommerceSolutionsPage } from './pages/EcommerceSolutionsPage';
 import { AskAVRXAIFloating } from './components/common/AskAVRXAIFloating';
 import { MobileBottomNav } from './components/layout/MobileBottomNav';
 
@@ -179,6 +180,11 @@ export function App() {
       case 'website-design':
       case 'website-development':
         return <WebsiteDesignPage onNavigate={handleNavigate} />;
+      case 'e-commerce-solutions':
+      case 'ecommerce-solutions':
+      case 'ecommerce':
+      case 'e-commerce':
+        return <EcommerceSolutionsPage onNavigate={handleNavigate} />;
       case 'service-detail':
         return <ServiceDetailPage serviceSlug={selectedServiceSlug} onNavigate={handleNavigate} />;
       case 'digital-solutions':

@@ -41,7 +41,14 @@ import {
   Layers,
   Plane,
   Percent,
-  CheckCheck
+  CheckCheck,
+  Bike,
+  Users,
+  Sprout,
+  Fingerprint,
+  Gem,
+  Banknote,
+  CreditCard
 } from 'lucide-react';
 
 interface FinancialSolutionsPageProps {
@@ -53,18 +60,21 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSolution, setSelectedSolution] = useState<string>('Personal Loan');
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
-  const [activeComparisonTab, setActiveComparisonTab] = useState<string>('personal');
+  const [activeComparisonTab, setActiveComparisonTab] = useState<string>('gold');
   const [activeDocTab, setActiveDocTab] = useState<string>('identity');
 
   // Hero Card Stack Animation Index
   const [heroCardIndex, setHeroCardIndex] = useState(0);
   const heroCardStack = [
-    { title: 'Personal Loans', icon: UserCheck, tag: 'Flexible Terms', color: 'from-cyan-500/20 to-blue-500/20', border: 'border-cyan-500/40' },
-    { title: 'Business Capital', icon: Briefcase, tag: 'Growth Finance', color: 'from-emerald-500/20 to-teal-500/20', border: 'border-emerald-500/40' },
-    { title: 'Vehicle Finance', icon: Car, tag: 'New & Used Cars', color: 'from-amber-500/20 to-orange-500/20', border: 'border-amber-500/40' },
-    { title: 'Home & Property Loans', icon: Home, tag: 'Long Tenures', color: 'from-purple-500/20 to-indigo-500/20', border: 'border-purple-500/40' },
-    { title: 'Govt Subsidy (PMEGP)', icon: Landmark, tag: 'Subsidized Schemes', color: 'from-rose-500/20 to-pink-500/20', border: 'border-rose-500/40' },
-    { title: 'Protection & Insurance', icon: Shield, tag: 'Health & Motor', color: 'from-blue-500/20 to-cyan-500/20', border: 'border-blue-500/40' }
+    { title: 'Gold Loan (30 Mins)', icon: Coins, tag: 'Instant Cash', color: 'from-amber-500/20 to-yellow-500/20', border: 'border-amber-500/40' },
+    { title: 'Loan Against Property', icon: Building2, tag: 'Up to ₹5 Cr', color: 'from-blue-500/20 to-cyan-500/20', border: 'border-blue-500/40' },
+    { title: '2/3 Wheeler Loan', icon: Bike, tag: 'Bike, EV & Auto', color: 'from-emerald-500/20 to-teal-500/20', border: 'border-emerald-500/40' },
+    { title: 'Self Help / Group Loan', icon: Users, tag: 'SHG / JLG Microfinance', color: 'from-purple-500/20 to-pink-500/20', border: 'border-purple-500/40' },
+    { title: 'Instant Online Loan', icon: Zap, tag: '15 Mins Direct Cash', color: 'from-cyan-500/20 to-blue-500/20', border: 'border-cyan-500/40' },
+    { title: 'KCC Loan (Agri)', icon: Sprout, tag: '4% Subsidized Rate', color: 'from-lime-500/20 to-emerald-500/20', border: 'border-lime-500/40' },
+    { title: 'Loan with Aadhaar & PAN', icon: Fingerprint, tag: '100% Paperless KYC', color: 'from-indigo-500/20 to-purple-500/20', border: 'border-indigo-500/40' },
+    { title: 'Business Capital', icon: Briefcase, tag: 'MSME & OD Limits', color: 'from-teal-500/20 to-cyan-500/20', border: 'border-teal-500/40' },
+    { title: 'Govt Subsidy (PMEGP)', icon: Landmark, tag: 'Subsidies to 35%', color: 'from-rose-500/20 to-pink-500/20', border: 'border-rose-500/40' }
   ];
 
   useEffect(() => {
@@ -101,7 +111,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
     phone: '',
     email: '',
     city: '',
-    solutionType: 'Personal Loan',
+    solutionType: 'Gold Loan (Instant Cash)',
     loanAmount: '₹5,00,000',
     employmentType: 'Salaried',
     notes: '',
@@ -165,7 +175,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
         phone: '',
         email: '',
         city: '',
-        solutionType: 'Personal Loan',
+        solutionType: 'Gold Loan (Instant Cash)',
         loanAmount: '₹5,00,000',
         employmentType: 'Salaried',
         notes: '',
@@ -181,8 +191,141 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
     }
   };
 
-  // 11 Core Financial & Insurance Solutions
+  // 13 Comprehensive Core Financial & Loan Solutions
   const allFinancialServices = [
+    {
+      id: 'gold-loan',
+      slug: 'gold-loan',
+      title: 'Gold Loan (Instant Cash Against Gold)',
+      category: 'Instant Gold Collateral',
+      icon: Coins,
+      imageUrl: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=80',
+      desc: 'Instant cash liquidity against gold jewelry with highest per-gram valuation, low interest rates, and zero income proof.',
+      indicativeInfo: 'Instant cash in 30 mins | Up to 75% market valuation',
+      features: [
+        'Instant loan up to ₹1.5 Cr against 18k–24k gold jewelry',
+        'Lowest interest rates starting from 8.50% p.a.',
+        'Zero income proof or ITR required (KYC only)',
+        '100% insured bank vault custody storage',
+        'Flexible bullet, monthly interest or EMI repayment',
+        'Zero prepayment or foreclosure penalties'
+      ],
+      disclaimer: 'Gold purity evaluation, valuation per gram, and loan-to-value (LTV) limits are governed by RBI norms.'
+    },
+    {
+      id: 'mortgage-loan',
+      slug: 'mortgage-loan',
+      title: 'Mortgage Loan / Loan Against Property (LAP)',
+      category: 'Secured Real Estate Equity',
+      icon: Building2,
+      imageUrl: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=800&q=80',
+      desc: 'Unlock high-value liquidity by leveraging residential, commercial, or industrial properties while retaining complete property ownership.',
+      indicativeInfo: 'High sanction limits up to ₹5 Crores | Tenures to 15 Years',
+      features: [
+        'High sanction limits up to ₹5 Crores at lowest rates',
+        'Extended repayment tenures up to 15 years for low EMIs',
+        'Accepted for residential houses, commercial shops & plots',
+        'Retain 100% continuous usage and occupancy of property',
+        'Drop-line overdraft (OD) & term loan facilities available',
+        'End-to-end legal title clearance and technical appraisal'
+      ],
+      disclaimer: 'Property valuation, sanction limits and mortgage creation are subject to clear legal title and bank evaluation.'
+    },
+    {
+      id: 'two-three-wheeler-loan',
+      slug: 'two-three-wheeler-loan',
+      title: '2/3 Wheeler Loan (Bike, Scooter & Auto/E-Rickshaw)',
+      category: 'Vehicle & Green Mobility',
+      icon: Bike,
+      imageUrl: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80',
+      desc: 'Affordable financing for two-wheelers, electric scooters, commercial autos, and e-rickshaws with minimal down payment.',
+      indicativeInfo: 'Up to 95% on-road funding | Spot approval in 15 mins',
+      features: [
+        'Up to 95% on-road funding for bikes, scooters & EV 2-wheelers',
+        'Commercial 3-wheeler auto-rickshaw & e-rickshaw financing',
+        'Spot approvals within 15–30 minutes at authorized dealers',
+        'Pocket-friendly EMIs with tenures from 12 to 48 months',
+        'Special subsidized interest rates for electric green mobility',
+        'Minimal documentation: Aadhaar + Bank Passbook / UPI'
+      ],
+      disclaimer: 'Down payment, on-road funding percentage and interest rates depend on vehicle model and borrower profile.'
+    },
+    {
+      id: 'group-loan-shg',
+      slug: 'group-loan-shg',
+      title: 'Self Help / Group Loan (SHG & JLG Microfinance)',
+      category: 'Community & Microfinance',
+      icon: Users,
+      imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
+      desc: 'Collateral-free group loans and microfinance credit for Self-Help Groups (SHGs), Joint Liability Groups (JLGs), and women entrepreneurs.',
+      indicativeInfo: 'Collateral-free group credit | Weekly / Monthly repayment',
+      features: [
+        'Collateral-free collective financing for groups of 4 to 20 members',
+        'Dedicated funding for women SHGs (NRLM/SRLM aligned)',
+        'Joint Liability Group (JLG) model for artisans & micro-traders',
+        'Direct Benefit Transfer (DBT) to individual or group accounts',
+        'Flexible repayment frequencies: weekly, fortnightly, or monthly',
+        'Peer-guarantee structure with zero real estate security needed'
+      ],
+      disclaimer: 'Group credit sanction is subject to group cohesion, mutual guarantee terms, and microfinance institutional policies.'
+    },
+    {
+      id: 'instant-online-loan',
+      slug: 'instant-online-loan',
+      title: 'Instant Online Loan (Digital Express Cash)',
+      category: 'Digital Express Credit',
+      icon: Zap,
+      imageUrl: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
+      desc: '100% paperless digital loan with algorithmic pre-approval, Video KYC, and fund transfer directly to your bank in 15 minutes.',
+      indicativeInfo: 'Disbursement in 15 mins | 100% paperless digital flow',
+      features: [
+        'Instant credit sanctions from ₹10,000 up to ₹5,00,000',
+        '100% digital app/web journey with DigiLocker e-KYC',
+        'Algorithmic credit decision within 3 to 5 minutes',
+        'Direct instant NEFT/IMPS disbursement into your bank account',
+        'Flexible tenures from 3 to 24 months with auto-debit',
+        'Zero branch visits and transparent processing fees'
+      ],
+      disclaimer: 'Instant disbursement is subject to digital credit bureau verification and bank account name match.'
+    },
+    {
+      id: 'kcc-loan',
+      slug: 'kcc-loan',
+      title: 'KCC Loan (Kisan Credit Card & Agri Finance)',
+      category: 'Agricultural & Crop Credit',
+      icon: Sprout,
+      imageUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80',
+      desc: 'Subsidized agricultural credit at effective 4% p.a. interest for farmers, seasonal crop production, dairy, and farm equipment.',
+      indicativeInfo: 'Effective 4% p.a.* with Govt Interest Subvention',
+      features: [
+        'Effective subsidized 4% p.a. interest on prompt repayment',
+        'Credit limit based on agricultural land holding & crop scale',
+        'Revolving 5-year credit limit with simple annual renewal',
+        'Allied farming support: dairy, poultry, fisheries & equipment',
+        'In-built PM Fasal Bima Yojana (PMFBY) crop damage cover',
+        'Collateral-free credit up to ₹1.6 Lakhs (up to ₹2 Lakhs in tie-ups)'
+      ],
+      disclaimer: 'Subsidized interest rate is applicable upon prompt repayment as per Central Govt guidelines and land title verification.'
+    },
+    {
+      id: 'aadhar-pan-loan',
+      slug: 'aadhar-pan-loan',
+      title: 'Loan with Aadhar & PAN (Paperless Quick Loan)',
+      category: 'Instant KYC Credit',
+      icon: Fingerprint,
+      imageUrl: 'https://images.unsplash.com/photo-1556742049-0a67e557b63f?auto=format&fit=crop&w=800&q=80',
+      desc: 'Fast unsecured credit solely using your Aadhaar Card and PAN Card with instant OTP-based verification and direct bank credit.',
+      indicativeInfo: 'Zero physical paperwork | Instant OTP & DigiLocker e-KYC',
+      features: [
+        'Instant loan sanction using only Aadhaar card & PAN card',
+        'No requirement of physical salary slips or heavy balance sheets',
+        'Instant identity verification via DigiLocker & UIDAI OTP',
+        'Loan amounts from ₹25,000 up to ₹7,50,000',
+        'Direct disbursement to Aadhaar-seeded bank account',
+        '100% secure, encrypted and RBI-authorized lending partner flow'
+      ],
+      disclaimer: 'Loan approval depends on digital credit bureau check and bank statement analysis where required.'
+    },
     {
       id: 'personal-loan',
       slug: 'personal-loan',
@@ -190,34 +333,34 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
       category: 'Unsecured Credit',
       icon: UserCheck,
       imageUrl: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80',
-      desc: 'Unsecured credit solutions to meet personal requirements, emergency expenses, travel, or debt consolidation.',
-      indicativeInfo: 'Flexible loan amounts based on profile & lender criteria',
+      desc: 'Unsecured credit solutions to meet personal requirements, emergency expenses, weddings, travel, or debt consolidation.',
+      indicativeInfo: 'Flexible loan amounts from ₹50,000 up to ₹25 Lakhs',
       features: [
         'Flexible loan amount depending on eligibility',
-        'Multiple lender options where available',
-        'Documentation assistance & review',
-        'Transparent application guidance',
-        'Personalized repayment tenure options',
-        'Pre-application profile assessment'
+        'Multiple lender options from 30+ top banks & NBFCs',
+        'Documentation assistance & salary verification',
+        'Transparent application guidance with zero hidden cost',
+        'Personalized repayment tenure options (12 to 60 Months)',
+        'Pre-application credit score & profile assessment'
       ],
       disclaimer: 'Loan approval, interest rate, amount and tenure are subject to lender criteria and credit evaluation.'
     },
     {
       id: 'business-loan',
       slug: 'business-loan',
-      title: 'Business Loan',
+      title: 'Business & Working Capital Loan',
       category: 'Commercial Capital',
       icon: Briefcase,
       imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
       desc: 'Structured business funding for working capital, inventory replenishment, machinery purchase, and operational expansion.',
-      indicativeInfo: 'Working capital & term loan solutions for enterprises',
+      indicativeInfo: 'Working capital & term loan solutions up to ₹1 Crore',
       features: [
-        'Business-focused financing options',
+        'Unsecured & secured business financing options',
         'GST & balance sheet documentation support',
         'Assistance for MSMEs, proprietorships & private firms',
-        'Multiple financial institution channels',
-        'Custom repayment schedule alignment',
-        'Working capital requirement review'
+        'Overdraft (OD) and Cash Credit (CC) limit facilities',
+        'Custom repayment schedule aligned with cash flows',
+        'Working capital requirement & project review'
       ],
       disclaimer: 'Financing terms and eligibility are determined by institutional lenders and financial vintage.'
     },
@@ -229,202 +372,107 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
       icon: Car,
       imageUrl: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
       desc: 'Financing solutions for new passenger vehicles and verified pre-owned cars with structured repayment periods.',
-      indicativeInfo: 'New car and pre-owned vehicle loan assistance',
+      indicativeInfo: 'Up to 100% on-road financing for select profiles',
       features: [
         'Financing options for new & certified used vehicles',
         'Vehicle valuation & documentation guidance',
         'Eligibility assessment based on income profile',
-        'End-to-end application support',
+        'Doorstep document collection and rapid processing',
         'Repayment tenure planning up to 7 years',
-        'Dealer quotation liaison support'
+        'Dealer quotation and RTO hypothecation support'
       ],
       disclaimer: 'Lending terms, loan-to-value (LTV) ratio and interest rates depend on vehicle age and lender norms.'
     },
     {
       id: 'home-loan',
       slug: 'home-loan',
-      title: 'Home / Property Loan',
-      category: 'Real Estate & LAP',
+      title: 'Home Loan & Construction',
+      category: 'Real Estate Finance',
       icon: Home,
       imageUrl: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
-      desc: 'Credit solutions for residential home purchases, plot construction, home expansion, and Loan Against Property (LAP).',
-      indicativeInfo: 'Long-term financing for property purchases & mortgage',
+      desc: 'Credit solutions for residential home purchases, plot acquisition, home construction, renovation, and extension.',
+      indicativeInfo: 'Long-term financing up to 30 years for property purchases',
       features: [
-        'Residential home purchase financing',
+        'Residential home purchase financing (up to 90% funding)',
         'Plot purchase + construction loan assistance',
-        'Loan Against Property (LAP) for liquid capital',
         'Property chain & legal document guidance',
-        'Balance transfer options where suitable',
-        'Long repayment tenures up to 30 years'
+        'Tax deductions under Section 80C & Section 24(b)',
+        'Balance transfer options with top-up capital',
+        'Tranche-wise construction disbursement alignment'
       ],
       disclaimer: 'Mortgage sanction and disbursement are subject to property title clearance and institutional underwriting.'
     },
     {
+      id: 'loan-refinance',
+      slug: 'loan-refinance',
+      title: 'Loan Refinance & Balance Transfer',
+      category: 'Interest Optimization',
+      icon: Percent,
+      imageUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+      desc: 'Switch existing high-interest home, business, or personal loans to lower interest partner lenders and reduce monthly EMI burden.',
+      indicativeInfo: 'Save up to 2% interest & access additional top-up funds',
+      features: [
+        'Significant EMI and overall interest outflow reduction',
+        'Top-up loan facility available for immediate liquidity',
+        'Zero prepayment penalties on floating rate loans',
+        'Complete inter-bank handover & NOC document assistance',
+        'Switch from fixed rates to repo-rate linked transparent benchmarks',
+        'Free preliminary amortization savings calculation'
+      ],
+      disclaimer: 'Interest rate reduction and top-up eligibility depend on current repayment track and lender credit policies.'
+    },
+    {
       id: 'government-subsidy-loans',
       slug: 'government-subsidy-loans',
-      title: 'Government Subsidy Loans',
+      title: 'Government Subsidy Loans (PMEGP / MUDRA)',
       category: 'PMEGP & Mudra Schemes',
       icon: Landmark,
-      imageUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
-      desc: 'Assistance for government-linked business finance schemes including PMEGP, MUDRA (Shishu/Kishore/Tarun), and CGTMSE.',
-      indicativeInfo: 'Government-supported entrepreneurship credit assistance',
+      imageUrl: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
+      desc: 'Comprehensive guidance for government-linked entrepreneurship schemes including PMEGP, MUDRA, Stand-Up India, and CGTMSE cover.',
+      indicativeInfo: 'Subsidies up to 25% - 35% under Prime Minister schemes',
       features: [
-        'PMEGP subsidy & margin money scheme guidance',
-        'Mudra loan documentation support (up to ₹10 Lakh)',
-        'Detailed Project Report (DPR) formatting help',
-        'Category-specific eligibility guidance (Urban/Rural)',
-        'Application submission portal support',
-        'Banking coordination for DPR appraisal'
+        'PMEGP capital subsidy guidance (15% to 35% project cost)',
+        'Mudra loans (Shishu, Kishore, Tarun) up to ₹10 Lakhs',
+        'Detailed Project Report (DPR) formatting by experienced CAs',
+        'CGTMSE collateral-free guarantee assistance',
+        'Official government portal application & EDP guidance',
+        'Direct coordination with partner bank branch appraisals'
       ],
       disclaimer: 'Eligibility and approval are strictly subject to applicable government guidelines, bank criteria and documentation. Subsidies are not guaranteed.'
-    },
-    {
-      id: 'motor-insurance',
-      slug: 'motor-insurance',
-      title: 'Motor Insurance',
-      category: 'Vehicle Protection',
-      icon: ShieldCheck,
-      imageUrl: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
-      desc: 'Comprehensive & third-party motor insurance options for private cars, two-wheelers, and commercial vehicles.',
-      indicativeInfo: 'Instant digital policy issuance & renewal guidance',
-      features: [
-        'Comprehensive own-damage + third-party protection',
-        'Zero depreciation & roadside assistance add-ons',
-        'No Claim Bonus (NCB) transfer assistance',
-        'Multi-insurer policy comparison',
-        'Instant digital renewal support',
-        'Cashless garage network guidance'
-      ],
-      disclaimer: 'Insurance coverage, premium, and claims are subject to the terms and conditions of the underwriting insurer.'
-    },
-    {
-      id: 'health-insurance',
-      slug: 'health-insurance',
-      title: 'Health Insurance',
-      category: 'Medical Protection',
-      icon: HeartHandshake,
-      imageUrl: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=800&q=80',
-      desc: 'Individual and family health coverage options protecting against unexpected hospitalization, medical treatments, and critical illnesses.',
-      indicativeInfo: 'Cashless hospital network & family floater plans',
-      features: [
-        'Individual and family floater coverage options',
-        'Cashless hospitalization network comparison',
-        'Pre & post-hospitalization expense coverage',
-        'Daycare procedures & modern treatment inclusion',
-        'Pre-existing disease waiting period guidance',
-        'Tax benefit assistance under Section 80D'
-      ],
-      disclaimer: 'Policy terms, exclusions, waiting periods, and claim settlements are subject to insurer guidelines.'
-    },
-    {
-      id: 'travel-insurance',
-      slug: 'travel-insurance',
-      title: 'Travel Insurance',
-      category: 'Global & Domestic Travel',
-      icon: Plane,
-      imageUrl: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80',
-      desc: 'Protection for international and domestic travels covering medical emergencies abroad, trip cancellations, and lost luggage.',
-      indicativeInfo: 'Schengen & worldwide coverage options available',
-      features: [
-        'Emergency medical expenses and evacuation abroad',
-        'Passport loss and checked baggage delay coverage',
-        'Flight cancellation and trip interruption protection',
-        'Schengen visa compliant insurance options',
-        'Single-trip and multi-trip annual plans',
-        '24x7 worldwide emergency assistance support'
-      ],
-      disclaimer: 'Travel cover limits, deductibles, and claim verification are governed by the respective policy wording.'
-    },
-    {
-      id: 'home-insurance',
-      slug: 'home-insurance',
-      title: 'Home & Property Insurance',
-      category: 'Residential Asset Protection',
-      icon: Home,
-      imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
-      desc: 'Coverage for residential buildings and household contents against fire, natural calamities, burglary, and electrical breakdown.',
-      indicativeInfo: 'Structure and household content coverage options',
-      features: [
-        'Building structure protection against fire & storm',
-        'Household appliances, electronics & furniture cover',
-        'Burglary and theft protection options',
-        'Alternative accommodation expense support',
-        'Transparent documentation and valuation support',
-        'Multi-year residential coverage possibilities'
-      ],
-      disclaimer: 'Covered perils and claim assessments are subject to survey and underwriting policy guidelines.'
-    },
-    {
-      id: 'shop-insurance',
-      slug: 'shop-insurance',
-      title: 'Shop & Commercial Insurance',
-      category: 'Business Asset Protection',
-      icon: Store,
-      imageUrl: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
-      desc: 'Comprehensive protection packages for retail shops, commercial establishments, warehouses, and merchandise stock.',
-      indicativeInfo: 'Stock, furniture & public liability coverage',
-      features: [
-        'Shop premises and merchandise stock cover',
-        'Burglary, housebreaking & cash-in-safe protection',
-        'Plate glass & neon sign damage options',
-        'Public liability coverage for visitor safety',
-        'Machinery breakdown and business interruption',
-        'Documentation assistance for commercial claims'
-      ],
-      disclaimer: 'Insurance coverage, policy terms and exclusions are subject to underwriting guidelines of the insurer.'
-    },
-    {
-      id: 'fixed-deposits',
-      slug: 'fixed-deposits',
-      title: 'Fixed Deposit Solutions',
-      category: 'Secure Savings Guidance',
-      icon: Coins,
-      imageUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80',
-      desc: 'Guidance on corporate and banking fixed deposits with flexible tenures, periodic payout options, and comparative insights.',
-      indicativeInfo: 'Indicative rate comparison across institutional tenures',
-      features: [
-        'Tenure options ranging from 12 months to 5 years',
-        'Cumulative and periodic interest payout alternatives',
-        'Senior citizen additional indicative benefits',
-        'Credit rating comparison (AAA / AA+ rated entities)',
-        'Digital application and documentation support',
-        'Maturity and renewal planning assistance'
-      ],
-      disclaimer: 'Fixed deposit interest rates are indicative and subject to change by issuing institutions. AVRX does not guarantee returns.'
     }
   ];
 
   // Comparison Tabs Data
   const comparisonCategories: Record<string, { title: string; desc: string; services: string[] }> = {
-    personal: {
-      title: 'Personal Financial Solutions',
-      desc: 'Solutions designed for individual credit, emergency funding, and personal milestones.',
-      services: ['Personal Loan', 'Fixed Deposit Solutions', 'Health Insurance']
-    },
-    business: {
-      title: 'Business & Enterprise Finance',
-      desc: 'Capital support and risk mitigation for MSMEs, commercial traders, and growing businesses.',
-      services: ['Business Loan', 'Government Subsidy Loans', 'Shop & Commercial Insurance']
-    },
-    vehicle: {
-      title: 'Vehicle Finance & Protection',
-      desc: 'Complete funding and insurance solutions for passenger and commercial vehicles.',
-      services: ['Car Loan (New & Used)', 'Motor Insurance']
+    gold: {
+      title: 'Gold & Instant Digital Credit',
+      desc: 'Fastest liquidity solutions with minimal to zero paperwork and spot approval within 15–30 minutes.',
+      services: ['Gold Loan (Instant Cash Against Gold)', 'Instant Online Loan (Digital Express Cash)', 'Loan with Aadhar & PAN (Paperless Quick Loan)']
     },
     property: {
-      title: 'Property & Real Estate Finance',
-      desc: 'Mortgage, home construction funding, and residential asset protection.',
-      services: ['Home / Property Loan', 'Home & Property Insurance']
+      title: 'Property & Mortgage Financing',
+      desc: 'High-ticket secured funding leveraging residential, commercial, or industrial real estate equity.',
+      services: ['Mortgage Loan / Loan Against Property (LAP)', 'Home Loan & Construction', 'Loan Refinance & Balance Transfer']
     },
-    protection: {
-      title: 'Protection & Insurance Portfolio',
-      desc: 'Risk coverage across health, mobility, travel, and commercial premises.',
-      services: ['Health Insurance', 'Motor Insurance', 'Travel Insurance', 'Home & Property Insurance', 'Shop & Commercial Insurance']
+    vehicles: {
+      title: 'Vehicle & Green Mobility',
+      desc: 'Tailored loans for two-wheelers, EV bikes/scooters, commercial auto-rickshaws, e-rickshaws, and passenger cars.',
+      services: ['2/3 Wheeler Loan (Bike, Scooter & Auto/E-Rickshaw)', 'Car Loan (New & Used)']
     },
-    savings: {
-      title: 'Savings & Term Investments',
-      desc: 'Guidance on structured tenure options with regulated institutions.',
-      services: ['Fixed Deposit Solutions']
+    agri: {
+      title: 'Agri, SHG & Rural Enterprise',
+      desc: 'Specialized government-supported credit for farming, Kisan Credit Card, Self-Help Groups, and women collectives.',
+      services: ['KCC Loan (Kisan Credit Card & Agri Finance)', 'Self Help / Group Loan (SHG & JLG Microfinance)', 'Government Subsidy Loans (PMEGP / MUDRA)']
+    },
+    business: {
+      title: 'Business & Commercial Capital',
+      desc: 'Working capital lines, machinery loans, OD/CC limits, and MSME subsidy programs.',
+      services: ['Business & Working Capital Loan', 'Government Subsidy Loans (PMEGP / MUDRA)', 'Mortgage Loan / Loan Against Property (LAP)']
+    },
+    personal: {
+      title: 'Personal Credit & Debt Optimization',
+      desc: 'Unsecured personal funding, debt consolidation, and balance transfer interest savings.',
+      services: ['Personal Loan', 'Loan Refinance & Balance Transfer', 'Instant Online Loan (Digital Express Cash)']
     }
   };
 
@@ -438,37 +486,44 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
         'Valid Passport or Voter ID Card (where applicable)'
       ]
     },
-    address: {
-      label: 'Address Proof',
+    instant: {
+      label: 'Aadhaar / Gold / Online',
       items: [
-        'Latest Electricity or Water Utility Bill (under 2 months old)',
-        'Registered Rent Agreement / Lease Deed with Utility Bill',
-        'Property Tax Receipt or Municipal Allotment Letter'
+        'Only Aadhaar Card & PAN Card for Instant / DigiLocker Loans',
+        'Physical Gold Jewelry for Purity & Weight Verification (for Gold Loan)',
+        'Active mobile number linked to Aadhaar for UIDAI OTP verification'
       ]
     },
-    income: {
-      label: 'Income Documents',
+    agri_shg: {
+      label: 'Agri & SHG Records',
       items: [
-        'Last 3 to 6 months Salary Slips (for salaried individuals)',
-        'Latest Form 16 / Income Tax Returns (ITR) with computation',
-        'Audited Financials (P&L & Balance Sheet for self-employed)'
+        'Land Revenue Record: 7/12 Extract, Khasra / Khatauni, or Land Possession Certificate (for KCC)',
+        'SHG / JLG Group Resolution, Member List & Group Bank Passbook',
+        'Crop details or allied dairy/poultry activity summary'
       ]
     },
-    banking: {
-      label: 'Banking Records',
+    vehicle: {
+      label: '2/3 Wheeler & Auto',
       items: [
-        'Last 6 to 12 months Bank Account Statements (Official PDF / E-statement)',
-        'Cancelled Cheque with printed applicant name for mandate setup',
-        'Existing loan repayment track records (if balance transfer)'
+        'Proforma Invoice / Quotation from Authorized Vehicle Dealer',
+        'Applicant KYC (Aadhaar & PAN) + 3-month Bank Passbook / UPI Statement',
+        'Driving License / Commercial Permit (for commercial 3-wheelers / autos)'
+      ]
+    },
+    property: {
+      label: 'Mortgage / LAP / Home',
+      items: [
+        'Registered Title Deed / Sale Deed chain for 13 to 30 years',
+        'Sanctioned Building Plan, Mutation Copy, and Latest Property Tax Receipt',
+        'Encumbrance Certificate (EC) and NOC from Society / Builder'
       ]
     },
     business: {
-      label: 'Business Proofs',
+      label: 'Business & Subsidy',
       items: [
         'GST Registration Certificate & 12-Month GST Returns',
         'Udyam MSME Registration Certificate',
-        'Partnership Deed / Certificate of Incorporation & MOA/AOA',
-        'Detailed Project Report (DPR) for government subsidy schemes'
+        'Detailed Project Report (DPR) for PMEGP / MUDRA schemes'
       ]
     }
   };
@@ -477,33 +532,33 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
   const whyChooseAvrx = [
     {
       icon: Layers,
-      title: 'Multiple Solution Categories',
-      desc: 'Access guidance across personal credit, business financing, property mortgages, and multi-line insurance under one roof.'
+      title: '13+ Specialized Loan Categories',
+      desc: 'Access complete guidance across Gold loans, 2/3 wheeler financing, SHG group credit, KCC farming loans, LAP mortgages, and instant paperless loans.'
     },
     {
       icon: Compass,
-      title: 'Requirement-Based Guidance',
-      desc: 'We analyze your specific requirements, profile stability, and timeline to suggest relevant institutional options.'
+      title: 'Requirement-Based Matching',
+      desc: 'We analyze your profile, credit history, asset collateral, and timeline to recommend the most optimal institutional banking partner.'
     },
     {
       icon: FileText,
-      title: 'Documentation Assistance',
-      desc: 'We assist with document formatting, salary slip verification, GST report structuring, and DPR preparation.'
+      title: 'End-to-End Paperwork Support',
+      desc: 'We assist with online e-KYC, Aadhaar verification, land revenue record checks, GST alignment, and Detailed Project Report (DPR) formatting.'
     },
     {
       icon: ShieldCheck,
-      title: 'Transparent & Compliant Process',
-      desc: 'Clear communication with zero false guarantees, no upfront hidden charges, and total adherence to lender guidelines.'
+      title: '100% Transparent & Secure',
+      desc: 'Clear communication with zero false guarantees, no unapproved broker deductions, and complete adherence to RBI guidelines.'
     },
     {
       icon: UserCheck,
-      title: 'Customer-Centric Approach',
-      desc: 'Dedicated financial advisors walking you through application stages, verification calls, and disbursal milestones.'
+      title: 'Dedicated Financial Advisors',
+      desc: 'Experienced loan officers walking you through every milestone, bank verification call, property appraisal, and sanction letter.'
     },
     {
       icon: CheckCheck,
-      title: 'End-to-End Assistance',
-      desc: 'Continuous follow-up from initial consultation through document submission and final status updates.'
+      title: 'Fast Track Verification',
+      desc: 'Direct liaison with senior bank credit desks to expedite instant 15-minute digital cash transfers and quick spot vehicle approvals.'
     }
   ];
 
@@ -511,77 +566,73 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
   const workflowSteps = [
     {
       num: '01',
-      title: 'Tell Us Your Requirement',
-      desc: 'Submit your requirement (loan, insurance, or subsidy) along with preliminary profile details.'
+      title: 'Select Loan Service',
+      desc: 'Choose from Gold, 2/3 Wheeler, SHG, KCC, LAP, Instant Online, or Business loan schemes.'
     },
     {
       num: '02',
-      title: 'Profile Understanding',
-      desc: 'Our financial advisors evaluate your income type, credit history, and document readiness.'
+      title: 'Profile & Need Evaluation',
+      desc: 'Our advisors review your income profile, collateral (gold/property/vehicle), and required tenure.'
     },
     {
       num: '03',
-      title: 'Explore Available Options',
-      desc: 'We present relevant institutional options, indicative tenures, and process requirements.'
+      title: 'Lender Comparison & Match',
+      desc: 'We compare interest rates and LTV offers across 30+ top scheduled commercial banks and NBFCs.'
     },
     {
       num: '04',
-      title: 'Document Assembly',
-      desc: 'We assist in gathering KYC, banking, GST, and project documents for lender submission.'
+      title: 'Fast-Track e-KYC / Valuation',
+      desc: 'We assist in DigiLocker Aadhaar e-KYC, gold purity valuation, vehicle dealer tie-up, or land checks.'
     },
     {
       num: '05',
-      title: 'Application Processing',
-      desc: 'Application is submitted to the chosen partner institution for official verification.'
+      title: 'Bank Appraisal & Sanction',
+      desc: 'Application is processed smoothly with dedicated credit desk follow-up for instant sanction.'
     },
     {
       num: '06',
-      title: 'Status & Follow-Up',
-      desc: 'We track verification calls, property valuations, and coordinate until resolution.'
+      title: 'Direct Disbursement',
+      desc: 'Funds are directly transferred to your bank account or vehicle dealer with transparent terms.'
     }
   ];
 
   // FAQs
   const financialFaqs = [
     {
-      q: 'How do I know which financial solution is suitable for me?',
-      a: 'Our team evaluates your current requirement, monthly income, existing financial commitments, and business vintage to suggest suitable options. For instance, short-term personal needs align with personal loans, while capital expansion suits business credit or government-linked schemes.'
+      q: 'How does Gold Loan work and how quickly is it disbursed?',
+      a: 'Gold Loan allows you to pledge your 18k to 24k gold jewelry for instant cash liquidity up to 75% of market value. Gold purity is verified on the spot, and funds are disbursed directly into your bank account or in cash within 30 minutes. Zero salary slips or ITRs are required.'
     },
     {
-      q: 'What basic documents may be required for loan assistance?',
-      a: 'Standard requirements typically include KYC documents (PAN, Aadhaar), address proof, 6 months bank statements, and income verification (salary slips and Form 16 for salaried; 2-3 years ITR and GST returns for business owners).'
+      q: 'Can I get a loan using only my Aadhaar Card and PAN Card?',
+      a: 'Yes. Our Loan with Aadhaar & PAN and Instant Online Loan options utilize digital DigiLocker e-KYC and UIDAI OTP authentication. If you have an active bank account with a clean credit track, loans from ₹10,000 up to ₹7,50,000 can be sanctioned paperlessly in minutes.'
     },
     {
-      q: 'How is loan eligibility determined by lending institutions?',
-      a: 'Lenders assess eligibility based on monthly net disposable income, CIBIL/credit score, employment stability, debt-to-income ratio (FOIR), business vintage, and property title clarity (for secured loans).'
+      q: 'What is a 2/3 Wheeler Loan and what vehicles are eligible?',
+      a: 'A 2/3 Wheeler Loan covers financing for motorcycles, scooters, high-speed electric 2-wheelers, passenger auto-rickshaws, commercial cargo autos, and e-rickshaws. We offer up to 95% on-road funding with spot approvals at major dealerships.'
     },
     {
-      q: 'How long does the loan application and processing take?',
-      a: 'Personal loans and car loans are typically processed within 2 to 5 business days. Business loans, secured mortgage loans (LAP), and government subsidy schemes (PMEGP) may take 7 to 20 business days due to documentation verification, project evaluation, and physical surveys.'
+      q: 'How does a Self Help / Group Loan (SHG & JLG) operate?',
+      a: 'Self Help Group (SHG) and Joint Liability Group (JLG) loans are collateral-free group microfinance loans provided to groups of 4 to 20 individuals (especially women collectives and micro-entrepreneurs) using a mutual peer-guarantee system with flexible weekly or monthly repayments.'
     },
     {
-      q: 'Can I apply for a business loan as a new startup or MSME?',
-      a: 'Yes. Existing businesses with 1+ years of GST returns can explore unsecured business credit. For new ventures and artisans, government-backed schemes like PMEGP or Mudra provide structured capital options subject to project feasibility and institutional approval.'
+      q: 'What are the benefits of a KCC (Kisan Credit Card) Loan?',
+      a: 'KCC loans offer farmers subsidized agricultural credit at an effective interest rate of just 4% p.a. (with government prompt repayment subvention). It covers crop cultivation, seeds, fertilizers, tractor/farm machinery, and allied dairy/poultry activities with in-built crop insurance.'
     },
     {
-      q: 'What is the difference between new car and used car financing?',
-      a: 'New car loans generally offer higher funding (up to 85-90% of on-road value) and lower interest rates with tenures up to 7 years. Used car loans depend on the vehicle’s valuation and age, usually covering up to 70-80% of valuation with tenures up to 5 years.'
+      q: 'What is Loan Against Property (LAP) / Mortgage Loan?',
+      a: 'Loan Against Property is a secured mortgage loan where you pledge residential, commercial, or industrial property to access high-ticket capital up to ₹5 Crores at significantly lower interest rates and long repayment tenures up to 15 years while retaining full ownership.'
     },
     {
-      q: 'What types of insurance solutions does AVRX assist with?',
-      a: 'We provide comparative assistance for Comprehensive Motor Insurance, Health Insurance (Individual & Family Floater), Schengen & International Travel Insurance, Home/Property Insurance, and Commercial Shop Package Policies.'
-    },
-    {
-      q: 'Does AVRX guarantee loan approval or government subsidies?',
-      a: 'No. AVRX is a digital advisory and documentation assistance platform. Final loan sanctions, interest rates, tenure, subsidy disbursement, and insurance claim approvals are strictly determined by the respective banks, NBFCs, government bodies, and insurance underwriters.'
+      q: 'Does AVRX guarantee loan approvals or government subsidies?',
+      a: 'No. AVRX is an advisory and facilitation ecosystem. Final loan sanctions, interest rates, tenure, and subsidy disbursements are strictly governed by our RBI-licensed partner banks, NBFCs, and respective government nodal agencies.'
     },
     {
       q: 'Are interest rates fixed or floating for loans?',
       a: 'This depends on the product and lender. Personal and auto loans are commonly offered on fixed or semi-fixed rates, whereas home loans and long-term property mortgages are predominantly linked to floating benchmark rates (EBLR/RLLR).'
     },
     {
-      q: 'What factors determine my insurance premium?',
-      a: 'For motor insurance, premium is based on vehicle IDV, cubic capacity, geographical zone, and age. For health insurance, factors include age of members, sum insured, pre-existing conditions, and city tier.'
+      q: 'How does loan balance transfer / refinancing help me save money?',
+      a: 'By refinancing an existing high-interest loan to a partner bank with a lower interest rate, you can reduce your monthly EMI outflow or total interest liability, and optionally get a top-up loan sanction for additional funding needs.'
     }
   ];
 
@@ -629,7 +680,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
               </h1>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
-                Explore practical financial and insurance solutions with guidance designed around your requirements.
+                Explore practical financial solutions and credit guidance designed around your personal and business requirements.
               </p>
 
               {/* Action Buttons */}
@@ -654,8 +705,8 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
               {/* Quick Trust Highlights */}
               <div className="pt-6 border-t border-slate-800/80 grid grid-cols-3 gap-3 text-left">
                 <div className="space-y-0.5">
-                  <div className="text-lg font-black text-emerald-400 font-mono">11+</div>
-                  <div className="text-[11px] text-slate-400 font-medium">Service Categories</div>
+                  <div className="text-lg font-black text-emerald-400 font-mono">7+</div>
+                  <div className="text-[11px] text-slate-400 font-medium">Loan & Credit Options</div>
                 </div>
                 <div className="space-y-0.5">
                   <div className="text-lg font-black text-cyan-400 font-mono">100%</div>
@@ -686,7 +737,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
                     </div>
                     <div>
                       <div className="text-xs font-mono uppercase tracking-wider text-slate-400">Financial Ecosystem</div>
-                      <div className="text-base font-black text-white">Advisory & Protection Desk</div>
+                      <div className="text-base font-black text-white">Advisory & Credit Desk</div>
                     </div>
                   </div>
 
@@ -773,7 +824,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
 
               <div className="flex items-center gap-2 text-cyan-300">
                 <Layers className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Multiple Financial Options</span>
+                <span>Multiple Loan Options</span>
               </div>
 
               <div className="w-1 h-1 rounded-full bg-slate-700 hidden sm:block" />
@@ -808,14 +859,14 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
         {/* 3. OUR PARTNERS SLIDER */}
         <section className="my-12">
           <PartnersSlider 
-            title="Our Trusted Banking & Insurance Alliances"
+            title="Our Trusted Banking & Lending Alliances"
             badgeText="FINANCIAL NETWORK"
-            description="Facilitating access through established banks, NBFCs, and certified general insurance partners."
+            description="Facilitating access through established scheduled commercial banks and RBI-regulated NBFC partners."
             variant="compact"
           />
         </section>
 
-        {/* 4. FINANCIAL SOLUTIONS OVERVIEW (11 CARDS GRID) */}
+        {/* 4. FINANCIAL SOLUTIONS OVERVIEW (7 CARDS GRID) */}
         <section id="overview-section" className="my-20 space-y-10">
           
           <div className="text-center max-w-3xl mx-auto space-y-3">
@@ -827,7 +878,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
               Explore Our Financial Solutions
             </h2>
             <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
-              From personal capital and business growth funds to asset protection and term deposits, find the right solution for your financial path.
+              From personal liquidity and business growth funds to vehicle financing, property mortgages, and government-subsidized schemes, find the right credit solution for your financial path.
             </p>
           </div>
 
@@ -927,6 +978,325 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
 
         </section>
 
+        {/* 5. SPOTLIGHT: GOLD LOAN & INSTANT PAPERLESS CASH (EYE-CATCHING SHOWCASE) */}
+        <section className="my-20 rounded-3xl bg-gradient-to-br from-[#1a1403] via-[#0d0f14] to-slate-950 border border-amber-500/40 p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[500px] h-[300px] bg-amber-500/[0.12] blur-[130px] pointer-events-none" />
+          <div className="absolute -bottom-10 left-10 w-[400px] h-[250px] bg-cyan-500/[0.08] blur-[120px] pointer-events-none" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(245,158,11,0.2)]">
+                <Coins className="w-3.5 h-3.5 text-amber-400" />
+                <span>INSTANT LIQUIDITY & DIGITAL CASH HUB</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+                Gold Loan & Express <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-200">
+                  Paperless Digital Credit.
+                </span>
+              </h2>
+
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Need urgent funds for medical emergencies, business opportunities, or immediate bills? Get maximum valuation on your gold jewelry within 30 minutes, or instant ₹10,000 to ₹7.5 Lakhs digital cash using only your Aadhaar and PAN cards.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-amber-500/30 space-y-1">
+                  <div className="font-bold text-amber-400 flex items-center gap-1.5">
+                    <Coins className="w-4 h-4" />
+                    <span>Gold Loan (30 Mins)</span>
+                  </div>
+                  <div className="text-slate-400 text-[11px]">Up to 75% market valuation. 100% insured bank vault safety.</div>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-cyan-500/30 space-y-1">
+                  <div className="font-bold text-cyan-400 flex items-center gap-1.5">
+                    <Zap className="w-4 h-4" />
+                    <span>Instant Online Loan</span>
+                  </div>
+                  <div className="text-slate-400 text-[11px]">100% digital app flow. Algorithmic sanction in 3 mins.</div>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-indigo-500/30 space-y-1">
+                  <div className="font-bold text-indigo-400 flex items-center gap-1.5">
+                    <Fingerprint className="w-4 h-4" />
+                    <span>Aadhaar & PAN Loan</span>
+                  </div>
+                  <div className="text-slate-400 text-[11px]">Zero physical paperwork. Instant OTP & DigiLocker e-KYC.</div>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <button
+                  onClick={() => handleOpenFormWithSolution('Gold Loan (Instant Cash)')}
+                  className="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 font-black text-xs sm:text-sm transition shadow-[0_0_25px_rgba(245,158,11,0.4)] hover:scale-105 flex items-center gap-2 cursor-pointer"
+                >
+                  <Coins className="w-4 h-4" />
+                  <span>Enquire for Gold Loan</span>
+                </button>
+
+                <button
+                  onClick={() => handleOpenFormWithSolution('Loan with Aadhar & PAN')}
+                  className="px-6 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-bold text-xs sm:text-sm transition flex items-center gap-2 cursor-pointer"
+                >
+                  <Fingerprint className="w-4 h-4 text-cyan-400" />
+                  <span>Apply with Aadhaar & PAN</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 relative rounded-3xl overflow-hidden border border-amber-500/30 bg-slate-950 shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=1000&q=80"
+                alt="Gold and Instant Paperless Loan"
+                referrerPolicy="no-referrer"
+                className="w-full h-80 sm:h-96 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+              
+              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/90 backdrop-blur-md border border-amber-500/30 text-xs space-y-2">
+                <div className="flex items-center justify-between text-amber-300 font-mono font-bold text-[11px]">
+                  <span>// ZERO INCOME PROOF NEEDED</span>
+                  <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400">Doorstep / Branch</span>
+                </div>
+                <div className="text-[11px] text-slate-300">
+                  Enjoy lower interest rates from 8.50% p.a., flexible bullet interest or easy monthly EMI payouts with zero foreclosure penalties on gold release.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 6. SPOTLIGHT: 2/3 WHEELER, BIKE, AUTO & E-RICKSHAW LOANS */}
+        <section className="my-20 rounded-3xl bg-gradient-to-br from-[#06191b] via-[#040f13] to-slate-950 border border-teal-500/40 p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-teal-500/[0.1] blur-[130px] pointer-events-none" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-5 relative rounded-3xl overflow-hidden border border-teal-500/30 bg-slate-950 shadow-2xl order-2 lg:order-1">
+              <img
+                src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=80"
+                alt="Two Wheeler and Commercial Auto Rickshaw Loan"
+                referrerPolicy="no-referrer"
+                className="w-full h-80 sm:h-96 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+              
+              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/90 backdrop-blur-md border border-teal-500/30 text-xs space-y-1.5">
+                <div className="text-teal-300 font-mono font-bold text-[11px]">
+                  // UP TO 95% ON-ROAD FINANCING
+                </div>
+                <div className="text-[11px] text-slate-300 leading-relaxed">
+                  Special subsidized interest rates for electric two-wheelers and commercial e-rickshaws with minimal down payment and spot dealer delivery.
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 space-y-6 order-1 lg:order-2">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/20 border border-teal-500/40 text-teal-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(20,184,166,0.2)]">
+                <Bike className="w-3.5 h-3.5 text-teal-400" />
+                <span>MOBILITY & COMMERCIAL TRANSPORT FINANCE</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+                2/3 Wheeler Loan: <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-emerald-300 to-cyan-300">
+                  Bikes, Scooters, Autos & E-Rickshaws.
+                </span>
+              </h2>
+
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Whether you're purchasing a brand-new commuter motorcycle, an eco-friendly electric scooter, or a commercial passenger auto-rickshaw / cargo 3-wheeler to build your livelihood, AVRX provides quick spot finance.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1">
+                  <div className="font-bold text-teal-300 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-400" />
+                    <span>Personal Two-Wheelers</span>
+                  </div>
+                  <div className="text-slate-400 text-[11px]">Bikes, high-speed scooters & EV two-wheelers with low EMIs from 12 to 48 months.</div>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1">
+                  <div className="font-bold text-emerald-300 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>Commercial 3-Wheelers & Autos</span>
+                  </div>
+                  <div className="text-slate-400 text-[11px]">Auto-rickshaws, commercial cargo trikes & e-rickshaws with permit assistance.</div>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <button
+                  onClick={() => handleOpenFormWithSolution('2/3 Wheeler & Auto Loan')}
+                  className="px-8 py-4 rounded-2xl bg-gradient-to-r from-teal-400 to-emerald-500 text-slate-950 font-black text-sm transition shadow-[0_0_30px_rgba(20,184,166,0.4)] hover:scale-105 flex items-center gap-2 cursor-pointer"
+                >
+                  <Bike className="w-4 h-4" />
+                  <span>Apply for 2/3 Wheeler Loan</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. SPOTLIGHT: RURAL, FARMING & WOMEN SHG / JLG GROUP LOANS */}
+        <section className="my-20 rounded-3xl bg-gradient-to-br from-[#12071f] via-[#090b14] to-slate-950 border border-purple-500/40 p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-10 w-[500px] h-[300px] bg-purple-500/[0.12] blur-[140px] pointer-events-none" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+                <Users className="w-3.5 h-3.5 text-purple-400" />
+                <span>RURAL CREDIT & COMMUNITY ENTERPRISE</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+                KCC Agri Loans & <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-300 to-lime-300">
+                  Self Help / Group Loans.
+                </span>
+              </h2>
+
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Empowering farmers, dairy operators, women collectives, and micro-entrepreneurs. Access subsidized Kisan Credit Card (KCC) loans at an effective 4% interest rate, and collateral-free microfinance for Self Help Groups (SHGs) and Joint Liability Groups (JLGs).
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-4 rounded-2xl bg-slate-950/80 border border-lime-500/30 space-y-1.5">
+                  <div className="font-bold text-lime-400 flex items-center gap-1.5">
+                    <Sprout className="w-4 h-4" />
+                    <span>KCC Loan (Kisan Credit Card)</span>
+                  </div>
+                  <div className="text-slate-300 text-[11px] leading-relaxed">
+                    Subsidized 4% p.a. interest rate for seasonal crop cultivation, seeds, fertilizers, tractor implements, and allied dairy/poultry farming with built-in PMFBY crop insurance.
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-slate-950/80 border border-purple-500/30 space-y-1.5">
+                  <div className="font-bold text-purple-300 flex items-center gap-1.5">
+                    <Users className="w-4 h-4" />
+                    <span>Self Help / Group Loan (SHG & JLG)</span>
+                  </div>
+                  <div className="text-slate-300 text-[11px] leading-relaxed">
+                    Collateral-free group microcredit for 4 to 20 member collectives and women entrepreneurs with peer-guarantee security and weekly or monthly repayment flexibility.
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <button
+                  onClick={() => handleOpenFormWithSolution('KCC Loan (Kisan Credit Card)')}
+                  className="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-lime-400 to-emerald-500 text-slate-950 font-black text-xs sm:text-sm transition shadow-[0_0_25px_rgba(132,204,22,0.4)] hover:scale-105 flex items-center gap-2 cursor-pointer"
+                >
+                  <Sprout className="w-4 h-4" />
+                  <span>Enquire for KCC Agri Loan</span>
+                </button>
+
+                <button
+                  onClick={() => handleOpenFormWithSolution('Self Help / Group Loan (SHG/JLG)')}
+                  className="px-6 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 border border-purple-500/40 text-purple-200 font-bold text-xs sm:text-sm transition flex items-center gap-2 cursor-pointer"
+                >
+                  <Users className="w-4 h-4 text-purple-400" />
+                  <span>Apply for Group / SHG Loan</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 relative rounded-3xl overflow-hidden border border-purple-500/30 bg-slate-950 shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80"
+                alt="Self Help Group and Farmer Loan"
+                referrerPolicy="no-referrer"
+                className="w-full h-80 sm:h-96 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+              
+              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/90 backdrop-blur-md border border-purple-500/30 text-xs space-y-1.5">
+                <div className="text-pink-300 font-mono font-bold text-[11px]">
+                  // COLLATERAL-FREE COMMUNITY FINANCING
+                </div>
+                <div className="text-[11px] text-slate-300">
+                  Government interest subventions, direct DBT disbursements to group accounts, and simple group resolution documentation support.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 8. SPOTLIGHT: MORTGAGE LOAN / LOAN AGAINST PROPERTY (LAP) */}
+        <section className="my-20 rounded-3xl bg-gradient-to-br from-[#061426] via-[#040f1a] to-slate-950 border border-blue-500/40 p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[500px] h-[300px] bg-blue-500/[0.12] blur-[130px] pointer-events-none" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-5 relative rounded-3xl overflow-hidden border border-blue-500/30 bg-slate-950 shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1000&q=80"
+                alt="Mortgage Loan and Loan Against Property"
+                referrerPolicy="no-referrer"
+                className="w-full h-80 sm:h-96 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+              
+              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-slate-950/90 backdrop-blur-md border border-blue-500/30 text-xs space-y-1.5">
+                <div className="text-cyan-300 font-mono font-bold text-[11px]">
+                  // HIGH LIQUIDITY UP TO ₹5 CRORES
+                </div>
+                <div className="text-[11px] text-slate-300 leading-relaxed">
+                  Leverage residential, commercial, or industrial real estate with extended tenures up to 15 years and drop-line overdraft facilities.
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/40 text-blue-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(59,130,246,0.2)]">
+                <Building2 className="w-3.5 h-3.5 text-blue-400" />
+                <span>SECURED MORTGAGE & REAL ESTATE EQUITY</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+                Mortgage Loan: <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300">
+                  Loan Against Property (LAP).
+                </span>
+              </h2>
+
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Unlock large-scale business expansion capital, refinance costly loans, or fund major family requirements by mortgaging your residential, commercial, or industrial property while continuing complete ownership and occupancy.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1">
+                  <div className="font-bold text-blue-400">Lower Interest</div>
+                  <div className="text-slate-400 text-[11px]">Significantly lower interest than personal/business loans.</div>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1">
+                  <div className="font-bold text-cyan-400">15-Year Tenure</div>
+                  <div className="text-slate-400 text-[11px]">Spacious repayment horizons ensuring pocket-friendly EMIs.</div>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1">
+                  <div className="font-bold text-indigo-400">Term / Overdraft</div>
+                  <div className="text-slate-400 text-[11px]">Choose between lumpsum term credit or flexible OD limits.</div>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <button
+                  onClick={() => handleOpenFormWithSolution('Mortgage Loan (Loan Against Property)')}
+                  className="px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-400 to-cyan-500 text-slate-950 font-black text-sm transition shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:scale-105 flex items-center gap-2 cursor-pointer"
+                >
+                  <Building2 className="w-4 h-4" />
+                  <span>Enquire for Mortgage Loan / LAP</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* 9. GOVERNMENT SUBSIDY LOANS (SPECIAL HIGHLIGHTED SECTION) */}
         <section className="my-24 rounded-3xl bg-gradient-to-br from-[#061b17] via-[#040f13] to-slate-950 border border-emerald-500/40 p-6 sm:p-12 lg:p-14 shadow-2xl relative overflow-hidden">
           
@@ -1022,7 +1392,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
               Which Solution Fits Your Requirement?
             </h2>
             <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
-              Explore categorized financial instruments tailored for personal milestones, working capital, vehicle acquisitions, and business asset protection.
+              Explore categorized financial instruments tailored for personal milestones, working capital, vehicle acquisitions, property mortgages, and subsidy programs.
             </p>
           </div>
 
@@ -1081,7 +1451,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
                         {serviceName}
                       </h4>
                       <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                        Comprehensive loan &amp; insurance assistance with rapid verification, documentation review, and bank liaison.
+                        Comprehensive loan and credit assistance with rapid eligibility review, documentation guidance, and bank liaison.
                       </p>
                     </div>
 
@@ -1534,6 +1904,30 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
                   {errorMessage}
                 </div>
               )}
+
+              <div className="space-y-1">
+                <label className="text-xs font-semibold text-slate-300 uppercase">Selected Loan / Service *</label>
+                <select
+                  value={formData.solutionType}
+                  onChange={e => setFormData({ ...formData, solutionType: e.target.value })}
+                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-400"
+                >
+                  <option value="Gold Loan (Instant Cash Against Gold)">Gold Loan (Instant Cash Against Gold)</option>
+                  <option value="Mortgage Loan / Loan Against Property (LAP)">Mortgage Loan / Loan Against Property (LAP)</option>
+                  <option value="2/3 Wheeler Loan (Bike, Scooter & Auto/E-Rickshaw)">2/3 Wheeler Loan (Bike, Scooter & Auto/E-Rickshaw)</option>
+                  <option value="Self Help / Group Loan (SHG & JLG Microfinance)">Self Help / Group Loan (SHG & JLG Microfinance)</option>
+                  <option value="Instant Online Loan (Digital Express Cash)">Instant Online Loan (Digital Express Cash)</option>
+                  <option value="KCC Loan (Kisan Credit Card & Agri Finance)">KCC Loan (Kisan Credit Card & Agri Finance)</option>
+                  <option value="Loan with Aadhar & PAN (Paperless Quick Loan)">Loan with Aadhar & PAN (Paperless Quick Loan)</option>
+                  <option value="Personal Loan">Personal Loan</option>
+                  <option value="Business & Working Capital Loan">Business & Working Capital Loan</option>
+                  <option value="Car Loan (New & Used)">Car Loan (New & Used)</option>
+                  <option value="Home Loan & Construction">Home Loan & Construction</option>
+                  <option value="Loan Refinance & Balance Transfer">Loan Refinance & Balance Transfer</option>
+                  <option value="Government Subsidy Loans (PMEGP / MUDRA)">Government Subsidy Loans (PMEGP / MUDRA)</option>
+                  <option value="General Financial Advisory">General Financial Advisory</option>
+                </select>
+              </div>
 
               <div className="space-y-1">
                 <label className="text-xs font-semibold text-slate-300 uppercase">Your Full Name *</label>

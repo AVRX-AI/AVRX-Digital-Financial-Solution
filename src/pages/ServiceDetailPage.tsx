@@ -9,6 +9,11 @@ import {
 import { ServiceItem } from '../types';
 import { SEO } from '../components/common/SEO';
 import { WebsiteDesignPage } from './WebsiteDesignPage';
+import { EcommerceSolutionsPage } from './EcommerceSolutionsPage';
+import { AppDevelopmentPage } from './AppDevelopmentPage';
+import { WebPortalPage } from './WebPortalPage';
+import { DigitalMarketingPage } from './DigitalMarketingPage';
+import { SEORankingPage } from './SEORankingPage';
 import { submitLeadForm } from '../utils/formSubmit';
 import { SubmissionFeedbackModal } from '../components/common/SubmissionFeedbackModal';
 import { launchSoundEngine } from '../utils/launchSoundEngine';
@@ -74,6 +79,12 @@ const SLUG_ALIASES: Record<string, string> = {
   'custom-website-design': 'website-design',
   'landing-page-design': 'landing-page-development',
   'b2b-portal-development': 'web-portal-development',
+  'web-portal-development': 'web-portal-development',
+  'web-portal': 'web-portal-development',
+  'web-portals': 'web-portal-development',
+  'portal-development': 'web-portal-development',
+  'custom-portal-development': 'web-portal-development',
+  'enterprise-web-portal': 'web-portal-development',
   'corporate-website-design': 'corporate-website-design',
   'e-commerce-solutions': 'e-commerce-solutions',
   'ecommerce': 'e-commerce-solutions',
@@ -83,10 +94,27 @@ const SLUG_ALIASES: Record<string, string> = {
   'web-app': 'web-application-development',
   'android-app-development': 'android-app-development',
   'app-development': 'android-app-development',
-  'ios-app-development': 'ios-app-development',
+  'ios-app-development': 'android-app-development',
+  'mobile-app-development': 'android-app-development',
+  'mobile-apps': 'android-app-development',
+  'hybrid-app-development': 'android-app-development',
+  'flutter-app-development': 'android-app-development',
+  'react-native-development': 'android-app-development',
   'digital-marketing': 'digital-marketing',
+  'digital-marketing-growth': 'digital-marketing',
+  'performance-marketing': 'digital-marketing',
+  'meta-ads': 'digital-marketing',
+  'google-ads': 'digital-marketing',
+  'growth-marketing': 'digital-marketing',
+  'digital-marketing-services': 'digital-marketing',
   'seo-ranking': 'seo-ranking',
   'seo': 'seo-ranking',
+  'search-engine-optimization': 'seo-ranking',
+  'seo-services': 'seo-ranking',
+  'seo-optimization': 'seo-ranking',
+  'google-ranking': 'seo-ranking',
+  'local-seo': 'seo-ranking',
+  'technical-seo': 'seo-ranking',
   'website-redesign': 'website-redesign',
   'website-maintenance': 'website-maintenance',
 
@@ -96,6 +124,33 @@ const SLUG_ALIASES: Record<string, string> = {
   'home-loan': 'home-loan',
   'car-loan': 'car-loan',
   'mortgage-loan': 'mortgage-loan',
+  'lap-loan': 'mortgage-loan',
+  'loan-against-property': 'mortgage-loan',
+  'gold-loan': 'gold-loan',
+  'gold-loans': 'gold-loan',
+  'two-three-wheeler-loan': 'two-three-wheeler-loan',
+  '2-3-wheeler-loan': 'two-three-wheeler-loan',
+  'two-wheeler-loan': 'two-three-wheeler-loan',
+  'three-wheeler-loan': 'two-three-wheeler-loan',
+  'bike-loan': 'two-three-wheeler-loan',
+  'auto-loan': 'two-three-wheeler-loan',
+  'group-loan-shg': 'group-loan-shg',
+  'group-loan': 'group-loan-shg',
+  'shg-loan': 'group-loan-shg',
+  'self-help-group-loan': 'group-loan-shg',
+  'jlg-loan': 'group-loan-shg',
+  'instant-online-loan': 'instant-online-loan',
+  'instant-loan': 'instant-online-loan',
+  'online-loan': 'instant-online-loan',
+  'quick-loan': 'instant-online-loan',
+  'kcc-loan': 'kcc-loan',
+  'kisan-credit-card': 'kcc-loan',
+  'agri-loan': 'kcc-loan',
+  'kisan-loan': 'kcc-loan',
+  'aadhar-pan-loan': 'aadhar-pan-loan',
+  'pan-card-loan': 'aadhar-pan-loan',
+  'aadhar-loan': 'aadhar-pan-loan',
+  'instant-aadhar-pan-loan': 'aadhar-pan-loan',
   'loan-refinance': 'loan-refinance',
   'government-scheme-loans': 'government-scheme-loans',
   'pmegp-loan': 'government-scheme-loans',
@@ -515,6 +570,31 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
   // Render dedicated Website Design Master Service Page when website design/development is selected
   if (targetId === 'website-design' || serviceSlug === 'website-design' || serviceSlug === 'website-development' || serviceSlug === 'web-design' || serviceSlug === 'web-development') {
     return <WebsiteDesignPage onNavigate={onNavigate} />;
+  }
+
+  // Render dedicated E-Commerce Solutions Master Service Page when e-commerce is selected
+  if (targetId === 'e-commerce-solutions' || serviceSlug === 'e-commerce-solutions' || serviceSlug === 'ecommerce' || serviceSlug === 'ecommerce-solutions' || serviceSlug === 'e-commerce') {
+    return <EcommerceSolutionsPage onNavigate={onNavigate} />;
+  }
+
+  // Render dedicated App Development (Android & iOS) Master Service Page
+  if (targetId === 'android-app-development' || targetId === 'app-development' || serviceSlug === 'android-app-development' || serviceSlug === 'ios-app-development' || serviceSlug === 'app-development' || serviceSlug === 'mobile-app-development' || serviceSlug === 'mobile-apps') {
+    return <AppDevelopmentPage onNavigate={onNavigate} />;
+  }
+
+  // Render dedicated Web Portal Development Master Service Page
+  if (targetId === 'web-portal-development' || serviceSlug === 'web-portal-development' || serviceSlug === 'b2b-portal-development' || serviceSlug === 'web-portal' || serviceSlug === 'web-portals' || serviceSlug === 'portal-development' || serviceSlug === 'custom-portal-development' || serviceSlug === 'enterprise-web-portal') {
+    return <WebPortalPage onNavigate={onNavigate} />;
+  }
+
+  // Render dedicated Digital Marketing & Growth Master Service Page
+  if (targetId === 'digital-marketing' || serviceSlug === 'digital-marketing' || serviceSlug === 'digital-marketing-growth' || serviceSlug === 'performance-marketing' || serviceSlug === 'meta-ads' || serviceSlug === 'google-ads' || serviceSlug === 'growth-marketing' || serviceSlug === 'digital-marketing-services') {
+    return <DigitalMarketingPage onNavigate={onNavigate} />;
+  }
+
+  // Render dedicated Search Engine Optimization (SEO) Master Service Page
+  if (targetId === 'seo-ranking' || serviceSlug === 'seo-ranking' || serviceSlug === 'seo' || serviceSlug === 'search-engine-optimization' || serviceSlug === 'seo-services' || serviceSlug === 'seo-optimization' || serviceSlug === 'google-ranking' || serviceSlug === 'local-seo' || serviceSlug === 'technical-seo') {
+    return <SEORankingPage onNavigate={onNavigate} />;
   }
 
   const service = allServices.find(s => s.id === targetId) || allServices[0];

@@ -555,6 +555,33 @@ class LaunchSoundEngine {
       // Ignore
     }
   }
+
+  /**
+   * Convenience Sound Aliases for AI Generators & Form Submissions
+   */
+  public playNotification() {
+    this.playTeleportZap();
+  }
+
+  public playSuccess() {
+    this.playSuccessChime();
+  }
+
+  public playAlert() {
+    this.playErrorBuzz();
+  }
+
+  public playHoverTone() {
+    this.playClickTick();
+  }
+
+  public playClickBlip() {
+    this.playClickTick();
+  }
+
+  public playLaserFire() {
+    this.playTeleportZap();
+  }
 }
 
 export const launchSoundEngine = new LaunchSoundEngine();

@@ -498,11 +498,191 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
     whyChooseUs: ['Direct tie-ups with major vehicle manufacturers & dealer networks']
   },
   {
+    id: 'gold-loan',
+    title: 'Gold Loan (Instant Cash Against Gold)',
+    category: 'financial',
+    shortDesc: 'Instant cash liquidity against gold jewelry with highest per-gram valuation, low interest, and zero income proof.',
+    fullDesc: 'Unlock the instant value of your gold jewelry and coins with highest per-gram market valuation, competitive interest rates starting from 8.50% p.a., 100% insured bank vault custody, and instant cash or bank transfer within 30 minutes with zero income documentation required.',
+    iconName: 'Coins',
+    badge: 'Instant Cash • 30 Mins',
+    priceStarting: 'Interest from 8.50% p.a.*',
+    imageUrl: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Instant Cash Loan up to ₹1.5 Crores against 18k - 24k Gold',
+      'Highest Per-Gram Gold Valuation as per RBI Guidelines (Up to 75% LTV)',
+      'Lowest Interest Rates starting from 8.50% p.a.',
+      'Zero Income Proof / ITR required (Only Aadhaar & PAN KYC)',
+      '100% Insured Bank-Grade High-Security Vault Storage',
+      'Flexible Repayment Schemes: Bullet, Monthly Interest, or Standard EMI',
+      'Zero Prepayment or Foreclosure Penalties on Early Closure',
+      'Doorstep Gold Valuation & Digital Verification Support'
+    ],
+    benefits: [
+      'Instant cash or bank transfer within 30 minutes of purity verification',
+      'No credit score (CIBIL) restriction or salary proof needed',
+      'Complete safety and insurance cover for your pledged gold assets',
+      'Re-loan and top-up facility as gold market price increases',
+      'Multiple repayment options: pay only interest monthly and principal at maturity'
+    ],
+    process: ['Gold Purity & Weight Evaluation', 'Instant KYC Verification', 'Value Assessment & Sanction', 'Instant Cash / Bank Transfer', 'Safe Gold Vault Custody'],
+    whyChooseUs: ['Highest market rate per gram with zero hidden processing charges', 'Insured vaults with leading banks & NBFC partners']
+  },
+  {
+    id: 'two-three-wheeler-loan',
+    title: '2/3 Wheeler Loan (Bike, Scooter & Auto/E-Rickshaw)',
+    category: 'financial',
+    shortDesc: 'Affordable financing for two-wheelers, EV scooters, commercial autos, and e-rickshaws with minimal down payment.',
+    fullDesc: 'Drive home your preferred two-wheeler, electric bike/scooter, passenger auto-rickshaw, or e-rickshaw with up to 95% on-road funding, fast spot approvals, pocket-friendly EMIs, and special subsidized interest rates for green EV mobility.',
+    iconName: 'Bike',
+    badge: 'Spot Approval',
+    priceStarting: 'Interest from 7.99% p.a.*',
+    imageUrl: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Up to 95% On-Road Funding for Two-Wheelers & E-Bikes',
+      'Comprehensive Commercial 3-Wheeler & E-Rickshaw Financing',
+      'Rapid Spot Approvals in under 15–30 Minutes',
+      'Flexible Repayment Tenures ranging from 12 to 48 Months',
+      'Green Mobility Subsidy & Concessional Rates for Electric Vehicles',
+      'Minimal Paperwork: Aadhaar + Bank Passbook / UPI Statement',
+      'Direct Multi-Brand Dealer Coordination & Instant Delivery Token',
+      'Free Bundled Comprehensive Insurance & RTO Clearance'
+    ],
+    benefits: [
+      'Start your daily commute or passenger/cargo transport business immediately',
+      'Pocket-friendly EMIs tailored to daily earners and salaried youth',
+      'Fast digital processing with minimal income documentation',
+      'Special discounted interest for electric scooters and e-rickshaws',
+      'Pre-approved deals available for existing bank customers'
+    ],
+    process: ['Select 2/3 Wheeler Model & Dealer', 'Submit Aadhaar & KYC Details', 'Spot Credit Approval', 'Down Payment & Loan Disbursement', 'Drive Away Your Vehicle'],
+    whyChooseUs: ['Direct tie-ups with leading 2-wheeler and EV dealerships across India', 'Special low-down-payment schemes']
+  },
+  {
+    id: 'group-loan-shg',
+    title: 'Self Help / Group Loan (SHG & JLG Microfinance)',
+    category: 'financial',
+    shortDesc: 'Collateral-free group loans and microfinance credit for Self-Help Groups (SHGs), JLGs, and women entrepreneurs.',
+    fullDesc: 'Empower rural and semi-urban community enterprises, women entrepreneurs, artisan collectives, dairy farmers, and cottage industries through collateral-free Self Help Group (SHG) and Joint Liability Group (JLG) microfinance loans with flexible weekly/monthly repayments.',
+    iconName: 'Users',
+    badge: 'Collateral-Free',
+    priceStarting: 'Microfinance Rates*',
+    imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Collateral-Free Collective Loans for Groups of 4 to 20 Members',
+      'Dedicated Credit for Women Self-Help Groups (NRLM/SRLM aligned)',
+      'Joint Liability Group (JLG) Model for Micro-Enterprises & Farmers',
+      'Direct Benefit Transfer (DBT) to Group / Individual Bank Accounts',
+      'Flexible Repayment Options: Weekly, Fortnightly, or Monthly',
+      'Peer-Guarantee System without any Property Mortgage or Security',
+      'Subsidized Interest Subventions under State & Central Livelihood Missions',
+      'Free Bookkeeping, Financial Literacy & Digital Banking Training'
+    ],
+    benefits: [
+      'Access vital working capital to scale small cottage, tailoring, dairy, and trading businesses',
+      'Zero property collateral or formal financial balance sheets needed',
+      'Build individual formal credit bureau scores for future enterprise loans',
+      'Doorstep collection and relationship management by dedicated community officers',
+      'Financial independence and livelihood security for women collectives'
+    ],
+    process: ['Group Formation & Resolution', 'Member KYC & Aadhaar Verification', 'Group Credit Assessment', 'Direct Account Disbursement', 'Structured Regular Repayments'],
+    whyChooseUs: ['Deep microfinance expertise aligned with national rural livelihood guidelines', 'Transparent group accounting support']
+  },
+  {
+    id: 'instant-online-loan',
+    title: 'Instant Online Loan (Digital Express Cash)',
+    category: 'financial',
+    shortDesc: '100% paperless digital loan with algorithmic pre-approval and direct bank transfer in 15 minutes.',
+    fullDesc: 'Get rapid, unsecured personal cash credit from ₹10,000 up to ₹5,00,000 completely online. Powered by automated underwriting, instant DigiLocker e-KYC, and digital e-Sign, funds are deposited directly into your bank account in 15 minutes.',
+    iconName: 'Zap',
+    badge: '15 Mins Cash',
+    priceStarting: 'Interest from 1.15%/mo*',
+    imageUrl: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Instant Sanctions from ₹10,000 up to ₹5,00,000',
+      '100% Digital, Paperless Online Application Journey',
+      'Instant Automated Pre-Approval in under 3 Minutes',
+      'Direct IMPS/NEFT Cash Transfer within 15 Minutes',
+      'Video KYC & DigiLocker Aadhaar Verification',
+      'Flexible Tenures from 3 to 24 Months',
+      'Digital e-Mandate (Auto-Debit) Setup for Seamless EMIs',
+      'Transparent APR with Zero Hidden Charges or Upfront Fees'
+    ],
+    benefits: [
+      'Resolve sudden medical emergencies, travel bookings, or bill payments immediately',
+      'Apply anytime 24/7 directly from your smartphone',
+      'Zero branch visits and zero physical document submissions',
+      'Repay flexibly with automated bank auto-debit',
+      'Instant boost to your CIBIL score on timely repayments'
+    ],
+    process: ['Enter Mobile & Basic Details', 'Instant DigiLocker e-KYC Verification', 'Select Loan Amount & Tenure', 'Digital e-Mandate & e-Sign', 'Instant Cash in Bank Account'],
+    whyChooseUs: ['Ultra-fast disbursement pipeline backed by RBI-regulated NBFC partners', 'Safe 256-bit bank-grade encryption']
+  },
+  {
+    id: 'kcc-loan',
+    title: 'KCC Loan (Kisan Credit Card & Agri Finance)',
+    category: 'financial',
+    shortDesc: 'Subsidized agricultural credit at effective 4% p.a. interest for farmers, crops, dairy, and farm equipment.',
+    fullDesc: 'Empowering Indian farmers and cultivators with low-interest Kisan Credit Card (KCC) loans for seasonal crop production, tractor & farm machinery purchase, dairy/poultry farming, fisheries, and post-harvest maintenance with central interest subvention benefits.',
+    iconName: 'Sprout',
+    badge: 'Effective 4% p.a.*',
+    priceStarting: 'Effective 4% p.a.*',
+    imageUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Effective Subsidized Interest Rate of 4% p.a. (with Prompt Repayment Subvention)',
+      'Credit Limit up to ₹3 Lakhs under Special Subsidized Scheme',
+      'Revolving Credit Limit valid for 5 Years with Simple Annual Review',
+      'Coverage for Crop Cultivation, Seeds, Fertilizers, and Irrigation Costs',
+      'Allied Activity Funding: Dairy, Poultry, Fisheries & Animal Husbandry',
+      'In-Built PM Fasal Bima Yojana (PMFBY) Crop Loss Insurance',
+      'Collateral-Free Credit up to ₹1.6 Lakhs (or ₹2 Lakhs under tie-up arrangements)',
+      'Hassle-Free Land Revenue Record (7/12, Khasra-Khatauni) Liaison'
+    ],
+    benefits: [
+      'Protect farming income from predatory local moneylenders with ultra-low 4% interest',
+      'Revolving limit: withdraw only what you need and pay interest only on used funds',
+      'Automatic crop insurance protection against droughts, floods, and natural pests',
+      'Flexible repayment aligned with agricultural harvesting and crop marketing cycles',
+      'Dedicated guidance for obtaining Land Possession Certificates (LPC) and mutation records'
+    ],
+    process: ['Land Record & Crop Profile Check', 'KCC Application Drafting', 'Bank Branch Verification', 'Sanction & KCC RuPay Card Delivery', 'Disbursement for Crop Season'],
+    whyChooseUs: ['Expert agri-loan advisors with deep ground experience in rural land documentation', 'Fast coordination with lead district banks']
+  },
+  {
+    id: 'aadhar-pan-loan',
+    title: 'Loan with Aadhar & PAN (Paperless Quick Loan)',
+    category: 'financial',
+    shortDesc: 'Fast unsecured credit using only Aadhaar and PAN cards with instant OTP verification and zero paperwork.',
+    fullDesc: 'Get rapid loan sanctions solely using your Aadhaar Card and PAN Card. Designed for individuals needing fast credit without the hassle of locating multiple years of ITRs, salary slips, or complex collateral documents.',
+    iconName: 'Fingerprint',
+    badge: 'Aadhaar + PAN Only',
+    priceStarting: 'Interest from 10.99% p.a.*',
+    imageUrl: 'https://images.unsplash.com/photo-1556742049-0a67e557b63f?auto=format&fit=crop&w=800&q=80',
+    features: [
+      'Instant Sanction using Only Aadhaar Card & PAN Card',
+      'Zero Requirement of Bulky Financial Statements or Property Papers',
+      'Instant Verification via UIDAI OTP & DigiLocker e-KYC',
+      'Loan Amounts from ₹25,000 up to ₹7,50,000',
+      'Direct Disbursement to Aadhaar-Linked Bank Account',
+      'Quick Eligibility Assessment based on Digital Credit Bureau History',
+      'Flexible Repayment Tenures from 6 Months to 5 Years',
+      '100% Encrypted & RBI-Authorized Lending Partner Process'
+    ],
+    benefits: [
+      'No physical document submission or photocopies required',
+      'Fast sanction within minutes of OTP submission',
+      'Accessible for both salaried employees and self-employed professionals',
+      'Transparent terms with instant digital loan agreement on WhatsApp / Email',
+      'Direct account credit with no broker commissions'
+    ],
+    process: ['Enter Aadhaar & PAN Numbers', 'Verify via UIDAI Registered Mobile OTP', 'Instant Credit Limit Evaluation', 'Accept Loan Offer & e-Sign', 'Instant Account Transfer'],
+    whyChooseUs: ['100% paperless workflow with trusted RBI-licensed banking partners', 'Zero upfront processing deductions']
+  },
+  {
     id: 'mortgage-loan',
     title: 'Mortgage Loan / Loan Against Property',
     category: 'financial',
-    shortDesc: 'Unlock high-value liquidity by leveraging residential or commercial property collateral.',
-    fullDesc: 'Leverage your existing real estate assets to raise high-ticket capital for major business expansion, debt consolidation, or strategic investments.',
+    shortDesc: 'Unlock high-value liquidity by leveraging residential, commercial, or industrial property collateral.',
+    fullDesc: 'Leverage your existing real estate assets to raise high-ticket capital for major business expansion, debt consolidation, education, or strategic investments.',
     iconName: 'Key',
     priceStarting: 'Interest from 9.25% p.a.*',
     imageUrl: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=800&q=80',
@@ -587,43 +767,6 @@ export const FINANCIAL_SERVICES: ServiceItem[] = [
     ],
     process: ['Scheme Eligibility Audit', 'Detailed Project Report (DPR) Creation', 'Portal Application', 'EDP Completion', 'Bank Follow-up & Sanction'],
     whyChooseUs: ['Specialized CA/Financial expert team for Govt loan DPR creation']
-  },
-  {
-    id: 'fixed-deposits',
-    title: 'Fixed Deposits & Term Savings',
-    category: 'financial',
-    shortDesc: 'High-yield corporate & bank fixed deposit comparison, planning, and documentation support.',
-    fullDesc: 'Maximize guaranteed returns on surplus funds through top-rated corporate fixed deposits, scheduled commercial banks, and RBI-regulated NBFC term deposits offering yields up to 8.75% p.a.',
-    iconName: 'Coins',
-    badge: 'High Yield',
-    priceStarting: 'Yields up to 8.75% p.a.*',
-    imageUrl: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80',
-    features: [
-      'Comparative Interest Rate Audits Across Top Banks & AAA NBFCs',
-      'Senior Citizen Higher Interest Rate Benefits (Extra 0.50% - 0.75%)',
-      'Flexible Payouts (Monthly, Quarterly, Cumulative at Maturity)',
-      'DICGC Insurance Protection up to ₹5 Lakhs per Bank',
-      'Zero Penalty Premature Withdrawal Guidance'
-    ],
-    benefits: [
-      'Guaranteed predictable returns with capital preservation',
-      'Higher returns than traditional savings accounts',
-      'Flexible tenures ranging from 7 days to 10 years'
-    ],
-    process: [
-      'Financial Goal & Tenure Planning',
-      'Lender & Issuer Yield Comparison',
-      'Digital KYC & Application Booking',
-      'FD Certificate Delivery'
-    ],
-    whyChooseUs: [
-      'Direct comparison across 30+ top institutions',
-      'Dedicated relationship concierge'
-    ],
-    faqs: [
-      { question: 'What is the highest FD interest rate available currently?', answer: 'Top rated corporate and small finance bank FDs currently offer rates between 7.50% and 8.75% p.a., with higher rates for senior citizens.' },
-      { question: 'Are my fixed deposits insured?', answer: 'Bank fixed deposits are insured under DICGC up to ₹5,00,000 per depositor per bank.' }
-    ]
   }
 ];
 
@@ -1535,6 +1678,14 @@ export const HOSTING_PRODUCTS: ServiceItem[] = [
     process: ['Search Availability', 'Add to Cart', 'Instant Activation'],
     whyChooseUs: ['Transparent renewal pricing without hidden spikes']
   }
+];
+
+export const ALL_SERVICES: ServiceItem[] = [
+  ...DIGITAL_SERVICES,
+  ...FINANCIAL_SERVICES,
+  ...TAX_SERVICES,
+  ...INSURANCE_SERVICES,
+  ...HOSTING_PRODUCTS
 ];
 
 export const AI_TOOLS: AIToolItem[] = [
