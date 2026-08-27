@@ -325,7 +325,7 @@ export const AppDevelopmentPage: React.FC<AppDevelopmentPageProps> = ({ onNaviga
       badge: 'Google Certified',
       category: 'native-android',
       desc: '100% native Android development using Kotlin and Jetpack Compose for peak hardware performance, low memory and battery usage.',
-      features: ['Kotlin 2.0 & Jetpack Compose', 'Google Play Store submission readiness', 'Deep Android OS Integration', 'Low-End Device Optimization', 'Instant App & Widget Support']
+      features: ['Kotlin 2.0 & Jetpack Compose', 'Google Play Store 100% Approval', 'Deep Android OS Integration', 'Low-End Device Optimization', 'Instant App & Widget Support']
     },
     {
       id: 'native-ios',

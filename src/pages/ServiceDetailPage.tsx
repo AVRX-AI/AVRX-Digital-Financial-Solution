@@ -60,7 +60,7 @@ interface ServiceDetailPageProps {
 }
 
 // Comprehensive Slug Aliases Mapping
-export const SLUG_ALIASES: Record<string, string> = {
+const SLUG_ALIASES: Record<string, string> = {
   // Website & Digital
   'static-onepage-website': 'static-onepage-website',
   'static-website': 'static-onepage-website',
@@ -567,19 +567,8 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
 
   const targetId = SLUG_ALIASES[serviceSlug] || serviceSlug;
   
-  // Render dedicated Website Design Master Service Page when website design/development
-  // or website package URLs are selected. These package IDs are intentionally not in
-  // ALL_SERVICES because they are commercial website packages defined on the master page.
-  if (
-    targetId === 'website-design' ||
-    serviceSlug === 'website-design' ||
-    serviceSlug === 'website-development' ||
-    serviceSlug === 'web-design' ||
-    serviceSlug === 'web-development' ||
-    targetId === 'starter-website' ||
-    targetId === 'business-website' ||
-    targetId === 'ecommerce-website'
-  ) {
+  // Render dedicated Website Design Master Service Page when website design/development is selected
+  if (targetId === 'website-design' || serviceSlug === 'website-design' || serviceSlug === 'website-development' || serviceSlug === 'web-design' || serviceSlug === 'web-development') {
     return <WebsiteDesignPage onNavigate={onNavigate} />;
   }
 
@@ -757,7 +746,6 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
       <SEO
         title={`${service.title} | AVRX Digital & Financial Solution`}
         description={service.shortDesc || service.fullDesc}
-        canonicalUrl={`https://www.avrx.in/services/${service.slug}`}
       />
 
       {/* Dynamic Ambient Background Aura */}

@@ -25,7 +25,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
     <div className="min-h-screen bg-[#030712] text-white selection:bg-cyan-500 selection:text-slate-950 pb-16 md:pb-0">
       <SEO
-        title="AVRX Digital & Financial Solutions | Chhattisgarh, India"
+        title="AVRX | No 1 Digital & Financial Solution Company in Chhattisgarh India"
         description="Next-generation digital engineering, business loans, IRDAI insurance, tax compliance, and 70+ in-browser AI tools by AVRX Digital and Financial Solution."
       />
 

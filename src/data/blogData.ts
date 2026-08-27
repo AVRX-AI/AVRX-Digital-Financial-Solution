@@ -29,7 +29,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     tags: ['Business Website', 'Web Development', 'Digital Transformation', 'SEO', 'Lead Generation', 'India 2026'],
     seoTitle: '2026 में Business Website क्यों जरूरी है? | AVRX',
     metaDescription: 'जानिए 2026 में Business Website क्यों जरूरी है और कैसे professional website आपके business की credibility, SEO, online visibility और customer enquiries बढ़ाने में मदद कर सकती है।',
-    canonicalUrl: 'https://www.avrx.in/blog/why-business-website-is-important-in-2026',
+    canonicalUrl: 'https://avrx.in/blog/why-business-website-is-important-in-2026',
     isFeatured: true,
     tableOfContents: [
       { id: 'intro', title: 'Introduction' },
@@ -213,7 +213,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     tags: ['Digital Marketing', 'Meta Ads', 'Google Ads', 'ROI', 'Lead Generation'],
     seoTitle: 'Digital Marketing Guide for Business Growth | AVRX',
     metaDescription: 'Digital Marketing क्या है और 2026 में Indian businesses Google और Meta Ads के जरिए high ROI sales leads कैसे generate कर सकते हैं।',
-    canonicalUrl: 'https://www.avrx.in/blog/digital-marketing-guide-for-business-growth',
+    canonicalUrl: 'https://avrx.in/blog/digital-marketing-guide-for-business-growth',
     isComingSoon: false,
     tableOfContents: [
       { id: 'intro', title: 'What is Digital Marketing?' },
@@ -243,7 +243,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     tags: ['SEO', 'Google Ranking', 'Organic Traffic', 'Technical SEO'],
     seoTitle: 'SEO Guide 2026: Google पर Website कैसे Rank करें | AVRX',
     metaDescription: 'Complete 2026 guide to SEO: On-page, technical factors, speed optimization and ranking in Google AI Overviews.',
-    canonicalUrl: 'https://www.avrx.in/blog/complete-seo-ranking-guide-2026',
+    canonicalUrl: 'https://avrx.in/blog/complete-seo-ranking-guide-2026',
     isComingSoon: false,
     tableOfContents: [
       { id: 'intro', title: 'Understanding Modern SEO' },
@@ -273,7 +273,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     tags: ['Pricing', 'Website Cost', 'Web Development', 'Startups India'],
     seoTitle: 'Business Website Development Cost in India 2026 | AVRX',
     metaDescription: 'Complete cost breakdown of building a business website in India in 2026: Landing page, Corporate website, and E-commerce portal.',
-    canonicalUrl: 'https://www.avrx.in/blog/business-website-development-cost-in-india',
+    canonicalUrl: 'https://avrx.in/blog/business-website-development-cost-in-india',
     isComingSoon: false,
     tableOfContents: [
       { id: 'intro', title: 'Website Cost Components' },
@@ -303,7 +303,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     tags: ['Business Loan', 'PMEGP', 'MUDRA', 'MSME', 'Finance'],
     seoTitle: 'PMEGP, MUDRA & MSME Loan Guide | AVRX',
     metaDescription: 'Complete guide to government business loan schemes in India, subsidy percentages, and document checklists for fast approval.',
-    canonicalUrl: 'https://www.avrx.in/blog/business-loan-eligibility-schemes-india-2026',
+    canonicalUrl: 'https://avrx.in/blog/business-loan-eligibility-schemes-india-2026',
     isComingSoon: false,
     introduction: [
       'अपने business के विस्तार के लिए सही समय पर सही capital का चुनाव करना सफलता की कुंजी है। MUDRA और PMEGP जैसी योजनाएं subsidized interest rates प्रदान करती हैं।'
@@ -327,7 +327,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
     tags: ['GST', 'ITR', 'Tax Compliance', 'ITC', 'Audit'],
     seoTitle: 'GST Compliance & ITR Filing Guide for Startups | AVRX',
     metaDescription: 'Avoid GST late fees, maximize valid Input Tax Credit, and build solid creditworthiness with timely tax filing.',
-    canonicalUrl: 'https://www.avrx.in/blog/gst-compliance-and-itr-filing-guide-for-startups',
+    canonicalUrl: 'https://avrx.in/blog/gst-compliance-and-itr-filing-guide-for-startups',
     isComingSoon: false,
     introduction: [
       'समय पर GST और ITR file करना सिर्फ कानूनी अनिवार्यता नहीं है बल्कि भविष्य में bank loans और enterprise contracts हासिल करने का सबसे मजबूत आधार है।'
