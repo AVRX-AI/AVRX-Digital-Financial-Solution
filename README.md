@@ -1,14 +1,20 @@
-# AVRX Digital & Financial Solution
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+</div>
 
-## SEO + Permalink deployment build
+# Run and deploy your AI Studio app
 
-This build preserves the existing React SPA navigation while making direct service/blog/tool URLs deploy-safe.
+This contains everything you need to run your app locally.
 
-### Important for Vercel
-- Build command: `npm run build`
-- Output directory: `dist`
-- `vercel.json` contains the SPA rewrite so URLs such as `/services/business-website` and `/services/static-onepage-website` load `index.html` instead of Vercel's NOT_FOUND page.
-- The build also generates static route fallbacks inside `dist/` as an additional safeguard.
+View your app in AI Studio: https://ai.studio/apps/bad4c2ff-4a3a-400f-984b-ebd7d1a59f53
 
-### Important
-Deploy the **project root** (the folder containing `package.json` and `vercel.json`), not only the `dist` folder. If you upload only `dist`, the Vercel project settings must separately specify `dist` as the output directory and configure SPA rewrites.
+## Run Locally
+
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
