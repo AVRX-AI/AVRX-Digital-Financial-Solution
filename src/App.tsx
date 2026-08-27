@@ -40,7 +40,7 @@ export function App() {
     if (typeof window === 'undefined') return { page: 'home', serviceSlug: 'website-design', blogId: null as string | null, toolSlug: null as string | null };
     const path = window.location.pathname.replace(/\/$/, '') || '/';
     if (path.startsWith('/services/')) {
-      const serviceSlug = decodeURIComponent(path.slice('/services/'.length));
+      const serviceSlug = decodeURIComponent(path.slice('/services/'.length)).trim().toLowerCase();
       return { page: 'service-detail', serviceSlug, blogId: null, toolSlug: null };
     }
     if (path === '/services') return { page: 'services', serviceSlug: 'website-design', blogId: null, toolSlug: null };
@@ -114,9 +114,10 @@ export function App() {
   const handleNavigate = (page: string, slugOrPostId?: string) => {
     let path = '/';
     if (page === 'service-detail' && slugOrPostId) {
-      setSelectedServiceSlug(slugOrPostId);
       setCurrentPage('service-detail');
-      path = `/services/${encodeURIComponent(slugOrPostId)}`;
+      const normalizedSlug = String(slugOrPostId).trim().toLowerCase();
+      setSelectedServiceSlug(normalizedSlug);
+      path = `/services/${encodeURIComponent(normalizedSlug)}`;
     } else if (page === 'blog-post' && slugOrPostId) {
       setSelectedBlogPostId(slugOrPostId);
       setCurrentPage('blog-post');
