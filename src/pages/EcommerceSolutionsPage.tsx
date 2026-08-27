@@ -799,7 +799,7 @@ export const EcommerceSolutionsPage: React.FC<EcommerceSolutionsPageProps> = ({ 
       <div className="absolute top-[2200px] left-0 w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] pointer-events-none -z-10" />
 
       {/* 1. HERO SECTION: BOLD, VIBRANT, CONVERSION-ENGINEERED */}
-      <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <section className="pt-28 pb-16 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1720px] mx-auto">
         
         {/* Navigation Breadcrumb */}
         <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-400 mb-6 flex-wrap">
@@ -995,7 +995,7 @@ export const EcommerceSolutionsPage: React.FC<EcommerceSolutionsPageProps> = ({ 
 
       {/* 3. INTERACTIVE E-COMMERCE SHOWCASE SLIDER (10 DIVERSE STOREFRONT MOCKUPS) */}
       <section 
-        className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+        className="py-20 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1720px] mx-auto"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={handleTouchStart}
@@ -1143,7 +1143,7 @@ export const EcommerceSolutionsPage: React.FC<EcommerceSolutionsPageProps> = ({ 
       </section>
 
       {/* 4. SUB-CATEGORIES & STORE MODELS GRID (VIBRANT & COMPREHENSIVE) */}
-      <section id="store-tiers" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <section id="store-tiers" className="py-20 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1720px] mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
             <Layers className="w-3.5 h-3.5" />
@@ -1285,7 +1285,7 @@ export const EcommerceSolutionsPage: React.FC<EcommerceSolutionsPageProps> = ({ 
       </section>
 
       {/* 6. INTERACTIVE AI TOOLS SUITE FOR E-COMMERCE */}
-      <section id="ecommerce-tools" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <section id="ecommerce-tools" className="py-20 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1720px] mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-purple-400" />
@@ -1513,7 +1513,7 @@ export const EcommerceSolutionsPage: React.FC<EcommerceSolutionsPageProps> = ({ 
       </section>
 
       {/* 7. TRANSPARENT PRICING TIERS */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <section className="py-20 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1720px] mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold">
             <DollarSign className="w-3.5 h-3.5" />
@@ -1629,7 +1629,7 @@ export const EcommerceSolutionsPage: React.FC<EcommerceSolutionsPageProps> = ({ 
       </section>
 
       {/* 8. 5-STEP E-COMMERCE ROADMAP */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <section className="py-16 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1720px] mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
             <Compass className="w-3.5 h-3.5" />
@@ -1658,7 +1658,7 @@ export const EcommerceSolutionsPage: React.FC<EcommerceSolutionsPageProps> = ({ 
       </section>
 
       {/* 9. EXTENSIVE E-COMMERCE FAQS (STRETCHED 2-COLUMN FULL-WIDTH GRID) */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
+      <section className="py-20 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1720px] mx-auto space-y-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
@@ -1845,7 +1845,7 @@ export const EcommerceSolutionsPage: React.FC<EcommerceSolutionsPageProps> = ({ 
       </section>
 
       {/* 10. BOTTOM LEAD CAPTURE SECTION (INTEGRATED WITH SUPABASE EDGE FUNCTION) */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+      <section className="py-16 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1560px] mx-auto">
         <div className="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-amber-950/40 border border-amber-500/40 p-8 sm:p-12 shadow-2xl relative overflow-hidden">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">

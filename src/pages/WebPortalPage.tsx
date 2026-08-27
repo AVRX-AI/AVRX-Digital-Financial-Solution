@@ -623,7 +623,7 @@ export const WebPortalPage: React.FC<WebPortalPageProps> = ({ onNavigate }) => {
 
       {/* 1. TOP BREADCRUMB & STATUS BAR */}
       <div className="border-b border-purple-950/60 bg-slate-950/70 backdrop-blur-md sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between text-xs">
+        <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 py-3 flex items-center justify-between text-xs">
           <div className="flex items-center gap-2 text-slate-400 overflow-x-auto whitespace-nowrap">
             <button onClick={() => handleNav('home')} className="hover:text-purple-400 transition-colors">Home</button>
             <span>/</span>
@@ -651,11 +651,11 @@ export const WebPortalPage: React.FC<WebPortalPageProps> = ({ onNavigate }) => {
       </div>
 
       {/* 2. DYNAMIC ENTERPRISE HERO SECTION */}
-      <section className="relative overflow-hidden pt-12 pb-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden pt-12 pb-20 px-4 sm:px-6 lg:px-10 xl:px-12">
         {/* Glowing Background Mesh */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] bg-gradient-to-tr from-purple-600/20 via-indigo-600/20 to-emerald-600/15 blur-[140px] pointer-events-none -z-10 rounded-full"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="max-w-[1720px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Value Prop & Metrics */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
@@ -898,7 +898,7 @@ export const WebPortalPage: React.FC<WebPortalPageProps> = ({ onNavigate }) => {
 
       {/* 3. ENTERPRISE TECH ECOSYSTEM MARQUEE SCROLL */}
       <section className="py-8 bg-slate-950 border-y border-slate-900 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 mb-4 text-center">
+        <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 mb-4 text-center">
           <span className="text-xs font-bold uppercase tracking-widest text-slate-400">
             ENTERPRISE FULL-STACK &amp; CLOUD DATABASE ECOSYSTEM
           </span>
@@ -923,7 +923,7 @@ export const WebPortalPage: React.FC<WebPortalPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 4. INTERACTIVE PORTAL SHOWCASE CAROUSEL (10 REAL ARCHITECTURES) */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+      <section className="py-20 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1720px] mx-auto space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold">
             <Building2 className="w-3.5 h-3.5" />
@@ -1055,7 +1055,7 @@ export const WebPortalPage: React.FC<WebPortalPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 5. 8 SPECIALIZED WEB PORTAL TIERS */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
+      <section className="py-16 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1720px] mx-auto space-y-10">
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-semibold">
             <Layers className="w-3.5 h-3.5" />
@@ -1145,7 +1145,7 @@ export const WebPortalPage: React.FC<WebPortalPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 6. INTERACTIVE AI TOOLS & LABOR SAVINGS CALCULATOR */}
-      <section id="portal-calculator" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+      <section id="portal-calculator" className="py-20 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1720px] mx-auto space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
             <Cpu className="w-3.5 h-3.5" />
@@ -1385,7 +1385,7 @@ export const WebPortalPage: React.FC<WebPortalPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 7. TRANSPARENT PRICING PACKAGES */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+      <section className="py-16 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1720px] mx-auto space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
             <Award className="w-3.5 h-3.5" />
@@ -1504,7 +1504,7 @@ export const WebPortalPage: React.FC<WebPortalPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 8. 5-STAGE PORTAL ENGINEERING ROADMAP */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+      <section className="py-16 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1720px] mx-auto space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold">
             <Clock className="w-3.5 h-3.5" />
@@ -1559,7 +1559,7 @@ export const WebPortalPage: React.FC<WebPortalPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 9. EXTENSIVE KNOWLEDGE BASE & FAQS (STRETCHED 2-COLUMN FULL-WIDTH GRID) */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
+      <section className="py-20 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1720px] mx-auto space-y-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
@@ -1746,7 +1746,7 @@ export const WebPortalPage: React.FC<WebPortalPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* 10. BOTTOM LEAD CAPTURE SECTION (INTEGRATED WITH SUPABASE) */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+      <section className="py-16 px-4 sm:px-6 lg:px-10 xl:px-12 max-w-[1560px] mx-auto">
         <div className="rounded-3xl bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 p-8 sm:p-12 shadow-2xl relative overflow-hidden space-y-8">
           
           <div className="text-center space-y-3 max-w-2xl mx-auto">

@@ -41,13 +41,13 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ postId, onBack, onNa
       {/* Dynamic SEO Tags & Structured Data */}
       <BlogSEO post={post} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12">
         
         {/* Navigation & Breadcrumbs */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <button
             onClick={onBack}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-cyan-300 hover:border-cyan-500/40 transition w-fit"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-cyan-300 hover:border-cyan-500/40 transition w-fit cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4 text-cyan-400" />
             <span>Back to All Articles</span>
@@ -62,7 +62,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ postId, onBack, onNa
         </div>
 
         {/* Article Header (Hero Area) */}
-        <header className="max-w-4xl mx-auto mb-10 space-y-6 text-left">
+        <header className="max-w-5xl mx-auto mb-10 space-y-6 text-left">
           {/* Category Badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-widest">
             <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
@@ -108,7 +108,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ postId, onBack, onNa
         </header>
 
         {/* Featured Image */}
-        <div className="max-w-5xl mx-auto mb-14 rounded-3xl overflow-hidden border border-slate-800 shadow-[0_12px_40px_rgba(0,0,0,0.6)] bg-slate-950 relative aspect-[16/9] group">
+        <div className="max-w-6xl mx-auto mb-14 rounded-3xl overflow-hidden border border-slate-800 shadow-[0_12px_40px_rgba(0,0,0,0.6)] bg-slate-950 relative aspect-[16/9] group">
           <img
             src={post.featuredImage}
             alt={post.imageAlt || post.title}
@@ -123,7 +123,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ postId, onBack, onNa
         </div>
 
         {/* Main Content Layout: Desktop 70% Content + 30% Sidebar */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-[1720px] mx-auto">
           
           {/* Main Article Content (approx 70% ~ 8 cols) */}
           <main className="lg:col-span-8 space-y-12">

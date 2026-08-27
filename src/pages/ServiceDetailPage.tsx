@@ -810,7 +810,7 @@ const GenericServiceDetailView: React.FC<GenericServiceDetailViewProps> = ({ tar
         <div className="absolute -bottom-20 left-1/3 w-[700px] h-[700px] bg-gradient-to-t from-indigo-600/10 via-cyan-600/5 to-transparent rounded-full blur-[160px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24">
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-16 sm:space-y-24">
 
         {/* 1. Breadcrumbs */}
         <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-400 flex-wrap pt-4">

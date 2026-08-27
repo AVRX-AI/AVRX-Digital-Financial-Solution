@@ -12,10 +12,12 @@ import { WebsiteHealthScannerSection } from '../components/home/WebsiteHealthSca
 import { AIProjectBuilderSection } from '../components/home/AIProjectBuilderSection';
 import { BusinessReadinessScoreSection } from '../components/home/BusinessReadinessScoreSection';
 import { ProjectsShowcaseLab } from '../components/home/ProjectsShowcaseLab';
+import { HomeBlogSection } from '../components/home/HomeBlogSection';
 import { ResourceCenterSection } from '../components/home/ResourceCenterSection';
 import { SmartJourneyContactSection } from '../components/home/SmartJourneyContactSection';
 import { SEO } from '../components/common/SEO';
-import { TricolourSeparator } from '../components/common/TricolourSeparator';
+import { RakshaBandhanSeparator } from '../components/common/RakshaBandhanSeparator';
+import { RakshaBandhanEffects } from '../components/common/RakshaBandhanEffects';
 
 interface HomePageProps {
   onNavigate: (page: string, postSlug?: string) => void;
@@ -23,7 +25,11 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
-    <div className="min-h-screen bg-[#030712] text-white selection:bg-cyan-500 selection:text-slate-950 pb-16 md:pb-0">
+    <div className="min-h-screen bg-[#07020d] text-white selection:bg-amber-500 selection:text-slate-950 pb-16 md:pb-0 relative overflow-hidden">
+      
+      {/* RAKSHA BANDHAN FESTIVE THEME EFFECTS & PARTICLES */}
+      <RakshaBandhanEffects />
+
       <SEO
         title="AVRX | No 1 Digital & Financial Solution Company in Chhattisgarh India"
         description="Next-generation digital engineering, business loans, IRDAI insurance, GST tax compliance, and 70+ in-browser AI tools by AVRX Digital and Financial Solution."
@@ -36,8 +42,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 01 — CINEMATIC FULL-SCREEN HERO */}
       <AICommandCenterHero onNavigate={onNavigate} />
 
-      {/* Tricolour Separator */}
-      <TricolourSeparator />
+      {/* Raksha Bandhan Festive Separator */}
+      <RakshaBandhanSeparator />
 
       {/* 02 — TOP CLIENTS MARQUEE */}
       <TopClientsSection />
@@ -45,8 +51,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 03 — WHY CHOOSE AVRX */}
       <WhyChooseAVRXSection onNavigate={onNavigate} />
 
-      {/* Tricolour Separator */}
-      <TricolourSeparator />
+      {/* Raksha Bandhan Festive Separator */}
+      <RakshaBandhanSeparator />
 
       {/* 04 — DIGITAL SOLUTIONS */}
       <DigitalSolutionsSection onNavigate={onNavigate} />
@@ -57,8 +63,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 06 — TAX & DOCUMENTATION */}
       <TaxDocumentationSection onNavigate={onNavigate} />
 
-      {/* Tricolour Separator */}
-      <TricolourSeparator />
+      {/* Raksha Bandhan Festive Separator */}
+      <RakshaBandhanSeparator />
 
       {/* 07 — AVRX AI TOOLS SUITE */}
       <AIHubSection onNavigate={onNavigate} />
@@ -69,8 +75,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 09 — WEBSITE HEALTH & SPEED SCANNER */}
       <WebsiteHealthScannerSection onNavigate={onNavigate} />
 
-      {/* Tricolour Separator */}
-      <TricolourSeparator />
+      {/* Raksha Bandhan Festive Separator */}
+      <RakshaBandhanSeparator />
 
       {/* 10 — AI PROJECT BUILDER & COST ESTIMATOR */}
       <AIProjectBuilderSection onNavigate={onNavigate} />
@@ -84,10 +90,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 13 — RESOURCE CENTER & KNOWLEDGE BASE */}
       <ResourceCenterSection onNavigate={onNavigate} />
 
-      {/* Tricolour Separator */}
-      <TricolourSeparator />
+      {/* Raksha Bandhan Festive Separator */}
+      <RakshaBandhanSeparator />
 
-      {/* 14 — CONTACT & SMART INTAKE WIZARD */}
+      {/* 14 — DEDICATED BLOG & ARTICLES SECTION */}
+      <HomeBlogSection onNavigate={onNavigate} />
+
+      {/* Raksha Bandhan Festive Separator */}
+      <RakshaBandhanSeparator />
+
+      {/* 15 — CONTACT & SMART INTAKE WIZARD */}
       <SmartJourneyContactSection onNavigate={onNavigate} />
     </div>
   );

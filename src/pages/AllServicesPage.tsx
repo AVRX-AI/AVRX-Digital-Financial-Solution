@@ -62,24 +62,24 @@ export const AllServicesPage: React.FC<AllServicesPageProps> = ({ onNavigate }) 
         description="Browse all 50+ AVRX Digital, Financial, Tax, Insurance, Hosting, and AI tools in one directory."
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
+        <div className="text-center max-w-4xl mx-auto mb-12 space-y-4">
           <span className="text-xs font-bold uppercase tracking-widest text-cyan-400 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
             Unified Ecosystem Directory
           </span>
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white">
-            All AVRX Services & Solutions
+            All AVRX Services &amp; Solutions
           </h1>
-          <p className="text-slate-300 text-base sm:text-lg">
+          <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto">
             Search and filter through our full directory of digital engineering, loans, tax returns, insurance plans, and AI tools.
           </p>
         </div>
 
         {/* Search & Category Filter Bar */}
         <div className="space-y-6 mb-12">
-          <div className="max-w-2xl mx-auto relative">
+          <div className="max-w-3xl mx-auto relative">
             <Search className="w-5 h-5 text-cyan-400 absolute left-4 top-1/2 -translate-y-1/2" />
             <input
               type="text"
@@ -107,8 +107,8 @@ export const AllServicesPage: React.FC<AllServicesPageProps> = ({ onNavigate }) 
           </div>
         </div>
 
-        {/* Results Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Results Grid - Stretched to 4 cols on extra large viewports */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filtered.map(item => {
             const title = 'title' in item ? item.title : item.name;
             const desc = 'shortDesc' in item ? item.shortDesc : item.description;

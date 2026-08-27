@@ -335,7 +335,7 @@ export const TaxSolutionsPage: React.FC<TaxSolutionsPageProps> = ({ onNavigate }
         <div className="absolute top-1/2 right-10 w-[500px] h-[500px] bg-gradient-to-bl from-emerald-600/10 via-cyan-600/5 to-transparent rounded-full blur-[130px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-24">
+      <div className="relative z-10 w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 space-y-16 sm:space-y-24">
 
         {/* 1. Header Hero Section */}
         <div className="text-center max-w-4xl mx-auto space-y-6 pt-6">
