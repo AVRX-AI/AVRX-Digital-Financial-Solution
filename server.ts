@@ -29,6 +29,7 @@ const STATIC_ROUTES = new Set([
   '/website-design', '/website-development', '/e-commerce-solutions', '/ecommerce-solutions', '/ecommerce', '/e-commerce'
 ]);
 const SERVICE_ROUTES = new Set(ALL_SERVICES.map(s => `/services/${s.id}`));
+['starter-website', 'business-website', 'ecommerce-website'].forEach(id => SERVICE_ROUTES.add(`/services/${id}`));
 // Legacy/service aliases that should resolve to the canonical service URL.
 const SERVICE_ALIASES: Record<string, string> = {
   'seo': 'seo-ranking', 'seo-services': 'seo-ranking', 'search-engine-optimization': 'seo-ranking',
