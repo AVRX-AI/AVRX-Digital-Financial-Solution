@@ -9,10 +9,10 @@ const base = 'https://www.avrx.in';
 const staticPaths = [
   '/', '/digital-solutions', '/financial-solutions', '/tax-solutions', '/insurance-solutions',
   '/hosting-products', '/ai-tools', '/services', '/pricing', '/projects', '/contact', '/partner',
-  '/faq', '/about', '/privacy', '/terms', '/disclaimer', '/blog', '/tools'
+  '/faq', '/about', '/privacy', '/terms', '/disclaimer', '/blog', '/tools',
+  '/services/starter-website', '/services/business-website', '/services/ecommerce-website'
 ];
 const urls = new Set<string>(staticPaths);
-// ServiceItem uses `id` as its canonical URL slug.
 ALL_SERVICES.forEach((s) => urls.add(`/services/${s.id}`));
 BLOG_POSTS_DATA.forEach((p) => urls.add(`/blog/${p.slug}`));
 AI_SUITE_TOOLS.forEach((t) => urls.add(`/tools/${t.slug}`));

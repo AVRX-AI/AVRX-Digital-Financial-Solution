@@ -39,7 +39,10 @@ export function App() {
   const getRouteState = () => {
     if (typeof window === 'undefined') return { page: 'home', serviceSlug: 'website-design', blogId: null as string | null, toolSlug: null as string | null };
     const path = window.location.pathname.replace(/\/$/, '') || '/';
-    if (path.startsWith('/services/')) return { page: 'service-detail', serviceSlug: decodeURIComponent(path.slice('/services/'.length)), blogId: null, toolSlug: null };
+    if (path.startsWith('/services/')) {
+      const serviceSlug = decodeURIComponent(path.slice('/services/'.length));
+      return { page: 'service-detail', serviceSlug, blogId: null, toolSlug: null };
+    }
     if (path === '/services') return { page: 'services', serviceSlug: 'website-design', blogId: null, toolSlug: null };
     if (path.startsWith('/blog/')) return { page: 'blog-post', serviceSlug: 'website-design', blogId: decodeURIComponent(path.slice('/blog/'.length)), toolSlug: null };
     if (path === '/blog') return { page: 'blog', serviceSlug: 'website-design', blogId: null, toolSlug: null };

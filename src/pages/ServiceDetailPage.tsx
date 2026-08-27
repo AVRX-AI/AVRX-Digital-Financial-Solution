@@ -567,8 +567,19 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
 
   const targetId = SLUG_ALIASES[serviceSlug] || serviceSlug;
   
-  // Render dedicated Website Design Master Service Page when website design/development is selected
-  if (targetId === 'website-design' || serviceSlug === 'website-design' || serviceSlug === 'website-development' || serviceSlug === 'web-design' || serviceSlug === 'web-development') {
+  // Render dedicated Website Design Master Service Page when website design/development
+  // or website package URLs are selected. These package IDs are intentionally not in
+  // ALL_SERVICES because they are commercial website packages defined on the master page.
+  if (
+    targetId === 'website-design' ||
+    serviceSlug === 'website-design' ||
+    serviceSlug === 'website-development' ||
+    serviceSlug === 'web-design' ||
+    serviceSlug === 'web-development' ||
+    targetId === 'starter-website' ||
+    targetId === 'business-website' ||
+    targetId === 'ecommerce-website'
+  ) {
     return <WebsiteDesignPage onNavigate={onNavigate} />;
   }
 

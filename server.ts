@@ -28,10 +28,24 @@ const STATIC_ROUTES = new Set([
   '/contact', '/partner', '/faq', '/blog', '/about', '/privacy', '/terms', '/disclaimer', '/tools',
   '/website-design', '/website-development', '/e-commerce-solutions', '/ecommerce-solutions', '/ecommerce', '/e-commerce'
 ]);
-// ServiceItem uses `id` as the canonical identifier (there is no `slug` field).
-// Using `slug` here made every service route effectively `/services/undefined`
-// and caused production hosts that enforce known routes to return 404s.
 const SERVICE_ROUTES = new Set(ALL_SERVICES.map(s => `/services/${s.id}`));
+// Legacy/service aliases that should resolve to the canonical service URL.
+const SERVICE_ALIASES: Record<string, string> = {
+  'seo': 'seo-ranking', 'seo-services': 'seo-ranking', 'search-engine-optimization': 'seo-ranking',
+  'google-ranking': 'seo-ranking', 'local-seo': 'seo-ranking', 'technical-seo': 'seo-ranking',
+  'website-development': 'website-design', 'web-design': 'website-design', 'web-development': 'website-design',
+  'ecommerce': 'e-commerce-solutions', 'ecommerce-solutions': 'e-commerce-solutions', 'e-commerce': 'e-commerce-solutions',
+  'app-development': 'android-app-development', 'mobile-app-development': 'android-app-development', 'mobile-apps': 'android-app-development',
+  'ios-app-development': 'android-app-development', 'flutter-app-development': 'android-app-development', 'react-native-development': 'android-app-development',
+  'vehicle-insurance': 'motor-insurance', 'gst': 'gst-registration', 'gst-filing': 'gst-registration',
+  'itr': 'itr-filing', 'income-tax': 'itr-filing', 'udyam': 'udyam-registration', 'msme': 'udyam-registration',
+  'msme-registration': 'udyam-registration', 'pmegp-loan': 'government-scheme-loans',
+  'online-loan': 'instant-online-loan', 'quick-loan': 'instant-online-loan', 'lap-loan': 'mortgage-loan',
+  'loan-against-property': 'mortgage-loan', 'gold-loans': 'gold-loan', 'shop-insurance': 'shop-property-insurance'
+};
+Object.keys(SERVICE_ALIASES).forEach(alias => {
+  SERVICE_ROUTES.add(`/services/${alias}`);
+});
 const BLOG_ROUTES = new Set(BLOG_POSTS_DATA.map(p => `/blog/${p.slug}`));
 const TOOL_ROUTES = new Set(AI_SUITE_TOOLS.map(t => `/tools/${t.slug}`));
 
@@ -998,31 +1012,9 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
-    app.get("*", (req: Request, res: Response) => {
-      const pathname = req.path.replace(/\/$/, '') || '/';
-      if (pathname.startsWith('/services/')) {
-        const slug = pathname.slice('/services/'.length);
-        const commonAliases: Record<string, string> = {
-          'seo': 'seo-ranking', 'seo-services': 'seo-ranking', 'search-engine-optimization': 'seo-ranking',
-          'google-ranking': 'seo-ranking', 'local-seo': 'seo-ranking', 'website-development': 'website-design',
-          'ecommerce': 'e-commerce-solutions', 'ecommerce-solutions': 'e-commerce-solutions',
-          'e-commerce': 'e-commerce-solutions', 'app-development': 'android-app-development',
-          'mobile-app-development': 'android-app-development', 'vehicle-insurance': 'motor-insurance',
-          'gst': 'gst-registration', 'gst-filing': 'gst-registration', 'itr': 'itr-filing',
-          'income-tax': 'itr-filing', 'udyam': 'udyam-registration', 'msme': 'udyam-registration',
-          'pmegp-loan': 'government-scheme-loans', 'online-loan': 'instant-online-loan', 'quick-loan': 'instant-online-loan'
-        };
-        const canonicalSlug = commonAliases[slug];
-        if (canonicalSlug && canonicalSlug !== slug) {
-          res.redirect(301, `/services/${canonicalSlug}`);
-          return;
-        }
-      }
-      const known = STATIC_ROUTES.has(pathname) || SERVICE_ROUTES.has(pathname) || BLOG_ROUTES.has(pathname) || TOOL_ROUTES.has(pathname);
-      if (!known) {
-        res.status(404).sendFile(path.join(distPath, "index.html"));
-        return;
-      }
+    // Keep SPA permalinks working for every client-side route.
+    // React resolves the actual page from window.location.pathname.
+    app.get("*", (_req: Request, res: Response) => {
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
