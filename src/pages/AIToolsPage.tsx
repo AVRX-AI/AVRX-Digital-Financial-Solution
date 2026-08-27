@@ -61,17 +61,12 @@ const QUICK_INTENT_CHIPS = [
   { label: '📝 Summarize Text', query: 'summarize' }
 ];
 
-export const AIToolsPage: React.FC = () => {
+interface AIToolsPageProps { initialToolSlug?: string | null; }
+
+export const AIToolsPage: React.FC<AIToolsPageProps> = ({ initialToolSlug = null }) => {
   const [selectedCategory, setSelectedCategory] = useState<ToolCategoryType | 'all' | 'favorites' | 'recents'>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeToolId, setActiveToolId] = useState<string | null>(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const toolParam = params.get('tool');
-      if (toolParam) return toolParam;
-    }
-    return null;
-  });
+  const [activeToolId, setActiveToolId] = useState<string | null>(initialToolSlug);
 
   const [favorites, setFavorites] = useState<string[]>(() => {
     try {
@@ -90,11 +85,20 @@ export const AIToolsPage: React.FC = () => {
   });
 
   useEffect(() => {
-    if (activeToolId && typeof window !== 'undefined') {
-      const url = new URL(window.location.href);
-      url.searchParams.set('tool', activeToolId);
-      window.history.replaceState({}, '', url.toString());
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    const syncToolFromPath = () => {
+      const path = window.location.pathname;
+      setActiveToolId(path.startsWith('/tools/') ? decodeURIComponent(path.slice('/tools/'.length)) : null);
+    };
+    window.addEventListener('popstate', syncToolFromPath);
+    return () => window.removeEventListener('popstate', syncToolFromPath);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const tool = activeToolId ? AI_SUITE_TOOLS.find(t => t.id === activeToolId || t.slug === activeToolId) : null;
+      const nextPath = tool ? `/tools/${tool.slug}` : '/ai-tools';
+      if (window.location.pathname !== nextPath) window.history.replaceState({}, '', nextPath);
+      if (activeToolId) window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [activeToolId]);
 
@@ -212,11 +216,7 @@ export const AIToolsPage: React.FC = () => {
         tool={activeToolDef}
         onBackToHub={() => {
           setActiveToolId(null);
-          if (typeof window !== 'undefined') {
-            const url = new URL(window.location.href);
-            url.searchParams.delete('tool');
-            window.history.replaceState({}, '', url.toString());
-          }
+          if (typeof window !== 'undefined') window.history.pushState({}, '', '/ai-tools');
         }}
         onSelectTool={id => setActiveToolId(id)}
       >

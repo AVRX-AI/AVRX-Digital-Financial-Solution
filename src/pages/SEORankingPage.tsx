@@ -620,7 +620,7 @@ export const SEORankingPage: React.FC<SEORankingPageProps> = ({ onNavigate }) =>
       {/* Dynamic SEO Meta */}
       <SEO 
         title="Search Engine Optimization (SEO) & Google Ranking #1 | Technical, Local & High-DA Backlinks | AVRX"
-        description="Dominate Google Search with AVRX White-Hat SEO. Technical Core Web Vitals 99+, Google Map Pack #1, high-DA contextual backlinks, Programmatic SEO, and Rich Schema.org markup for guaranteed organic growth."
+        description="Dominate Google Search with AVRX White-Hat SEO. Technical Core Web Vitals 99+, Google Map Pack #1, high-DA contextual backlinks, Programmatic SEO, and Rich Schema.org markup for sustainable organic growth."
         keywords="seo services india, rank 1 on google, local seo google maps, technical seo agency, high da backlink outreach, e-commerce seo services, core web vitals fix"
       />
 

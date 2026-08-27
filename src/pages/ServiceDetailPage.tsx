@@ -60,7 +60,7 @@ interface ServiceDetailPageProps {
 }
 
 // Comprehensive Slug Aliases Mapping
-const SLUG_ALIASES: Record<string, string> = {
+export const SLUG_ALIASES: Record<string, string> = {
   // Website & Digital
   'static-onepage-website': 'static-onepage-website',
   'static-website': 'static-onepage-website',
@@ -746,6 +746,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
       <SEO
         title={`${service.title} | AVRX Digital & Financial Solution`}
         description={service.shortDesc || service.fullDesc}
+        canonicalUrl={`https://www.avrx.in/services/${service.slug}`}
       />
 
       {/* Dynamic Ambient Background Aura */}
