@@ -12,7 +12,8 @@ const staticPaths = [
   '/faq', '/about', '/privacy', '/terms', '/disclaimer', '/blog', '/tools'
 ];
 const urls = new Set<string>(staticPaths);
-ALL_SERVICES.forEach((s) => urls.add(`/services/${s.slug}`));
+// ServiceItem uses `id` as its canonical URL slug.
+ALL_SERVICES.forEach((s) => urls.add(`/services/${s.id}`));
 BLOG_POSTS_DATA.forEach((p) => urls.add(`/blog/${p.slug}`));
 AI_SUITE_TOOLS.forEach((t) => urls.add(`/tools/${t.slug}`));
 TOOLS_LIST.forEach((t) => urls.add(`/tools/${t.slug}`));

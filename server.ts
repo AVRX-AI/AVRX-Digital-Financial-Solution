@@ -28,7 +28,10 @@ const STATIC_ROUTES = new Set([
   '/contact', '/partner', '/faq', '/blog', '/about', '/privacy', '/terms', '/disclaimer', '/tools',
   '/website-design', '/website-development', '/e-commerce-solutions', '/ecommerce-solutions', '/ecommerce', '/e-commerce'
 ]);
-const SERVICE_ROUTES = new Set(ALL_SERVICES.map(s => `/services/${s.slug}`));
+// ServiceItem uses `id` as the canonical identifier (there is no `slug` field).
+// Using `slug` here made every service route effectively `/services/undefined`
+// and caused production hosts that enforce known routes to return 404s.
+const SERVICE_ROUTES = new Set(ALL_SERVICES.map(s => `/services/${s.id}`));
 const BLOG_ROUTES = new Set(BLOG_POSTS_DATA.map(p => `/blog/${p.slug}`));
 const TOOL_ROUTES = new Set(AI_SUITE_TOOLS.map(t => `/tools/${t.slug}`));
 
