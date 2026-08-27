@@ -320,8 +320,8 @@ class LaunchSoundEngine {
   }
 
   /**
-   * 5. JARVIS AI Voice Greeting: "Welcome to AVRX"
-   * Sophisticated, calm, deep British male JARVIS voice greeting (Voice only - zero sound effects)
+   * 5. Authentic Iron Man JARVIS Voice Greeting: "Hello, Welcome to AVRX"
+   * British accent, refined, calm, deep, polished AI assistant (Paul Bettany / JARVIS archetype)
    */
   public speakWelcomeToAVRX() {
     if (this.isMuted || typeof window === 'undefined') return;
@@ -331,49 +331,81 @@ class LaunchSoundEngine {
     const speak = () => {
       try {
         window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance('Welcome to AVRX');
-        utterance.rate = 0.94; // Calm, deliberate, sophisticated pace
-        utterance.pitch = 0.92; // Deep, polished, resonant Jarvis tone
+
+        const allVoices = window.speechSynthesis.getVoices() || [];
+
+        // Exclude all female voices
+        const isFemaleVoice = (v: SpeechSynthesisVoice): boolean => {
+          const n = v.name.toLowerCase();
+          return n.includes('female') || n.includes('woman') || n.includes('swara') || 
+                 n.includes('kalpana') || n.includes('neerja') || n.includes('priya') || 
+                 n.includes('heera') || n.includes('lekha') || n.includes('samantha') || 
+                 n.includes('zira') || n.includes('karen') || n.includes('victoria') || 
+                 n.includes('hazel') || n.includes('sonia') || n.includes('libby') || 
+                 n.includes('ava') || n.includes('shruti') || n.includes('aditi') || 
+                 n.includes('ananya') || n.includes('kavya') || n.includes('leena') || 
+                 n.includes('geeta') || n.includes('moira') || n.includes('tessa') || 
+                 n.includes('fiona') || n.includes('veena') || n.includes('catherine') || 
+                 n.includes('alice') || n.includes('linda') || n.includes('susan') || 
+                 n.includes('eva') || n.includes('sara') || n.includes('aria') || 
+                 n.includes('jenny') || n.includes('stephanie') || n.includes('clara') ||
+                 n.includes('serena') || n.includes('kate') || n.includes('amy');
+        };
+
+        // Priority 1: Classic Iron Man JARVIS British Male Voices (Daniel, Oliver, George, Ryan, Arthur, Google UK Male, etc.)
+        const classicBritishJarvisVoice = allVoices.find(v => {
+          if (isFemaleVoice(v)) return false;
+          const name = v.name.toLowerCase();
+          const lang = v.lang.toLowerCase();
+          const isBritish = lang.includes('en-gb') || lang.includes('en_gb') || name.includes('uk') || name.includes('british') || name.includes('united kingdom');
+          const isIconicJarvisName = name.includes('daniel') || name.includes('oliver') || name.includes('george') || 
+                                     name.includes('ryan') || name.includes('brian') || name.includes('arthur') || 
+                                     name.includes('alfred') || name.includes('charles') || name.includes('elliot') || 
+                                     name.includes('alfie') || name.includes('thomas') || name.includes('male');
+          return isBritish && isIconicJarvisName;
+        }) ||
+        // Priority 2: Any British English Male Voice
+        allVoices.find(v => {
+          if (isFemaleVoice(v)) return false;
+          const lang = v.lang.toLowerCase();
+          const name = v.name.toLowerCase();
+          return (lang === 'en-gb' || lang === 'en_gb' || name.includes('uk') || name.includes('british'));
+        });
+
+        // Priority 3: Deep Natural English Male Voices (Guy, Christopher, David, Alex, Mark, Google US/Global Male)
+        const deepEnglishMaleVoice = allVoices.find(v => {
+          if (isFemaleVoice(v)) return false;
+          const name = v.name.toLowerCase();
+          const lang = v.lang.toLowerCase();
+          return lang.startsWith('en') && (
+            name.includes('male') || name.includes('guy') || name.includes('christopher') || 
+            name.includes('david') || name.includes('daniel') || name.includes('alex') || 
+            name.includes('george') || name.includes('ryan') || name.includes('brian')
+          );
+        });
+
+        // Priority 4: Any non-female English voice
+        const fallbackMaleVoice = allVoices.find(v => !isFemaleVoice(v) && v.lang.toLowerCase().startsWith('en')) || 
+                                  allVoices.find(v => !isFemaleVoice(v)) || 
+                                  allVoices[0];
+
+        const selectedVoice = classicBritishJarvisVoice || deepEnglishMaleVoice || fallbackMaleVoice;
+
+        const spokenText = 'Hello, Welcome to AVRX';
+
+        const utterance = new SpeechSynthesisUtterance(spokenText);
+        utterance.rate = 0.93; // Suave, calm, measured JARVIS cadence
+        utterance.pitch = 0.92; // Deep, polished, resonant British vocal tone
         utterance.volume = 1.0;
-        utterance.lang = 'en-GB'; // British English for classic Jarvis accent
+        utterance.lang = selectedVoice?.lang || 'en-GB';
 
-        const voices = window.speechSynthesis.getVoices();
-        if (voices && voices.length > 0) {
-          // Priority 1: Specifically known British Male voices (Jarvis style: Daniel, Oliver, George, Arthur, Brian, Ryan, Google UK English Male)
-          const jarvisVoice = voices.find(v => {
-            const name = v.name.toLowerCase();
-            const lang = v.lang.toLowerCase();
-            const isBritish = lang.includes('en-gb') || lang.includes('en_gb') || name.includes('uk') || name.includes('british') || name.includes('united kingdom');
-            const isMale = name.includes('male') || name.includes('daniel') || name.includes('oliver') || 
-                           name.includes('george') || name.includes('arthur') || name.includes('brian') || 
-                           name.includes('ryan') || name.includes('alfred') || name.includes('charles') ||
-                           (name.includes('natural') && !name.includes('female') && !name.includes('sonia') && !name.includes('hazel') && !name.includes('libby') && !name.includes('mia'));
-            return isBritish && isMale;
-          }) ||
-          // Priority 2: Any British English voice
-          voices.find(v => {
-            const lang = v.lang.toLowerCase();
-            const name = v.name.toLowerCase();
-            return (lang === 'en-gb' || lang === 'en_gb' || name.includes('uk') || name.includes('british')) &&
-                   !name.includes('female') && !name.includes('hazel') && !name.includes('sonia');
-          }) ||
-          // Priority 3: Any English Male Voice (David, Mark, Guy, Alex, Google UK/US Male)
-          voices.find(v => {
-            const name = v.name.toLowerCase();
-            const lang = v.lang.toLowerCase();
-            return lang.startsWith('en') && (name.includes('male') || name.includes('david') || name.includes('guy') || name.includes('alex') || name.includes('daniel') || name.includes('george'));
-          }) ||
-          // Priority 4: Natural English Voice
-          voices.find(v => v.lang.toLowerCase().startsWith('en'));
-
-          if (jarvisVoice) {
-            utterance.voice = jarvisVoice;
-          }
+        if (selectedVoice) {
+          utterance.voice = selectedVoice;
         }
 
         window.speechSynthesis.speak(utterance);
       } catch {
-        // Speech API blocked by browser policy
+        // Speech API policy fallback
       }
     };
 
@@ -382,7 +414,7 @@ class LaunchSoundEngine {
         window.speechSynthesis.onvoiceschanged = null;
         speak();
       };
-      setTimeout(speak, 100);
+      setTimeout(speak, 120);
     } else {
       speak();
     }

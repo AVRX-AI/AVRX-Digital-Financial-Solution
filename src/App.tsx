@@ -35,45 +35,86 @@ import { EcommerceSolutionsPage } from './pages/EcommerceSolutionsPage';
 import { AskAVRXAIFloating } from './components/common/AskAVRXAIFloating';
 import { MobileBottomNav } from './components/layout/MobileBottomNav';
 
+const pathToState = (pathname: string): { page: string; serviceSlug?: string; blogPostId?: string; toolSlug?: string } => {
+  const cleanPath = pathname.replace(/\/$/, '') || '/';
+  
+  if (cleanPath.startsWith('/services/') && cleanPath !== '/services') {
+    const slug = cleanPath.replace('/services/', '');
+    return { page: 'service-detail', serviceSlug: slug };
+  }
+  if (cleanPath.startsWith('/ai-tools/') && cleanPath !== '/ai-tools') {
+    const slug = cleanPath.replace('/ai-tools/', '');
+    return { page: 'ai-tools', toolSlug: slug };
+  }
+  if (cleanPath.startsWith('/tools/') && cleanPath !== '/tools') {
+    const slug = cleanPath.replace('/tools/', '');
+    return { page: 'ai-tools', toolSlug: slug };
+  }
+  if (cleanPath === '/services') return { page: 'services' };
+  if (cleanPath === '/contact' || cleanPath === '/contact-us') return { page: 'contact' };
+  if (cleanPath === '/pricing' || cleanPath === '/plans') return { page: 'pricing' };
+  if (cleanPath === '/projects' || cleanPath === '/portfolio' || cleanPath === '/showcase') return { page: 'projects' };
+  if (cleanPath === '/about' || cleanPath === '/about-us') return { page: 'about' };
+  if (cleanPath === '/partner' || cleanPath === '/partner-with-us') return { page: 'partner' };
+  if (cleanPath === '/faq' || cleanPath === '/faqs') return { page: 'faq' };
+  if (cleanPath === '/digital-solutions' || cleanPath === '/digital') return { page: 'digital-solutions' };
+  if (cleanPath === '/financial-solutions' || cleanPath === '/finance' || cleanPath === '/loans') return { page: 'financial-solutions' };
+  if (cleanPath === '/tax-solutions' || cleanPath === '/tax' || cleanPath === '/legal') return { page: 'tax-solutions' };
+  if (cleanPath === '/insurance-solutions' || cleanPath === '/insurance') return { page: 'insurance-solutions' };
+  if (cleanPath === '/hosting-products' || cleanPath === '/hosting') return { page: 'hosting-products' };
+  if (cleanPath === '/ai-tools' || cleanPath === '/ai-suite' || cleanPath === '/ai') return { page: 'ai-tools' };
+  if (cleanPath === '/privacy' || cleanPath === '/privacy-policy') return { page: 'privacy' };
+  if (cleanPath === '/terms' || cleanPath === '/terms-and-conditions') return { page: 'terms' };
+  if (cleanPath === '/disclaimer') return { page: 'disclaimer' };
+  if (cleanPath.startsWith('/blog/') && cleanPath !== '/blog') {
+    const id = cleanPath.replace('/blog/', '');
+    return { page: 'blog-post', blogPostId: id };
+  }
+  if (cleanPath === '/blog') return { page: 'blog' };
+  if (cleanPath === '/website-design') return { page: 'service-detail', serviceSlug: 'website-design' };
+  if (cleanPath === '/e-commerce-solutions' || cleanPath === '/ecommerce') return { page: 'service-detail', serviceSlug: 'e-commerce-solutions' };
+  if (cleanPath === '/android-app-development' || cleanPath === '/app-development') return { page: 'service-detail', serviceSlug: 'android-app-development' };
+  if (cleanPath === '/web-portal-development') return { page: 'service-detail', serviceSlug: 'web-portal-development' };
+  if (cleanPath === '/digital-marketing') return { page: 'service-detail', serviceSlug: 'digital-marketing' };
+  if (cleanPath === '/seo-ranking' || cleanPath === '/seo') return { page: 'service-detail', serviceSlug: 'seo-ranking' };
+  
+  return { page: 'home' };
+};
+
+const pageToPath = (page: string, slugOrId?: string): string => {
+  if (page === 'service-detail' && slugOrId) return `/services/${slugOrId}`;
+  if (page === 'ai-tools' && slugOrId) return `/ai-tools/${slugOrId}`;
+  if (page === 'blog-post' && slugOrId) return `/blog/${slugOrId}`;
+  if (page === 'home') return '/';
+  if (page === 'contact') return '/contact';
+  if (page === 'services') return '/services';
+  if (page === 'pricing') return '/pricing';
+  if (page === 'projects' || page === 'portfolio') return '/projects';
+  if (page === 'about') return '/about';
+  if (page === 'partner') return '/partner';
+  if (page === 'faq') return '/faq';
+  if (page === 'digital-solutions') return '/digital-solutions';
+  if (page === 'financial-solutions') return '/financial-solutions';
+  if (page === 'tax-solutions') return '/tax-solutions';
+  if (page === 'insurance-solutions') return '/insurance-solutions';
+  if (page === 'hosting-products') return '/hosting-products';
+  if (page === 'ai-tools') return '/ai-tools';
+  if (page === 'privacy') return '/privacy';
+  if (page === 'terms') return '/terms';
+  if (page === 'disclaimer') return '/disclaimer';
+  if (page === 'blog') return '/blog';
+  if (page === 'website-design') return '/services/website-design';
+  if (page === 'e-commerce-solutions') return '/services/e-commerce-solutions';
+  return `/${page}`;
+};
+
 export function App() {
-  const [currentPage, setCurrentPage] = useState<string>(() => {
-    if (typeof window !== 'undefined') {
-      const path = window.location.pathname;
-      if (path.startsWith('/services/') && path !== '/services/') {
-        return 'service-detail';
-      }
-      if (path === '/services') {
-        return 'services';
-      }
-      if (path.startsWith('/blog/')) {
-        return 'blog-post';
-      }
-      if (path === '/blog') {
-        return 'blog';
-      }
-    }
-    return 'home';
-  });
+  const initialRoute = typeof window !== 'undefined' ? pathToState(window.location.pathname) : { page: 'home' };
 
-  const [selectedServiceSlug, setSelectedServiceSlug] = useState<string>(() => {
-    if (typeof window !== 'undefined') {
-      const path = window.location.pathname;
-      if (path.startsWith('/services/') && path !== '/services/') {
-        return path.replace('/services/', '');
-      }
-    }
-    return 'website-design';
-  });
-
-  const [selectedBlogPostId, setSelectedBlogPostId] = useState<string | null>(() => {
-    if (typeof window !== 'undefined') {
-      const path = window.location.pathname;
-      if (path.startsWith('/blog/')) {
-        return path.replace('/blog/', '');
-      }
-    }
-    return null;
-  });
+  const [currentPage, setCurrentPage] = useState<string>(initialRoute.page);
+  const [selectedServiceSlug, setSelectedServiceSlug] = useState<string>(initialRoute.serviceSlug || 'website-design');
+  const [selectedBlogPostId, setSelectedBlogPostId] = useState<string | null>(initialRoute.blogPostId || null);
+  const [selectedToolSlug, setSelectedToolSlug] = useState<string | null>(initialRoute.toolSlug || null);
 
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [showLaunchScreen, setShowLaunchScreen] = useState<boolean>(() => {
@@ -86,29 +127,28 @@ export function App() {
 
   useEffect(() => {
     const handlePopState = () => {
-      const path = window.location.pathname;
-      if (path.startsWith('/services/') && path !== '/services/') {
-        setSelectedServiceSlug(path.replace('/services/', ''));
-        setCurrentPage('service-detail');
-      } else if (path === '/services') {
-        setCurrentPage('services');
-      } else if (path.startsWith('/blog/')) {
-        setSelectedBlogPostId(path.replace('/blog/', ''));
-        setCurrentPage('blog-post');
-      } else if (path === '/blog') {
-        setSelectedBlogPostId(null);
-        setCurrentPage('blog');
-      } else if (path === '/' || path === '') {
-        setSelectedBlogPostId(null);
-        setCurrentPage('home');
+      const route = pathToState(window.location.pathname);
+      if (route.serviceSlug) {
+        setSelectedServiceSlug(route.serviceSlug);
       }
+      if (route.toolSlug) {
+        setSelectedToolSlug(route.toolSlug);
+      } else {
+        setSelectedToolSlug(null);
+      }
+      if (route.blogPostId) {
+        setSelectedBlogPostId(route.blogPostId);
+      } else {
+        setSelectedBlogPostId(null);
+      }
+      setCurrentPage(route.page);
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Announce "Welcome to AVRX" JARVIS voice greeting when website opens
+  // Announce Iron Man JARVIS voice greeting ("Hello, Welcome to AVRX") when website opens
   useEffect(() => {
     // Attempt automatic voice greeting on initial mount
     const timer = setTimeout(() => {
@@ -136,35 +176,42 @@ export function App() {
   }, []);
 
   const handleNavigate = (page: string, slugOrPostId?: string) => {
+    let targetPage = page;
+    let targetSlug = selectedServiceSlug;
+    let targetBlogPostId = selectedBlogPostId;
+    let targetToolSlug = selectedToolSlug;
+
     if (page === 'service-detail' && slugOrPostId) {
+      targetSlug = slugOrPostId;
       setSelectedServiceSlug(slugOrPostId);
       setCurrentPage('service-detail');
-      if (typeof window !== 'undefined') {
-        window.history.pushState({}, '', `/services/${slugOrPostId}`);
-      }
+    } else if (page === 'ai-tools' && slugOrPostId) {
+      targetToolSlug = slugOrPostId;
+      setSelectedToolSlug(slugOrPostId);
+      setCurrentPage('ai-tools');
     } else if (page === 'blog-post' && slugOrPostId) {
+      targetBlogPostId = slugOrPostId;
       setSelectedBlogPostId(slugOrPostId);
       setCurrentPage('blog-post');
-      if (typeof window !== 'undefined') {
-        window.history.pushState({}, '', `/blog/${slugOrPostId}`);
-      }
-    } else if (page === 'blog') {
-      setSelectedBlogPostId(null);
-      setCurrentPage('blog');
-      if (typeof window !== 'undefined') {
-        window.history.pushState({}, '', '/blog');
-      }
-    } else if (page === 'services') {
-      setCurrentPage('services');
-      if (typeof window !== 'undefined') {
-        window.history.pushState({}, '', '/services');
-      }
     } else {
-      setSelectedBlogPostId(null);
-      setCurrentPage(page);
-      if (typeof window !== 'undefined' && page === 'home') {
-        window.history.pushState({}, '', '/');
+      if (page === 'website-design' || page === 'e-commerce-solutions' || page === 'web-portal-development' || page === 'digital-marketing' || page === 'seo-ranking' || page === 'android-app-development') {
+        targetPage = 'service-detail';
+        targetSlug = page;
+        setSelectedServiceSlug(page);
       }
+      setSelectedBlogPostId(null);
+      if (page !== 'ai-tools') {
+        setSelectedToolSlug(null);
+      }
+      setCurrentPage(targetPage);
+    }
+
+    const targetPath = pageToPath(
+      targetPage, 
+      targetPage === 'service-detail' ? targetSlug : targetPage === 'ai-tools' ? targetToolSlug || undefined : targetBlogPostId || undefined
+    );
+    if (typeof window !== 'undefined' && window.location.pathname !== targetPath) {
+      window.history.pushState({}, '', targetPath);
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -198,7 +245,7 @@ export function App() {
       case 'hosting-products':
         return <HostingProductsPage onNavigate={handleNavigate} />;
       case 'ai-tools':
-        return <AIToolsPage />;
+        return <AIToolsPage initialToolSlug={selectedToolSlug || undefined} onNavigate={handleNavigate} />;
       case 'services':
         return <AllServicesPage onNavigate={handleNavigate} />;
       case 'pricing':
@@ -208,11 +255,11 @@ export function App() {
       case 'showcase':
         return <ProjectsPage onNavigate={handleNavigate} />;
       case 'contact':
-        return <ContactPage />;
+        return <ContactPage onNavigate={handleNavigate} />;
       case 'partner':
-        return <PartnerPage />;
+        return <PartnerPage onNavigate={handleNavigate} />;
       case 'faq':
-        return <FAQPage />;
+        return <FAQPage onNavigate={handleNavigate} />;
       case 'blog':
         return <BlogPage onSelectPost={handleSelectBlogPost} />;
       case 'blog-post':

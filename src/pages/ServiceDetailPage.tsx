@@ -202,47 +202,69 @@ const SLUG_ALIASES: Record<string, string> = {
   'shop-insurance': 'shop-property-insurance'
 };
 
-// Curated high quality imagery for each service
+// Curated ultra-vibrant, high quality imagery for each service
 const SERVICE_IMAGES: Record<string, string> = {
-  'static-onepage-website': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
-  'website-design': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+  // Web & Digital Solutions
+  'static-onepage-website': 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80',
+  'website-design': 'https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1200&q=80',
   'corporate-website-design': 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
-  'e-commerce-solutions': 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=1200&q=80',
-  'web-application-development': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
-  'android-app-development': 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80',
-  'ios-app-development': 'https://images.unsplash.com/photo-1510519138197-04075c7e145c?auto=format&fit=crop&w=1200&q=80',
-  'digital-marketing': 'https://images.unsplash.com/photo-1533750516457-a7f992034fec?auto=format&fit=crop&w=1200&q=80',
+  'landing-page-development': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+  'web-portal-development': 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
+  'e-commerce-solutions': 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?auto=format&fit=crop&w=1200&q=80',
+  'web-application-development': 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
+  'android-app-development': 'https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?auto=format&fit=crop&w=1200&q=80',
+  'ios-app-development': 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80',
+  'digital-marketing': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
   'seo-ranking': 'https://images.unsplash.com/photo-1571786256017-aee7a0c009b6?auto=format&fit=crop&w=1200&q=80',
-  'website-redesign': 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80',
-  'website-maintenance': 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80',
+  'website-redesign': 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1200&q=80',
+  'website-maintenance': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
+
+  // Financial & Loans
   'personal-loan': 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1200&q=80',
   'business-loan': 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=1200&q=80',
-  'home-loan': 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80',
-  'car-loan': 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80',
-  'mortgage-loan': 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1200&q=80',
+  'home-loan': 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+  'car-loan': 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80',
+  'gold-loan': 'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=1200&q=80',
+  'two-three-wheeler-loan': 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1200&q=80',
+  'group-loan-shg': 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80',
+  'instant-online-loan': 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80',
+  'kcc-loan': 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1200&q=80',
+  'aadhar-pan-loan': 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
+  'mortgage-loan': 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80',
   'loan-refinance': 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
   'government-scheme-loans': 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1200&q=80',
   
-  // Tax & Legal images
+  // Tax & Legal Compliance
   'gst-registration': 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1200&q=80',
+  'gst-filing': 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
   'itr-filing': 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
-  'udyam-registration': 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
-  'company-registration': 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+  'udyam-registration': 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80',
+  'company-registration': 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
   'trademark-registration': 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+  'fssai-food-license': 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
   'fssai-license': 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
   'iso-certification': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
   'iec-code': 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
-  'gumasta-license': 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
+  'shop-establishment-gumasta': 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80',
+  'gumasta-license': 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80',
+  'business-compliance': 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
   'roc-compliance': 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
   'pan-services': 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80',
+  'tax-consultation': 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80',
   'tax-advisory': 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80',
 
-  // Insurance
+  // Insurance Protection
   'motor-insurance': 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80',
-  'health-insurance': 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80',
-  'travel-insurance': 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
+  'health-insurance': 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
+  'travel-insurance': 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80',
   'home-insurance': 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
-  'shop-property-insurance': 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80',
+  'shop-property-insurance': 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=1200&q=80',
+
+  // Hosting & Products
+  'wordpress-themes': 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80',
+  'website-hosting': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
+  'multi-company-hosting': 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
+  'domain-services': 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80',
   'default': 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80'
 };
 
@@ -525,6 +547,55 @@ const getServiceDocuments = (serviceId: string): string[] => {
 };
 
 export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlug, onNavigate }) => {
+  const targetId = SLUG_ALIASES[serviceSlug] || serviceSlug;
+  
+  // Render dedicated Website Design Master Service Page when website design/development is selected
+  if (targetId === 'website-design' || serviceSlug === 'website-design' || serviceSlug === 'website-development' || serviceSlug === 'web-design' || serviceSlug === 'web-development') {
+    return <WebsiteDesignPage onNavigate={onNavigate} />;
+  }
+
+  // Render dedicated E-Commerce Solutions Master Service Page when e-commerce is selected
+  if (targetId === 'e-commerce-solutions' || serviceSlug === 'e-commerce-solutions' || serviceSlug === 'ecommerce' || serviceSlug === 'ecommerce-solutions' || serviceSlug === 'e-commerce') {
+    return <EcommerceSolutionsPage onNavigate={onNavigate} />;
+  }
+
+  // Render dedicated App Development (Android & iOS) Master Service Page
+  if (targetId === 'android-app-development' || targetId === 'app-development' || serviceSlug === 'android-app-development' || serviceSlug === 'ios-app-development' || serviceSlug === 'app-development' || serviceSlug === 'mobile-app-development' || serviceSlug === 'mobile-apps') {
+    return <AppDevelopmentPage onNavigate={onNavigate} />;
+  }
+
+  // Render dedicated Web Portal Development Master Service Page
+  if (targetId === 'web-portal-development' || serviceSlug === 'web-portal-development' || serviceSlug === 'b2b-portal-development' || serviceSlug === 'web-portal' || serviceSlug === 'web-portals' || serviceSlug === 'portal-development' || serviceSlug === 'custom-portal-development' || serviceSlug === 'enterprise-web-portal') {
+    return <WebPortalPage onNavigate={onNavigate} />;
+  }
+
+  // Render dedicated Digital Marketing & Growth Master Service Page
+  if (targetId === 'digital-marketing' || serviceSlug === 'digital-marketing' || serviceSlug === 'digital-marketing-growth' || serviceSlug === 'performance-marketing' || serviceSlug === 'meta-ads' || serviceSlug === 'google-ads' || serviceSlug === 'growth-marketing' || serviceSlug === 'digital-marketing-services') {
+    return <DigitalMarketingPage onNavigate={onNavigate} />;
+  }
+
+  // Render dedicated Search Engine Optimization (SEO) Master Service Page
+  if (targetId === 'seo-ranking' || serviceSlug === 'seo-ranking' || serviceSlug === 'seo' || serviceSlug === 'search-engine-optimization' || serviceSlug === 'seo-services' || serviceSlug === 'seo-optimization' || serviceSlug === 'google-ranking' || serviceSlug === 'local-seo' || serviceSlug === 'technical-seo') {
+    return <SEORankingPage onNavigate={onNavigate} />;
+  }
+
+  return (
+    <GenericServiceDetailView 
+      key={targetId}
+      targetId={targetId}
+      serviceSlug={serviceSlug}
+      onNavigate={onNavigate}
+    />
+  );
+};
+
+interface GenericServiceDetailViewProps {
+  targetId: string;
+  serviceSlug: string;
+  onNavigate: (page: string, slug?: string) => void;
+}
+
+const GenericServiceDetailView: React.FC<GenericServiceDetailViewProps> = ({ targetId, serviceSlug, onNavigate }) => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
   const [checkedDocs, setCheckedDocs] = useState<Record<number, boolean>>({});
@@ -564,38 +635,6 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
     ...INSURANCE_SERVICES,
     ...HOSTING_PRODUCTS
   ], []);
-
-  const targetId = SLUG_ALIASES[serviceSlug] || serviceSlug;
-  
-  // Render dedicated Website Design Master Service Page when website design/development is selected
-  if (targetId === 'website-design' || serviceSlug === 'website-design' || serviceSlug === 'website-development' || serviceSlug === 'web-design' || serviceSlug === 'web-development') {
-    return <WebsiteDesignPage onNavigate={onNavigate} />;
-  }
-
-  // Render dedicated E-Commerce Solutions Master Service Page when e-commerce is selected
-  if (targetId === 'e-commerce-solutions' || serviceSlug === 'e-commerce-solutions' || serviceSlug === 'ecommerce' || serviceSlug === 'ecommerce-solutions' || serviceSlug === 'e-commerce') {
-    return <EcommerceSolutionsPage onNavigate={onNavigate} />;
-  }
-
-  // Render dedicated App Development (Android & iOS) Master Service Page
-  if (targetId === 'android-app-development' || targetId === 'app-development' || serviceSlug === 'android-app-development' || serviceSlug === 'ios-app-development' || serviceSlug === 'app-development' || serviceSlug === 'mobile-app-development' || serviceSlug === 'mobile-apps') {
-    return <AppDevelopmentPage onNavigate={onNavigate} />;
-  }
-
-  // Render dedicated Web Portal Development Master Service Page
-  if (targetId === 'web-portal-development' || serviceSlug === 'web-portal-development' || serviceSlug === 'b2b-portal-development' || serviceSlug === 'web-portal' || serviceSlug === 'web-portals' || serviceSlug === 'portal-development' || serviceSlug === 'custom-portal-development' || serviceSlug === 'enterprise-web-portal') {
-    return <WebPortalPage onNavigate={onNavigate} />;
-  }
-
-  // Render dedicated Digital Marketing & Growth Master Service Page
-  if (targetId === 'digital-marketing' || serviceSlug === 'digital-marketing' || serviceSlug === 'digital-marketing-growth' || serviceSlug === 'performance-marketing' || serviceSlug === 'meta-ads' || serviceSlug === 'google-ads' || serviceSlug === 'growth-marketing' || serviceSlug === 'digital-marketing-services') {
-    return <DigitalMarketingPage onNavigate={onNavigate} />;
-  }
-
-  // Render dedicated Search Engine Optimization (SEO) Master Service Page
-  if (targetId === 'seo-ranking' || serviceSlug === 'seo-ranking' || serviceSlug === 'seo' || serviceSlug === 'search-engine-optimization' || serviceSlug === 'seo-services' || serviceSlug === 'seo-optimization' || serviceSlug === 'google-ranking' || serviceSlug === 'local-seo' || serviceSlug === 'technical-seo') {
-    return <SEORankingPage onNavigate={onNavigate} />;
-  }
 
   const service = allServices.find(s => s.id === targetId) || allServices[0];
   const theme = getServiceTheme(service.category, service.id);
@@ -744,8 +783,24 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceSlu
   return (
     <div className="min-h-screen bg-[#050811] text-white pt-24 pb-24 selection:bg-cyan-500 selection:text-slate-950 relative overflow-hidden">
       <SEO
-        title={`${service.title} | AVRX Digital & Financial Solution`}
-        description={service.shortDesc || service.fullDesc}
+        title={`${service.title} - ${catMeta.label} in India | AVRX`}
+        description={service.fullDesc || service.shortDesc}
+        canonicalUrl={`https://avrx.in/services/${serviceSlug}`}
+        image={heroImage}
+        breadcrumbs={[
+          { name: 'Home', url: 'https://avrx.in/' },
+          { name: 'Services', url: 'https://avrx.in/services' },
+          { name: catMeta.label, url: `https://avrx.in/${catMeta.page}` },
+          { name: service.title, url: `https://avrx.in/services/${serviceSlug}` }
+        ]}
+        faqs={serviceFaqs}
+        serviceSchema={{
+          name: service.title,
+          description: service.fullDesc || service.shortDesc,
+          price: service.priceStarting,
+          priceCurrency: 'INR',
+          category: catMeta.label
+        }}
       />
 
       {/* Dynamic Ambient Background Aura */}
