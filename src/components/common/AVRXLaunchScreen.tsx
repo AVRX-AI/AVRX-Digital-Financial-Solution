@@ -44,7 +44,7 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
   const handleLaunchClick = () => {
     if (phase !== 'ready') return;
 
-    // Trigger ONLY JARVIS voice greeting ("Welcome to AVRX")
+    // Trigger Iron Man JARVIS voice greeting ("Hello, Welcome to AVRX")
     launchSoundEngine.speakWelcomeToAVRX();
 
     if (reducedMotion) {
