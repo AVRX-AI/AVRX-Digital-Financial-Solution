@@ -94,15 +94,22 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, onSelect, featured = f
         </div>
 
         {/* Footer Action */}
-        <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-          <span className="text-slate-400 text-[11px] font-medium">
+        <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between gap-2 text-xs font-semibold">
+          <span className="text-slate-400 text-[11px] font-medium truncate">
             By <span className="text-slate-300">{post.author.name}</span>
           </span>
 
-          <div className="flex items-center gap-1.5 text-cyan-400 group-hover:text-cyan-300 group-hover:translate-x-1 transition-all">
-            <span>Read Article</span>
-            <ArrowRight className="w-4 h-4" />
-          </div>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelect(post.slug);
+            }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 text-cyan-300 hover:text-slate-950 border border-cyan-500/30 hover:border-cyan-400 text-xs font-bold transition-all shadow-sm group-hover:translate-x-0.5 cursor-pointer whitespace-nowrap"
+          >
+            <span>Continue Read</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+          </button>
         </div>
       </div>
     </article>
