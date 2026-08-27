@@ -148,8 +148,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
           : 'bg-transparent py-5'
       }`}
     >
-      {/* Subtle Tricolour Line Accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#FF9933]/50 via-white/60 via-[#138808]/50 to-transparent opacity-75" />
+      {/* Raksha Bandhan Sacred Golden & Crimson Thread Border Line Accent */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400 via-rose-400 to-transparent opacity-85" />
 
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 flex items-center justify-between relative">
         
@@ -159,7 +159,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
             onClick={() => handleNav('home')}
             className="flex items-center group focus:outline-none py-1"
           >
-            <div className="relative rounded-xl p-1 bg-[#050811]/90 border border-slate-700/80 shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-all duration-300 group-hover:scale-105 group-hover:border-white group-hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+            <div className="relative rounded-xl p-1 bg-[#050811]/90 border border-amber-500/40 shadow-[0_0_15px_rgba(245,158,11,0.2)] transition-all duration-300 group-hover:scale-105 group-hover:border-amber-400 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.4)]">
               <img
                 src={brandLogo}
                 alt="AVRX Digital & Financial Solution Logo"
@@ -379,32 +379,27 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
             <span>{t('nav.about')}</span>
           </button>
 
-          {/* Highlighted Partner With Us Link */}
           <button
             onClick={() => handleNav('partner')}
-            className={`group relative px-3 py-1.5 rounded-xl transition-all duration-300 flex items-center gap-1.5 text-xs font-bold ${
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl transition-all ${
               activePage === 'partner'
-                ? 'bg-slate-900 text-white border border-cyan-400 shadow-[0_0_15px_rgba(0,240,255,0.4)]'
-                : 'bg-slate-900/90 text-slate-200 hover:text-white border border-[#FF9933]/50 hover:border-cyan-400 shadow-[0_0_12px_rgba(255,153,51,0.25)] hover:shadow-[0_0_18px_rgba(0,240,255,0.4)]'
+                ? 'bg-amber-500/15 text-amber-300 font-bold border border-amber-500/30 shadow-[0_0_12px_rgba(245,158,11,0.25)]'
+                : 'hover:text-amber-300 hover:bg-slate-800/50'
             }`}
-            title="Join AVRX Partner Network"
           >
-            <Handshake className="w-3.5 h-3.5 text-[#FF9933] group-hover:text-cyan-400 group-hover:scale-110 transition-transform" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF9933] via-white to-[#138808] font-bold">
-              {t('nav.partner')}
-            </span>
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <Handshake className="w-3.5 h-3.5 text-amber-400" />
+            <span>{t('nav.partner')}</span>
           </button>
 
           <button
             onClick={() => handleNav('contact')}
             className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl transition-all ${
               activePage === 'contact' 
-                ? 'bg-pink-500/15 text-pink-300 font-bold border border-pink-500/30 shadow-[0_0_12px_rgba(236,72,153,0.25)]' 
-                : 'hover:text-pink-300 hover:bg-slate-800/50'
+                ? 'bg-rose-500/15 text-rose-300 font-bold border border-rose-500/30 shadow-[0_0_12px_rgba(244,63,94,0.25)]' 
+                : 'hover:text-rose-300 hover:bg-slate-800/50'
             }`}
           >
-            <PhoneCall className="w-3.5 h-3.5 text-pink-400" />
+            <PhoneCall className="w-3.5 h-3.5 text-rose-400" />
             <span>{t('nav.contact')}</span>
           </button>
         </nav>
@@ -413,7 +408,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
         <div className="hidden lg:flex items-center gap-2.5">
           <button
             onClick={onOpenSearch}
-            className="p-2 text-slate-400 hover:text-cyan-400 hover:bg-slate-800/60 rounded-xl transition border border-slate-800/60 cursor-pointer"
+            className="p-2 text-slate-400 hover:text-amber-400 hover:bg-slate-800/60 rounded-xl transition border border-slate-800/60 cursor-pointer"
             title="Search Solutions"
           >
             <Search className="w-4 h-4" />
@@ -422,13 +417,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
           <div className="flex items-center bg-slate-900 border border-slate-800 rounded-xl p-0.5 text-xs font-semibold">
             <button
               onClick={() => setLanguage('EN')}
-              className={`px-2 py-1 rounded-lg transition cursor-pointer ${language === 'EN' ? 'bg-cyan-500 text-slate-950 shadow font-bold' : 'text-slate-400 hover:text-white'}`}
+              className={`px-2 py-1 rounded-lg transition cursor-pointer ${language === 'EN' ? 'bg-amber-500 text-slate-950 shadow font-bold' : 'text-slate-400 hover:text-white'}`}
             >
               EN
             </button>
             <button
               onClick={() => setLanguage('HI')}
-              className={`px-2 py-1 rounded-lg transition cursor-pointer ${language === 'HI' ? 'bg-cyan-500 text-slate-950 shadow font-bold' : 'text-slate-400 hover:text-white'}`}
+              className={`px-2 py-1 rounded-lg transition cursor-pointer ${language === 'HI' ? 'bg-amber-500 text-slate-950 shadow font-bold' : 'text-slate-400 hover:text-white'}`}
             >
               हिन्दी
             </button>
@@ -436,7 +431,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
 
           <button
             onClick={() => handleNav('contact')}
-            className="btn-tricolour-hover px-4 py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 hover:brightness-110 rounded-xl shadow-[0_0_20px_rgba(0,240,255,0.4)] transition transform hover:scale-105 active:scale-95 cursor-pointer"
+            className="px-4 py-2 text-xs font-bold text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:brightness-110 rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.35)] transition transform hover:scale-105 active:scale-95 cursor-pointer"
           >
             {t('nav.get_started')}
           </button>
@@ -584,35 +579,27 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
                 <span>{t('nav.about')}</span>
               </button>
 
-              {/* Highlighted Partner With Us link */}
               <button
                 onClick={() => handleNav('partner')}
-                className={`text-left p-3 rounded-xl font-medium text-base flex items-center justify-between border transition ${
+                className={`text-left p-3 rounded-xl font-medium text-base flex items-center gap-3 ${
                   activePage === 'partner'
-                    ? 'bg-slate-900 text-white border-cyan-400 font-bold shadow-[0_0_15px_rgba(0,240,255,0.3)]'
-                    : 'bg-slate-900/90 text-white border-[#FF9933]/50 shadow-[0_0_12px_rgba(255,153,51,0.2)]'
+                    ? 'bg-amber-500/15 text-amber-400 font-semibold border border-amber-500/30'
+                    : 'text-slate-200 hover:bg-slate-800/60'
                 }`}
               >
-                <div className="flex items-center gap-2.5">
-                  <Handshake className="w-4 h-4 text-[#FF9933]" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF9933] via-white to-[#138808] font-bold">
-                    {t('nav.partner')}
-                  </span>
-                </div>
-                <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                  Earn ₹50k+
-                </span>
+                <Handshake className="w-5 h-5 text-amber-400 shrink-0" />
+                <span>{t('nav.partner')}</span>
               </button>
 
               <button
                 onClick={() => handleNav('contact')}
                 className={`text-left p-3 rounded-xl font-medium text-base flex items-center gap-3 ${
                   activePage === 'contact' 
-                    ? 'bg-pink-500/15 text-pink-400 font-semibold border border-pink-500/30' 
+                    ? 'bg-rose-500/15 text-rose-400 font-semibold border border-rose-500/30' 
                     : 'text-slate-200 hover:bg-slate-800/60'
                 }`}
               >
-                <PhoneCall className="w-5 h-5 text-pink-400 shrink-0" />
+                <PhoneCall className="w-5 h-5 text-rose-400 shrink-0" />
                 <span>{t('nav.contact')}</span>
               </button>
             </div>
@@ -622,7 +609,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
           <div className="pt-6 border-t border-slate-800">
             <button
               onClick={() => handleNav('contact')}
-              className="w-full py-3.5 text-center font-bold text-slate-950 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-xl shadow-lg"
+              className="w-full py-3.5 text-center font-bold text-slate-950 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 rounded-xl shadow-lg shadow-amber-950/40"
             >
               {t('nav.get_started')}
             </button>

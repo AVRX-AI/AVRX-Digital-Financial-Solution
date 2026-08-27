@@ -16,20 +16,19 @@ export const IndependenceDayAtmosphere: React.FC = () => {
   const [showInitialSweep, setShowInitialSweep] = useState(true);
 
   useEffect(() => {
-    // Generate subtle floating particles
-    // Saffron (#FF9933), White (#FFFFFF), Green (#138808), Navy (#000080 / #0055ff)
+    // Generate subtle floating Raksha Bandhan festive particles
+    // Sacred Saffron, Vermilion Crimson, Golden Yellow, Warm Amber
     const colors = [
+      '#F59E0B', // Amber
       '#FF9933', // Saffron
-      '#FF9933', // Saffron
-      '#FFFFFF', // White
-      '#FFFFFF', // White
-      '#138808', // India Green
-      '#138808', // India Green
-      '#0033aa', // Navy / Deep Blue
+      '#E11D48', // Vermilion / Rose Crimson
+      '#FBBF24', // Golden Yellow
+      '#F43F5E', // Rose
+      '#FEF08A', // Pale Gold
     ];
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    const count = isMobile ? 12 : 28;
+    const count = isMobile ? 12 : 24;
 
     const items: Particle[] = Array.from({ length: count }, (_, i) => ({
       id: i,
@@ -54,15 +53,15 @@ export const IndependenceDayAtmosphere: React.FC = () => {
 
   return (
     <>
-      {/* 1. Micro-Interaction: Single elegant tricolour light sweep on first entry */}
+      {/* 1. Micro-Interaction: Single elegant golden-crimson thread light sweep on first entry */}
       {showInitialSweep && (
         <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden select-none">
-          <div className="absolute top-0 -left-full w-[200%] h-1 bg-gradient-to-r from-transparent via-[#FF9933] via-[#ffffff] to-[#138808] opacity-80 blur-[1px] animate-[initialSweep_2.8s_cubic-bezier(0.25,1,0.5,1)_forwards] shadow-[0_0_15px_rgba(255,153,51,0.5)]" />
-          <div className="absolute top-0 -left-full w-[200%] h-8 bg-gradient-to-r from-transparent via-[#FF9933]/20 via-[#ffffff]/30 to-[#138808]/20 blur-md animate-[initialSweep_2.8s_cubic-bezier(0.25,1,0.5,1)_forwards]" />
+          <div className="absolute top-0 -left-full w-[200%] h-1 bg-gradient-to-r from-transparent via-amber-400 via-yellow-200 to-rose-500 opacity-80 blur-[1px] animate-[initialSweep_2.8s_cubic-bezier(0.25,1,0.5,1)_forwards] shadow-[0_0_15px_rgba(245,158,11,0.5)]" />
+          <div className="absolute top-0 -left-full w-[200%] h-8 bg-gradient-to-r from-transparent via-amber-500/20 via-yellow-300/30 to-rose-500/20 blur-md animate-[initialSweep_2.8s_cubic-bezier(0.25,1,0.5,1)_forwards]" />
         </div>
       )}
 
-      {/* 2. Floating Ambient Particles */}
+      {/* 2. Floating Ambient Festive Particles */}
       <div
         className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none"
         aria-hidden="true"
@@ -88,3 +87,4 @@ export const IndependenceDayAtmosphere: React.FC = () => {
     </>
   );
 };
+
