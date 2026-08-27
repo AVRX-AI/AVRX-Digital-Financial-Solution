@@ -2,11 +2,49 @@ import express, { Request, Response } from "express";
 import path from "path";
 import { GoogleGenAI } from "@google/genai";
 import { createServer as createViteServer } from "vite";
+import { ALL_SERVICES } from "./src/data/servicesData";
+import { BLOG_POSTS_DATA } from "./src/data/blogData";
+import { AI_SUITE_TOOLS } from "./src/data/aiToolsSuiteData";
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+
+const SITE_URL = "https://www.avrx.in";
+
+// Canonical host: consolidate the root domain to www to avoid duplicate URL signals.
+app.use((req: Request, res: Response, next) => {
+  const host = String(req.headers.host || '').split(':')[0].toLowerCase();
+  if (host === 'avrx.in') {
+    res.redirect(301, `${SITE_URL}${req.originalUrl}`);
+    return;
+  }
+  next();
+});
+const STATIC_ROUTES = new Set([
+  '/', '/digital-solutions', '/financial-solutions', '/tax-solutions', '/insurance-solutions',
+  '/hosting-products', '/ai-tools', '/services', '/pricing', '/projects', '/portfolio', '/showcase',
+  '/contact', '/partner', '/faq', '/blog', '/about', '/privacy', '/terms', '/disclaimer', '/tools',
+  '/website-design', '/website-development', '/e-commerce-solutions', '/ecommerce-solutions', '/ecommerce', '/e-commerce'
+]);
+const SERVICE_ROUTES = new Set(ALL_SERVICES.map(s => `/services/${s.slug}`));
+const BLOG_ROUTES = new Set(BLOG_POSTS_DATA.map(p => `/blog/${p.slug}`));
+const TOOL_ROUTES = new Set(AI_SUITE_TOOLS.map(t => `/tools/${t.slug}`));
+
+app.get('/robots.txt', (_req: Request, res: Response) => {
+  res.type('text/plain').send(`User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+});
+
+app.get('/sitemap.xml', (_req: Request, res: Response) => {
+  const urls = new Set<string>(['/']);
+  STATIC_ROUTES.forEach(p => urls.add(p));
+  SERVICE_ROUTES.forEach(p => urls.add(p));
+  BLOG_ROUTES.forEach(p => urls.add(p));
+  TOOL_ROUTES.forEach(p => urls.add(p));
+  const body = [...urls].sort().map(p => `  <url><loc>${SITE_URL}${p}</loc></url>`).join('\n');
+  res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>`);
+});
 
 // Simple IP Rate Limiter (Max 5 submissions per 15 minutes)
 const ipRateLimitMap = new Map<string, number[]>();
@@ -159,7 +197,7 @@ Provide:
 2. Monthly EMI Calculation at standard interest rates.
 3. Recommended Loan Categories (Personal Loan, Unsecured Business Loan, MUDRA, PMEGP Govt Scheme).
 4. Required Documentation List.
-5. Key tips to ensure 100% bank approval.`;
+5. Key tips to improve application readiness and document completeness.`;
       } else if (toolId === "tax-assistant") {
         prompt = `Perform a Tax Savings & Regime Comparison for: "${cleanInput}".
 Provide:
@@ -957,7 +995,31 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
-    app.get("*", (_req: Request, res: Response) => {
+    app.get("*", (req: Request, res: Response) => {
+      const pathname = req.path.replace(/\/$/, '') || '/';
+      if (pathname.startsWith('/services/')) {
+        const slug = pathname.slice('/services/'.length);
+        const commonAliases: Record<string, string> = {
+          'seo': 'seo-ranking', 'seo-services': 'seo-ranking', 'search-engine-optimization': 'seo-ranking',
+          'google-ranking': 'seo-ranking', 'local-seo': 'seo-ranking', 'website-development': 'website-design',
+          'ecommerce': 'e-commerce-solutions', 'ecommerce-solutions': 'e-commerce-solutions',
+          'e-commerce': 'e-commerce-solutions', 'app-development': 'android-app-development',
+          'mobile-app-development': 'android-app-development', 'vehicle-insurance': 'motor-insurance',
+          'gst': 'gst-registration', 'gst-filing': 'gst-registration', 'itr': 'itr-filing',
+          'income-tax': 'itr-filing', 'udyam': 'udyam-registration', 'msme': 'udyam-registration',
+          'pmegp-loan': 'government-scheme-loans', 'online-loan': 'instant-online-loan', 'quick-loan': 'instant-online-loan'
+        };
+        const canonicalSlug = commonAliases[slug];
+        if (canonicalSlug && canonicalSlug !== slug) {
+          res.redirect(301, `/services/${canonicalSlug}`);
+          return;
+        }
+      }
+      const known = STATIC_ROUTES.has(pathname) || SERVICE_ROUTES.has(pathname) || BLOG_ROUTES.has(pathname) || TOOL_ROUTES.has(pathname);
+      if (!known) {
+        res.status(404).sendFile(path.join(distPath, "index.html"));
+        return;
+      }
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
