@@ -191,26 +191,45 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
     }
   };
 
-  // 13 Comprehensive Core Financial & Loan Solutions
+  // 12 Comprehensive Core Financial & Loan Solutions (Strictly Ordered 1 to 12)
   const allFinancialServices = [
     {
-      id: 'gold-loan',
-      slug: 'gold-loan',
-      title: 'Gold Loan (Instant Cash Against Gold)',
-      category: 'Instant Gold Collateral',
-      icon: Coins,
-      imageUrl: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=800&q=80',
-      desc: 'Instant cash liquidity against gold jewelry with highest per-gram valuation, low interest rates, and zero income proof.',
-      indicativeInfo: 'Instant cash in 30 mins | Up to 75% market valuation',
+      id: 'personal-loan',
+      slug: 'personal-loan',
+      title: 'Personal Loan',
+      category: 'Unsecured Credit',
+      icon: UserCheck,
+      imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
+      desc: 'Unsecured credit solutions to meet personal requirements, emergency expenses, weddings, higher education, or debt consolidation.',
+      indicativeInfo: 'Flexible loan amounts from ₹50,000 up to ₹25 Lakhs',
       features: [
-        'Instant loan up to ₹1.5 Cr against 18k–24k gold jewelry',
-        'Lowest interest rates starting from 8.50% p.a.',
-        'Zero income proof or ITR required (KYC only)',
-        '100% insured bank vault custody storage',
-        'Flexible bullet, monthly interest or EMI repayment',
-        'Zero prepayment or foreclosure penalties'
+        'Flexible loan amount depending on salary & income eligibility',
+        'Multiple lender comparisons across 30+ top banks & NBFCs',
+        'Quick digital documentation & salary verification support',
+        'Transparent application guidance with zero hidden broker charges',
+        'Personalized repayment tenure options from 12 to 60 Months',
+        'Pre-application credit score analysis & profile optimization'
       ],
-      disclaimer: 'Gold purity evaluation, valuation per gram, and loan-to-value (LTV) limits are governed by RBI norms.'
+      disclaimer: 'Loan approval, interest rate, amount and tenure are subject to lender criteria and credit evaluation.'
+    },
+    {
+      id: 'business-loan',
+      slug: 'business-loan',
+      title: 'Business & Working Capital Loan',
+      category: 'Commercial Capital',
+      icon: Briefcase,
+      imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+      desc: 'Structured business funding for working capital, inventory replenishment, machinery purchase, and operational business expansion.',
+      indicativeInfo: 'Working capital & term loan solutions up to ₹1 Crore',
+      features: [
+        'Unsecured & secured business financing options',
+        'GST & balance sheet documentation support',
+        'Assistance for MSMEs, proprietorships, partnerships & private firms',
+        'Overdraft (OD) and Cash Credit (CC) limit facilities',
+        'Custom repayment schedule aligned with seasonal business revenue',
+        'Working capital requirement analysis & credit appraisal review'
+      ],
+      disclaimer: 'Financing terms and eligibility are determined by institutional lenders and financial vintage.'
     },
     {
       id: 'mortgage-loan',
@@ -218,16 +237,16 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
       title: 'Mortgage Loan / Loan Against Property (LAP)',
       category: 'Secured Real Estate Equity',
       icon: Building2,
-      imageUrl: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=800&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1200&q=80',
       desc: 'Unlock high-value liquidity by leveraging residential, commercial, or industrial properties while retaining complete property ownership.',
       indicativeInfo: 'High sanction limits up to ₹5 Crores | Tenures to 15 Years',
       features: [
-        'High sanction limits up to ₹5 Crores at lowest rates',
-        'Extended repayment tenures up to 15 years for low EMIs',
-        'Accepted for residential houses, commercial shops & plots',
-        'Retain 100% continuous usage and occupancy of property',
-        'Drop-line overdraft (OD) & term loan facilities available',
-        'End-to-end legal title clearance and technical appraisal'
+        'High sanction limits up to ₹5 Crores at lowest mortgage interest rates',
+        'Extended repayment tenures up to 15 years for manageable EMIs',
+        'Accepted for residential houses, commercial shops, plots & warehouses',
+        'Retain 100% continuous usage and physical occupancy of property',
+        'Drop-line overdraft (OD) & structured term loan facilities available',
+        'End-to-end legal title clearance, encumbrance check and technical appraisal'
       ],
       disclaimer: 'Property valuation, sanction limits and mortgage creation are subject to clear legal title and bank evaluation.'
     },
@@ -237,18 +256,75 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
       title: '2/3 Wheeler Loan (Bike, Scooter & Auto/E-Rickshaw)',
       category: 'Vehicle & Green Mobility',
       icon: Bike,
-      imageUrl: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=80',
       desc: 'Affordable financing for two-wheelers, electric scooters, commercial autos, and e-rickshaws with minimal down payment.',
       indicativeInfo: 'Up to 95% on-road funding | Spot approval in 15 mins',
       features: [
         'Up to 95% on-road funding for bikes, scooters & EV 2-wheelers',
         'Commercial 3-wheeler auto-rickshaw & e-rickshaw financing',
-        'Spot approvals within 15–30 minutes at authorized dealers',
+        'Spot approvals within 15–30 minutes at authorized dealerships',
         'Pocket-friendly EMIs with tenures from 12 to 48 months',
         'Special subsidized interest rates for electric green mobility',
-        'Minimal documentation: Aadhaar + Bank Passbook / UPI'
+        'Minimal documentation: Aadhaar + Bank Passbook / UPI Statement'
       ],
       disclaimer: 'Down payment, on-road funding percentage and interest rates depend on vehicle model and borrower profile.'
+    },
+    {
+      id: 'car-loan',
+      slug: 'car-loan',
+      title: 'Car Loan (New & Used)',
+      category: 'Vehicle Financing',
+      icon: Car,
+      imageUrl: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80',
+      desc: 'Financing solutions for new passenger vehicles and verified pre-owned cars with structured repayment periods and low down payments.',
+      indicativeInfo: 'Up to 100% on-road financing for select profiles',
+      features: [
+        'Financing options for new & certified used passenger vehicles',
+        'Comprehensive vehicle valuation & RC documentation guidance',
+        'Pre-approved loan options for existing banking customers',
+        'Doorstep document collection and rapid 24-hour sanction letters',
+        'Repayment tenure planning up to 7 years (84 months)',
+        'Direct multi-brand dealer quotation & RTO hypothecation support'
+      ],
+      disclaimer: 'Lending terms, loan-to-value (LTV) ratio and interest rates depend on vehicle age and lender norms.'
+    },
+    {
+      id: 'gold-loan',
+      slug: 'gold-loan',
+      title: 'Gold Loan (Instant Cash Against Gold)',
+      category: 'Instant Gold Collateral',
+      icon: Coins,
+      imageUrl: 'https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=1200&q=80',
+      desc: 'Instant cash liquidity against gold jewelry with highest per-gram valuation, low interest rates, and zero income proof.',
+      indicativeInfo: 'Instant cash in 30 mins | Up to 75% market valuation',
+      features: [
+        'Instant loan up to ₹1.5 Cr against 18k–24k gold jewelry',
+        'Lowest interest rates starting from 8.50% p.a.',
+        'Zero income proof or ITR required (KYC only)',
+        '100% insured bank vault custody storage with safety guarantee',
+        'Flexible bullet, monthly interest or standard EMI repayment',
+        'Zero prepayment or foreclosure penalties on gold release'
+      ],
+      disclaimer: 'Gold purity evaluation, valuation per gram, and loan-to-value (LTV) limits are governed by RBI norms.'
+    },
+    {
+      id: 'kcc-loan',
+      slug: 'kcc-loan',
+      title: 'KCC Loan (Kisan Credit Card & Agri Finance)',
+      category: 'Agricultural & Crop Credit',
+      icon: Sprout,
+      imageUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80',
+      desc: 'Subsidized agricultural credit at effective 4% p.a. interest for farmers, seasonal crop production, dairy, and farm equipment.',
+      indicativeInfo: 'Effective 4% p.a.* with Govt Interest Subvention',
+      features: [
+        'Effective subsidized 4% p.a. interest on prompt repayment',
+        'Credit limit based on agricultural land holding & crop scale',
+        'Revolving 5-year credit limit with simple annual renewal',
+        'Allied farming support: dairy, poultry, fisheries & tractor implements',
+        'In-built PM Fasal Bima Yojana (PMFBY) crop damage insurance cover',
+        'Collateral-free credit up to ₹1.6 Lakhs (up to ₹2 Lakhs in tie-ups)'
+      ],
+      disclaimer: 'Subsidized interest rate is applicable upon prompt repayment as per Central Govt guidelines and land title verification.'
     },
     {
       id: 'group-loan-shg',
@@ -256,13 +332,13 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
       title: 'Self Help / Group Loan (SHG & JLG Microfinance)',
       category: 'Community & Microfinance',
       icon: Users,
-      imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80',
       desc: 'Collateral-free group loans and microfinance credit for Self-Help Groups (SHGs), Joint Liability Groups (JLGs), and women entrepreneurs.',
       indicativeInfo: 'Collateral-free group credit | Weekly / Monthly repayment',
       features: [
         'Collateral-free collective financing for groups of 4 to 20 members',
         'Dedicated funding for women SHGs (NRLM/SRLM aligned)',
-        'Joint Liability Group (JLG) model for artisans & micro-traders',
+        'Joint Liability Group (JLG) model for artisans, dairy workers & micro-traders',
         'Direct Benefit Transfer (DBT) to individual or group accounts',
         'Flexible repayment frequencies: weekly, fortnightly, or monthly',
         'Peer-guarantee structure with zero real estate security needed'
@@ -275,7 +351,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
       title: 'Instant Online Loan (Digital Express Cash)',
       category: 'Digital Express Credit',
       icon: Zap,
-      imageUrl: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80',
       desc: '100% paperless digital loan with algorithmic pre-approval, Video KYC, and fund transfer directly to your bank in 15 minutes.',
       indicativeInfo: 'Disbursement in 15 mins | 100% paperless digital flow',
       features: [
@@ -283,29 +359,10 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
         '100% digital app/web journey with DigiLocker e-KYC',
         'Algorithmic credit decision within 3 to 5 minutes',
         'Direct instant NEFT/IMPS disbursement into your bank account',
-        'Flexible tenures from 3 to 24 months with auto-debit',
-        'Zero branch visits and transparent processing fees'
+        'Flexible tenures from 3 to 24 months with automated auto-debit',
+        'Zero branch visits and transparent, upfront processing fees'
       ],
       disclaimer: 'Instant disbursement is subject to digital credit bureau verification and bank account name match.'
-    },
-    {
-      id: 'kcc-loan',
-      slug: 'kcc-loan',
-      title: 'KCC Loan (Kisan Credit Card & Agri Finance)',
-      category: 'Agricultural & Crop Credit',
-      icon: Sprout,
-      imageUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80',
-      desc: 'Subsidized agricultural credit at effective 4% p.a. interest for farmers, seasonal crop production, dairy, and farm equipment.',
-      indicativeInfo: 'Effective 4% p.a.* with Govt Interest Subvention',
-      features: [
-        'Effective subsidized 4% p.a. interest on prompt repayment',
-        'Credit limit based on agricultural land holding & crop scale',
-        'Revolving 5-year credit limit with simple annual renewal',
-        'Allied farming support: dairy, poultry, fisheries & equipment',
-        'In-built PM Fasal Bima Yojana (PMFBY) crop damage cover',
-        'Collateral-free credit up to ₹1.6 Lakhs (up to ₹2 Lakhs in tie-ups)'
-      ],
-      disclaimer: 'Subsidized interest rate is applicable upon prompt repayment as per Central Govt guidelines and land title verification.'
     },
     {
       id: 'aadhar-pan-loan',
@@ -313,7 +370,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
       title: 'Loan with Aadhar & PAN (Paperless Quick Loan)',
       category: 'Instant KYC Credit',
       icon: Fingerprint,
-      imageUrl: 'https://images.unsplash.com/photo-1556742049-0a67e557b63f?auto=format&fit=crop&w=800&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1556742049-0a67e557b63f?auto=format&fit=crop&w=1200&q=80',
       desc: 'Fast unsecured credit solely using your Aadhaar Card and PAN Card with instant OTP-based verification and direct bank credit.',
       indicativeInfo: 'Zero physical paperwork | Instant OTP & DigiLocker e-KYC',
       features: [
@@ -327,93 +384,17 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
       disclaimer: 'Loan approval depends on digital credit bureau check and bank statement analysis where required.'
     },
     {
-      id: 'personal-loan',
-      slug: 'personal-loan',
-      title: 'Personal Loan',
-      category: 'Unsecured Credit',
-      icon: UserCheck,
-      imageUrl: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80',
-      desc: 'Unsecured credit solutions to meet personal requirements, emergency expenses, weddings, travel, or debt consolidation.',
-      indicativeInfo: 'Flexible loan amounts from ₹50,000 up to ₹25 Lakhs',
-      features: [
-        'Flexible loan amount depending on eligibility',
-        'Multiple lender options from 30+ top banks & NBFCs',
-        'Documentation assistance & salary verification',
-        'Transparent application guidance with zero hidden cost',
-        'Personalized repayment tenure options (12 to 60 Months)',
-        'Pre-application credit score & profile assessment'
-      ],
-      disclaimer: 'Loan approval, interest rate, amount and tenure are subject to lender criteria and credit evaluation.'
-    },
-    {
-      id: 'business-loan',
-      slug: 'business-loan',
-      title: 'Business & Working Capital Loan',
-      category: 'Commercial Capital',
-      icon: Briefcase,
-      imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-      desc: 'Structured business funding for working capital, inventory replenishment, machinery purchase, and operational expansion.',
-      indicativeInfo: 'Working capital & term loan solutions up to ₹1 Crore',
-      features: [
-        'Unsecured & secured business financing options',
-        'GST & balance sheet documentation support',
-        'Assistance for MSMEs, proprietorships & private firms',
-        'Overdraft (OD) and Cash Credit (CC) limit facilities',
-        'Custom repayment schedule aligned with cash flows',
-        'Working capital requirement & project review'
-      ],
-      disclaimer: 'Financing terms and eligibility are determined by institutional lenders and financial vintage.'
-    },
-    {
-      id: 'car-loan',
-      slug: 'car-loan',
-      title: 'Car Loan (New & Used)',
-      category: 'Vehicle Financing',
-      icon: Car,
-      imageUrl: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
-      desc: 'Financing solutions for new passenger vehicles and verified pre-owned cars with structured repayment periods.',
-      indicativeInfo: 'Up to 100% on-road financing for select profiles',
-      features: [
-        'Financing options for new & certified used vehicles',
-        'Vehicle valuation & documentation guidance',
-        'Eligibility assessment based on income profile',
-        'Doorstep document collection and rapid processing',
-        'Repayment tenure planning up to 7 years',
-        'Dealer quotation and RTO hypothecation support'
-      ],
-      disclaimer: 'Lending terms, loan-to-value (LTV) ratio and interest rates depend on vehicle age and lender norms.'
-    },
-    {
-      id: 'home-loan',
-      slug: 'home-loan',
-      title: 'Home Loan & Construction',
-      category: 'Real Estate Finance',
-      icon: Home,
-      imageUrl: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
-      desc: 'Credit solutions for residential home purchases, plot acquisition, home construction, renovation, and extension.',
-      indicativeInfo: 'Long-term financing up to 30 years for property purchases',
-      features: [
-        'Residential home purchase financing (up to 90% funding)',
-        'Plot purchase + construction loan assistance',
-        'Property chain & legal document guidance',
-        'Tax deductions under Section 80C & Section 24(b)',
-        'Balance transfer options with top-up capital',
-        'Tranche-wise construction disbursement alignment'
-      ],
-      disclaimer: 'Mortgage sanction and disbursement are subject to property title clearance and institutional underwriting.'
-    },
-    {
       id: 'loan-refinance',
       slug: 'loan-refinance',
-      title: 'Loan Refinance & Balance Transfer',
+      title: 'Loan Transfer, BT / Loan Refinance & Balance Transfer',
       category: 'Interest Optimization',
       icon: Percent,
-      imageUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80',
       desc: 'Switch existing high-interest home, business, or personal loans to lower interest partner lenders and reduce monthly EMI burden.',
       indicativeInfo: 'Save up to 2% interest & access additional top-up funds',
       features: [
         'Significant EMI and overall interest outflow reduction',
-        'Top-up loan facility available for immediate liquidity',
+        'Top-up loan facility available for immediate cash liquidity',
         'Zero prepayment penalties on floating rate loans',
         'Complete inter-bank handover & NOC document assistance',
         'Switch from fixed rates to repo-rate linked transparent benchmarks',
@@ -424,10 +405,10 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
     {
       id: 'government-subsidy-loans',
       slug: 'government-subsidy-loans',
-      title: 'Government Subsidy Loans (PMEGP / MUDRA)',
+      title: 'Govt Subsidy loan PMEGP MUDRA loan',
       category: 'PMEGP & Mudra Schemes',
       icon: Landmark,
-      imageUrl: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1200&q=80',
       desc: 'Comprehensive guidance for government-linked entrepreneurship schemes including PMEGP, MUDRA, Stand-Up India, and CGTMSE cover.',
       indicativeInfo: 'Subsidies up to 25% - 35% under Prime Minister schemes',
       features: [
@@ -644,7 +625,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
       />
 
       {/* Main Container - Stretched Widescreen Layout */}
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12">
+      <div className="w-full max-w-none px-4 sm:px-6 lg:px-8 xl:px-12">
         
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="pt-4 pb-6 flex items-center gap-2 text-xs text-slate-400">
@@ -1381,9 +1362,9 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
         </section>
 
         {/* 12. FINANCIAL COMPARISON SECTION (INTERACTIVE TABS & STRETCHED MATRIX) */}
-        <section className="my-24 w-full max-w-7xl mx-auto space-y-10">
+        <section className="my-24 w-full space-y-10">
           
-          <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="text-center max-w-4xl mx-auto space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-wider">
               <SlidersHorizontal className="w-4 h-4 text-cyan-400" />
               <span>DYNAMIC DECISION MATRIX</span>
@@ -1489,9 +1470,9 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
         </section>
 
         {/* 16. FINANCIAL CALCULATOR SECTION (LOAN EMI CALCULATOR) */}
-        <section className="my-24 space-y-10">
+        <section className="my-24 space-y-10 w-full">
           
-          <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="text-center max-w-4xl mx-auto space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
               <Calculator className="w-3.5 h-3.5 text-amber-400" />
               <span>REAL-TIME ESTIMATION</span>
@@ -1504,7 +1485,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto rounded-3xl bg-slate-900/90 border border-slate-800 p-6 sm:p-10 shadow-2xl">
+          <div className="w-full rounded-3xl bg-slate-900/90 border border-slate-800 p-6 sm:p-10 shadow-2xl">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
               {/* Sliders Input Area */}
@@ -1617,9 +1598,9 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
         </section>
 
         {/* 15. DOCUMENT CHECKLIST (STRETCHED EXPANSIVE BENTO GRID) */}
-        <section className="my-24 w-full max-w-7xl mx-auto space-y-10">
+        <section className="my-24 w-full space-y-10">
           
-          <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="text-center max-w-4xl mx-auto space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider">
               <FileText className="w-4 h-4 text-purple-400" />
               <span>DOCUMENT READINESS HUB</span>
@@ -1719,9 +1700,9 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
         </section>
 
         {/* 13. WHY CHOOSE AVRX (6 PREMIUM CARDS) */}
-        <section className="my-24 space-y-10">
+        <section className="my-24 space-y-10 w-full">
           
-          <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="text-center max-w-4xl mx-auto space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold uppercase tracking-wider">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
               <span>THE AVRX PROMISE</span>
@@ -1752,9 +1733,9 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
         </section>
 
         {/* 14. HOW IT WORKS (6-STEP TIMELINE) */}
-        <section className="my-24 space-y-10">
+        <section className="my-24 space-y-10 w-full">
           
-          <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="text-center max-w-4xl mx-auto space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-wider">
               <Clock className="w-3.5 h-3.5 text-cyan-400" />
               <span>STRUCTURED WORKFLOW</span>
@@ -1787,9 +1768,9 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
         </section>
 
         {/* 17. FINANCIAL FAQ ACCORDION (2-COLUMN GRID LAYOUT) */}
-        <section className="my-24 max-w-6xl mx-auto space-y-8">
+        <section className="my-24 w-full space-y-8">
           
-          <div className="text-center space-y-3">
+          <div className="text-center space-y-3 max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase tracking-wider">
               <HelpCircle className="w-3.5 h-3.5 text-purple-400" />
               <span>FREQUENTLY ASKED QUESTIONS</span>

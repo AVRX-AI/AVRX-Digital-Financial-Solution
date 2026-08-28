@@ -482,8 +482,8 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
       <div className="absolute top-[1600px] right-10 w-[600px] h-[600px] bg-rose-500/10 rounded-full blur-[180px] pointer-events-none -z-10" />
       <div className="absolute top-[2600px] left-1/3 w-[550px] h-[550px] bg-amber-500/10 rounded-full blur-[160px] pointer-events-none -z-10" />
 
-      {/* Main Container - Stretched Widescreen Layout */}
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12">
+      {/* Main Container - Stretched Full-Width Widescreen Layout */}
+      <div className="w-full max-w-none px-4 sm:px-6 lg:px-10 xl:px-12">
         
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="pt-4 pb-6 flex items-center gap-2 text-xs text-slate-400">
@@ -1374,8 +1374,312 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
           </div>
         </div>
 
-        {/* 9. DIGITAL SOLUTIONS FAQ ACCORDION (WITH SEARCH) */}
-        <div className="my-20 max-w-5xl mx-auto space-y-8">
+        {/* 8.5 STRETCHED DEDICATED DIGITAL MARKETING & GROWTH SECTION */}
+        <div id="digital-marketing-growth-section" className="my-20 w-full rounded-3xl bg-gradient-to-br from-[#0c0817] via-[#080512] to-[#04020a] border border-amber-500/40 p-6 sm:p-10 lg:p-12 shadow-[0_20px_70px_rgba(245,158,11,0.12)] relative overflow-hidden">
+          <div className="absolute top-0 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
+          <div className="absolute bottom-0 left-10 w-96 h-96 bg-rose-500/10 rounded-full blur-[140px] pointer-events-none" />
+
+          {/* Section Header */}
+          <div className="text-center max-w-4xl mx-auto mb-12 space-y-3 relative z-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-bold uppercase tracking-widest">
+              <Megaphone className="w-4 h-4 text-amber-400 animate-pulse" />
+              <span>HIGH-PERFORMANCE ADVERTISING & GROWTH FUNNELS</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+              Digital Marketing & Paid Growth Acceleration
+            </h2>
+            <p className="text-xs sm:text-base text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              We turn ad spend into predictable revenue. Proven multi-channel paid funnels across Meta Advantage+, Google High-Intent Search PPC, and Direct WhatsApp conversion architectures engineered for unbeatable ROAS and lowest Cost-Per-Lead (CPL).
+            </p>
+          </div>
+
+          {/* Stretched Bento Grid for Digital Marketing */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+            
+            {/* Card 1: Meta Ads */}
+            <div className="p-6 rounded-2xl bg-slate-900/85 border border-amber-500/30 hover:border-amber-400 transition-all space-y-4 shadow-lg group">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-600/30 text-amber-300 border border-amber-500/40 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Flame className="w-6 h-6" />
+                </div>
+                <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[11px] font-mono font-bold">5.4x ROAS</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">Meta (FB & IG) Advantage+</h3>
+                <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                  AI-powered audience targeting, dynamic creative rotation, high-CTR reel hooks, and automated retargeting that captures ready-to-buy consumers.
+                </p>
+              </div>
+              <div className="space-y-1.5 text-xs text-slate-400 pt-2 border-t border-slate-800">
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>Custom Lookalike & Pixel CAPI Setup</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>High-Converting Video Ad Scripts</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: Google Search & PMax */}
+            <div className="p-6 rounded-2xl bg-slate-900/85 border border-amber-500/30 hover:border-amber-400 transition-all space-y-4 shadow-lg group">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/20 to-indigo-600/30 text-blue-300 border border-blue-500/40 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Search className="w-6 h-6" />
+                </div>
+                <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 text-[11px] font-mono font-bold">High Intent</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">Google PPC & Performance Max</h3>
+                <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                  Capture high-intent commercial buyers searching actively for your services on Google Search, YouTube Ads, Maps, and Shopping grids.
+                </p>
+              </div>
+              <div className="space-y-1.5 text-xs text-slate-400 pt-2 border-t border-slate-800">
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <span>Negative Keyword Scrubbing (Zero Waste)</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <span>Real-Time Conversion Tracking Setup</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: WhatsApp Click-to-Chat */}
+            <div className="p-6 rounded-2xl bg-slate-900/85 border border-amber-500/30 hover:border-amber-400 transition-all space-y-4 shadow-lg group">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-600/30 text-emerald-300 border border-emerald-500/40 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[11px] font-mono font-bold">Instant CPL</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">Direct WhatsApp Ad Funnels</h3>
+                <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                  Send hot ad clicks straight to WhatsApp chat with pre-filled inquiries, automated welcome bots, and instant CRM lead notifications.
+                </p>
+              </div>
+              <div className="space-y-1.5 text-xs text-slate-400 pt-2 border-t border-slate-800">
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>3x Higher Response Rate than Forms</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Automated Follow-up Drip Sequences</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4: Full Transparent Analytics */}
+            <div className="p-6 rounded-2xl bg-slate-900/85 border border-amber-500/30 hover:border-amber-400 transition-all space-y-4 shadow-lg group">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-600/30 text-purple-300 border border-purple-500/40 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <BarChart3 className="w-6 h-6" />
+                </div>
+                <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[11px] font-mono font-bold">100% Live</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors">Live CPL & Revenue Dashboards</h3>
+                <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                  Real-time analytics dashboard with daily lead counts, cost-per-click, cost-per-acquisition, and transparent monthly performance audits.
+                </p>
+              </div>
+              <div className="space-y-1.5 text-xs text-slate-400 pt-2 border-t border-slate-800">
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                  <span>No Inflated or Vanity Metrics</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                  <span>Dedicated Performance Growth Manager</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Stretched Action Callout Bar */}
+          <div className="mt-8 p-6 rounded-2xl bg-slate-950/80 border border-amber-500/30 flex flex-col lg:flex-row items-center justify-between gap-4">
+            <div className="space-y-1 text-center lg:text-left">
+              <div className="text-sm font-bold text-white flex items-center justify-center lg:justify-start gap-2">
+                <Sparkles className="w-4 h-4 text-amber-400" />
+                <span>Want to 3x your lead flow and customer acquisition?</span>
+              </div>
+              <div className="text-xs text-slate-400">
+                Launch laser-targeted Meta & Google ad campaigns managed by seasoned growth strategists starting from ₹9,999/mo.
+              </div>
+            </div>
+            <button
+              onClick={() => {
+                launchSoundEngine.playSuccess();
+                onNavigate('contact');
+              }}
+              className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-rose-600 text-slate-950 font-black text-xs sm:text-sm hover:scale-105 transition shadow-[0_0_25px_rgba(245,158,11,0.4)] flex items-center gap-2 shrink-0 cursor-pointer"
+            >
+              <span>Launch Growth Campaign</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* 8.6 STRETCHED DEDICATED SEARCH ENGINE OPTIMIZATION (SEO) SECTION */}
+        <div id="search-engine-optimization-section" className="my-20 w-full rounded-3xl bg-gradient-to-br from-[#120713] via-[#09030c] to-[#040106] border border-rose-500/40 p-6 sm:p-10 lg:p-12 shadow-[0_20px_70px_rgba(244,63,94,0.12)] relative overflow-hidden">
+          <div className="absolute top-0 left-10 w-96 h-96 bg-rose-500/10 rounded-full blur-[140px] pointer-events-none" />
+          <div className="absolute bottom-0 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-[140px] pointer-events-none" />
+
+          {/* Section Header */}
+          <div className="text-center max-w-4xl mx-auto mb-12 space-y-3 relative z-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold uppercase tracking-widest">
+              <TrendingUp className="w-4 h-4 text-rose-400 animate-pulse" />
+              <span>SEARCH ENGINE DOMINANCE & ORGANIC REVENUE</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+              Search Engine Optimization (SEO) & Google #1 Rank
+            </h2>
+            <p className="text-xs sm:text-base text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              Dominate high-value search queries where your ideal clients are ready to buy. We combine deep technical audits, Schema JSON-LD markup, Google Local 3-Pack authority, and ethical backlink architectures for sustainable #1 organic search visibility.
+            </p>
+          </div>
+
+          {/* Stretched 4-Column Blueprint */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+            
+            {/* SEO Pillar 1: Technical & Core Web Vitals */}
+            <div className="p-6 rounded-2xl bg-slate-900/85 border border-rose-500/30 hover:border-rose-400 transition-all space-y-4 shadow-lg group">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500/20 to-pink-600/30 text-rose-300 border border-rose-500/40 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <span className="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 text-[11px] font-mono font-bold">100/100 Score</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white group-hover:text-rose-300 transition-colors">Core Web Vitals & Tech SEO</h3>
+                <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                  Sub-second server response times, zero layout shift (CLS), pre-rendered critical CSS, semantic HTML5, and automated XML sitemaps.
+                </p>
+              </div>
+              <div className="space-y-1.5 text-xs text-slate-400 pt-2 border-t border-slate-800">
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                  <span>Instant Mobile Speed Optimization</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                  <span>301 Canonical & Redirect Mapping</span>
+                </div>
+              </div>
+            </div>
+
+            {/* SEO Pillar 2: Google Local 3-Pack */}
+            <div className="p-6 rounded-2xl bg-slate-900/85 border border-rose-500/30 hover:border-rose-400 transition-all space-y-4 shadow-lg group">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-600/30 text-cyan-300 border border-cyan-500/40 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Globe className="w-6 h-6" />
+                </div>
+                <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-[11px] font-mono font-bold">Local #1</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">Google Business Profile (GBP)</h3>
+                <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                  Local 3-Pack map ranking optimization, geo-tagged photo uploads, review velocity strategies, and complete NAP citation synchronization.
+                </p>
+              </div>
+              <div className="space-y-1.5 text-xs text-slate-400 pt-2 border-t border-slate-800">
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                  <span>Top 3 Rank on Google Maps Searches</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                  <span>Direct Incoming Phone Calls & Footfall</span>
+                </div>
+              </div>
+            </div>
+
+            {/* SEO Pillar 3: On-Page Schema JSON-LD */}
+            <div className="p-6 rounded-2xl bg-slate-900/85 border border-rose-500/30 hover:border-rose-400 transition-all space-y-4 shadow-lg group">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-violet-600/30 text-purple-300 border border-purple-500/40 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Code2 className="w-6 h-6" />
+                </div>
+                <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[11px] font-mono font-bold">Rich Snippets</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors">Schema JSON-LD Structured Data</h3>
+                <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                  Unlock rich Google search snippets with star ratings, FAQ accordions, price ranges, business coordinates, and breadcrumb structured markup.
+                </p>
+              </div>
+              <div className="space-y-1.5 text-xs text-slate-400 pt-2 border-t border-slate-800">
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                  <span>Higher Organic CTR on Search SERPs</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                  <span>Google Knowledge Graph Integration</span>
+                </div>
+              </div>
+            </div>
+
+            {/* SEO Pillar 4: High-Authority Backlinks */}
+            <div className="p-6 rounded-2xl bg-slate-900/85 border border-rose-500/30 hover:border-rose-400 transition-all space-y-4 shadow-lg group">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-600/30 text-emerald-300 border border-emerald-500/40 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Award className="w-6 h-6" />
+                </div>
+                <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[11px] font-mono font-bold">DA 50+ Links</span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">Ethical White-Hat Authority Links</h3>
+                <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                  High-domain-authority editorial placements, contextual guest citations, niche business directory mentions, and brand PR coverage.
+                </p>
+              </div>
+              <div className="space-y-1.5 text-xs text-slate-400 pt-2 border-t border-slate-800">
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>100% Google Penalty-Proof Link Building</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-300">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Monthly Keyword Ranking Progress Audits</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Stretched Action Callout Bar */}
+          <div className="mt-8 p-6 rounded-2xl bg-slate-950/80 border border-rose-500/30 flex flex-col lg:flex-row items-center justify-between gap-4">
+            <div className="space-y-1 text-center lg:text-left">
+              <div className="text-sm font-bold text-white flex items-center justify-center lg:justify-start gap-2">
+                <Search className="w-4 h-4 text-rose-400" />
+                <span>Ready to rank #1 for your most valuable industry keywords?</span>
+              </div>
+              <div className="text-xs text-slate-400">
+                Get a free comprehensive SEO audit & keyword opportunity analysis with AVRX Digital.
+              </div>
+            </div>
+            <button
+              onClick={() => {
+                launchSoundEngine.playSuccess();
+                onNavigate('contact');
+              }}
+              className="px-6 py-3 rounded-xl bg-gradient-to-r from-rose-500 via-pink-500 to-purple-600 text-white font-black text-xs sm:text-sm hover:scale-105 transition shadow-[0_0_25px_rgba(244,63,94,0.4)] flex items-center gap-2 shrink-0 cursor-pointer"
+            >
+              <span>Claim Free SEO Audit</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* 9. STRETCHED DIGITAL SOLUTIONS FAQ ACCORDION (WITH SEARCH) */}
+        <div className="my-20 w-full space-y-8">
           <div className="text-center space-y-2">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold uppercase">
               <Sparkles className="w-4 h-4 text-purple-400" />
@@ -1389,19 +1693,19 @@ export const DigitalSolutionsPage: React.FC<DigitalSolutionsPageProps> = ({ onNa
             </p>
           </div>
 
-          {/* Search Filter Bar */}
-          <div className="max-w-md mx-auto relative">
+          {/* Stretched Search Filter Bar */}
+          <div className="max-w-xl mx-auto relative">
             <Search className="w-4 h-4 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={faqSearch}
               onChange={e => setFaqSearch(e.target.value)}
               placeholder="Search questions (e.g. source code, pricing, payment)..."
-              className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-11 pr-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
+              className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-11 pr-4 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 shadow-inner"
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 items-start w-full">
             {filteredFaqs.map((faq, idx) => (
               <div 
                 key={idx}
