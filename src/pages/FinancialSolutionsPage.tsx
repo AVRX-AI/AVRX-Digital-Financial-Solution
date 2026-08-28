@@ -199,7 +199,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
       title: 'Personal Loan',
       category: 'Unsecured Credit',
       icon: UserCheck,
-      imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=1200&q=80',
       desc: 'Unsecured credit solutions to meet personal requirements, emergency expenses, weddings, higher education, or debt consolidation.',
       indicativeInfo: 'Flexible loan amounts from ₹50,000 up to ₹25 Lakhs',
       features: [
@@ -237,7 +237,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
       title: 'Mortgage Loan / Loan Against Property (LAP)',
       category: 'Secured Real Estate Equity',
       icon: Building2,
-      imageUrl: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1200&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80',
       desc: 'Unlock high-value liquidity by leveraging residential, commercial, or industrial properties while retaining complete property ownership.',
       indicativeInfo: 'High sanction limits up to ₹5 Crores | Tenures to 15 Years',
       features: [
@@ -351,7 +351,7 @@ export const FinancialSolutionsPage: React.FC<FinancialSolutionsPageProps> = ({ 
       title: 'Instant Online Loan (Digital Express Cash)',
       category: 'Digital Express Credit',
       icon: Zap,
-      imageUrl: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1200&q=80',
       desc: '100% paperless digital loan with algorithmic pre-approval, Video KYC, and fund transfer directly to your bank in 15 minutes.',
       indicativeInfo: 'Disbursement in 15 mins | 100% paperless digital flow',
       features: [

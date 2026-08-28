@@ -32,6 +32,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { WebsiteDesignPage } from './pages/WebsiteDesignPage';
 import { EcommerceSolutionsPage } from './pages/EcommerceSolutionsPage';
+import { AdminAIPage } from './pages/AdminAIPage';
 import { AskAVRXAIFloating } from './components/common/AskAVRXAIFloating';
 import { MobileBottomNav } from './components/layout/MobileBottomNav';
 
@@ -50,6 +51,7 @@ const pathToState = (pathname: string): { page: string; serviceSlug?: string; bl
     const slug = cleanPath.replace('/tools/', '');
     return { page: 'ai-tools', toolSlug: slug };
   }
+  if (cleanPath === '/admin' || cleanPath === '/admin/ai' || cleanPath === '/admin-ai' || cleanPath === '/control-center') return { page: 'admin' };
   if (cleanPath === '/services') return { page: 'services' };
   if (cleanPath === '/contact' || cleanPath === '/contact-us') return { page: 'contact' };
   if (cleanPath === '/pricing' || cleanPath === '/plans') return { page: 'pricing' };
@@ -82,6 +84,7 @@ const pathToState = (pathname: string): { page: string; serviceSlug?: string; bl
 };
 
 const pageToPath = (page: string, slugOrId?: string): string => {
+  if (page === 'admin' || page === 'admin-ai') return '/admin';
   if (page === 'service-detail' && slugOrId) return `/services/${slugOrId}`;
   if (page === 'ai-tools' && slugOrId) return `/ai-tools/${slugOrId}`;
   if (page === 'blog-post' && slugOrId) return `/blog/${slugOrId}`;
@@ -224,6 +227,10 @@ export function App() {
     switch (currentPage) {
       case 'home':
         return <HomePage onNavigate={handleNavigate} />;
+      case 'admin':
+      case 'admin-ai':
+      case 'control-center':
+        return <AdminAIPage onNavigate={handleNavigate} />;
       case 'website-design':
       case 'website-development':
         return <WebsiteDesignPage onNavigate={handleNavigate} />;
