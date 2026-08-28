@@ -2,11 +2,15 @@ import express, { Request, Response } from "express";
 import path from "path";
 import { GoogleGenAI } from "@google/genai";
 import { createServer as createViteServer } from "vite";
+import { aiRouter } from "./server/aiRoutes";
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+
+// Mount AVRX AI Suite (Chat, Voice, Leads, Knowledge Base, Settings, Catalog, Analytics)
+app.use("/api/ai", aiRouter);
 
 // Simple IP Rate Limiter (Max 5 submissions per 15 minutes)
 const ipRateLimitMap = new Map<string, number[]>();
