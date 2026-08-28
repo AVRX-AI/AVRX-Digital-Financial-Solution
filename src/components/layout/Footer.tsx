@@ -270,6 +270,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onReplayLaunch }) =>
             <button onClick={() => handleLink('privacy')} className="hover:text-cyan-400 transition">Privacy Policy</button>
             <button onClick={() => handleLink('terms')} className="hover:text-cyan-400 transition">Terms & Conditions</button>
             <button onClick={() => handleLink('disclaimer')} className="hover:text-cyan-400 transition">Disclaimer</button>
+            <button onClick={() => handleLink('admin')} className="text-cyan-400 hover:text-cyan-300 transition font-mono flex items-center gap-1">
+              <span>AI Control Center</span>
+            </button>
           </div>
         </div>
 
