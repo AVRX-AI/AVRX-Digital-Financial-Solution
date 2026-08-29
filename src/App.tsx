@@ -4,9 +4,7 @@ import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { SearchModal } from './components/layout/SearchModal';
 import { WhatsAppButton } from './components/layout/WhatsAppButton';
-import { IndependenceDayAtmosphere } from './components/common/IndependenceDayAtmosphere';
-import { AVRXLaunchScreen } from './components/common/AVRXLaunchScreen';
-import { launchSoundEngine } from './utils/launchSoundEngine';
+import { FuturisticAtmosphere } from './components/common/FuturisticAtmosphere';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -32,6 +30,10 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { WebsiteDesignPage } from './pages/WebsiteDesignPage';
 import { EcommerceSolutionsPage } from './pages/EcommerceSolutionsPage';
+import { AppDevelopmentPage } from './pages/AppDevelopmentPage';
+import { WebPortalPage } from './pages/WebPortalPage';
+import { DigitalMarketingPage } from './pages/DigitalMarketingPage';
+import { SEORankingPage } from './pages/SEORankingPage';
 import { AdminAIPage } from './pages/AdminAIPage';
 import { AskAVRXAIFloating } from './components/common/AskAVRXAIFloating';
 import { MobileBottomNav } from './components/layout/MobileBottomNav';
@@ -120,13 +122,6 @@ export function App() {
   const [selectedToolSlug, setSelectedToolSlug] = useState<string | null>(initialRoute.toolSlug || null);
 
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
-  const [showLaunchScreen, setShowLaunchScreen] = useState<boolean>(() => {
-    try {
-      return sessionStorage.getItem('avrx_launch_completed') !== 'true';
-    } catch {
-      return true;
-    }
-  });
 
   useEffect(() => {
     const handlePopState = () => {
@@ -149,33 +144,6 @@ export function App() {
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
-
-  // Announce Iron Man JARVIS voice greeting ("Hello, Welcome to AVRX") when website opens
-  useEffect(() => {
-    // Attempt automatic voice greeting on initial mount
-    const timer = setTimeout(() => {
-      launchSoundEngine.speakWelcomeToAVRX();
-    }, 400);
-
-    // Fallback: If browser autoplay policy requires user interaction, voice on first click/touch
-    const handleFirstGesture = () => {
-      launchSoundEngine.speakWelcomeToAVRX();
-      window.removeEventListener('click', handleFirstGesture);
-      window.removeEventListener('touchstart', handleFirstGesture);
-      window.removeEventListener('keydown', handleFirstGesture);
-    };
-
-    window.addEventListener('click', handleFirstGesture, { once: true });
-    window.addEventListener('touchstart', handleFirstGesture, { once: true });
-    window.addEventListener('keydown', handleFirstGesture, { once: true });
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('click', handleFirstGesture);
-      window.removeEventListener('touchstart', handleFirstGesture);
-      window.removeEventListener('keydown', handleFirstGesture);
-    };
   }, []);
 
   const handleNavigate = (page: string, slugOrPostId?: string) => {
@@ -239,6 +207,20 @@ export function App() {
       case 'ecommerce':
       case 'e-commerce':
         return <EcommerceSolutionsPage onNavigate={handleNavigate} />;
+      case 'android-app-development':
+      case 'app-development':
+      case 'mobile-app-development':
+        return <AppDevelopmentPage onNavigate={handleNavigate} />;
+      case 'web-portal-development':
+      case 'web-portal':
+      case 'b2b-portal-development':
+        return <WebPortalPage onNavigate={handleNavigate} />;
+      case 'digital-marketing':
+      case 'marketing':
+        return <DigitalMarketingPage onNavigate={handleNavigate} />;
+      case 'seo-ranking':
+      case 'seo':
+        return <SEORankingPage onNavigate={handleNavigate} />;
       case 'service-detail':
         return <ServiceDetailPage serviceSlug={selectedServiceSlug} onNavigate={handleNavigate} />;
       case 'digital-solutions':
@@ -294,27 +276,16 @@ export function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-[#050811] font-sans text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-slate-950 relative">
+      <div className="min-h-screen bg-[#030712] font-sans text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-slate-950 relative">
         
-        {/* 1. Cinematic Interactive Launch Experience Screen */}
-        {showLaunchScreen && (
-          <AVRXLaunchScreen
-            onComplete={() => {
-              setShowLaunchScreen(false);
-              launchSoundEngine.speakWelcomeToAVRX();
-            }}
-          />
-        )}
+        {/* Advanced Futuristic Global Ambient Particles & Laser Scanner */}
+        <FuturisticAtmosphere />
 
-        {/* Independence Day Global Ambient Particles & Initial Entry Wave */}
-        <IndependenceDayAtmosphere />
-
-        {/* Sticky Glassmorphic Navbar with Tricolour Accent & Replay Launch button */}
+        {/* Sticky Glassmorphic Navbar with Cyan Laser Accent */}
         <Navbar
           activePage={currentPage}
           onNavigate={handleNavigate}
           onOpenSearch={() => setIsSearchOpen(true)}
-          onReplayLaunch={() => setShowLaunchScreen(true)}
         />
 
         {/* Global Live Search Modal */}
@@ -342,8 +313,8 @@ export function App() {
         {/* Floating Ask AVRX AI Assistant */}
         <AskAVRXAIFloating onNavigate={handleNavigate} />
 
-        {/* Global Footer with Tribute Line */}
-        <Footer onNavigate={handleNavigate} onReplayLaunch={() => setShowLaunchScreen(true)} />
+        {/* Global Footer */}
+        <Footer onNavigate={handleNavigate} />
 
         {/* Mobile Sticky Bottom Navigation Bar */}
         <MobileBottomNav activePage={currentPage} onNavigate={handleNavigate} />

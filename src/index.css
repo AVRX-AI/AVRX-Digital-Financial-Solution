@@ -97,7 +97,7 @@
   }
 }
 
-/* Service Card Hover Tricolour Accent */
+/* Service Card Hover Futuristic Cyber Accent */
 .tricolour-card {
   position: relative;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -107,10 +107,10 @@
   content: '';
   position: absolute;
   top: 0;
-  left: 15%;
-  right: 15%;
+  left: 10%;
+  right: 10%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #FF9933, transparent);
+  background: linear-gradient(90deg, transparent, #06B6D4, #8B5CF6, transparent);
   opacity: 0;
   transition: opacity 0.35s ease, transform 0.35s ease;
   transform: translateY(-2px);
@@ -121,10 +121,10 @@
   content: '';
   position: absolute;
   bottom: 0;
-  left: 15%;
-  right: 15%;
+  left: 10%;
+  right: 10%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #138808, transparent);
+  background: linear-gradient(90deg, transparent, #8B5CF6, #06B6D4, transparent);
   opacity: 0;
   transition: opacity 0.35s ease, transform 0.35s ease;
   transform: translateY(2px);
@@ -132,16 +132,16 @@
 }
 
 .tricolour-card:hover::before {
-  opacity: 0.9;
+  opacity: 1;
   transform: translateY(0);
 }
 
 .tricolour-card:hover::after {
-  opacity: 0.9;
+  opacity: 1;
   transform: translateY(0);
 }
 
-/* CTA Button Independence Day Sweep */
+/* CTA Button Futuristic Laser Sweep */
 .btn-tricolour-hover {
   position: relative;
   overflow: hidden;
@@ -157,9 +157,9 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 153, 51, 0.25) 30%,
-    rgba(255, 255, 255, 0.45) 50%,
-    rgba(19, 136, 8, 0.25) 70%,
+    rgba(6, 182, 212, 0.35) 30%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(139, 92, 246, 0.35) 70%,
     transparent 100%
   );
   transform: rotate(25deg);
@@ -167,6 +167,7 @@
   transition: opacity 0.3s ease;
   pointer-events: none;
 }
+
 
 .btn-tricolour-hover:hover::after {
   opacity: 1;

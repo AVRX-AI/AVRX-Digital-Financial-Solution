@@ -16,8 +16,8 @@ import { HomeBlogSection } from '../components/home/HomeBlogSection';
 import { ResourceCenterSection } from '../components/home/ResourceCenterSection';
 import { SmartJourneyContactSection } from '../components/home/SmartJourneyContactSection';
 import { SEO } from '../components/common/SEO';
-import { RakshaBandhanSeparator } from '../components/common/RakshaBandhanSeparator';
-import { RakshaBandhanEffects } from '../components/common/RakshaBandhanEffects';
+import { FuturisticCyberSeparator } from '../components/common/FuturisticCyberSeparator';
+import { FuturisticCyberEffects } from '../components/common/FuturisticCyberEffects';
 
 interface HomePageProps {
   onNavigate: (page: string, postSlug?: string) => void;
@@ -25,10 +25,10 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
-    <div className="min-h-screen bg-[#07020d] text-white selection:bg-amber-500 selection:text-slate-950 pb-16 md:pb-0 relative overflow-hidden">
+    <div className="min-h-screen bg-[#030712] text-white selection:bg-cyan-500 selection:text-slate-950 pb-16 md:pb-0 relative overflow-hidden">
       
-      {/* RAKSHA BANDHAN FESTIVE THEME EFFECTS & PARTICLES */}
-      <RakshaBandhanEffects />
+      {/* ADVANCED FUTURISTIC CYBER THEME EFFECTS & PARTICLES */}
+      <FuturisticCyberEffects />
 
       <SEO
         title="AVRX | No 1 Digital & Financial Solution Company in Chhattisgarh India"
@@ -42,8 +42,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 01 — CINEMATIC FULL-SCREEN HERO */}
       <AICommandCenterHero onNavigate={onNavigate} />
 
-      {/* Raksha Bandhan Festive Separator */}
-      <RakshaBandhanSeparator />
+      {/* Futuristic Cyber HUD Separator */}
+      <FuturisticCyberSeparator label="CLIENT NETWORK" />
 
       {/* 02 — TOP CLIENTS MARQUEE */}
       <TopClientsSection />
@@ -51,8 +51,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 03 — WHY CHOOSE AVRX */}
       <WhyChooseAVRXSection onNavigate={onNavigate} />
 
-      {/* Raksha Bandhan Festive Separator */}
-      <RakshaBandhanSeparator />
+      {/* Futuristic Cyber HUD Separator */}
+      <FuturisticCyberSeparator label="DIGITAL ECOSYSTEM" />
 
       {/* 04 — DIGITAL SOLUTIONS */}
       <DigitalSolutionsSection onNavigate={onNavigate} />
@@ -63,8 +63,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 06 — TAX & DOCUMENTATION */}
       <TaxDocumentationSection onNavigate={onNavigate} />
 
-      {/* Raksha Bandhan Festive Separator */}
-      <RakshaBandhanSeparator />
+      {/* Futuristic Cyber HUD Separator */}
+      <FuturisticCyberSeparator label="AI HUB // 70+ TOOLS" />
 
       {/* 07 — AVRX AI TOOLS SUITE */}
       <AIHubSection onNavigate={onNavigate} />
@@ -75,8 +75,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 09 — WEBSITE HEALTH & SPEED SCANNER */}
       <WebsiteHealthScannerSection onNavigate={onNavigate} />
 
-      {/* Raksha Bandhan Festive Separator */}
-      <RakshaBandhanSeparator />
+      {/* Futuristic Cyber HUD Separator */}
+      <FuturisticCyberSeparator label="AI INTELLIGENCE LAB" />
 
       {/* 10 — AI PROJECT BUILDER & COST ESTIMATOR */}
       <AIProjectBuilderSection onNavigate={onNavigate} />
@@ -90,17 +90,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 13 — RESOURCE CENTER & KNOWLEDGE BASE */}
       <ResourceCenterSection onNavigate={onNavigate} />
 
-      {/* Raksha Bandhan Festive Separator */}
-      <RakshaBandhanSeparator />
+      {/* Futuristic Cyber HUD Separator */}
+      <FuturisticCyberSeparator label="INSIGHTS & STRATEGY" />
 
       {/* 14 — DEDICATED BLOG & ARTICLES SECTION */}
       <HomeBlogSection onNavigate={onNavigate} />
 
-      {/* Raksha Bandhan Festive Separator */}
-      <RakshaBandhanSeparator />
+      {/* Futuristic Cyber HUD Separator */}
+      <FuturisticCyberSeparator label="START YOUR JOURNEY" />
 
       {/* 15 — CONTACT & SMART INTAKE WIZARD */}
       <SmartJourneyContactSection onNavigate={onNavigate} />
     </div>
   );
 };
+
