@@ -218,26 +218,21 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onReplayLaunch }) =>
 
         </div>
 
-        {/* Independence Day Dedicated Tribute Strip */}
-        <div className="my-8 py-4 px-6 rounded-2xl bg-gradient-to-r from-[#FF9933]/10 via-slate-900/90 to-[#138808]/10 border border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-center shadow-lg">
+        {/* Futuristic Quantum Infrastructure & Ecosystem Status Strip */}
+        <div className="my-8 py-4 px-6 rounded-2xl bg-gradient-to-r from-cyan-500/10 via-slate-900/90 to-violet-500/10 border border-cyan-500/30 flex flex-col sm:flex-row items-center justify-between gap-3 text-center shadow-[0_0_25px_rgba(6,182,212,0.15)]">
           <div className="flex flex-col sm:flex-row items-center gap-2">
-            <span className="text-base">🇮🇳</span>
-            <p className="text-xs sm:text-sm font-semibold tracking-wide text-slate-200">
-              Celebrating the spirit of a <span className="text-[#FF9933]">free</span>, <span className="text-white">innovative</span> & <span className="text-[#22c55e]">digital India</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <p className="text-xs sm:text-sm font-mono font-semibold tracking-wide text-slate-200">
+              AVRX QUANTUM ECOSYSTEM // <span className="text-cyan-400">99.99% Uptime</span> • <span className="text-violet-400">AES-256 Cloud Native</span> • <span className="text-emerald-400">AI Verified</span>
             </p>
             <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-cyan-400" />
-            <span className="text-[11px] text-slate-400 font-mono">15 August 2026</span>
+            <span className="text-[11px] text-slate-400 font-mono">NEXT-GEN v4.5</span>
           </div>
 
-          {onReplayLaunch && (
-            <button
-              onClick={onReplayLaunch}
-              className="px-3 py-1.5 rounded-xl bg-slate-950/80 border border-[#FF9933]/30 hover:border-cyan-400 text-xs font-semibold text-slate-200 hover:text-white transition flex items-center gap-1.5 shadow-[0_0_12px_rgba(255,153,51,0.15)] group"
-            >
-              <span className="text-sm group-hover:-translate-y-0.5 transition-transform">🚀</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF9933] via-white to-[#138808]">Replay Launch Show</span>
-            </button>
-          )}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-slate-950/80 border border-cyan-500/30 text-xs font-mono font-semibold text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.2)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span>ALL NODES OPERATIONAL</span>
+          </div>
         </div>
 
         {/* Legal Disclaimer Box */}

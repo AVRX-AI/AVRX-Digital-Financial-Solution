@@ -148,8 +148,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
           : 'bg-transparent py-5'
       }`}
     >
-      {/* Raksha Bandhan Sacred Golden & Crimson Thread Border Line Accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400 via-rose-400 to-transparent opacity-85" />
+      {/* Futuristic Cyber Holographic Laser Border Line Accent */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 via-violet-500 to-transparent opacity-90 shadow-[0_0_15px_rgba(6,182,212,0.6)]" />
 
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 flex items-center justify-between relative">
         
@@ -159,7 +159,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
             onClick={() => handleNav('home')}
             className="flex items-center group focus:outline-none py-1"
           >
-            <div className="relative rounded-xl p-1 bg-[#050811]/90 border border-amber-500/40 shadow-[0_0_15px_rgba(245,158,11,0.2)] transition-all duration-300 group-hover:scale-105 group-hover:border-amber-400 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.4)]">
+            <div className="relative rounded-xl p-1 bg-[#050811]/90 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all duration-300 group-hover:scale-105 group-hover:border-cyan-400 group-hover:shadow-[0_0_25px_rgba(6,182,212,0.5)]">
               <img
                 src={brandLogo}
                 alt="AVRX Digital & Financial Solution Logo"
