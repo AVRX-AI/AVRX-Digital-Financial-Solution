@@ -37,6 +37,7 @@ import { SEORankingPage } from './pages/SEORankingPage';
 import { AdminAIPage } from './pages/AdminAIPage';
 import { AskAVRXAIFloating } from './components/common/AskAVRXAIFloating';
 import { MobileBottomNav } from './components/layout/MobileBottomNav';
+import { trackPageView } from './utils/analytics';
 
 const pathToState = (pathname: string): { page: string; serviceSlug?: string; blogPostId?: string; toolSlug?: string } => {
   const cleanPath = pathname.replace(/\/$/, '') || '/';
@@ -145,6 +146,16 @@ export function App() {
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
+
+  // Google Analytics 4 (GA4) Page View Tracking on SPA route changes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (typeof window !== 'undefined') {
+        trackPageView(window.location.pathname + window.location.search, document.title);
+      }
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [currentPage, selectedServiceSlug, selectedBlogPostId, selectedToolSlug]);
 
   const handleNavigate = (page: string, slugOrPostId?: string) => {
     let targetPage = page;

@@ -847,7 +847,7 @@ export const TAX_SERVICES: ServiceItem[] = [
     iconName: 'Calculator',
     badge: 'CA Verified • ₹1,499/mo',
     priceStarting: '₹1,499/mo',
-    imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=800&q=80',
     features: [
       'Monthly / Quarterly GSTR-1 Outward Supplies E-Filing',
       'Monthly GSTR-3B Tax Liability Computation & Return Filing',

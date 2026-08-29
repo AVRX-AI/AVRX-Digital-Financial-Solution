@@ -31,7 +31,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       <FuturisticCyberEffects />
 
       <SEO
-        title="AVRX | No 1 Digital & Financial Solution Company in Chhattisgarh India"
+        title="AVRX | Top Website Design, Best Digital Marketing, No 1 Financial Solution Company in Chhattisgarh INDIA"
         description="Next-generation digital engineering, business loans, IRDAI insurance, GST tax compliance, and 70+ in-browser AI tools by AVRX Digital and Financial Solution."
         canonicalUrl="https://avrx.in/"
         breadcrumbs={[
