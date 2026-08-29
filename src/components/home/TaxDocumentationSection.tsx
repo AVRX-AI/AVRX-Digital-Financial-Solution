@@ -60,7 +60,7 @@ export const TaxDocumentationSection: React.FC<TaxDocumentationProps> = ({ onNav
       badgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40',
       turnaround: 'Max Deductions Claimed',
       desc: 'Expert CA review of Form 16, AIS/TIS, Capital Gains, and Crypto income under Old vs New Tax Regimes for maximum refund.',
-      imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80',
       features: ['Max Tax Deductions (80C, 80D)', 'Form 26AS & AIS Reconciliation', 'TDS Refund Acceleration', 'Notice Rectification Guidance'],
       icon: FileText,
       themeColor: 'from-cyan-500 to-blue-600',
