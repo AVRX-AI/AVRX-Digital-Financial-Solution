@@ -245,3 +245,41 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Global Responsive Improvements */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Prevent media overflow without breaking fixed height utility classes */
+img, svg {
+  max-width: 100%;
+}
+video, canvas, audio, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile Touch Scrollbar Improvements */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Ensure smooth touch scrolling on iOS */
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
