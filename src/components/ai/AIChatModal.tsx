@@ -275,8 +275,8 @@ export const AIChatModal: React.FC<AIChatModalProps> = ({
     <div
       className={`fixed z-50 transition-all duration-300 flex flex-col overflow-hidden bg-slate-950/95 border border-cyan-500/40 backdrop-blur-2xl shadow-[0_0_60px_rgba(0,240,255,0.25)] ${
         isMaximized
-          ? 'inset-2 sm:inset-6 rounded-3xl'
-          : 'bottom-4 right-4 sm:bottom-6 sm:right-6 w-[94vw] sm:w-[460px] max-h-[85vh] h-[660px] rounded-3xl'
+          ? 'inset-2 sm:inset-6 rounded-2xl sm:rounded-3xl'
+          : 'inset-x-2 bottom-3 top-14 sm:top-auto sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[460px] sm:h-[660px] sm:max-h-[85vh] rounded-2xl sm:rounded-3xl'
       }`}
     >
       {/* 1. FUTURISTIC HEADER */}

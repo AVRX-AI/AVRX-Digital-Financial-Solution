@@ -185,11 +185,12 @@ export const AVRXLaunchScreen: React.FC<AVRXLaunchScreenProps> = ({ onComplete }
           }`}
         >
           {/* Logo */}
-          <div className="inline-block p-1.5 rounded-2xl bg-[#0a020f]/90 border border-amber-400/50 shadow-[0_0_25px_rgba(245,158,11,0.3)]">
+          <div className="inline-block p-1 sm:p-1.5 rounded-2xl bg-[#0a020f]/90 border border-amber-400/50 shadow-[0_0_25px_rgba(245,158,11,0.3)]">
             <img
               src={brandLogo}
               alt="AVRX Logo"
-              className="h-10 sm:h-12 w-auto object-contain rounded-xl brightness-110"
+              className="h-8 sm:h-10 w-auto max-h-10 object-contain rounded-xl brightness-110"
+              style={{ height: '38px', maxHeight: '42px', width: 'auto' }}
               referrerPolicy="no-referrer"
             />
           </div>

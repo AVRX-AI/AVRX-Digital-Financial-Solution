@@ -103,13 +103,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onReplayLaunch }) =>
           <div className="col-span-2 md:col-span-3 lg:col-span-2 space-y-4">
             <button
               onClick={() => handleLink('home')}
-              className="flex items-center text-left focus:outline-none"
+              className="flex items-center text-left focus:outline-none cursor-pointer"
             >
-              <div className="relative rounded-xl p-1 bg-[#050811]/90 border border-slate-700/80 shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-105 hover:border-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+              <div className="relative rounded-lg p-0.5 sm:p-1 bg-[#050811]/90 border border-slate-700/80 shadow-[0_0_12px_rgba(255,255,255,0.1)] transition-all duration-300 hover:scale-105 hover:border-cyan-400 flex items-center">
                 <img
                   src={brandLogo}
                   alt="AVRX Digital & Financial Solution Logo"
-                  className="h-10 sm:h-12 w-auto object-contain rounded-lg brightness-110"
+                  className="h-7 sm:h-8 w-auto max-h-8 object-contain rounded-md brightness-110"
+                  style={{ height: '32px', maxHeight: '34px', width: 'auto' }}
                   referrerPolicy="no-referrer"
                 />
               </div>
