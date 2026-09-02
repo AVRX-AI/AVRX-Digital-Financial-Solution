@@ -7,6 +7,7 @@ import {
   HOSTING_PRODUCTS 
 } from '../data/servicesData';
 import { ServiceItem } from '../types';
+import trademarkServiceImg from '../assets/images/trademark_service_1788375533486.jpg';
 import { SEO } from '../components/common/SEO';
 import { WebsiteDesignPage } from './WebsiteDesignPage';
 import { EcommerceSolutionsPage } from './EcommerceSolutionsPage';
@@ -240,7 +241,7 @@ const SERVICE_IMAGES: Record<string, string> = {
   'itr-filing': 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
   'udyam-registration': 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80',
   'company-registration': 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
-  'trademark-registration': 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80',
+  'trademark-registration': trademarkServiceImg,
   'fssai-food-license': 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
   'fssai-license': 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
   'iso-certification': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',

@@ -39,11 +39,11 @@ interface BlogPageProps {
 export const BlogPage: React.FC<BlogPageProps> = ({ 
   onSelectPost, 
   onNavigate,
-  initialCategory = 'All' 
+  initialCategory = 'Digital Solutions' 
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<'All' | BlogCategory>(initialCategory);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [viewMode, setViewMode] = useState<'systematic-categories' | 'grid'>('systematic-categories');
+  const [viewMode, setViewMode] = useState<'systematic-categories' | 'grid'>('grid');
 
   // Featured article (spotlight)
   const featuredPost = useMemo(() => {
@@ -103,7 +103,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
   }, [searchQuery]);
 
   const handleClearFilters = () => {
-    setSelectedCategory('All');
+    setSelectedCategory('Digital Solutions');
     setSearchQuery('');
   };
 
@@ -148,7 +148,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
           </h1>
 
           <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
-            व्यवस्थित श्रेणीवार आर्टिकल्स — Website Design, Android & iOS App Design, Digital Marketing, Loans, Insurance, ITR, UDYAM, PF और GST जैसे practical business topics।
+            व्यवस्थित श्रेणीवार आर्टिकल्स — वेबसाइट डेवलपमेंट, सरकारी लोन योजनाएं (PMEGP/MUDRA), जीएसटी अनुपालन, कमर्शियल इंश्योरेंस और आधुनिक एआई टूल्स।
           </p>
 
           {/* Interactive Live Search Bar */}
@@ -174,7 +174,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
           {/* Quick Keywords Chips */}
           <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-400 pt-1">
             <span className="font-semibold text-slate-500">Popular Topics:</span>
-            {['Website Design', 'Android iOS App', 'Digital Marketing', 'All Types of Loans', 'Health Insurance', 'Life Insurance', 'Motor Insurance', 'ITR Filing', 'UDYAM Registration', 'PF Withdrawal', 'GST Registration', 'SEO AI'].map((keyword) => (
+            {['Business Website 2026', 'PMEGP Subsidy', 'GST ITC', 'MUDRA Loan', 'SEO AI', 'Shop Insurance', 'Free AI Tools'].map((keyword) => (
               <button
                 key={keyword}
                 onClick={() => setSearchQuery(keyword)}
@@ -259,7 +259,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                       : 'bg-slate-950 border border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white'
                   }`}
                 >
-                  <span>{cat}</span>
+                  <span>{cat === 'All' ? 'All Blogs' : cat}</span>
                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
                     isActive ? 'bg-slate-950/30 text-slate-950' : 'bg-slate-800 text-slate-400'
                   }`}>

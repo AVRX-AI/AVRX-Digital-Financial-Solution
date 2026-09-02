@@ -2,10 +2,14 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type Theme = 'dark' | 'light';
 type Language = 'EN' | 'HI';
+export type FestiveMode = 'janmashtami' | 'off';
 
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
+  festiveMode: FestiveMode;
+  setFestiveMode: (mode: FestiveMode) => void;
+  toggleFestiveMode: () => void;
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
@@ -57,6 +61,32 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return (saved as Language) || 'EN';
   });
 
+  // Festive Krishna Janmashtami Theme (defaults to active, easily toggleable/changeable)
+  const [festiveMode, setFestiveModeState] = useState<FestiveMode>(() => {
+    const saved = localStorage.getItem('avrx_festive_mode');
+    // Default to 'janmashtami' if not explicitly set to 'off'
+    if (saved === 'off') return 'off';
+    return 'janmashtami';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('avrx_festive_mode', festiveMode);
+    if (festiveMode === 'janmashtami') {
+      document.documentElement.classList.add('theme-janmashtami');
+    } else {
+      document.documentElement.classList.remove('theme-janmashtami');
+    }
+  }, [festiveMode]);
+
+  const setFestiveMode = (mode: FestiveMode) => {
+    setFestiveModeState(mode);
+    localStorage.setItem('avrx_festive_mode', mode);
+  };
+
+  const toggleFestiveMode = () => {
+    setFestiveModeState(prev => (prev === 'janmashtami' ? 'off' : 'janmashtami'));
+  };
+
   useEffect(() => {
     localStorage.setItem('avrx_theme', theme);
     if (theme === 'dark') {
@@ -80,7 +110,16 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, language, setLanguage, t }}>
+    <ThemeContext.Provider value={{ 
+      theme, 
+      toggleTheme, 
+      festiveMode, 
+      setFestiveMode, 
+      toggleFestiveMode, 
+      language, 
+      setLanguage, 
+      t 
+    }}>
       {children}
     </ThemeContext.Provider>
   );

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { ThemeProvider } from './context/ThemeContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { SearchModal } from './components/layout/SearchModal';
 import { WhatsAppButton } from './components/layout/WhatsAppButton';
 import { FuturisticAtmosphere } from './components/common/FuturisticAtmosphere';
+import { JanmashtamiAtmosphere } from './components/festive/JanmashtamiAtmosphere';
+import { JanmashtamiFloatingBadge } from './components/festive/JanmashtamiFloatingBadge';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -38,7 +40,6 @@ import { AdminAIPage } from './pages/AdminAIPage';
 import { AskAVRXAIFloating } from './components/common/AskAVRXAIFloating';
 import { MobileBottomNav } from './components/layout/MobileBottomNav';
 import { trackPageView } from './utils/analytics';
-import { AdSense } from './components/common/AdSense';
 
 const pathToState = (pathname: string): { page: string; serviceSlug?: string; blogPostId?: string; toolSlug?: string } => {
   const cleanPath = pathname.replace(/\/$/, '') || '/';
@@ -115,7 +116,8 @@ const pageToPath = (page: string, slugOrId?: string): string => {
   return `/${page}`;
 };
 
-export function App() {
+export function AppContent() {
+  const { festiveMode } = useTheme();
   const initialRoute = typeof window !== 'undefined' ? pathToState(window.location.pathname) : { page: 'home' };
 
   const [currentPage, setCurrentPage] = useState<string>(initialRoute.page);
@@ -287,58 +289,68 @@ export function App() {
   };
 
   return (
+    <div
+      className={`min-h-screen bg-[#030712] font-sans text-slate-100 flex flex-col relative transition-colors duration-500 ${
+        festiveMode === 'janmashtami'
+          ? 'theme-janmashtami selection:bg-amber-400 selection:text-slate-950'
+          : 'selection:bg-cyan-500 selection:text-slate-950'
+      }`}
+    >
+      {/* Festive Krishna Janmashtami Atmosphere (Aura, Peacock & Golden Particles, Flower Petals) */}
+      <JanmashtamiAtmosphere />
+
+      {/* Advanced Futuristic Global Ambient Particles & Laser Scanner */}
+      <FuturisticAtmosphere />
+
+      {/* Sticky Glassmorphic Navbar with Cyan Laser Accent & Festive Ribbon */}
+      <Navbar
+        activePage={currentPage}
+        onNavigate={handleNavigate}
+        onOpenSearch={() => setIsSearchOpen(true)}
+      />
+
+      {/* Global Live Search Modal */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        onSelectService={(item) => {
+          if (item.category === 'digital') handleNavigate('digital-solutions');
+          else if (item.category === 'financial') handleNavigate('financial-solutions');
+          else if (item.category === 'tax') handleNavigate('tax-solutions');
+          else if (item.category === 'insurance') handleNavigate('insurance-solutions');
+          else if (item.category === 'hosting') handleNavigate('hosting-products');
+          else handleNavigate('ai-tools');
+        }}
+      />
+
+      {/* Active Route Screen */}
+      <main className="flex-grow relative z-10">
+        {renderPage()}
+      </main>
+
+      {/* Floating WhatsApp CTA */}
+      <WhatsAppButton />
+
+      {/* Floating Ask AVRX AI Assistant */}
+      <AskAVRXAIFloating onNavigate={handleNavigate} />
+
+      {/* Floating Janmashtami Theme Switcher & Auspicious Greeting Badge */}
+      <JanmashtamiFloatingBadge onNavigate={handleNavigate} />
+
+      {/* Global Footer */}
+      <Footer onNavigate={handleNavigate} />
+
+      {/* Mobile Sticky Bottom Navigation Bar */}
+      <MobileBottomNav activePage={currentPage} onNavigate={handleNavigate} />
+
+    </div>
+  );
+}
+
+export function App() {
+  return (
     <ThemeProvider>
-      <div className="min-h-screen bg-[#030712] font-sans text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-slate-950 relative">
-        
-        {/* Advanced Futuristic Global Ambient Particles & Laser Scanner */}
-        <FuturisticAtmosphere />
-
-        {/* Sticky Glassmorphic Navbar with Cyan Laser Accent */}
-        <Navbar
-          activePage={currentPage}
-          onNavigate={handleNavigate}
-          onOpenSearch={() => setIsSearchOpen(true)}
-        />
-
-        {/* Global Live Search Modal */}
-        <SearchModal
-          isOpen={isSearchOpen}
-          onClose={() => setIsSearchOpen(false)}
-          onSelectService={(item) => {
-            if (item.category === 'digital') handleNavigate('digital-solutions');
-            else if (item.category === 'financial') handleNavigate('financial-solutions');
-            else if (item.category === 'tax') handleNavigate('tax-solutions');
-            else if (item.category === 'insurance') handleNavigate('insurance-solutions');
-            else if (item.category === 'hosting') handleNavigate('hosting-products');
-            else handleNavigate('ai-tools');
-          }}
-        />
-
-        {/* Google AdSense - global ad placement (not shown on admin) */}
-        {currentPage !== 'admin' && (
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <AdSense />
-          </div>
-        )}
-
-        {/* Active Route Screen */}
-        <main className="flex-grow relative z-10">
-          {renderPage()}
-        </main>
-
-        {/* Floating WhatsApp CTA */}
-        <WhatsAppButton />
-
-        {/* Floating Ask AVRX AI Assistant */}
-        <AskAVRXAIFloating onNavigate={handleNavigate} />
-
-        {/* Global Footer */}
-        <Footer onNavigate={handleNavigate} />
-
-        {/* Mobile Sticky Bottom Navigation Bar */}
-        <MobileBottomNav activePage={currentPage} onNavigate={handleNavigate} />
-
-      </div>
+      <AppContent />
     </ThemeProvider>
   );
 }

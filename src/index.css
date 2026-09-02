@@ -77,6 +77,42 @@
   }
 }
 
+/* Krishna Janmashtami Floating Lotus & Flower Petal Drift */
+@keyframes floatPetal {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(0.8);
+    opacity: 0.15;
+  }
+  30% {
+    transform: translate3d(30px, -70px, 0) rotate(45deg) scale(1.1);
+    opacity: 0.75;
+  }
+  60% {
+    transform: translate3d(-20px, -150px, 0) rotate(90deg) scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate3d(15px, -240px, 0) rotate(160deg) scale(0.65);
+    opacity: 0;
+  }
+}
+
+/* Krishna Janmashtami Theme Global Accent Styles */
+.theme-janmashtami {
+  --festive-gold: #f59e0b;
+  --festive-peacock: #06b6d4;
+  --festive-emerald: #10b981;
+}
+
+.theme-janmashtami ::selection {
+  background-color: #f59e0b;
+  color: #020617;
+}
+
+.theme-janmashtami body {
+  background-color: #020814;
+}
+
 /* Tricolour Scroll Bar Pulse */
 @keyframes scrollPulse {
   0%, 100% {

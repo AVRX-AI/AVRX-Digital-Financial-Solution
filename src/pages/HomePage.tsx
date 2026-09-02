@@ -13,11 +13,11 @@ import { AIProjectBuilderSection } from '../components/home/AIProjectBuilderSect
 import { BusinessReadinessScoreSection } from '../components/home/BusinessReadinessScoreSection';
 import { ProjectsShowcaseLab } from '../components/home/ProjectsShowcaseLab';
 import { HomeBlogSection } from '../components/home/HomeBlogSection';
-import { ResourceCenterSection } from '../components/home/ResourceCenterSection';
 import { SmartJourneyContactSection } from '../components/home/SmartJourneyContactSection';
 import { SEO } from '../components/common/SEO';
 import { FuturisticCyberSeparator } from '../components/common/FuturisticCyberSeparator';
 import { FuturisticCyberEffects } from '../components/common/FuturisticCyberEffects';
+import { JanmashtamiHeroCard } from '../components/festive/JanmashtamiHeroCard';
 
 interface HomePageProps {
   onNavigate: (page: string, postSlug?: string) => void;
@@ -41,6 +41,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* 01 — CINEMATIC FULL-SCREEN HERO */}
       <AICommandCenterHero onNavigate={onNavigate} />
+
+      {/* FESTIVE KRISHNA JANMASHTAMI SPECIAL SPOTLIGHT (Active during Janmashtami theme) */}
+      <JanmashtamiHeroCard onNavigate={onNavigate} />
 
       {/* Futuristic Cyber HUD Separator */}
       <FuturisticCyberSeparator label="CLIENT NETWORK" />
@@ -87,13 +90,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       {/* 12 — PROJECTS SHOWCASE LAB */}
       <ProjectsShowcaseLab onNavigate={onNavigate} />
 
-      {/* 13 — RESOURCE CENTER & KNOWLEDGE BASE */}
-      <ResourceCenterSection onNavigate={onNavigate} />
-
       {/* Futuristic Cyber HUD Separator */}
       <FuturisticCyberSeparator label="INSIGHTS & STRATEGY" />
 
-      {/* 14 — DEDICATED BLOG & ARTICLES SECTION */}
+      {/* 13 — DEDICATED BLOG & ARTICLES SECTION */}
       <HomeBlogSection onNavigate={onNavigate} />
 
       {/* Futuristic Cyber HUD Separator */}
