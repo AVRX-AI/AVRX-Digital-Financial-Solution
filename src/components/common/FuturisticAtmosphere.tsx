@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTheme } from '../../context/ThemeContext';
 
 interface QuantumParticle {
   id: number;
@@ -12,10 +13,17 @@ interface QuantumParticle {
 }
 
 export const FuturisticAtmosphere: React.FC = () => {
+  const { festiveMode } = useTheme();
   const [particles, setParticles] = useState<QuantumParticle[]>([]);
   const [showLaserSweep, setShowLaserSweep] = useState(true);
 
   useEffect(() => {
+    // If festive mode is active, don't initialize high-tech quantum sweep
+    if (festiveMode === 'janmashtami') {
+      setShowLaserSweep(false);
+      return;
+    }
+
     // Electric Cyber & Quantum Neon colors
     const colors = [
       '#06B6D4', // Electric Cyan
@@ -48,7 +56,11 @@ export const FuturisticAtmosphere: React.FC = () => {
     }, 2800);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [festiveMode]);
+
+  if (festiveMode === 'janmashtami') {
+    return null;
+  }
 
   return (
     <>
