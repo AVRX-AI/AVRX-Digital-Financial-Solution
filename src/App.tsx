@@ -38,6 +38,7 @@ import { AdminAIPage } from './pages/AdminAIPage';
 import { AskAVRXAIFloating } from './components/common/AskAVRXAIFloating';
 import { MobileBottomNav } from './components/layout/MobileBottomNav';
 import { trackPageView } from './utils/analytics';
+import { AdSense } from './components/common/AdSense';
 
 const pathToState = (pathname: string): { page: string; serviceSlug?: string; blogPostId?: string; toolSlug?: string } => {
   const cleanPath = pathname.replace(/\/$/, '') || '/';
@@ -312,6 +313,13 @@ export function App() {
             else handleNavigate('ai-tools');
           }}
         />
+
+        {/* Google AdSense - global ad placement (not shown on admin) */}
+        {currentPage !== 'admin' && (
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <AdSense />
+          </div>
+        )}
 
         {/* Active Route Screen */}
         <main className="flex-grow relative z-10">
