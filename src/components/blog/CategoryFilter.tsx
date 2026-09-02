@@ -29,7 +29,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
                 : 'bg-slate-900/80 text-slate-300 border-slate-800 hover:border-slate-700 hover:text-white hover:bg-slate-850'
             }`}
           >
-            <span>{category}</span>
+            <span>{category === 'All' ? 'All Blogs' : category}</span>
             {count !== undefined && (
               <span
                 className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono font-bold ${
