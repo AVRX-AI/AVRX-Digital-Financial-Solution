@@ -10,6 +10,7 @@ import {
   Binary
 } from 'lucide-react';
 import { ServicesSlider } from './ServicesSlider';
+import { useTheme } from '../../context/ThemeContext';
 
 interface AICommandCenterHeroProps {
   onNavigate: (page: string, slug?: string) => void;
@@ -17,6 +18,7 @@ interface AICommandCenterHeroProps {
 }
 
 export const AICommandCenterHero: React.FC<AICommandCenterHeroProps> = ({ onNavigate }) => {
+  const { festiveMode } = useTheme();
   const heroRef = useRef<HTMLElement | null>(null);
 
   const headlineLetters = [
@@ -39,16 +41,18 @@ export const AICommandCenterHero: React.FC<AICommandCenterHeroProps> = ({ onNavi
       id="hero-command-center"
       className="relative min-h-screen pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden bg-[#030712] text-white flex flex-col justify-center select-none"
     >
-      {/* 1. Futuristic Quantum Plasma Nebulae - Electric Cyan, Neon Violet & Deep Indigo */}
-      <div className="absolute top-0 left-1/4 w-[750px] h-[750px] bg-cyan-500/12 rounded-full blur-[170px] pointer-events-none animate-pulse" />
-      <div className="absolute bottom-10 right-1/4 w-[650px] h-[650px] bg-violet-600/15 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[950px] bg-indigo-600/10 rounded-full blur-[200px] pointer-events-none" />
-
-      {/* Cybernetic High-Tech Grid Matrix Pattern Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#06b6d40a_1px,transparent_1px),linear-gradient(to_bottom,#8b5cf60a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
-
-      {/* Futuristic Glowing Laser Rail Accent */}
-      <div className="absolute top-16 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-cyan-400/80 via-violet-500/80 to-transparent shadow-[0_0_15px_rgba(6,182,212,0.6)] pointer-events-none" />
+      {/* 1. Futuristic Quantum Plasma Nebulae or Divine Golden Aura */}
+      {festiveMode !== 'janmashtami' ? (
+        <>
+          <div className="absolute top-0 left-1/4 w-[750px] h-[750px] bg-cyan-500/12 rounded-full blur-[170px] pointer-events-none animate-pulse" />
+          <div className="absolute bottom-10 right-1/4 w-[650px] h-[650px] bg-violet-600/15 rounded-full blur-[160px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[950px] bg-indigo-600/10 rounded-full blur-[200px] pointer-events-none" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#06b6d40a_1px,transparent_1px),linear-gradient(to_bottom,#8b5cf60a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
+          <div className="absolute top-16 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-cyan-400/80 via-violet-500/80 to-transparent shadow-[0_0_15px_rgba(6,182,212,0.6)] pointer-events-none" />
+        </>
+      ) : (
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-gradient-to-b from-amber-500/15 via-yellow-400/10 to-transparent rounded-full blur-[180px] pointer-events-none" />
+      )}
 
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 relative z-10 space-y-12">
         

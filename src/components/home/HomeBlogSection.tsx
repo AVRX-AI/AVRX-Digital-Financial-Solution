@@ -6,6 +6,7 @@ import {
   CategoryMeta 
 } from '../../data/blogData';
 import { BlogCategory, BlogPost } from '../../types/blog';
+import { RandomFeaturedBlogSection } from '../blog/RandomFeaturedBlogSection';
 import { 
   BookOpen, 
   Sparkles, 
@@ -30,7 +31,7 @@ interface HomeBlogSectionProps {
 }
 
 export const HomeBlogSection: React.FC<HomeBlogSectionProps> = ({ onNavigate }) => {
-  const [selectedCategory, setSelectedCategory] = useState<'All' | BlogCategory>('Digital Solutions');
+  const [selectedCategory, setSelectedCategory] = useState<'All' | BlogCategory>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   // Category icons mapper
@@ -87,22 +88,10 @@ export const HomeBlogSection: React.FC<HomeBlogSectionProps> = ({ onNavigate }) 
     });
   }, [selectedCategory, searchQuery]);
 
-  // Featured post for highlighted preview
-  const featuredPost = useMemo(() => {
-    return (
-      filteredPosts.find(p => p.isFeatured) || 
-      filteredPosts[0] || 
-      BLOG_POSTS_DATA[0]
-    );
-  }, [filteredPosts]);
-
-  // Remaining posts for grid
+  // All filtered posts for grid
   const gridPosts = useMemo(() => {
-    if (selectedCategory === 'All' && !searchQuery.trim()) {
-      return filteredPosts.filter(p => p.slug !== featuredPost?.slug);
-    }
     return filteredPosts;
-  }, [filteredPosts, featuredPost, selectedCategory, searchQuery]);
+  }, [filteredPosts]);
 
   const activeCategoryMeta = CATEGORY_METAS.find(m => m.id === selectedCategory);
 
@@ -170,7 +159,16 @@ export const HomeBlogSection: React.FC<HomeBlogSectionProps> = ({ onNavigate }) 
           </div>
         </div>
 
-        {/* Category Filter Pills */}
+        {/* RANDOM FEATURED BLOG SECTION (Randomized on every page visit + interactive shuffle) */}
+        {!searchQuery && (
+          <RandomFeaturedBlogSection
+            onSelectPost={handleOpenBlogPost}
+            categoryFilter="All"
+            className="my-2"
+          />
+        )}
+
+        {/* Category Filter Pills (Menu Tabs) */}
         <div className="flex flex-wrap items-center gap-2 sm:gap-3 pb-2 border-b border-slate-800/80">
           {BLOG_CATEGORIES.map((cat) => {
             const isSelected = selectedCategory === cat;
@@ -227,112 +225,6 @@ export const HomeBlogSection: React.FC<HomeBlogSectionProps> = ({ onNavigate }) 
               <span>View All in {activeCategoryMeta.id}</span>
               <ChevronRight className="w-3.5 h-3.5" />
             </button>
-          </div>
-        )}
-
-        {/* FEATURED SPOTLIGHT ARTICLE (When on "All" or if post matches) */}
-        {selectedCategory === 'All' && !searchQuery && featuredPost && (
-          <div className="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-cyan-500/30 hover:border-cyan-500/60 p-6 sm:p-8 lg:p-10 shadow-[0_12px_45px_rgba(0,0,0,0.5)] transition-all duration-300 group">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              
-              {/* Featured Image with Zoom */}
-              <div 
-                onClick={() => handleOpenBlogPost(featuredPost.slug)}
-                className="lg:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden bg-slate-950 cursor-pointer shadow-xl"
-              >
-                <img
-                  src={featuredPost.featuredImage}
-                  alt={featuredPost.imageAlt || featuredPost.title}
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-                
-                {/* Badges Overlay */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
-                  <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border backdrop-blur-md shadow-md ${getCategoryColor(featuredPost.category)}`}>
-                    {featuredPost.category}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500 text-slate-950 text-xs font-black tracking-wide shadow-lg">
-                    <Sparkles className="w-3.5 h-3.5 text-slate-950 fill-slate-950" />
-                    <span>FEATURED ARTICLE</span>
-                  </span>
-                </div>
-
-                <div className="absolute bottom-3 left-4 text-[11px] text-slate-300 font-mono">
-                  AVRX Flagship Guide • Complete 2026 Edition
-                </div>
-              </div>
-
-              {/* Featured Content & Details */}
-              <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
-                <div className="space-y-4">
-                  {/* Meta */}
-                  <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400 font-mono">
-                    <span className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-cyan-400" />
-                      {featuredPost.date}
-                    </span>
-                    <span className="w-1 h-1 rounded-full bg-slate-600" />
-                    <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
-                      <Clock className="w-3.5 h-3.5" />
-                      {featuredPost.readTime}
-                    </span>
-                    <span className="w-1 h-1 rounded-full bg-slate-600" />
-                    <span className="text-slate-300">
-                      By {featuredPost.author.name}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 
-                    onClick={() => handleOpenBlogPost(featuredPost.slug)}
-                    className="text-2xl sm:text-3xl font-black text-white group-hover:text-cyan-300 transition-colors leading-tight cursor-pointer"
-                  >
-                    {featuredPost.title}
-                  </h3>
-
-                  {/* Tagline / Excerpt */}
-                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed line-clamp-3">
-                    {featuredPost.excerpt}
-                  </p>
-
-                  {/* Key Highlights / Tagline Points */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
-                    <div className="flex items-center gap-2 text-xs text-slate-300 bg-slate-950/60 px-3 py-2 rounded-xl border border-slate-800/80">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                      <span className="truncate">10 Major Business Advantages</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-slate-300 bg-slate-950/60 px-3 py-2 rounded-xl border border-slate-800/80">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                      <span className="truncate">SEO &amp; Organic Leads Guide</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Continue Read Button & Tags */}
-                <div className="pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div className="flex flex-wrap gap-1.5">
-                    {featuredPost.tags?.slice(0, 3).map((tag, idx) => (
-                      <span key={idx} className="px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-400 text-[11px] font-mono">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <button
-                    onClick={() => handleOpenBlogPost(featuredPost.slug)}
-                    className="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black text-sm transition-all shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] cursor-pointer"
-                  >
-                    <span>Continue Read</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-
-              </div>
-
-            </div>
           </div>
         )}
 

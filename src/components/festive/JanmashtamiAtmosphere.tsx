@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTheme } from '../../context/ThemeContext';
-import krishnaDivineLoveBg from '../../assets/images/krishna_divine_love_bg_1788378324820.jpg';
+import krishnaPureLoveBg from '../../assets/images/krishna_pure_divine_love_1788379899498.jpg';
 
 interface FestiveParticle {
   id: number;
@@ -33,22 +33,22 @@ export const JanmashtamiAtmosphere: React.FC = () => {
     ];
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    const count = isMobile ? 22 : 45;
+    const count = isMobile ? 24 : 48;
 
     const items: FestiveParticle[] = Array.from({ length: count }, (_, i) => {
       const rand = Math.random();
       const pType: 'sparkle' | 'petal' | 'star' | 'diya' = 
-        rand > 0.75 ? 'petal' : rand > 0.5 ? 'diya' : rand > 0.25 ? 'sparkle' : 'star';
+        rand > 0.72 ? 'petal' : rand > 0.48 ? 'diya' : rand > 0.24 ? 'sparkle' : 'star';
 
       return {
         id: i,
         x: Math.random() * 98 + 1,
         y: Math.random() * 98 + 1,
-        size: pType === 'petal' ? Math.random() * 12 + 12 : pType === 'diya' ? Math.random() * 8 + 6 : Math.random() * 4 + 2,
+        size: pType === 'petal' ? Math.random() * 12 + 12 : pType === 'diya' ? Math.random() * 8 + 7 : Math.random() * 4 + 2,
         color: colors[Math.floor(Math.random() * colors.length)],
         duration: Math.random() * 14 + 12,
         delay: Math.random() * 6,
-        opacity: Math.random() * 0.6 + 0.25,
+        opacity: Math.random() * 0.65 + 0.25,
         type: pType,
       };
     });
@@ -62,33 +62,37 @@ export const JanmashtamiAtmosphere: React.FC = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none" aria-hidden="true">
-      {/* 1. Full-Screen Divine Krishna Background Artwork */}
+      {/* 1. Full-Screen Divine Krishna Background Artwork - Deep Dark Spiritual Shade */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 scale-105 transform-gpu"
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 transform-gpu"
         style={{
-          backgroundImage: `url(${krishnaDivineLoveBg})`,
-          opacity: 0.38,
-          filter: 'saturate(1.25) contrast(1.1)',
+          backgroundImage: `url(${krishnaPureLoveBg})`,
+          opacity: 0.18,
+          filter: 'saturate(1.2) contrast(1.3) brightness(0.62)',
         }}
       />
 
-      {/* 2. Pure Spiritual Gradient Overlay to ensure maximum contrast & readability for content */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020914]/90 via-[#030e22]/82 via-[#04122c]/85 to-[#020814]/94 backdrop-blur-[0.5px]" />
+      {/* 2. Deep Mystical Dark Shade Overlay - Midnight Blue & Indigo Vignette */}
+      <div className="fixed inset-0 bg-gradient-to-b from-[#020611]/88 via-[#03091a]/82 via-[#030c20]/84 to-[#020611]/92 backdrop-blur-[0.5px]" />
+      <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(2,6,17,0.4)_0%,_rgba(2,6,17,0.88)_70%,_#020611_100%)] pointer-events-none" />
 
-      {/* 3. Celestial Radha-Krishna Golden & Peacock Radial Auras */}
-      {/* Top Center: Bansuri & Peacock Feather Golden Crown Glow */}
-      <div className="absolute -top-44 left-1/2 -translate-x-1/2 w-[1100px] h-[750px] bg-gradient-to-b from-amber-500/22 via-yellow-400/12 via-cyan-500/10 to-transparent rounded-full blur-[190px] animate-pulse" />
+      {/* 3. Subtle Celestial Radha-Krishna Golden & Peacock Radial Auras in Soft Deep Shades */}
+      {/* Top Center: Bansuri & Peacock Feather Soft Deep Glow */}
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[1100px] h-[750px] bg-gradient-to-b from-amber-500/12 via-yellow-500/06 via-cyan-500/05 to-transparent rounded-full blur-[200px] animate-pulse" />
 
       {/* Left Sacred Yamuna Bank Aura */}
-      <div className="absolute top-1/4 -left-40 w-[700px] h-[700px] bg-gradient-to-tr from-cyan-600/16 via-emerald-500/10 to-transparent rounded-full blur-[180px]" />
+      <div className="absolute top-1/4 -left-40 w-[700px] h-[700px] bg-gradient-to-tr from-cyan-600/10 via-emerald-600/06 to-transparent rounded-full blur-[190px]" />
 
       {/* Right Sacred Vrindavan Groves & Kadamba Aura */}
-      <div className="absolute top-1/3 -right-40 w-[750px] h-[750px] bg-gradient-to-tl from-amber-500/18 via-purple-600/12 to-transparent rounded-full blur-[180px]" />
+      <div className="absolute top-1/3 -right-40 w-[750px] h-[750px] bg-gradient-to-tl from-amber-500/10 via-purple-600/08 to-transparent rounded-full blur-[190px]" />
+
+      {/* Bottom Yamuna Lotus Reflection Soft Deep Glow */}
+      <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-t from-cyan-600/08 via-pink-600/05 to-transparent rounded-full blur-[180px]" />
 
       {/* 4. Subtle Holy Stardust Grid Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f59e0b09_1px,transparent_1px),linear-gradient(to_bottom,#06b6d409_1px,transparent_1px)] bg-[size:5rem_5rem] [mask-image:radial-gradient(ellipse_75%_65%_at_50%_35%,#000_70%,transparent_100%)] opacity-85" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f59e0b08_1px,transparent_1px),linear-gradient(to_bottom,#06b6d408_1px,transparent_1px)] bg-[size:5rem_5rem] [mask-image:radial-gradient(ellipse_75%_65%_at_50%_35%,#000_65%,transparent_100%)] opacity-50" />
 
-      {/* 5. Delicate Floating Devotional Lotus Petals, Glowing Diyas & Celestial Sparkles */}
+      {/* 5. Floating Devotional Lotus Petals, Glowing Diyas & Celestial Sparkles */}
       {particles.map((p) => {
         if (p.type === 'petal') {
           return (
@@ -100,7 +104,7 @@ export const JanmashtamiAtmosphere: React.FC = () => {
                 top: `${p.y}%`,
                 fontSize: `${p.size}px`,
                 opacity: p.opacity,
-                filter: 'drop-shadow(0 0 10px rgba(244, 114, 182, 0.6))',
+                filter: 'drop-shadow(0 0 10px rgba(244, 114, 182, 0.7))',
                 animationDuration: `${p.duration + 4}s`,
                 animationDelay: `${p.delay}s`,
               }}
@@ -120,7 +124,7 @@ export const JanmashtamiAtmosphere: React.FC = () => {
                 top: `${p.y}%`,
                 fontSize: `${p.size}px`,
                 opacity: p.opacity * 0.9,
-                filter: 'drop-shadow(0 0 12px rgba(251, 191, 36, 0.8))',
+                filter: 'drop-shadow(0 0 14px rgba(251, 191, 36, 0.9))',
                 animationDuration: `${p.duration + 6}s`,
                 animationDelay: `${p.delay}s`,
               }}
@@ -150,7 +154,7 @@ export const JanmashtamiAtmosphere: React.FC = () => {
       })}
 
       {/* 6. Subtle Divine Watermark of Sacred Devotion in Background */}
-      <div className="absolute bottom-6 right-8 text-right opacity-15 pointer-events-none select-none font-serif hidden md:block">
+      <div className="absolute bottom-6 right-8 text-right opacity-20 pointer-events-none select-none font-serif hidden md:block">
         <div className="text-amber-200 text-2xl font-bold tracking-widest drop-shadow-[0_0_15px_rgba(251,191,36,0.8)]">
           ॥ हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे ॥
         </div>
