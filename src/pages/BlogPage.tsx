@@ -39,7 +39,7 @@ interface BlogPageProps {
 export const BlogPage: React.FC<BlogPageProps> = ({ 
   onSelectPost, 
   onNavigate,
-  initialCategory = 'Digital Solutions' 
+  initialCategory = 'All' 
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<'All' | BlogCategory>(initialCategory);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -103,7 +103,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
   }, [searchQuery]);
 
   const handleClearFilters = () => {
-    setSelectedCategory('Digital Solutions');
+    setSelectedCategory('All');
     setSearchQuery('');
   };
 
@@ -174,7 +174,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
           {/* Quick Keywords Chips */}
           <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-400 pt-1">
             <span className="font-semibold text-slate-500">Popular Topics:</span>
-            {['Business Website 2026', 'PMEGP Subsidy', 'GST ITC', 'MUDRA Loan', 'SEO AI', 'Shop Insurance', 'Free AI Tools'].map((keyword) => (
+            {['Website Design', 'Android iOS App', 'Digital Marketing', 'All Types of Loans', 'Health Insurance', 'Life Insurance', 'Motor Insurance', 'ITR Filing', 'UDYAM Registration', 'PF Withdrawal', 'GST Registration', 'SEO AI'].map((keyword) => (
               <button
                 key={keyword}
                 onClick={() => setSearchQuery(keyword)}

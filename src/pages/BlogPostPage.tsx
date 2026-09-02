@@ -8,7 +8,7 @@ import { BlogFAQAccordion } from '../components/blog/BlogFAQAccordion';
 import { BlogCTA } from '../components/blog/BlogCTA';
 import { RelatedPosts } from '../components/blog/RelatedPosts';
 import { BlogSEO } from '../components/blog/BlogSEO';
-import { Calendar, Clock, User, ArrowLeft, CheckCircle2, Sparkles, Tag, ShieldCheck } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft, CheckCircle2, Sparkles, Tag } from 'lucide-react';
 
 interface BlogPostPageProps {
   postId: string; // can be slug or ID
@@ -160,18 +160,20 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ postId, onBack, onNa
               </section>
             )}
 
-            {/* Infographics Component 1: Modern Growth Engine & 8 Pillars */}
-            <BlogInfographics />
+            {/* Business Website infographic is shown only for website-focused guides. */}
+            {['why-business-website-is-important-in-2026', 'why-choose-verified-futuristic-web-design-company', 'website-design-services-avrx'].includes(post.slug) && (
+              <BlogInfographics />
+            )}
 
             {/* 10 Core Benefit Sections */}
             {post.mainSections && post.mainSections.length > 0 && (
               <div className="space-y-12">
                 <div className="pb-4 border-b border-slate-800">
                   <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-                    2026 में Business Website के 10 बड़े फायदे
+                    {post.mainSections.length} Key Points from This Guide
                   </h2>
                   <p className="text-sm text-slate-400 mt-1">
-                    How an advanced website drives scalable growth, leads, and customer trust
+                    Practical points, checks and actions related to this article
                   </p>
                 </div>
 
