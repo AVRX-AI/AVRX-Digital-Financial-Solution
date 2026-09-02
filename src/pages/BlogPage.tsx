@@ -39,7 +39,7 @@ interface BlogPageProps {
 export const BlogPage: React.FC<BlogPageProps> = ({ 
   onSelectPost, 
   onNavigate,
-  initialCategory = 'All' 
+  initialCategory = 'Digital Solutions' 
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<'All' | BlogCategory>(initialCategory);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -103,7 +103,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
   }, [searchQuery]);
 
   const handleClearFilters = () => {
-    setSelectedCategory('All');
+    setSelectedCategory('Digital Solutions');
     setSearchQuery('');
   };
 

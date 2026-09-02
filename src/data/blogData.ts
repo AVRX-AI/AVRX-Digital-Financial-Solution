@@ -581,8 +581,7 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
       'आज का स्मार्ट उद्यमी वह नहीं है जो हर काम खुद मैन्युअली करता है, बल्कि वह है जो दोहराए जाने वाले कार्यों (repetitive tasks) को AI टूल्स की मदद से सेकंडों में ऑटोमेट कर देता है।',
       'AVRX 29+ Free AI Tools Suite का उपयोग करके आप बिना किसी सब्सक्रिप्शन फीस के लोन ईएमआई, जीएसटी इनवॉइस, पीडीएफ एडिटिंग और वेबसाइट परफॉर्मेंस टेस्ट कर सकते हैं।'
     ]
-  },
-  ...ADDITIONAL_BLOG_POSTS
+  }
 ];
 
 export const getBlogPostBySlug = (slugOrId: string): BlogPost | undefined => {
@@ -590,7 +589,9 @@ export const getBlogPostBySlug = (slugOrId: string): BlogPost | undefined => {
 };
 
 export const getFeaturedBlogPost = (): BlogPost => {
-  return BLOG_POSTS_DATA.find(p => p.isFeatured) || BLOG_POSTS_DATA[0];
+  return BLOG_POSTS_DATA.find(p => p.isFeatured) || BLOG_POSTS_DATA[0,
+  ...ADDITIONAL_BLOG_POSTS
+];
 };
 
 export const getPostsByCategory = (category: BlogCategory): BlogPost[] => {
