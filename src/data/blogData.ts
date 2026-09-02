@@ -88,7 +88,7 @@ export const CATEGORY_METAS: CategoryMeta[] = [
   }
 ];
 
-export const BLOG_POSTS_DATA: BlogPost[] = [
+const BASE_BLOG_POSTS_DATA: BlogPost[] = [
   // ==========================================
   // 1. DIGITAL SOLUTIONS CATEGORY
   // ==========================================
@@ -584,14 +584,35 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
   }
 ];
 
+// Merge additional/enriched blogs with base blogs ensuring unique slugs
+const additionalSlugs = new Set(ADDITIONAL_BLOG_POSTS.map(p => p.slug));
+export const BLOG_POSTS_DATA: BlogPost[] = [
+  ...ADDITIONAL_BLOG_POSTS,
+  ...BASE_BLOG_POSTS_DATA.filter(p => !additionalSlugs.has(p.slug))
+];
+
 export const getBlogPostBySlug = (slugOrId: string): BlogPost | undefined => {
   return BLOG_POSTS_DATA.find(p => p.slug === slugOrId || p.id === slugOrId);
 };
 
 export const getFeaturedBlogPost = (): BlogPost => {
-  return BLOG_POSTS_DATA.find(p => p.isFeatured) || BLOG_POSTS_DATA[0,
-  ...ADDITIONAL_BLOG_POSTS
-];
+  return BLOG_POSTS_DATA.find(p => p.isFeatured) || BLOG_POSTS_DATA[0];
+};
+
+export const getRandomFeaturedBlogPost = (excludeSlug?: string, category?: string): BlogPost => {
+  let pool = BLOG_POSTS_DATA;
+  if (category && category !== 'All') {
+    const catPool = pool.filter(p => p.category === category);
+    if (catPool.length > 0) pool = catPool;
+  }
+  
+  if (excludeSlug && pool.length > 1) {
+    const withoutExcluded = pool.filter(p => p.slug !== excludeSlug);
+    if (withoutExcluded.length > 0) pool = withoutExcluded;
+  }
+  
+  const randomIndex = Math.floor(Math.random() * pool.length);
+  return pool[randomIndex] || pool[0] || BLOG_POSTS_DATA[0];
 };
 
 export const getPostsByCategory = (category: BlogCategory): BlogPost[] => {

@@ -8,6 +8,7 @@ import {
 import { BlogCategory, BlogPost } from '../types/blog';
 import { SEO } from '../components/common/SEO';
 import { BlogCard } from '../components/blog/BlogCard';
+import { RandomFeaturedBlogSection } from '../components/blog/RandomFeaturedBlogSection';
 import { 
   BookOpen, 
   Sparkles, 
@@ -39,16 +40,11 @@ interface BlogPageProps {
 export const BlogPage: React.FC<BlogPageProps> = ({ 
   onSelectPost, 
   onNavigate,
-  initialCategory = 'Digital Solutions' 
+  initialCategory = 'All' 
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<'All' | BlogCategory>(initialCategory);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [viewMode, setViewMode] = useState<'systematic-categories' | 'grid'>('grid');
-
-  // Featured article (spotlight)
-  const featuredPost = useMemo(() => {
-    return BLOG_POSTS_DATA.find(p => p.isFeatured) || BLOG_POSTS_DATA[0];
-  }, []);
 
   // Calculate counts per category
   const categoryCounts = useMemo(() => {
@@ -174,7 +170,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
           {/* Quick Keywords Chips */}
           <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-400 pt-1">
             <span className="font-semibold text-slate-500">Popular Topics:</span>
-            {['Website Design', 'Android iOS App', 'Digital Marketing', 'All Types of Loans', 'Health Insurance', 'Life Insurance', 'Motor Insurance', 'ITR Filing', 'UDYAM Registration', 'PF Withdrawal', 'GST Registration', 'SEO AI'].map((keyword) => (
+            {['Business Website 2026', 'PMEGP Subsidy', 'GST ITC', 'MUDRA Loan', 'SEO AI', 'Shop Insurance', 'Free AI Tools'].map((keyword) => (
               <button
                 key={keyword}
                 onClick={() => setSearchQuery(keyword)}
@@ -186,56 +182,13 @@ export const BlogPage: React.FC<BlogPageProps> = ({
           </div>
         </div>
 
-        {/* Featured Spotlight Article (Only shown when not searching & in 'All' category) */}
-        {!searchQuery && selectedCategory === 'All' && featuredPost && (
-          <div 
-            onClick={() => onSelectPost(featuredPost.slug)}
-            className="group relative rounded-3xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/60 p-6 sm:p-8 lg:p-10 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10 cursor-pointer backdrop-blur-xl overflow-hidden"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-6 space-y-5 text-left">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-wider">
-                    ★ Featured Spotlight Guide
-                  </span>
-                  <span className="text-xs text-emerald-400 font-semibold flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5" />
-                    <span>{featuredPost.readTime}</span>
-                  </span>
-                </div>
-
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white group-hover:text-cyan-300 transition-colors leading-tight">
-                  {featuredPost.title}
-                </h2>
-
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed line-clamp-3">
-                  {featuredPost.excerpt}
-                </p>
-
-                <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400 font-mono pt-2">
-                  <span>By {featuredPost.author.name}</span>
-                  <span>•</span>
-                  <span>{featuredPost.date}</span>
-                </div>
-
-                <div className="pt-2">
-                  <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-black text-xs group-hover:scale-105 transition-transform shadow-lg shadow-cyan-500/25">
-                    <span>Read Complete 10-Point Blueprint</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
-              </div>
-
-              <div className="lg:col-span-6 rounded-2xl overflow-hidden aspect-[16/10] border border-slate-800 bg-slate-950 shadow-xl group-hover:scale-[1.02] transition-transform duration-500">
-                <img
-                  src={featuredPost.featuredImage}
-                  alt={featuredPost.imageAlt || featuredPost.title}
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                />
-              </div>
-            </div>
-          </div>
+        {/* Random Featured Blog Section (Changes on every visit + Interactive Shuffle) */}
+        {!searchQuery && (
+          <RandomFeaturedBlogSection 
+            onSelectPost={onSelectPost}
+            categoryFilter="All"
+            className="my-4"
+          />
         )}
 
         {/* Category Controls & View Switcher Bar */}

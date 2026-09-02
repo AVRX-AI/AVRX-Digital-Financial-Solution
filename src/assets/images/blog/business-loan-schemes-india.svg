@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" fill="none">
+  <defs>
+    <linearGradient id="loanBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="50%" stop-color="#071b1e"/>
+      <stop offset="100%" stop-color="#020817"/>
+    </linearGradient>
+    <linearGradient id="goldGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="50%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <pattern id="loanGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1" stroke-opacity="0.35"/>
+    </pattern>
+    <filter id="loanGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="35" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#loanBg)"/>
+  <rect width="1200" height="675" fill="url(#loanGrid)"/>
+
+  <circle cx="200" cy="180" r="300" fill="#F59E0B" fill-opacity="0.1" filter="url(#loanGlow)"/>
+  <circle cx="1020" cy="480" r="300" fill="#10B981" fill-opacity="0.1" filter="url(#loanGlow)"/>
+
+  <rect x="0" y="0" width="1200" height="4" fill="url(#goldGreen)"/>
+
+  <g transform="translate(80, 100)">
+    <rect x="0" y="0" width="280" height="34" rx="17" fill="#F59E0B" fill-opacity="0.15" stroke="#F59E0B" stroke-width="1.5" stroke-opacity="0.5"/>
+    <circle cx="18" cy="17" r="5" fill="#F59E0B"/>
+    <text x="32" y="22" fill="#FBBF24" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">AVRX FINANCIAL ADVISORY</text>
+
+    <text x="0" y="85" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="900" letter-spacing="-0.5">
+      MSME Business Loans &amp;
+    </text>
+    <text x="0" y="140" fill="url(#goldGreen)" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="900" letter-spacing="-0.5">
+      Government Schemes 2026
+    </text>
+
+    <text x="0" y="190" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="500">
+      PMEGP Subsidies, MUDRA &amp; CGTMSE Working Capital Guide
+    </text>
+
+    <g transform="translate(0, 230)">
+      <rect x="0" y="0" width="165" height="36" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="20" y="23" fill="#FBBF24" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">🏛️ PMEGP 35% Subsidy</text>
+
+      <rect x="180" y="0" width="155" height="36" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="200" y="23" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">💼 MUDRA Loans</text>
+
+      <rect x="350" y="0" width="150" height="36" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="370" y="23" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">🔒 Collateral-Free</text>
+    </g>
+
+    <g transform="translate(0, 300)">
+      <rect x="0" y="0" width="500" height="42" rx="12" fill="#0f172a" fill-opacity="0.8" stroke="#F59E0B" stroke-width="1" stroke-dasharray="4 4" stroke-opacity="0.4"/>
+      <text x="20" y="26" fill="#CBD5E1" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500">
+        📍 DPR Preparation &amp; Bank Liaison for Raipur, Bilaspur, Ambikapur &amp; Pan-India
+      </text>
+    </g>
+  </g>
+
+  <!-- Right Visual Mock: Financial Capital Dashboard -->
+  <g transform="translate(650, 90)">
+    <rect x="0" y="0" width="460" height="440" rx="18" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+    <rect x="0" y="0" width="460" height="42" rx="18" fill="#090d16"/>
+    <circle cx="24" cy="21" r="6" fill="#EF4444"/>
+    <circle cx="44" cy="21" r="6" fill="#F59E0B"/>
+    <circle cx="64" cy="21" r="6" fill="#10B981"/>
+    <rect x="95" y="10" width="270" height="22" rx="6" fill="#1e293b"/>
+    <text x="110" y="25" fill="#64748B" font-family="monospace" font-size="11">https://www.avrx.in/finance</text>
+
+    <g transform="translate(20, 60)">
+      <!-- Metric 1: Subsidy -->
+      <rect x="0" y="0" width="200" height="110" rx="12" fill="#071b1e" stroke="#10B981" stroke-width="1" stroke-opacity="0.5"/>
+      <text x="20" y="32" fill="#34D399" font-family="system-ui, sans-serif" font-size="11" font-weight="700">GOVT SUBSIDY (PMEGP)</text>
+      <text x="20" y="68" fill="#ffffff" font-family="system-ui, sans-serif" font-size="26" font-weight="900">Up to 35%</text>
+      <text x="20" y="90" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="10">Rural &amp; Special Categories</text>
+
+      <!-- Metric 2: MUDRA -->
+      <rect x="215" y="0" width="205" height="110" rx="12" fill="#1e1806" stroke="#F59E0B" stroke-width="1" stroke-opacity="0.5"/>
+      <text x="235" y="32" fill="#FBBF24" font-family="system-ui, sans-serif" font-size="11" font-weight="700">MUDRA CAP (TARUN)</text>
+      <text x="235" y="68" fill="#ffffff" font-family="system-ui, sans-serif" font-size="26" font-weight="900">₹10 - ₹20L</text>
+      <text x="235" y="90" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="10">Working Capital &amp; Machinery</text>
+
+      <!-- Scheme Comparison Row -->
+      <g transform="translate(0, 125)">
+        <rect x="0" y="0" width="420" height="100" rx="10" fill="#020617" stroke="#1e293b"/>
+        <text x="15" y="25" fill="#F8FAFC" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Eligibility &amp; Credit Architecture</text>
+        <text x="15" y="48" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• CIBIL Score 700+ recommended for smooth approval</text>
+        <text x="15" y="68" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• 2 Years ITR &amp; GST Invoicing for Working Capital OD/CC</text>
+        <text x="15" y="88" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">• Udyam MSME Registration Certificate required</text>
+      </g>
+
+      <!-- Bottom Advisory Note -->
+      <g transform="translate(0, 240)">
+        <rect x="0" y="0" width="420" height="85" rx="10" fill="#0f172a" stroke="#334155"/>
+        <text x="20" y="28" fill="#38BDF8" font-family="system-ui, sans-serif" font-size="12" font-weight="700">AVRX Project Report (DPR) Cell</text>
+        <text x="20" y="50" fill="#CBD5E1" font-family="system-ui, sans-serif" font-size="11">Professional Chartered Accountant &amp; Financial Expert certified</text>
+        <text x="20" y="68" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="10">Direct banking documentation assistance across India</text>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(80, 580)">
+    <text x="0" y="25" fill="#475569" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600">
+      AVRX Digital &amp; Financial Solution • www.avrx.in
+    </text>
+  </g>
+</svg>

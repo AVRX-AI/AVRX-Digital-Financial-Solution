@@ -52,4 +52,6 @@ export interface BlogPost {
   mainSections?: BlogSectionItem[];
   faqs?: BlogFAQ[];
   relatedSlugs?: string[];
+  sectionsTitle?: string;
+  sectionsSubtitle?: string;
 }

@@ -160,22 +160,20 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ postId, onBack, onNa
               </section>
             )}
 
-            {/* Infographics Component 1: Modern Growth Engine & 8 Pillars */}
-            {[
-              'why-business-website-is-important-in-2026',
-              'why-choose-verified-futuristic-web-design-company',
-              'website-design-services-avrx'
-            ].includes(post.slug) && <BlogInfographics />}
+            {/* Infographics Component: Modern Growth Engine & 8 Pillars (For Web & Digital Architecture) */}
+            {(post.slug === 'why-business-website-is-important-in-2026' || post.slug === 'website-design-services-avrx') && (
+              <BlogInfographics />
+            )}
 
-            {/* Core Guide Sections */}
+            {/* Core Detailed Sections */}
             {post.mainSections && post.mainSections.length > 0 && (
               <div className="space-y-12">
                 <div className="pb-4 border-b border-slate-800">
                   <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-                    {post.mainSections.length} Key Points from This Guide
+                    {post.sectionsTitle || (post.slug === 'why-business-website-is-important-in-2026' ? '2026 में Business Website के 10 बड़े फायदे' : 'विस्तृत विषय एवं संपूर्ण विश्लेषण (In-Depth Guide)')}
                   </h2>
                   <p className="text-sm text-slate-400 mt-1">
-                    A practical, actionable guide with insights tailored to this topic
+                    {post.sectionsSubtitle || (post.slug === 'why-business-website-is-important-in-2026' ? 'How an advanced website drives scalable growth, leads, and customer trust' : 'Practical framework, regulatory eligibility, implementation steps & expert advice')}
                   </p>
                 </div>
 

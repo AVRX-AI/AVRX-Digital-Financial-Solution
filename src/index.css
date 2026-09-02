@@ -131,14 +131,30 @@
 
 .theme-janmashtami body,
 .theme-janmashtami html {
-  background-color: #020713 !important;
+  background-color: #020611 !important;
 }
 
-/* Allow the divine Lord Krishna background to shine across full-bleed page wrappers */
-.theme-janmashtami section.bg-\[\#030712\],
-.theme-janmashtami div.bg-\[\#030712\],
-.theme-janmashtami main.bg-\[\#030712\] {
+/* Allow the divine Lord Krishna background to softly shine across all sections & pages in a rich dark shade */
+.theme-janmashtami main,
+.theme-janmashtami section,
+.theme-janmashtami .min-h-screen,
+.theme-janmashtami [class*="bg-[#030712]"],
+.theme-janmashtami [class*="bg-[#050811]"],
+.theme-janmashtami [class*="bg-[#040814]"],
+.theme-janmashtami [class*="bg-[#070b16]"],
+.theme-janmashtami [class*="bg-[#040714]"],
+.theme-janmashtami [class*="bg-[#030611]"] {
   background-color: transparent !important;
+}
+
+/* Ensure glassmorphic cards and containers have a rich deep dark backdrop for optimal text legibility */
+.theme-janmashtami .bg-slate-900\/80,
+.theme-janmashtami .bg-slate-900\/90,
+.theme-janmashtami .bg-slate-950\/80,
+.theme-janmashtami .bg-slate-950\/90 {
+  background-color: rgba(2, 6, 17, 0.86) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 }
 
 /* Golden Devotional Scrollbar during Janmashtami Theme */

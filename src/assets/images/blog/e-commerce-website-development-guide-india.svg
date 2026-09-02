@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" fill="none">
+  <defs>
+    <linearGradient id="ecomBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="50%" stop-color="#0c172e"/>
+      <stop offset="100%" stop-color="#020817"/>
+    </linearGradient>
+    <linearGradient id="emeraldTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="50%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <pattern id="ecomGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1" stroke-opacity="0.35"/>
+    </pattern>
+    <filter id="ecomGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="35" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#ecomBg)"/>
+  <rect width="1200" height="675" fill="url(#ecomGrid)"/>
+
+  <!-- Radial Ambient Glows -->
+  <circle cx="220" cy="180" r="300" fill="#10B981" fill-opacity="0.12" filter="url(#ecomGlow)"/>
+  <circle cx="1020" cy="480" r="300" fill="#06B6D4" fill-opacity="0.1" filter="url(#ecomGlow)"/>
+
+  <!-- Top Accent Rail -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#emeraldTeal)"/>
+
+  <!-- Left Content Info -->
+  <g transform="translate(80, 100)">
+    <rect x="0" y="0" width="270" height="34" rx="17" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="1.5" stroke-opacity="0.5"/>
+    <circle cx="18" cy="17" r="5" fill="#10B981"/>
+    <text x="32" y="22" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">AVRX E-COMMERCE SUITE</text>
+
+    <text x="0" y="85" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="900" letter-spacing="-0.5">
+      E-Commerce Website
+    </text>
+    <text x="0" y="140" fill="url(#emeraldTeal)" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="900" letter-spacing="-0.5">
+      Development in India
+    </text>
+
+    <text x="0" y="190" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="500">
+      Build a Scalable, High-Converting Online Store in 2026
+    </text>
+
+    <g transform="translate(0, 230)">
+      <rect x="0" y="0" width="165" height="36" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="20" y="23" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">💳 Instant UPI Gateway</text>
+
+      <rect x="180" y="0" width="165" height="36" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="200" y="23" fill="#38BDF8" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">📦 Logistics Auto-Sync</text>
+
+      <rect x="360" y="0" width="135" height="36" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="380" y="23" fill="#FBBF24" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600">🧾 GST E-Invoicing</text>
+    </g>
+
+    <g transform="translate(0, 300)">
+      <rect x="0" y="0" width="495" height="42" rx="12" fill="#0f172a" fill-opacity="0.8" stroke="#10B981" stroke-width="1" stroke-dasharray="4 4" stroke-opacity="0.4"/>
+      <text x="20" y="26" fill="#CBD5E1" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500">
+        📍 Zero commission, direct-to-consumer store with full data control
+      </text>
+    </g>
+  </g>
+
+  <!-- Right Visual Mock: Store & Cart Interface -->
+  <g transform="translate(650, 90)">
+    <rect x="0" y="0" width="460" height="440" rx="18" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+    <rect x="0" y="0" width="460" height="42" rx="18" fill="#090d16"/>
+    <circle cx="24" cy="21" r="6" fill="#EF4444"/>
+    <circle cx="44" cy="21" r="6" fill="#F59E0B"/>
+    <circle cx="64" cy="21" r="6" fill="#10B981"/>
+    <rect x="95" y="10" width="270" height="22" rx="6" fill="#1e293b"/>
+    <text x="110" y="25" fill="#64748B" font-family="monospace" font-size="11">https://yourbrand.avrx.in/store</text>
+
+    <!-- Store Preview Cards -->
+    <g transform="translate(20, 60)">
+      <!-- Product Item 1 -->
+      <rect x="0" y="0" width="195" height="150" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <rect x="15" y="15" width="165" height="70" rx="8" fill="#020617"/>
+      <circle cx="97" cy="50" r="20" fill="#10B981" fill-opacity="0.2"/>
+      <text x="15" y="110" fill="#F8FAFC" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Flagship Product Pro</text>
+      <text x="15" y="130" fill="#34D399" font-family="system-ui, sans-serif" font-size="14" font-weight="900">₹2,499</text>
+
+      <!-- Product Item 2 -->
+      <rect x="220" y="0" width="195" height="150" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <rect x="235" y="15" width="165" height="70" rx="8" fill="#020617"/>
+      <circle cx="317" cy="50" r="20" fill="#06B6D4" fill-opacity="0.2"/>
+      <text x="235" y="110" fill="#F8FAFC" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Smart Edition Ultra</text>
+      <text x="235" y="130" fill="#38BDF8" font-family="system-ui, sans-serif" font-size="14" font-weight="900">₹4,999</text>
+
+      <!-- Checkout Banner -->
+      <g transform="translate(0, 170)">
+        <rect x="0" y="0" width="415" height="80" rx="12" fill="#0b1329" stroke="#10B981" stroke-width="1" stroke-opacity="0.5"/>
+        <text x="20" y="32" fill="#34D399" font-family="system-ui, sans-serif" font-size="12" font-weight="700">⚡ 1-Click Fast Checkout</text>
+        <text x="20" y="55" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="11">UPI, QR Code, Cards, Netbanking &amp; COD Support</text>
+      </g>
+
+      <!-- Conversion Metric -->
+      <g transform="translate(0, 270)">
+        <rect x="0" y="0" width="415" height="70" rx="10" fill="#020617" stroke="#1e293b"/>
+        <text x="20" y="30" fill="#F8FAFC" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Conversion Rate: +280%</text>
+        <text x="20" y="50" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">Optimized for Tier-1, Tier-2 &amp; Tier-3 Indian Buyers</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Footer Watermark -->
+  <g transform="translate(80, 580)">
+    <text x="0" y="25" fill="#475569" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600">
+      AVRX Digital &amp; Financial Solution • www.avrx.in
+    </text>
+  </g>
+</svg>
