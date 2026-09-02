@@ -30,7 +30,7 @@ interface HomeBlogSectionProps {
 }
 
 export const HomeBlogSection: React.FC<HomeBlogSectionProps> = ({ onNavigate }) => {
-  const [selectedCategory, setSelectedCategory] = useState<'All' | BlogCategory>('All');
+  const [selectedCategory, setSelectedCategory] = useState<'All' | BlogCategory>('Digital Solutions');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   // Category icons mapper
@@ -188,8 +188,12 @@ export const HomeBlogSection: React.FC<HomeBlogSectionProps> = ({ onNavigate }) 
                     : 'bg-slate-900/90 text-slate-300 hover:text-white hover:bg-slate-800 border-slate-800'
                 }`}
               >
-                {cat !== 'All' && getCategoryIcon(cat)}
-                <span>{cat}</span>
+                {cat !== 'All' ? (
+                  getCategoryIcon(cat)
+                ) : (
+                  <Layers className={`w-4 h-4 ${isSelected ? 'text-slate-950' : 'text-cyan-400'}`} />
+                )}
+                <span>{cat === 'All' ? 'All Blogs' : cat}</span>
                 <span className={`px-1.5 py-0.5 rounded-md text-[10px] font-mono ${
                   isSelected ? 'bg-slate-950/30 text-slate-950' : 'bg-slate-800 text-slate-400'
                 }`}>
@@ -426,7 +430,7 @@ export const HomeBlogSection: React.FC<HomeBlogSectionProps> = ({ onNavigate }) 
             </p>
             <button
               onClick={() => {
-                setSelectedCategory('All');
+                setSelectedCategory('Digital Solutions');
                 setSearchQuery('');
               }}
               className="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 text-xs font-bold"

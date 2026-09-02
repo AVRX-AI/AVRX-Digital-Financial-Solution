@@ -39,6 +39,7 @@ import { SITE_CONFIG } from '../../config';
 import brandLogo from '../../assets/images/avrx_white_logo_1786467039540.jpg';
 import { AI_SUITE_CATEGORIES, POPULAR_HIGHLIGHTED_TOOLS } from '../../data/aiToolsSuiteData';
 import { launchSoundEngine } from '../../utils/launchSoundEngine';
+import { JanmashtamiTopBanner } from '../festive/JanmashtamiTopBanner';
 
 interface NavbarProps {
   activePage: string;
@@ -48,7 +49,7 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSearch, onReplayLaunch }) => {
-  const { language, setLanguage, t } = useTheme();
+  const { language, setLanguage, t, festiveMode, toggleFestiveMode } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
@@ -141,17 +142,21 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-[#050811]/94 backdrop-blur-2xl border-b border-slate-800/80 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.6)]'
-          : 'bg-transparent py-5'
-      }`}
-    >
-      {/* Futuristic Cyber Holographic Laser Border Line Accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 via-violet-500 to-transparent opacity-90 shadow-[0_0_15px_rgba(6,182,212,0.6)]" />
+    <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+      {/* Festive Janmashtami Announcement Ribbon (Active only when festiveMode is 'janmashtami') */}
+      <JanmashtamiTopBanner onNavigate={handleNav} />
 
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 flex items-center justify-between flex-nowrap gap-3 relative">
+      <div
+        className={`transition-all duration-300 relative ${
+          isScrolled
+            ? 'bg-[#050811]/94 backdrop-blur-2xl border-b border-slate-800/80 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.6)]'
+            : 'bg-[#050811]/70 backdrop-blur-md py-4'
+        }`}
+      >
+        {/* Futuristic Cyber Holographic Laser Border Line Accent */}
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 via-amber-400 to-transparent opacity-90 shadow-[0_0_15px_rgba(6,182,212,0.6)]" />
+
+        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 flex items-center justify-between flex-nowrap gap-3 relative">
         
         {/* Brand Logo */}
         <div className="flex items-center shrink-0">
@@ -169,6 +174,17 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
               />
             </div>
           </button>
+
+          {/* Janmashtami Festive Badge */}
+          {festiveMode === 'janmashtami' && (
+            <div className="hidden sm:flex items-center gap-1.5 ml-2.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-500/20 via-yellow-500/15 to-emerald-500/20 border border-amber-400/50 shadow-[0_0_15px_rgba(245,158,11,0.25)] select-none animate-pulse">
+              <span className="text-xs">🦚</span>
+              <span className="text-[11px] font-bold text-amber-300 font-sans tracking-wide">
+                जन्माष्टमी उत्सव
+              </span>
+              <span className="text-xs">🪈</span>
+            </div>
+          )}
         </div>
 
         {/* Desktop Navigation */}
@@ -407,6 +423,22 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
 
         {/* Right Tools & Action Buttons */}
         <div className="hidden lg:flex items-center gap-2.5">
+          {/* Janmashtami Theme Toggle Button */}
+          <button
+            onClick={toggleFestiveMode}
+            className={`px-2.5 py-1.5 rounded-xl transition border cursor-pointer flex items-center gap-1.5 ${
+              festiveMode === 'janmashtami'
+                ? 'bg-amber-400/20 border-amber-400/60 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.3)] hover:brightness-110'
+                : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white'
+            }`}
+            title={festiveMode === 'janmashtami' ? 'Janmashtami Theme Active (Click to switch to standard theme)' : 'Janmashtami Theme Off (Click to activate)'}
+          >
+            <span>{festiveMode === 'janmashtami' ? '🦚' : '✨'}</span>
+            <span className="text-xs font-bold text-amber-200">
+              {festiveMode === 'janmashtami' ? 'जन्माष्टमी' : 'Festive'}
+            </span>
+          </button>
+
           <button
             onClick={onOpenSearch}
             className="p-2 text-slate-400 hover:text-amber-400 hover:bg-slate-800/60 rounded-xl transition border border-slate-800/60 cursor-pointer"
@@ -456,6 +488,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
         </div>
 
       </div>
+    </div>
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
@@ -476,6 +509,29 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenSe
                   className={`flex-1 py-1.5 text-center rounded-lg transition ${language === 'HI' ? 'bg-cyan-500 text-slate-950 font-bold shadow' : 'text-slate-400'}`}
                 >
                   हिन्दी
+                </button>
+              </div>
+
+              {/* Mobile Festive Janmashtami Theme Switcher */}
+              <div className="mt-2 flex items-center justify-between p-2.5 rounded-xl bg-[#031528] border border-amber-400/40">
+                <div className="flex items-center gap-2">
+                  <span className="text-base">🦚</span>
+                  <div>
+                    <div className="text-xs font-bold text-amber-200">जन्माष्टमी थीम</div>
+                    <div className="text-[10px] text-slate-400">
+                      {festiveMode === 'janmashtami' ? 'सक्रिय है (Active)' : 'निष्क्रिय (Off)'}
+                    </div>
+                  </div>
+                </div>
+                <button
+                  onClick={toggleFestiveMode}
+                  className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
+                    festiveMode === 'janmashtami'
+                      ? 'bg-amber-400 text-slate-950 shadow-[0_0_10px_rgba(245,158,11,0.4)]'
+                      : 'bg-slate-800 text-slate-300'
+                  }`}
+                >
+                  {festiveMode === 'janmashtami' ? 'Turn Off' : 'Turn On'}
                 </button>
               </div>
             </div>
