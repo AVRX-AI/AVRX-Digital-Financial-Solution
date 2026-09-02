@@ -148,7 +148,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
           </h1>
 
           <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
-            व्यवस्थित श्रेणीवार आर्टिकल्स — वेबसाइट डेवलपमेंट, सरकारी लोन योजनाएं (PMEGP/MUDRA), जीएसटी अनुपालन, कमर्शियल इंश्योरेंस और आधुनिक एआई टूल्स।
+            व्यवस्थित श्रेणीवार आर्टिकल्स — Website Design, Android & iOS App Design, Digital Marketing, Loans, Insurance, ITR, UDYAM, PF और GST जैसे practical business topics।
           </p>
 
           {/* Interactive Live Search Bar */}
@@ -174,7 +174,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
           {/* Quick Keywords Chips */}
           <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-400 pt-1">
             <span className="font-semibold text-slate-500">Popular Topics:</span>
-            {['Business Website 2026', 'PMEGP Subsidy', 'GST ITC', 'MUDRA Loan', 'SEO AI', 'Shop Insurance', 'Free AI Tools'].map((keyword) => (
+            {['Website Design', 'Android iOS App', 'Digital Marketing', 'All Types of Loans', 'Health Insurance', 'Life Insurance', 'Motor Insurance', 'ITR Filing', 'UDYAM Registration', 'PF Withdrawal', 'GST Registration', 'SEO AI'].map((keyword) => (
               <button
                 key={keyword}
                 onClick={() => setSearchQuery(keyword)}

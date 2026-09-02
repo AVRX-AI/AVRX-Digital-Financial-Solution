@@ -2,6 +2,7 @@ import { BlogPost, BlogCategory } from '../types/blog';
 import featuredBusinessImg from '../assets/images/business_website_2026_1786766818552.jpg';
 import verifiedFuturisticWebDesignImg from '../assets/images/blog/why-choose-verified-futuristic-web-design-company.jpg';
 import top10ChhattisgarhDigitalMarketingImg from '../assets/images/blog/top-10-digital-marketing-agency-chhattisgarh-india.png';
+import { ADDITIONAL_BLOG_POSTS } from './additionalBlogs';
 
 export const BLOG_CATEGORIES: ('All' | BlogCategory)[] = [
   'All',
@@ -807,7 +808,8 @@ export const BLOG_POSTS_DATA: BlogPost[] = [
       'आज का स्मार्ट उद्यमी वह नहीं है जो हर काम खुद मैन्युअली करता है, बल्कि वह है जो दोहराए जाने वाले कार्यों (repetitive tasks) को AI टूल्स की मदद से सेकंडों में ऑटोमेट कर देता है।',
       'AVRX 29+ Free AI Tools Suite का उपयोग करके आप बिना किसी सब्सक्रिप्शन फीस के लोन ईएमआई, जीएसटी इनवॉइस, पीडीएफ एडिटिंग और वेबसाइट परफॉर्मेंस टेस्ट कर सकते हैं।'
     ]
-  }
+  },
+  ...ADDITIONAL_BLOG_POSTS
 ];
 
 export const getBlogPostBySlug = (slugOrId: string): BlogPost | undefined => {
