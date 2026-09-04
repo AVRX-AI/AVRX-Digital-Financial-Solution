@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Cpu, Zap, Activity, Radio, ShieldCheck } from 'lucide-react';
-import { useTheme } from '../../context/ThemeContext';
 
 interface CyberGlyph {
   id: number;
@@ -14,14 +13,11 @@ interface CyberGlyph {
 }
 
 export const FuturisticCyberEffects: React.FC = () => {
-  const { festiveMode } = useTheme();
   const [glyphs, setGlyphs] = useState<CyberGlyph[]>([]);
   const [isExpandedTelemetry, setIsExpandedTelemetry] = useState(false);
   const [pingMs, setPingMs] = useState(18);
 
   useEffect(() => {
-    if (festiveMode === 'janmashtami') return;
-
     // Cyber glyph symbols and neon glow palette
     const symbols = ['⬡', '⚡', '◈', '◇', 'λ', '✦', '01', '⌘', '▲', '⬢'];
     const colors = ['#06B6D4', '#8B5CF6', '#3B82F6', '#10B981', '#F43F5E', '#A855F7', '#38BDF8'];
@@ -45,11 +41,7 @@ export const FuturisticCyberEffects: React.FC = () => {
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [festiveMode]);
-
-  if (festiveMode === 'janmashtami') {
-    return null;
-  }
+  }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-30 overflow-hidden" aria-hidden="true">

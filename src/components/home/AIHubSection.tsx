@@ -22,6 +22,7 @@ import {
   Rocket
 } from 'lucide-react';
 import { launchSoundEngine } from '../../utils/launchSoundEngine';
+import aiQuantumHubBg from '../../assets/images/ai_quantum_hub_bg_1788541337870.jpg';
 
 interface AIHubSectionProps {
   onNavigate: (page: string, slug?: string) => void;
@@ -142,9 +143,23 @@ export const AIHubSection: React.FC<AIHubSectionProps> = ({ onNavigate }) => {
   return (
     <section id="ai-hub" className="py-28 bg-[#040714] relative overflow-hidden border-t border-b border-slate-800/80 select-none">
       
+      {/* Futuristic AI & Quantum Neural Matrix Background Image & Overlay */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
+        <img 
+          src={aiQuantumHubBg} 
+          alt="Futuristic Quantum Neural AI Background" 
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover object-center opacity-20 scale-105 filter brightness-95 contrast-125"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#040714] via-[#040714]/92 to-[#040714]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_30%,rgba(168,85,247,0.14),transparent_70%)]" />
+        <div className="absolute inset-0 bg-cyber-grid opacity-25" />
+      </div>
+
       {/* Background Atmosphere Glows */}
-      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[700px] h-[600px] bg-gradient-to-l from-purple-500/15 via-cyan-500/10 to-transparent rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[700px] h-[600px] bg-gradient-to-l from-purple-500/18 via-cyan-500/12 to-transparent rounded-full blur-[160px] pointer-events-none animate-pulse" style={{ animationDuration: '10s' }} />
+      <div className="absolute bottom-10 left-10 w-[600px] h-[600px] bg-indigo-500/12 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 relative z-10 space-y-16">
         

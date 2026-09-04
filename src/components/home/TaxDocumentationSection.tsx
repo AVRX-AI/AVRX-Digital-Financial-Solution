@@ -18,6 +18,7 @@ import {
   FileSpreadsheet
 } from 'lucide-react';
 import { launchSoundEngine } from '../../utils/launchSoundEngine';
+import taxComplianceBg from '../../assets/images/tax_compliance_bg_1788541318879.jpg';
 
 interface TaxDocumentationProps {
   onNavigate: (page: string, slug?: string) => void;
@@ -114,9 +115,23 @@ export const TaxDocumentationSection: React.FC<TaxDocumentationProps> = ({ onNav
   return (
     <section id="tax-solutions" className="relative py-28 bg-[#030712] text-white border-t border-slate-800/80 overflow-hidden select-none">
       
+      {/* Futuristic Tax & Legal Vault Background Image & Matrix Overlay */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
+        <img 
+          src={taxComplianceBg} 
+          alt="Futuristic Tax Compliance Matrix" 
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover object-center opacity-20 scale-105 filter brightness-95 contrast-125"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#030712]/92 to-[#030712]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_30%,rgba(245,158,11,0.12),transparent_70%)]" />
+        <div className="absolute inset-0 bg-cyber-grid opacity-25" />
+      </div>
+
       {/* Background glowing auras */}
-      <div className="absolute top-1/3 left-1/3 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/3 w-[600px] h-[600px] bg-amber-500/12 rounded-full blur-[160px] pointer-events-none animate-pulse" style={{ animationDuration: '8s' }} />
+      <div className="absolute bottom-10 right-10 w-[600px] h-[600px] bg-emerald-500/12 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 relative z-10 space-y-16">
         

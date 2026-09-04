@@ -474,6 +474,8 @@ export const ServicesSlider: React.FC<ServicesSliderProps> = ({ onNavigate }) =>
                   <img
                     src={current.imageUrl}
                     alt={current.title}
+                    loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
                   />

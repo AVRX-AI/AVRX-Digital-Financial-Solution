@@ -27,6 +27,7 @@ import {
   FileCheck
 } from 'lucide-react';
 import { launchSoundEngine } from '../../utils/launchSoundEngine';
+import financialSolutionsBg from '../../assets/images/financial_solutions_bg_1788541303193.jpg';
 
 interface FinancialSolutionsProps {
   onNavigate: (page: string, slug?: string) => void;
@@ -214,9 +215,23 @@ export const FinancialSolutionsSection: React.FC<FinancialSolutionsProps> = ({ o
   return (
     <section id="financial-solutions" className="relative py-28 bg-[#040814] text-white border-t border-slate-800/80 overflow-hidden select-none">
       
+      {/* Futuristic Fintech Section Background Image & Cyber Matrix Overlay */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
+        <img 
+          src={financialSolutionsBg} 
+          alt="Futuristic Fintech Analytics Matrix" 
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover object-center opacity-20 scale-105 filter brightness-95 contrast-125"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#040814] via-[#040814]/92 to-[#040814]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_30%,rgba(16,185,129,0.12),transparent_70%)]" />
+        <div className="absolute inset-0 bg-cyber-grid opacity-25" />
+      </div>
+
       {/* Background ambient lighting */}
-      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-emerald-500/15 rounded-full blur-[160px] pointer-events-none animate-pulse" style={{ animationDuration: '9s' }} />
+      <div className="absolute bottom-10 left-10 w-[600px] h-[600px] bg-teal-500/12 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 relative z-10 space-y-16">
         

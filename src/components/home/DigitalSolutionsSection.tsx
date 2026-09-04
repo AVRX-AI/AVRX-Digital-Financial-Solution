@@ -36,6 +36,7 @@ import {
   Truck
 } from 'lucide-react';
 import { launchSoundEngine } from '../../utils/launchSoundEngine';
+import digitalSolutionsBg from '../../assets/images/digital_solutions_bg_1788541286354.jpg';
 
 interface DigitalSolutionsProps {
   onNavigate: (page: string, slug?: string) => void;
@@ -263,11 +264,25 @@ export const DigitalSolutionsSection: React.FC<DigitalSolutionsProps> = ({ onNav
   return (
     <section id="digital-solutions" className="relative py-28 bg-[#030712] text-white border-t border-slate-800/80 overflow-hidden select-none">
       
+      {/* Futuristic Digital Solutions Section Background Image & Cyber Grid Overlay */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
+        <img 
+          src={digitalSolutionsBg} 
+          alt="Futuristic Digital Engineering Background" 
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover object-center opacity-20 scale-105 filter brightness-95 contrast-125"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#030712]/92 to-[#030712]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_30%,rgba(6,182,212,0.12),transparent_70%)]" />
+        <div className="absolute inset-0 bg-cyber-grid opacity-25" />
+      </div>
+
       {/* Dynamic Ambient Background Glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-10 left-10 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[160px] animate-pulse" style={{ animationDuration: '8s' }} />
-        <div className="absolute top-1/2 right-10 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[160px] animate-pulse" style={{ animationDuration: '10s' }} />
-        <div className="absolute bottom-10 left-1/3 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[160px]" />
+        <div className="absolute top-10 left-10 w-[600px] h-[600px] bg-cyan-500/15 rounded-full blur-[160px] animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute top-1/2 right-10 w-[600px] h-[600px] bg-purple-500/12 rounded-full blur-[160px] animate-pulse" style={{ animationDuration: '10s' }} />
+        <div className="absolute bottom-10 left-1/3 w-[600px] h-[600px] bg-blue-500/12 rounded-full blur-[160px]" />
       </div>
 
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 relative z-10 space-y-16">
