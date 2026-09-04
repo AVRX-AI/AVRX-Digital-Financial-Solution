@@ -17,7 +17,6 @@ import { SmartJourneyContactSection } from '../components/home/SmartJourneyConta
 import { SEO } from '../components/common/SEO';
 import { FuturisticCyberSeparator } from '../components/common/FuturisticCyberSeparator';
 import { FuturisticCyberEffects } from '../components/common/FuturisticCyberEffects';
-import { JanmashtamiHeroCard } from '../components/festive/JanmashtamiHeroCard';
 
 interface HomePageProps {
   onNavigate: (page: string, postSlug?: string) => void;
@@ -41,9 +40,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* 01 — CINEMATIC FULL-SCREEN HERO */}
       <AICommandCenterHero onNavigate={onNavigate} />
-
-      {/* FESTIVE KRISHNA JANMASHTAMI SPECIAL SPOTLIGHT (Active during Janmashtami theme) */}
-      <JanmashtamiHeroCard onNavigate={onNavigate} />
 
       {/* Futuristic Cyber HUD Separator */}
       <FuturisticCyberSeparator label="CLIENT NETWORK" />

@@ -1,45 +1,58 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import { SearchModal } from './components/layout/SearchModal';
 import { WhatsAppButton } from './components/layout/WhatsAppButton';
 import { FuturisticAtmosphere } from './components/common/FuturisticAtmosphere';
-import { JanmashtamiAtmosphere } from './components/festive/JanmashtamiAtmosphere';
-import { JanmashtamiFloatingBadge } from './components/festive/JanmashtamiFloatingBadge';
-
-// Pages
-import { HomePage } from './pages/HomePage';
-import { DigitalSolutionsPage } from './pages/DigitalSolutionsPage';
-import { FinancialSolutionsPage } from './pages/FinancialSolutionsPage';
-import { TaxSolutionsPage } from './pages/TaxSolutionsPage';
-import { InsuranceSolutionsPage } from './pages/InsuranceSolutionsPage';
-import { HostingProductsPage } from './pages/HostingProductsPage';
-import { AIToolsPage } from './pages/AIToolsPage';
-import { AllServicesPage } from './pages/AllServicesPage';
-import { PricingPage } from './pages/PricingPage';
-import { ProjectsPage } from './pages/ProjectsPage';
-import { ContactPage } from './pages/ContactPage';
-import { PartnerPage } from './pages/PartnerPage';
-import { FAQPage } from './pages/FAQPage';
-import { BlogPage } from './pages/BlogPage';
-import { BlogPostPage } from './pages/BlogPostPage';
-import { AboutPage } from './pages/AboutPage';
-import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
-import { TermsPage } from './pages/TermsPage';
-import { DisclaimerPage } from './pages/DisclaimerPage';
-import { NotFoundPage } from './pages/NotFoundPage';
-import { ServiceDetailPage } from './pages/ServiceDetailPage';
-import { WebsiteDesignPage } from './pages/WebsiteDesignPage';
-import { EcommerceSolutionsPage } from './pages/EcommerceSolutionsPage';
-import { AppDevelopmentPage } from './pages/AppDevelopmentPage';
-import { WebPortalPage } from './pages/WebPortalPage';
-import { DigitalMarketingPage } from './pages/DigitalMarketingPage';
-import { SEORankingPage } from './pages/SEORankingPage';
-import { AdminAIPage } from './pages/AdminAIPage';
 import { AskAVRXAIFloating } from './components/common/AskAVRXAIFloating';
 import { MobileBottomNav } from './components/layout/MobileBottomNav';
 import { trackPageView } from './utils/analytics';
+
+// Eager load HomePage for instantaneous initial render
+import { HomePage } from './pages/HomePage';
+
+// Lazy-load all non-home subpages to optimize bundle size and speed
+const DigitalSolutionsPage = React.lazy(() => import('./pages/DigitalSolutionsPage').then(m => ({ default: m.DigitalSolutionsPage })));
+const FinancialSolutionsPage = React.lazy(() => import('./pages/FinancialSolutionsPage').then(m => ({ default: m.FinancialSolutionsPage })));
+const TaxSolutionsPage = React.lazy(() => import('./pages/TaxSolutionsPage').then(m => ({ default: m.TaxSolutionsPage })));
+const InsuranceSolutionsPage = React.lazy(() => import('./pages/InsuranceSolutionsPage').then(m => ({ default: m.InsuranceSolutionsPage })));
+const HostingProductsPage = React.lazy(() => import('./pages/HostingProductsPage').then(m => ({ default: m.HostingProductsPage })));
+const AIToolsPage = React.lazy(() => import('./pages/AIToolsPage').then(m => ({ default: m.AIToolsPage })));
+const AllServicesPage = React.lazy(() => import('./pages/AllServicesPage').then(m => ({ default: m.AllServicesPage })));
+const PricingPage = React.lazy(() => import('./pages/PricingPage').then(m => ({ default: m.PricingPage })));
+const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage').then(m => ({ default: m.ProjectsPage })));
+const ContactPage = React.lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
+const PartnerPage = React.lazy(() => import('./pages/PartnerPage').then(m => ({ default: m.PartnerPage })));
+const FAQPage = React.lazy(() => import('./pages/FAQPage').then(m => ({ default: m.FAQPage })));
+const BlogPage = React.lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })));
+const BlogPostPage = React.lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
+const AboutPage = React.lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
+const PrivacyPolicyPage = React.lazy(() => import('./pages/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
+const TermsPage = React.lazy(() => import('./pages/TermsPage').then(m => ({ default: m.TermsPage })));
+const DisclaimerPage = React.lazy(() => import('./pages/DisclaimerPage').then(m => ({ default: m.DisclaimerPage })));
+const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
+const ServiceDetailPage = React.lazy(() => import('./pages/ServiceDetailPage').then(m => ({ default: m.ServiceDetailPage })));
+const WebsiteDesignPage = React.lazy(() => import('./pages/WebsiteDesignPage').then(m => ({ default: m.WebsiteDesignPage })));
+const EcommerceSolutionsPage = React.lazy(() => import('./pages/EcommerceSolutionsPage').then(m => ({ default: m.EcommerceSolutionsPage })));
+const AppDevelopmentPage = React.lazy(() => import('./pages/AppDevelopmentPage').then(m => ({ default: m.AppDevelopmentPage })));
+const WebPortalPage = React.lazy(() => import('./pages/WebPortalPage').then(m => ({ default: m.WebPortalPage })));
+const DigitalMarketingPage = React.lazy(() => import('./pages/DigitalMarketingPage').then(m => ({ default: m.DigitalMarketingPage })));
+const SEORankingPage = React.lazy(() => import('./pages/SEORankingPage').then(m => ({ default: m.SEORankingPage })));
+const AdminAIPage = React.lazy(() => import('./pages/AdminAIPage').then(m => ({ default: m.AdminAIPage })));
+const SearchModal = React.lazy(() => import('./components/layout/SearchModal').then(m => ({ default: m.SearchModal })));
+
+// Sleek high-tech route transition fallback
+const RouteLoadingFallback: React.FC = () => (
+  <div className="min-h-[50vh] flex flex-col items-center justify-center space-y-4 py-20">
+    <div className="relative w-12 h-12">
+      <div className="absolute inset-0 rounded-full border-2 border-cyan-500/20" />
+      <div className="absolute inset-0 rounded-full border-2 border-cyan-400 border-t-transparent animate-spin" />
+    </div>
+    <div className="text-xs font-mono tracking-widest text-cyan-400 uppercase animate-pulse">
+      Loading AVRX System...
+    </div>
+  </div>
+);
 
 const pathToState = (pathname: string): { page: string; serviceSlug?: string; blogPostId?: string; toolSlug?: string } => {
   const cleanPath = pathname.replace(/\/$/, '') || '/';
@@ -289,43 +302,40 @@ export function AppContent() {
   };
 
   return (
-    <div
-      className={`min-h-screen bg-[#030712] font-sans text-slate-100 flex flex-col relative transition-colors duration-500 ${
-        festiveMode === 'janmashtami'
-          ? 'theme-janmashtami selection:bg-amber-400 selection:text-slate-950'
-          : 'selection:bg-cyan-500 selection:text-slate-950'
-      }`}
-    >
-      {/* Festive Krishna Janmashtami Atmosphere (Aura, Peacock & Golden Particles, Flower Petals) */}
-      <JanmashtamiAtmosphere />
-
+    <div className="min-h-screen bg-[#030712] font-sans text-slate-100 flex flex-col relative selection:bg-cyan-500 selection:text-slate-950">
       {/* Advanced Futuristic Global Ambient Particles & Laser Scanner */}
       <FuturisticAtmosphere />
 
-      {/* Sticky Glassmorphic Navbar with Cyan Laser Accent & Festive Ribbon */}
+      {/* Sticky Glassmorphic Navbar with Cyan Laser Accent */}
       <Navbar
         activePage={currentPage}
         onNavigate={handleNavigate}
         onOpenSearch={() => setIsSearchOpen(true)}
       />
 
-      {/* Global Live Search Modal */}
-      <SearchModal
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-        onSelectService={(item) => {
-          if (item.category === 'digital') handleNavigate('digital-solutions');
-          else if (item.category === 'financial') handleNavigate('financial-solutions');
-          else if (item.category === 'tax') handleNavigate('tax-solutions');
-          else if (item.category === 'insurance') handleNavigate('insurance-solutions');
-          else if (item.category === 'hosting') handleNavigate('hosting-products');
-          else handleNavigate('ai-tools');
-        }}
-      />
+      {/* Global Live Search Modal (lazy loaded & rendered only when opened) */}
+      {isSearchOpen && (
+        <Suspense fallback={null}>
+          <SearchModal
+            isOpen={isSearchOpen}
+            onClose={() => setIsSearchOpen(false)}
+            onSelectService={(item) => {
+              if (item.category === 'digital') handleNavigate('digital-solutions');
+              else if (item.category === 'financial') handleNavigate('financial-solutions');
+              else if (item.category === 'tax') handleNavigate('tax-solutions');
+              else if (item.category === 'insurance') handleNavigate('insurance-solutions');
+              else if (item.category === 'hosting') handleNavigate('hosting-products');
+              else handleNavigate('ai-tools');
+            }}
+          />
+        </Suspense>
+      )}
 
       {/* Active Route Screen */}
       <main className="flex-grow relative z-10">
-        {renderPage()}
+        <Suspense fallback={<RouteLoadingFallback />}>
+          {renderPage()}
+        </Suspense>
       </main>
 
       {/* Floating WhatsApp CTA */}
@@ -333,9 +343,6 @@ export function AppContent() {
 
       {/* Floating Ask AVRX AI Assistant */}
       <AskAVRXAIFloating onNavigate={handleNavigate} />
-
-      {/* Floating Janmashtami Theme Switcher & Auspicious Greeting Badge */}
-      <JanmashtamiFloatingBadge onNavigate={handleNavigate} />
 
       {/* Global Footer */}
       <Footer onNavigate={handleNavigate} />

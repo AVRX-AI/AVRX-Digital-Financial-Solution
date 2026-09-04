@@ -61,30 +61,20 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return (saved as Language) || 'EN';
   });
 
-  // Festive Krishna Janmashtami Theme (defaults to active, easily toggleable/changeable)
-  const [festiveMode, setFestiveModeState] = useState<FestiveMode>(() => {
-    const saved = localStorage.getItem('avrx_festive_mode');
-    // Default to 'janmashtami' if not explicitly set to 'off'
-    if (saved === 'off') return 'off';
-    return 'janmashtami';
-  });
+  // Clean Futuristic Theme (Festive theme removed as requested)
+  const [festiveMode, setFestiveModeState] = useState<FestiveMode>('off');
 
   useEffect(() => {
-    localStorage.setItem('avrx_festive_mode', festiveMode);
-    if (festiveMode === 'janmashtami') {
-      document.documentElement.classList.add('theme-janmashtami');
-    } else {
-      document.documentElement.classList.remove('theme-janmashtami');
-    }
-  }, [festiveMode]);
+    localStorage.removeItem('avrx_festive_mode');
+    document.documentElement.classList.remove('theme-janmashtami');
+  }, []);
 
   const setFestiveMode = (mode: FestiveMode) => {
     setFestiveModeState(mode);
-    localStorage.setItem('avrx_festive_mode', mode);
   };
 
   const toggleFestiveMode = () => {
-    setFestiveModeState(prev => (prev === 'janmashtami' ? 'off' : 'janmashtami'));
+    setFestiveModeState(prev => (prev === 'janmashtami' ? 'off' : 'off'));
   };
 
   useEffect(() => {
