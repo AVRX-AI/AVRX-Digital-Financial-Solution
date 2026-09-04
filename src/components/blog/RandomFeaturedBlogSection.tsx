@@ -148,7 +148,8 @@ export const RandomFeaturedBlogSection: React.FC<RandomFeaturedBlogSectionProps>
             <img
               src={featuredPost.featuredImage}
               alt={featuredPost.imageAlt || featuredPost.title}
-              loading="eager"
+              loading="lazy"
+              decoding="async"
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105"
             />
